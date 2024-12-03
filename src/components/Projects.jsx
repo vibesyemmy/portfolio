@@ -81,7 +81,7 @@ const items = [
 
 export default function Projects() {
   return (
-    <div className="py-20 bg-black px-4 sm:px-6 md:px-8">
+    <div id="projects" className="py-20 bg-black px-4 sm:px-6 md:px-8">
       <BentoGrid className="max-w-5xl mx-auto">
         {items.map((item, i) => (
           <BentoGridItem
