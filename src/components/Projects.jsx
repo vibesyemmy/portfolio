@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 import { cn } from "../utils/cn";
+import UIGridImage from "../assets/UI-grid.png";
+import MonoImage from "../assets/mono.png";
 import {
   IconArrowWaveRightUp,
   IconBoxAlignRightFilled,
@@ -18,15 +20,31 @@ const Skeleton = () => (
 
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Skeleton />,
+    title: "Taming the Fintech Monster",
+    description: "A unified UI system to streamline development, and enhance user experience.",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
+        <img 
+          src={UIGridImage} 
+          alt="UI Grid System" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    ),
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
   },
   {
     title: "The Digital Revolution",
     description: "Dive into the transformative power of technology.",
-    header: <Skeleton />,
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl overflow-hidden">
+        <img 
+          src={MonoImage} 
+          alt="Mono Project" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    ),
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
   },
   {
@@ -64,7 +82,7 @@ const items = [
 export default function Projects() {
   return (
     <div className="py-20 bg-black px-4 sm:px-6 md:px-8">
-      <BentoGrid className="max-w-4xl mx-auto">
+      <BentoGrid className="max-w-5xl mx-auto">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
