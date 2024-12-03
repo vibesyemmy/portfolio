@@ -1,15 +1,18 @@
-import Hero from './components/Hero'
-import Navbar from './components/Navbar'
-import Projects from './components/Projects'
+import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Projects from './components/Projects';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <main className="min-h-screen w-screen overflow-hidden bg-black">
+    <div className="min-h-screen bg-neutral-950 overflow-hidden">
       <Navbar />
       <Hero />
       <Projects />
-    </main>
-  )
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
