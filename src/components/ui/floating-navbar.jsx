@@ -11,7 +11,7 @@ export const FloatingNav = ({ navItems, className }) => {
     <motion.div
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className={cn("flex fixed top-4 inset-x-0 max-w-fit mx-auto border border-white/[0.2] rounded-full bg-black/30 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1)] z-[5000] px-8 py-4 items-center", className)}
+      className={cn("flex fixed top-4 inset-x-0 max-w-fit mx-auto border border-white/[0.2] rounded-full bg-black/30 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1)] z-[5000] pl-8 pr-4 py-4 items-center", className)}
     >
       <img src={logo} alt="Logo" className="h-[32px] w-auto" />
       <div className="ml-[100px] flex items-center">
