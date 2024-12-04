@@ -1,5 +1,4 @@
 import React from "react";
-import { BackgroundBeams } from "../components/ui/background-beams";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 import { BlurImageBackground } from "../components/ui/blur-image-background";
 
@@ -60,7 +59,6 @@ export default function TamingFintechMonster() {
             </div>
           </div>
         </div>
-        <BackgroundBeams />
       </BlurImageBackground>
 
       {/* Project Overview */}
