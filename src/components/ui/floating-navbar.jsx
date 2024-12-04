@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../../utils/cn";
 import { BorderButton } from "./border-button";
@@ -7,16 +8,44 @@ import logo from "../../assets/logo.svg";
 export const FloatingNav = ({ navItems, className }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      navigate('/');
+    }
+  };
 
   const scrollToSection = (e, sectionId) => {
     e.preventDefault();
-    const element = sectionId === "#" ? document.body : document.querySelector(sectionId);
-    if (element) {
-      const offset = sectionId === "#" ? 0 : element.offsetTop;
-      window.scrollTo({
-        top: offset,
-        behavior: "smooth",
-      });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = sectionId === "#" ? document.body : document.querySelector(sectionId);
+        if (element) {
+          const offset = sectionId === "#" ? 0 : element.offsetTop;
+          window.scrollTo({
+            top: offset,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    } else {
+      const element = sectionId === "#" ? document.body : document.querySelector(sectionId);
+      if (element) {
+        const offset = sectionId === "#" ? 0 : element.offsetTop;
+        window.scrollTo({
+          top: offset,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
@@ -26,21 +55,20 @@ export const FloatingNav = ({ navItems, className }) => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className={cn(
-          "flex fixed top-4 inset-x-0 mx-auto border border-white/[0.2] rounded-full bg-black/30 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1)] z-[5000] pl-8 pr-4 py-4 items-center",
+          "flex fixed top-4 inset-x-0 mx-auto border border-white/[0.2] rounded-full bg-black/30 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1)] z-[5000] pl-8 pr-4 py-4 items-center justify-between",
           "w-[90%] custom:max-w-fit",
           className
         )}
       >
-        <a 
-          href="#" 
-          className="hover:opacity-75 transition-opacity"
-          onClick={(e) => scrollToSection(e, "#")}
-        >
-          <img src={logo} alt="Logo" className="h-[32px] w-auto" />
-        </a>
-        
+        {/* Logo */}
+        <div className="text-white">
+          <a href="/" onClick={handleLogoClick}>
+            <img src={logo} alt="Logo" className="h-8 w-auto" />
+          </a>
+        </div>
+
         {/* Desktop Navigation */}
-        <div className="ml-[100px] hidden custom:flex items-center">
+        <nav className="hidden custom:flex items-center gap-2 ml-20">
           {navItems.map((item, index) => {
             if (item.name === "Send a Message") {
               return (
@@ -79,83 +107,58 @@ export const FloatingNav = ({ navItems, className }) => {
               </a>
             );
           })}
-        </div>
+        </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="ml-auto custom:hidden p-2"
+          className="custom:hidden p-2 hover:bg-neutral-800/50 rounded-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <div className="w-6 h-5 relative flex flex-col justify-between">
-            <span className={cn(
-              "w-full h-0.5 bg-white transition-transform duration-200",
-              isMobileMenuOpen && "rotate-45 translate-y-2"
-            )} />
-            <span className={cn(
-              "w-full h-0.5 bg-white transition-opacity duration-200",
-              isMobileMenuOpen && "opacity-0"
-            )} />
-            <span className={cn(
-              "w-full h-0.5 bg-white transition-transform duration-200",
-              isMobileMenuOpen && "-rotate-45 -translate-y-2"
-            )} />
-          </div>
+          <svg
+            className="w-6 h-6 text-neutral-300"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            {isMobileMenuOpen ? (
+              <path d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
         </button>
       </motion.div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[4999] pt-24 px-4 bg-black/95 backdrop-blur-sm custom:hidden"
+            className="fixed inset-x-0 top-20 mx-4 p-4 rounded-lg bg-black/80 backdrop-blur-sm border border-white/[0.2] shadow-xl z-50"
           >
-            <div className="flex flex-col items-center gap-4">
-              {navItems.map((item, index) => {
-                if (item.name === "Send a Message") {
-                  return (
-                    <BorderButton
-                      key={item.name}
-                      className="w-full max-w-sm"
-                      onClick={() => {
-                        setActiveIndex(index);
-                        setIsMobileMenuOpen(false);
-                      }}
-                    >
-                      {item.name}
-                    </BorderButton>
-                  );
-                }
-                const href = item.name === "My Projects" ? "#projects" : item.link;
-                return (
-                  <a
-                    key={item.name}
-                    href={href}
-                    className="w-full max-w-sm py-3 text-center"
-                    onClick={(e) => {
-                      setActiveIndex(index);
-                      setIsMobileMenuOpen(false);
-                      if (item.name === "My Projects") {
-                        scrollToSection(e, "#projects");
-                      }
-                    }}
-                  >
-                    <span
-                      className={cn(
-                        "text-lg transition-colors duration-200",
-                        activeIndex === index 
-                          ? "text-white font-medium" 
-                          : "text-neutral-300"
-                      )}
-                    >
-                      {item.name}
-                    </span>
-                  </a>
-                );
-              })}
-            </div>
+            <nav className="flex flex-col space-y-4">
+              {navItems.map((item, index) => (
+                <a
+                  key={item.name}
+                  href={item.name === "My Projects" ? "#projects" : item.link}
+                  className="text-neutral-300 hover:text-white px-4 py-2 rounded-lg hover:bg-neutral-800/50"
+                  onClick={(e) => {
+                    setActiveIndex(index);
+                    setIsMobileMenuOpen(false);
+                    if (item.name === "My Projects") {
+                      scrollToSection(e, "#projects");
+                    }
+                  }}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

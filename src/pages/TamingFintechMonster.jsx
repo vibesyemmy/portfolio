@@ -1,21 +1,67 @@
 import React from "react";
 import { BackgroundBeams } from "../components/ui/background-beams";
+import { AnimatedTooltip } from "../components/ui/animated-tooltip";
+import { BlurImageBackground } from "../components/ui/blur-image-background";
+
+const teamMembers = [
+  {
+    name: "Opeyemi Ajagbe",
+    designation: "Product Designer",
+    image: "/src/assets/avatar.png",
+  },
+  {
+    name: "Ayo",
+    designation: "Product Designer",
+    image: "/src/assets/ayo.png",
+  },
+  {
+    name: "Seun",
+    designation: "Product Designer",
+    image: "/src/assets/seun.jpg",
+  },
+];
 
 export default function TamingFintechMonster() {
   return (
-    <div className="min-h-screen w-full bg-neutral-950 relative">
+    <div className="min-h-screen bg-neutral-950 text-white">
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center">
-        <div className="max-w-4xl mx-auto px-4 py-16 relative z-10">
+      <BlurImageBackground
+        imageSrc="/src/assets/ui-grid.png"
+        className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
+        overlayClassName="bg-black/60 backdrop-blur-[50px]"
+      >
+        <div className="max-w-4xl mx-auto px-4 py-8 md:py-16 relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 mb-8">
-            Taming the Fintech Monster
+            Poseidon: Taming the Fintech Sea Monster
           </h1>
-          <p className="text-neutral-400 text-center max-w-2xl mx-auto text-lg md:text-xl">
-            A case study on simplifying complex financial workflows and improving user experience
+          <p className="text-neutral-400 text-center max-w-2xl mx-auto text-lg md:text-xl mb-12">
+            A Design System Case Study
           </p>
+          
+          {/* Project Details */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
+              <p className="text-white font-medium">Product Designer</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Client</h3>
+              <p className="text-white font-medium">HydrogenPay</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Product</h3>
+              <p className="text-white font-medium">Design System</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
+              <div className="flex justify-center">
+                <AnimatedTooltip items={teamMembers} />
+              </div>
+            </div>
+          </div>
         </div>
         <BackgroundBeams />
-      </section>
+      </BlurImageBackground>
 
       {/* Project Overview */}
       <section className="py-16 px-4">
