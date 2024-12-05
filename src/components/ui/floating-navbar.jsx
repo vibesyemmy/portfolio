@@ -3,11 +3,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../../utils/cn";
 import { BorderButton } from "./border-button";
+import { Modal } from "./modal";
+import { ContactForm } from "./contact-form";
 import logo from "../../assets/logo.svg";
 
 export const FloatingNav = ({ navItems, className }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -63,19 +66,19 @@ export const FloatingNav = ({ navItems, className }) => {
         {/* Logo */}
         <div className="text-white">
           <a href="/" onClick={handleLogoClick}>
-            <img src={logo} alt="Logo" className="h-8 w-auto" />
+            <img src={logo} alt="Logo" className="h-6 md:h-8 w-auto" />
           </a>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden custom:flex items-center gap-2 ml-20">
+        <nav className="hidden custom:flex items-center gap-0.5 ml-20">
           {navItems.map((item, index) => {
             if (item.name === "Send a Message") {
               return (
                 <BorderButton
                   key={item.name}
                   className="ml-2"
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => setIsContactModalOpen(true)}
                 >
                   {item.name}
                 </BorderButton>
@@ -162,6 +165,11 @@ export const FloatingNav = ({ navItems, className }) => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Contact Form Modal */}
+      <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)}>
+        <ContactForm onClose={() => setIsContactModalOpen(false)} />
+      </Modal>
     </>
   );
 };

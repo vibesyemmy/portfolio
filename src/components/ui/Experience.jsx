@@ -17,16 +17,18 @@ export function Experience({
           <div>
             <h3 className="text-xl font-semibold text-white mb-1">{role}</h3>
             <div className="flex items-center gap-2">
-              <span className="text-neutral-400">{company}</span>
-              {companyUrl && (
+              {companyUrl ? (
                 <a 
-                  href={companyUrl} 
-                  target="_blank" 
+                  href={companyUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-400 hover:text-white transition-colors"
+                  className="text-blue-500 hover:text-blue-400 transition-colors flex items-center gap-1"
                 >
+                  {company}
                   <IconExternalLink className="w-4 h-4" />
                 </a>
+              ) : (
+                <span className="text-neutral-400">{company}</span>
               )}
             </div>
           </div>

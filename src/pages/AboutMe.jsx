@@ -2,10 +2,13 @@ import React from 'react';
 import AvatarImage from "../assets/avatar.png";
 import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
 import { BackgroundBeams } from "../components/ui/background-beams";
-import { IconBrandLinkedin, IconBrandDribbble, IconBrandBehance, IconMail } from '@tabler/icons-react';
+import { IconBrandLinkedin, IconBrandDribbble, IconBrandBehance, IconMail, IconDownload } from '@tabler/icons-react';
 import UxcelIcon from '../assets/uxcel.svg';
-import { ExperienceCard } from '../components/ui/ExperienceCard';
 import { Experience } from '../components/ui/Experience';
+import { Education } from '../components/ui/Education';
+import { Certification } from '../components/ui/Certification';
+import { MovingBorder } from '../components/ui/moving-border';
+import { BorderButton } from '../components/ui/border-button';
 
 const socialLinks = [
   {
@@ -97,6 +100,54 @@ const experiences = [
   }
 ];
 
+const education = [
+  {
+    institution: "Federal University of Technology, Minna",
+    degree: "Mechanical Engineering (B.Eng.)",
+    graduationDate: "Nov 2011"
+  }
+];
+
+const certifications = [
+  {
+    title: "UI/UX Designer (Professional Certification)",
+    organization: "Uxcel",
+    year: "2024",
+    url: "https://app.uxcel.com/certificates/41MFU7RO4LWW"
+  },
+  {
+    title: "UI Designer (Professional Certification)",
+    organization: "Uxcel",
+    year: "2024",
+    url: "https://app.uxcel.com/certificates/RIHKDBG9G4HC"
+  },
+  {
+    title: "Strategic Innovation",
+    organization: "Hydrogen Pay",
+    year: "2022"
+  },
+  {
+    title: "Google UX Design",
+    organization: "Google",
+    year: "2021"
+  },
+  {
+    title: "Product Management",
+    organization: "Product School",
+    year: "2021"
+  },
+  {
+    title: "UI/UX Design Thinking",
+    organization: "Uxcel",
+    year: "2020"
+  },
+  {
+    title: "Product Design",
+    organization: "Udacity",
+    year: "2019"
+  }
+];
+
 export default function AboutMe() {
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
@@ -139,9 +190,22 @@ export default function AboutMe() {
                   </a>
                 ))}
               </div>
+
+              {/* Download Resume Button */}
+              <BorderButton
+                as="a"
+                href="/OpeyemiAjagbe-Resume.pdf"
+                download
+                className="w-full max-w-[280px] h-[52px] text-base"
+              >
+                <span className="flex items-center justify-center gap-3">
+                  <IconDownload className="w-6 h-6" />
+                  Download Resume
+                </span>
+              </BorderButton>
               
               {/* Bio */}
-              <p className="text-neutral-300 leading-relaxed text-left">
+              <p className="text-neutral-300 leading-relaxed text-left pt-8">
                 A seasoned UX/UI Designer with a track record spanning 9+ years across diverse sectors such as Fintech, Logistics, Edu-tech, and E-Sport Entertainment. Demonstrated expertise in the full design lifecycle, from conceptualization to deployment, achieving a 50% boost in user satisfaction and contributing to a 30% company growth. Possesses a keen aptitude for integrating cutting-edge technologies with user-centric designs. Recognized for collaborative ethos, clear communication, and aligning product visions with organizational objectives.
               </p>
             </div>
@@ -160,6 +224,37 @@ export default function AboutMe() {
                 key={index} 
                 {...experience} 
                 isLast={index === experiences.length - 1}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-8">Education</h2>
+          <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
+            {education.map((edu, index) => (
+              <Education 
+                key={index} 
+                {...edu}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trainings & Certifications Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-8">Trainings & Certifications</h2>
+          <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
+            {certifications.map((cert, index) => (
+              <Certification 
+                key={index} 
+                {...cert} 
+                isLast={index === certifications.length - 1}
               />
             ))}
           </div>

@@ -16,6 +16,10 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    screens: {
+      'xs': {'max': '375px'},
+      ...defaultTheme.screens,
+    },
     container: {
       center: true,
       padding: "2rem",

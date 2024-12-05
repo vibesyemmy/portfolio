@@ -1,5 +1,6 @@
 import React from 'react';
 import { IconBrandLinkedin, IconBrandDribbble, IconBrandBehance, IconMail } from '@tabler/icons-react';
+import UxcelIcon from '../assets/uxcel.svg';
 
 const socialLinks = [
   {
@@ -22,6 +23,11 @@ const socialLinks = [
     href: 'https://behance.net/your-profile',
     label: 'Behance',
   },
+  {
+    icon: () => <img src={UxcelIcon} alt="UXcel" className="w-6 h-6 brightness-50 opacity-80 group-hover:brightness-200 group-hover:opacity-100" />,
+    href: 'https://uxcel.com/your-profile',
+    label: 'UXcel',
+  },
 ];
 
 export default function Footer() {
@@ -37,10 +43,10 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-400 hover:text-white transition-colors"
+                className="text-neutral-400 hover:text-white transition-colors group"
                 aria-label={link.label}
               >
-                <link.icon className="w-6 h-6" />
+                {typeof link.icon === 'function' ? link.icon() : <link.icon className="w-6 h-6" />}
               </a>
             ))}
           </div>
