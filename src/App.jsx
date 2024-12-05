@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import TamingFintechMonster from './pages/TamingFintechMonster';
+import TestPage from './pages/TestPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             </>
           } />
           <Route path="/case-study/fintech-monster" element={<TamingFintechMonster />} />
+          <Route path="/test" element={<TestPage />} />
         </Routes>
         <Footer />
       </div>

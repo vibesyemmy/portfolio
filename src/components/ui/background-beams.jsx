@@ -27,19 +27,10 @@ export const BackgroundBeams = ({ className }) => {
   return (
     <div
       className={cn(
-        "absolute inset-0 overflow-hidden",
+        "absolute inset-0 overflow-hidden bg-neutral-950",
         className
       )}
       ref={beamsRef}
-    >
-      <div
-        className={cn(
-          "absolute inset-0 transition-opacity",
-          "bg-[radial-gradient(circle_800px_at_var(--x,50%)_var(--y,50%),#4c00ff_0,transparent_100%)]",
-          "opacity-50"
-        )}
-      />
-      <div className="absolute inset-0 bg-black/[0.8]" />
-    </div>
+    />
   );
 };

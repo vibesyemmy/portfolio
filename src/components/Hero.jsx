@@ -1,13 +1,13 @@
 import React from "react";
-import { BackgroundBeams } from "./ui/background-beams";
 import { InfiniteMovingLogos } from "./ui/infinite-moving-logos";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { BackgroundBeams } from "./ui/background-beams";
 import AvatarImage from "../assets/avatar.png";
 
 export default function Hero() {
   return (
-    <div className="h-screen w-full relative flex flex-col items-center justify-center antialiased">
-      <div className="max-w-2xl mx-auto p-4">
+    <div className="h-screen w-full relative flex flex-col items-center justify-center antialiased bg-neutral-950">
+      <div className="max-w-6xl mx-auto px-4 relative z-10">
         <div className="relative z-10 w-[180px] h-[180px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] mx-auto mb-8">
           <HoverBorderGradient>
             <img 
@@ -30,7 +30,7 @@ export default function Hero() {
       <div className="absolute bottom-5 w-full z-10">
         <InfiniteMovingLogos />
       </div>
-      <BackgroundBeams />
+      <BackgroundBeams className="z-0" />
     </div>
   );
 }

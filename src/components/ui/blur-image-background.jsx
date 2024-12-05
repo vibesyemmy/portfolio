@@ -8,7 +8,7 @@ export const BlurImageBackground = ({
   children,
 }) => {
   return (
-    <div className={cn("relative w-full overflow-hidden", className)}>
+    <div className={cn("relative w-full overflow-hidden group", className)}>
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -18,7 +18,7 @@ export const BlurImageBackground = ({
       {/* Blur Overlay */}
       <div
         className={cn(
-          "absolute inset-0 backdrop-blur-[100px] bg-black/50",
+          "absolute inset-0 backdrop-blur-[20px] bg-black/60 transition-all duration-500 ease-in-out group-hover:backdrop-blur-0",
           overlayClassName
         )}
       />

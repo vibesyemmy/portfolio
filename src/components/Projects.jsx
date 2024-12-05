@@ -153,19 +153,21 @@ export default function Projects() {
   }, []);
 
   return (
-    <div id="projects" className="py-20 bg-black px-4 sm:px-6 md:px-8">
-      <BentoGrid className="max-w-5xl mx-auto">
-        {items.map((item, i) => (
-          <BentoGridItem
-            key={i}
-            title={item.title}
-            description={item.description}
-            header={item.header}
-            className={i === 3 || i === 6 ? "md:col-span-2" : ""}
-            onClick={() => handleCardClick(item.link)}
-          />
-        ))}
-      </BentoGrid>
+    <div id="projects" className="py-20 bg-black">
+      <div className="max-w-6xl mx-auto px-4">
+        <BentoGrid className="max-w-5xl mx-auto">
+          {items.map((item, i) => (
+            <BentoGridItem
+              key={i}
+              title={item.title}
+              description={item.description}
+              header={item.header}
+              className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+              onClick={() => handleCardClick(item.link)}
+            />
+          ))}
+        </BentoGrid>
+      </div>
     </div>
   );
 }
