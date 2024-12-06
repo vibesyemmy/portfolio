@@ -1,13 +1,23 @@
 import React from "react";
 import { InfiniteMovingLogos } from "./ui/infinite-moving-logos";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
-import { BackgroundBeams } from "./ui/background-beams";
 import { AnimatedPin } from "./ui/animated-pin";
 import AvatarImage from "../assets/avatar.png";
+import BgVideo from "../assets/bg-video.mp4";
 
 export default function Hero() {
   return (
-    <div className="xs:h-[150vh] h-[105vh] md:h-screen w-full relative flex flex-col items-center justify-center antialiased bg-neutral-950">
+    <div className="xs:h-[150vh] h-[105vh] md:h-screen w-full relative flex flex-col items-center justify-center antialiased">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-100"
+      >
+        <source src={BgVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="max-w-6xl mx-auto px-4 relative z-10 py-12 md:py-0">
         <div className="relative z-10 w-[140px] h-[140px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] mx-auto mb-6 md:mb-8">
           <AnimatedPin>
@@ -33,7 +43,6 @@ export default function Hero() {
       <div className="absolute bottom-4 md:bottom-5 w-full z-10">
         <InfiniteMovingLogos />
       </div>
-      <BackgroundBeams className="z-0" />
     </div>
   );
 }

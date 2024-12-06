@@ -6,7 +6,7 @@ import Projects from './components/Projects';
 import Footer from './components/Footer';
 import TamingFintechMonster from './pages/TamingFintechMonster';
 import AboutMe from './pages/AboutMe';
-import TestPage from './pages/TestPage';
+import Test from './pages/Test';
 import emailjs from '@emailjs/browser';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           } />
           <Route path="/case-study/fintech-monster" element={<TamingFintechMonster />} />
           <Route path="/about" element={<AboutMe />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
         <Footer />
       </div>

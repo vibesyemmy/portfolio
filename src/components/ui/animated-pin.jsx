@@ -1,15 +1,27 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export const AnimatedPin = ({ children }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const containerRef = useRef(null);
   const pinRef = useRef(null);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isMobile) return;
     
     const container = containerRef.current;
     const rect = container.getBoundingClientRect();
@@ -28,6 +40,7 @@ export const AnimatedPin = ({ children }) => {
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     setIsHovered(false);
     setRotateX(0);
     setRotateY(0);
@@ -37,7 +50,7 @@ export const AnimatedPin = ({ children }) => {
     <div 
       ref={containerRef}
       className="relative inline-block"
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -46,10 +59,10 @@ export const AnimatedPin = ({ children }) => {
     >
       <motion.div
         animate={{
-          scale: isHovered ? 1.05 : 1,
+          scale: isHovered && !isMobile ? 1.05 : 1,
           rotateX: rotateX,
           rotateY: rotateY,
-          z: isHovered ? 50 : 0,
+          z: isHovered && !isMobile ? 50 : 0,
         }}
         transition={{
           type: "spring",
@@ -67,9 +80,9 @@ export const AnimatedPin = ({ children }) => {
         ref={pinRef}
         initial={{ opacity: 0, y: 20, scale: 0.6 }}
         animate={{ 
-          opacity: isHovered ? 1 : 0,
-          y: isHovered ? 0 : 20,
-          scale: isHovered ? 1 : 0.6,
+          opacity: isMobile || isHovered ? 1 : 0,
+          y: isMobile || isHovered ? 0 : 20,
+          scale: isMobile || isHovered ? 1 : 0.6,
           rotateX: rotateX * 0.5,
           rotateY: rotateY * 0.5,
         }}

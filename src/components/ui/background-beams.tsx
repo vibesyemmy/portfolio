@@ -2,7 +2,11 @@
 import React from "react";
 import { cn } from "../../utils/cn";
 
-export function BackgroundBeams({ className }) {
+interface BackgroundBeamsProps {
+  className?: string;
+}
+
+export function BackgroundBeams({ className }: BackgroundBeamsProps) {
   return (
     <div className={cn("absolute inset-0 overflow-hidden bg-neutral-950", className)}>
       <div className="absolute top-0 left-0 w-full h-full">
