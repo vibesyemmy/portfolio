@@ -12,12 +12,12 @@ const socialLinks = [
   },
   {
     icon: IconBrandLinkedin,
-    href: 'https://linkedin.com/in/your-profile',
+    href: 'https://www.linkedin.com/in/opeyemi-ajagbe/',
     label: 'LinkedIn',
   },
   {
     icon: IconBrandDribbble,
-    href: 'https://dribbble.com/your-profile',
+    href: 'https://dribbble.com/opeyemiajagbe',
     label: 'Dribbble',
   },
   {
@@ -27,7 +27,7 @@ const socialLinks = [
   },
   {
     icon: () => <img src={UxcelIcon} alt="UXcel" className="w-6 h-6 brightness-50 opacity-80 group-hover:brightness-200 group-hover:opacity-100" />,
-    href: 'https://uxcel.com/your-profile',
+    href: 'https://app.uxcel.com/ux/opeyemiajagbe',
     label: 'UXcel',
   },
 ];
