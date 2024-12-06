@@ -58,7 +58,7 @@ export const FloatingNav = ({ navItems, className }) => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className={cn(
-          "flex fixed top-4 inset-x-0 mx-auto border border-white/[0.2] rounded-full bg-black/30 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1)] z-[5000] pl-8 pr-4 py-4 items-center justify-between",
+          "flex fixed top-2 inset-x-0 mx-auto border border-white/[0.2] rounded-full bg-black/30 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1)] z-[5000] pl-4 pr-2 py-2 items-center justify-between custom:pl-8 custom:pr-4 custom:py-4 custom:top-6",
           "w-[90%] custom:max-w-fit",
           className
         )}
@@ -114,54 +114,78 @@ export const FloatingNav = ({ navItems, className }) => {
 
         {/* Mobile Menu Button */}
         <button
-          className="custom:hidden p-2 hover:bg-neutral-800/50 rounded-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="custom:hidden relative p-3 rounded-full hover:bg-white/10 transition-colors duration-200 group"
         >
+          <div className="absolute inset-0 rounded-full border border-white/[0.1] group-hover:border-white/[0.2] transition-colors" />
           <svg
-            className="w-6 h-6 text-neutral-300"
+            className="w-5 h-5 text-white"
             fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
             stroke="currentColor"
+            viewBox="0 0 24 24"
           >
             {isMobileMenuOpen ? (
-              <path d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             ) : (
-              <path d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
       </motion.div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-20 mx-4 p-4 rounded-lg bg-black/80 backdrop-blur-sm border border-white/[0.2] shadow-xl z-50"
+            className="fixed inset-0 z-[4999] bg-black/95 backdrop-blur-md custom:hidden"
           >
-            <nav className="flex flex-col space-y-4">
-              {navItems.map((item, index) => (
-                <a
-                  key={item.name}
-                  href={item.name === "My Projects" ? "#projects" : item.link}
-                  className="text-neutral-300 hover:text-white px-4 py-2 rounded-lg hover:bg-neutral-800/50"
-                  onClick={(e) => {
-                    setActiveIndex(index);
-                    setIsMobileMenuOpen(false);
-                    if (item.name === "My Projects") {
-                      scrollToSection(e, "#projects");
-                    }
-                  }}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
+            <div className="flex flex-col items-center justify-center min-h-screen gap-8 p-8">
+              {navItems.map((item, index) => {
+                if (item.name === "Send a Message") {
+                  return (
+                    <BorderButton
+                      key={item.name}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        setIsContactModalOpen(true);
+                      }}
+                      className="w-full max-w-[200px]"
+                    >
+                      {item.name}
+                    </BorderButton>
+                  );
+                }
+                const href = item.name === "My Projects" ? "#projects" : item.link;
+                return (
+                  <a
+                    key={item.name}
+                    href={href}
+                    onClick={(e) => {
+                      setIsMobileMenuOpen(false);
+                      if (item.name === "My Projects") {
+                        scrollToSection(e, "#projects");
+                      }
+                    }}
+                    className="text-xl font-medium text-white hover:text-blue-400 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                );
+              })}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

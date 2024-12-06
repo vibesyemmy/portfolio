@@ -5,6 +5,11 @@ import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 import { cn } from "../utils/cn";
 import UIGridImage from "../assets/UI-grid.png";
 import MonoImage from "../assets/mono.png";
+import P3Image from "../assets/p3.png";
+import P4Video from "../assets/p4.mp4";
+import PhoneCashImage from "../assets/phonecash.webp";
+import P6Video from "../assets/p6.mp4";
+import P7Image from "../assets/p7.png";
 
 const ComingSoonTag = () => (
   <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-purple-600/80 to-purple-800/80 text-white border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
@@ -60,7 +65,13 @@ const items = [
         <div className="absolute top-4 left-4 z-20">
           <ComingSoonTag />
         </div>
-        <Skeleton />
+        <div className="flex flex-1 w-full h-full min-h-[6rem]">
+          <img 
+            src={P3Image} 
+            alt="Art of Design Project" 
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     ),
     link: "#"
@@ -74,7 +85,18 @@ const items = [
         <div className="absolute top-4 left-4 z-20">
           <ComingSoonTag />
         </div>
-        <Skeleton />
+        <div className="flex flex-1 w-full h-full min-h-[6rem] overflow-hidden">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={P4Video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     ),
     link: "#"
@@ -88,7 +110,13 @@ const items = [
         <div className="absolute top-4 left-4 z-20">
           <ComingSoonTag />
         </div>
-        <Skeleton />
+        <div className="flex flex-1 w-full h-full min-h-[6rem]">
+          <img 
+            src={PhoneCashImage} 
+            alt="PhoneCash Project" 
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     ),
     link: "#"
@@ -102,21 +130,38 @@ const items = [
         <div className="absolute top-4 left-4 z-20">
           <ComingSoonTag />
         </div>
-        <Skeleton />
+        <div className="flex flex-1 w-full h-full min-h-[6rem] overflow-hidden">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={P6Video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     ),
     link: "#"
   },
   {
-    title: "The Spirit of Adventure",
-    description: "Embracing challenges and exploring new horizons.",
+    title: "The Future of Design",
+    description: "Shaping tomorrow's digital experiences today.",
     header: (
       <div className="relative w-full h-full">
         <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
         <div className="absolute top-4 left-4 z-20">
           <ComingSoonTag />
         </div>
-        <Skeleton />
+        <div className="flex flex-1 w-full h-full min-h-[6rem]">
+          <img 
+            src={P7Image} 
+            alt="Future of Design Project" 
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     ),
     link: "#"
