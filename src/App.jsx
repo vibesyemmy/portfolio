@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import TamingFintechMonster from './pages/TamingFintechMonster';
+import HotelEntertainmentHub from './pages/HotelEntertainmentHub';
 import AboutMe from './pages/AboutMe';
 import Test from './pages/Test';
 import emailjs from '@emailjs/browser';
@@ -43,6 +44,7 @@ function App() {
                 </>
               } />
               <Route path="/case-study/fintech-monster" element={<TamingFintechMonster />} />
+              <Route path="/case-study/hotel-entertainment" element={<HotelEntertainmentHub />} />
               <Route path="/about" element={<AboutMe />} />
               <Route path="/test" element={<Test />} />
               <Route path="*" element={<Navigate to="/" replace />} />
