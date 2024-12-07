@@ -35,7 +35,7 @@ const items = [
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <img 
-          src="/images/mono.png"
+          src="/images/hotel-entertainment-hub.png"
           alt="Hotel Entertainment Hub" 
           className="w-full h-full object-cover"
         />
@@ -135,7 +135,7 @@ const items = [
   },
   {
     title: "The Future of Design",
-    description: "Shaping tomorrow's digital experiences today.",
+    description: "A glimpse into tomorrow's design landscape.",
     header: (
       <div className="relative w-full h-full">
         <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
@@ -152,34 +152,6 @@ const items = [
       </div>
     ),
     link: "#"
-  },
-  {
-    title: "Poseidon: Taming the Fintech Sea Monster",
-    description: "A Design System Case Study",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem]">
-        <img 
-          src="/images/UI-grid.png"
-          alt="UI Grid System" 
-          className="w-full h-full object-cover"
-        />
-      </div>
-    ),
-    link: "/case-study/fintech-monster"
-  },
-  {
-    title: "Crafting a Hotel Entertainment Hub That Delights",
-    description: "A UX Case Study",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem]">
-        <img 
-          src="/images/hotel-hero.png"
-          alt="Hotel Entertainment Hub" 
-          className="w-full h-full object-cover"
-        />
-      </div>
-    ),
-    link: "/case-study/hotel-entertainment"
   },
 ];
 

@@ -4,6 +4,9 @@ import { BlurImageBackground } from "../components/ui/blur-image-background";
 import { BoltIcon, SwatchIcon, HeartIcon } from "@heroicons/react/24/outline/index.js";
 import { useState, useEffect } from "react";
 import { useColor } from 'color-thief-react';
+import { motion } from 'framer-motion';
+import CaseStudyNav from '../components/ui/case-study-nav';
+import { getNavigation } from '../config/case-studies';
 
 const teamMembers = [
   {
@@ -14,7 +17,7 @@ const teamMembers = [
   // Add other team members if needed
 ];
 
-export default function HotelEntertainmentHub() {
+const HotelEntertainmentHub = () => {
   const [backgroundColor, setBackgroundColor] = useState("rgba(20, 20, 20, 0.9)");
 
   const images = [
@@ -43,11 +46,13 @@ export default function HotelEntertainmentHub() {
     }
   }, [dominantColor]);
 
+  const { prevCase } = getNavigation('hotel-entertainment');
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       {/* Hero Section */}
       <BlurImageBackground
-        imageSrc="/images/hotel-hero.png"
+        imageSrc="/images/hotel-entertainment-hub.png"
         className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
         overlayClassName="bg-black/60"
       >
@@ -218,6 +223,11 @@ export default function HotelEntertainmentHub() {
           </div>
         </section>
       </div>
+
+      {/* Navigation */}
+      <CaseStudyNav prevCase={prevCase} />
     </div>
   );
-}
+};
+
+export default HotelEntertainmentHub;

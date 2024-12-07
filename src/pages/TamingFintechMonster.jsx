@@ -4,6 +4,9 @@ import { BlurImageBackground } from "../components/ui/blur-image-background";
 import { BoltIcon, SwatchIcon, HeartIcon } from "@heroicons/react/24/outline/index.js";
 import { useState, useEffect } from "react";
 import { useColor } from 'color-thief-react';
+import { motion } from 'framer-motion';
+import CaseStudyNav from '../components/ui/case-study-nav';
+import { getNavigation } from '../config/case-studies';
 
 const teamMembers = [
   {
@@ -53,6 +56,8 @@ export default function TamingFintechMonster() {
       setBackgroundColor(`rgba(${invertedR}, ${invertedG}, ${invertedB}, 0.9)`);
     }
   }, [dominantColor]);
+
+  const { nextCase } = getNavigation('fintech-monster');
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
@@ -367,6 +372,9 @@ export default function TamingFintechMonster() {
           </div>
         </div>
       </div>
+
+      {/* Navigation */}
+      <CaseStudyNav nextCase={nextCase} />
     </div>
   );
 }
