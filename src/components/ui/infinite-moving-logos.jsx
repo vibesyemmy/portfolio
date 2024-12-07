@@ -3,7 +3,7 @@ import arenaGaming from "../../assets/logos/arena-gaming 1-200h.png";
 import circuit from "../../assets/logos/ggcircuit 2-200h.png";
 import hydrogen from "../../assets/logos/hydrogen 1-200h.png";
 import kobo from "../../assets/logos/kobo-1 2-200h.png";
-import phonecash from "../../assets/logos/phonecash 1-200h.png";
+import sabi from "../../assets/logos/sabi.svg";
 import tunnel from "../../assets/logos/tunnel-1 1-200h.png";
 
 const logos = [
@@ -24,8 +24,8 @@ const logos = [
     alt: "Kobo",
   },
   {
-    url: phonecash,
-    alt: "Phonecash",
+    url: sabi,
+    alt: "Sabi",
   },
   {
     url: tunnel,

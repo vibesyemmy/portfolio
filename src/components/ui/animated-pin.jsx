@@ -96,7 +96,7 @@ export const AnimatedPin = ({ children }) => {
         }}
         className="absolute -top-16 left-[calc(50%-75px)] -translate-x-1/2 z-50 pointer-events-none origin-bottom"
       >
-        <div className="relative bg-black text-white px-4 py-2 rounded-xl text-sm font-medium shadow-xl whitespace-nowrap">
+        <div className="relative bg-[#272727] text-white px-4 py-2 rounded-xl text-sm font-medium shadow-xl whitespace-nowrap">
           <div className="flex items-center gap-2">
             <svg
               width="24"
@@ -113,7 +113,7 @@ export const AnimatedPin = ({ children }) => {
             </svg>
             Lagos, Nigeria
           </div>
-          <div className="absolute top-full left-1/2 w-2 h-2 bg-black rotate-45 -translate-x-1/2"></div>
+          <div className="absolute -bottom-1 left-1/2 w-2 h-2 bg-[#272727] rotate-45 -translate-x-1/2 translate-y-1/6"></div>
         </div>
       </motion.div>
     </div>
