@@ -1,14 +1,14 @@
 import React from 'react';
-import AvatarImage from "../assets/avatar.png";
-import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
-import { BackgroundBeams } from "../components/ui/background-beams";
+import AvatarImage from "@/assets/avatar.png";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 import { IconBrandLinkedin, IconBrandDribbble, IconBrandBehance, IconMail, IconDownload } from '@tabler/icons-react';
-import UxcelIcon from '../assets/uxcel.svg';
-import { Experience } from '../components/ui/Experience';
-import { Education } from '../components/ui/Education';
-import { Certification } from '../components/ui/Certification';
-import { MovingBorder } from '../components/ui/moving-border';
-import { BorderButton } from '../components/ui/border-button';
+import UxcelIcon from '@/assets/uxcel.svg';
+import { Experience } from '@/components/ui/Experience';
+import { Education } from '@/components/ui/Education';
+import { Certification } from '@/components/ui/Certification';
+import { MovingBorder } from '@/components/ui/moving-border';
+import { BorderButton } from '@/components/ui/border-button';
 
 const socialLinks = [
   {
