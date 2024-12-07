@@ -11,6 +11,7 @@ import AboutMe from './pages/AboutMe';
 import Test from './pages/Test';
 import emailjs from '@emailjs/browser';
 import ErrorBoundary from './components/ErrorBoundary';
+import ScrollToTop from './components/ui/scroll-to-top';
 
 // Loading component
 const Loading = () => (
@@ -33,6 +34,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen bg-neutral-950 overflow-hidden">
           <Navbar />
           <Suspense fallback={<Loading />}>
