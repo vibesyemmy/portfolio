@@ -58,7 +58,7 @@ export default function TamingFintechMonster() {
     <div className="min-h-screen bg-neutral-950 text-white">
       {/* Hero Section */}
       <BlurImageBackground
-        imageSrc="/images/ui-grid.png"
+        imageSrc="/images/UI-grid.png"
         className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
         overlayClassName="bg-black/60"
       >
