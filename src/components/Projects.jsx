@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 import { cn } from "../utils/cn";
+import OptimizedImage from './ui/optimized-image';
 
 const ComingSoonTag = () => (
   <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-purple-600/80 to-purple-800/80 text-white border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
@@ -20,10 +21,11 @@ const items = [
     description: "A unified UI system to streamline development, and enhance user experience.",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
-        <img 
+        <OptimizedImage 
           src="/images/UI-grid.png"
           alt="UI Grid System" 
-          className="w-full h-full object-cover"
+          className="w-full h-full"
+          priority={true}
         />
       </div>
     ),
@@ -34,10 +36,11 @@ const items = [
     description: "Creating a delightful entertainment experience for hotel guests.",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
-        <img 
+        <OptimizedImage 
           src="/images/hotel-entertainment-hub.png"
           alt="Hotel Entertainment Hub" 
-          className="w-full h-full object-cover"
+          className="w-full h-full"
+          priority={true}
         />
       </div>
     ),
@@ -53,10 +56,11 @@ const items = [
           <ComingSoonTag />
         </div>
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
-          <img 
+          <OptimizedImage 
             src="/images/p3.png"
             alt="Art of Design Project" 
-            className="w-full h-full object-cover"
+            className="w-full h-full"
+            priority={true}
           />
         </div>
       </div>
@@ -98,10 +102,11 @@ const items = [
           <ComingSoonTag />
         </div>
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
-          <img 
+          <OptimizedImage 
             src="/images/phonecash.webp"
             alt="PhoneCash Project" 
-            className="w-full h-full object-cover"
+            className="w-full h-full"
+            priority={true}
           />
         </div>
       </div>
@@ -143,10 +148,11 @@ const items = [
           <ComingSoonTag />
         </div>
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
-          <img 
+          <OptimizedImage 
             src="/images/p7.png"
             alt="Future of Design Project" 
-            className="w-full h-full object-cover"
+            className="w-full h-full"
+            priority={true}
           />
         </div>
       </div>
