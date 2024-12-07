@@ -8,6 +8,7 @@ import TamingFintechMonster from './pages/TamingFintechMonster';
 import AboutMe from './pages/AboutMe';
 import Test from './pages/Test';
 import emailjs from '@emailjs/browser';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   useEffect(() => {
@@ -21,23 +22,25 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="min-h-screen bg-neutral-950 overflow-hidden">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <Projects />
-            </>
-          } />
-          <Route path="/case-study/fintech-monster" element={<TamingFintechMonster />} />
-          <Route path="/about" element={<AboutMe />} />
-          <Route path="/test" element={<Test />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <div className="min-h-screen bg-neutral-950 overflow-hidden">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <Projects />
+              </>
+            } />
+            <Route path="/case-study/fintech-monster" element={<TamingFintechMonster />} />
+            <Route path="/about" element={<AboutMe />} />
+            <Route path="/test" element={<Test />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
