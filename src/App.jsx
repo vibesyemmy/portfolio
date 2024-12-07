@@ -1,5 +1,6 @@
 import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -48,6 +49,7 @@ function App() {
             </Routes>
           </Suspense>
           <Footer />
+          <SpeedInsights />
         </div>
       </Router>
     </ErrorBoundary>
