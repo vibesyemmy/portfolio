@@ -17,6 +17,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    emptyOutDir: true,
+    copyPublicDir: true,
     assetsDir: 'assets',
     sourcemap: true,
     rollupOptions: {
@@ -34,5 +36,4 @@ export default defineConfig({
       },
     },
   },
-  publicDir: 'public',
 })

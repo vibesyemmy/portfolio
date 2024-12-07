@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react';
-import AvatarImage from "@/assets/avatar.png";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { IconBrandLinkedin, IconBrandDribbble, IconBrandBehance, IconMail, IconDownload } from '@tabler/icons-react';
-import UxcelIcon from '@/assets/uxcel.svg';
 import { Experience } from '@/components/ui/Experience';
 import { Education } from '@/components/ui/Education';
 import { Certification } from '@/components/ui/Certification';
@@ -32,7 +30,7 @@ const socialLinks = [
     label: 'Behance',
   },
   {
-    icon: () => <img src={UxcelIcon} alt="UXcel" className="w-6 h-6 brightness-50 opacity-80 group-hover:brightness-200 group-hover:opacity-100" />,
+    icon: () => <img src="/images/uxcel.svg" alt="UXcel" className="w-6 h-6 brightness-50 opacity-80 group-hover:brightness-200 group-hover:opacity-100" />,
     href: 'https://uxcel.com/your-profile',
     label: 'UXcel',
   },
@@ -163,7 +161,7 @@ export default function AboutMe() {
               <div className="w-20 h-20 md:w-32 md:h-32 mb-6">
                 <HoverBorderGradient>
                   <img 
-                    src={`${AvatarImage}?v=${timestamp}`}
+                    src={`/images/avatar.png?v=${timestamp}`}
                     alt="Opeyemi Ajagbe" 
                     className="w-full h-full object-cover rounded-full bg-neutral-950"
                   />
