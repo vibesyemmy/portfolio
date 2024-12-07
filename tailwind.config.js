@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+import defaultTheme from "tailwindcss/defaultTheme";
+import colors from "tailwindcss/colors";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
+import tailwindAnimate from "tailwindcss-animate";
+import aspectRatio from "@tailwindcss/aspect-ratio";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: [
     './pages/**/*.{js,jsx}',
@@ -30,48 +30,6 @@ module.exports = {
     extend: {
       screens: {
         'custom': '768px',
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "beam": "beam 4s linear infinite",
-        "ripple-fade": "ripple-fade 4s ease-out forwards",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "float": {
-          "0%, 100%": { transform: "translateY(0) rotate(45deg)" },
-          "50%": { transform: "translateY(-20px) rotate(45deg)" },
-        },
-        beam: {
-          "0%": {
-            transform: "translateX(-100%) translateY(-100%)",
-          },
-          "100%": {
-            transform: "translateX(100%) translateY(100%)",
-          },
-        },
-        "ripple-fade": {
-          "0%": {
-            transform: "scale(0)",
-            opacity: "0",
-          },
-          "50%": {
-            transform: "scale(1)",
-            opacity: "0.3",
-          },
-          "100%": {
-            transform: "scale(2)",
-            opacity: "0",
-          },
-        },
       },
       colors: {
         border: "hsl(var(--border))",
@@ -113,13 +71,28 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
     addVariablesForColors,
+    tailwindAnimate,
+    aspectRatio,
   ],
-};
+}
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. --color-red-500: #ef4444;
 function addVariablesForColors({ addBase, theme }) {
