@@ -3,14 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 import { cn } from "../utils/cn";
-import UIGridImage from "../assets/UI-grid.png";
-import MonoImage from "../assets/mono.png";
-import P3Image from "../assets/p3.png";
-import P4Video from "../assets/p4.mp4";
-import PhoneCashImage from "../assets/phonecash.webp";
-import P6Video from "../assets/p6.mp4";
-import P7Image from "../assets/p7.png";
-import HotelHeroImage from "../assets/hotel-hero.png";
 
 const ComingSoonTag = () => (
   <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-purple-600/80 to-purple-800/80 text-white border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
@@ -29,7 +21,7 @@ const items = [
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <img 
-          src={UIGridImage} 
+          src="/images/UI-grid.png"
           alt="UI Grid System" 
           className="w-full h-full object-cover"
         />
@@ -43,7 +35,7 @@ const items = [
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <img 
-          src={MonoImage} 
+          src="/images/mono.png"
           alt="Hotel Entertainment Hub" 
           className="w-full h-full object-cover"
         />
@@ -62,7 +54,7 @@ const items = [
         </div>
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
           <img 
-            src={P3Image} 
+            src="/images/p3.png"
             alt="Art of Design Project" 
             className="w-full h-full object-cover"
           />
@@ -88,7 +80,7 @@ const items = [
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src={P4Video} type="video/mp4" />
+            <source src="/images/p4.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -107,7 +99,7 @@ const items = [
         </div>
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
           <img 
-            src={PhoneCashImage} 
+            src="/images/phonecash.webp"
             alt="PhoneCash Project" 
             className="w-full h-full object-cover"
           />
@@ -133,7 +125,7 @@ const items = [
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src={P6Video} type="video/mp4" />
+            <source src="/images/p6.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -152,7 +144,7 @@ const items = [
         </div>
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
           <img 
-            src={P7Image} 
+            src="/images/p7.png"
             alt="Future of Design Project" 
             className="w-full h-full object-cover"
           />
@@ -167,7 +159,7 @@ const items = [
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <img 
-          src={UIGridImage} 
+          src="/images/UI-grid.png"
           alt="UI Grid System" 
           className="w-full h-full object-cover"
         />
@@ -181,7 +173,7 @@ const items = [
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <img 
-          src={HotelHeroImage} 
+          src="/images/hotel-hero.png"
           alt="Hotel Entertainment Hub" 
           className="w-full h-full object-cover"
         />
