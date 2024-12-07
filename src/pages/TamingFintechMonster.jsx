@@ -9,17 +9,17 @@ const teamMembers = [
   {
     name: "Opeyemi Ajagbe",
     designation: "Product Designer",
-    image: "/src/assets/avatar.png",
+    image: "/images/avatar.png",
   },
   {
     name: "Ayo",
     designation: "Product Designer",
-    image: "/src/assets/ayo.png",
+    image: "/images/ayo.png",
   },
   {
     name: "Seun",
     designation: "Product Designer",
-    image: "/src/assets/seun.jpg",
+    image: "/images/seun.jpg",
   },
 ];
 
@@ -27,10 +27,10 @@ export default function TamingFintechMonster() {
   const [backgroundColor, setBackgroundColor] = useState("rgba(20, 20, 20, 0.9)");
 
   const images = [
-    { src: "/src/assets/fragment.svg", alt: "The Challenge Illustration" },
-    { src: "/src/assets/process.svg", alt: "Research Process Illustration" },
-    { src: "/src/assets/UI-grid.png", alt: "UI Components Grid" },
-    { src: "/src/assets/conclusion.png", alt: "Project Conclusion Illustration" }
+    { src: "/images/fragment.svg", alt: "The Challenge Illustration" },
+    { src: "/images/process.svg", alt: "Research Process Illustration" },
+    { src: "/images/UI-grid.png", alt: "UI Components Grid" },
+    { src: "/images/conclusion.png", alt: "Project Conclusion Illustration" }
   ];
 
   const { data: dominantColor } = useColor(images[0].src, 'hex', {
@@ -58,7 +58,7 @@ export default function TamingFintechMonster() {
     <div className="min-h-screen bg-neutral-950 text-white">
       {/* Hero Section */}
       <BlurImageBackground
-        imageSrc="/src/assets/ui-grid.png"
+        imageSrc="/images/ui-grid.png"
         className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
         overlayClassName="bg-black/60"
       >
@@ -103,7 +103,7 @@ export default function TamingFintechMonster() {
           </p>
           <div className="rounded-lg overflow-hidden shadow-2xl">
             <img 
-              src="/src/assets/hydrogen-ds.png" 
+              src="/images/hydrogen-ds.png" 
               alt="HydrogenPay Design System" 
               className="w-full h-auto object-cover"
             />
@@ -120,7 +120,7 @@ export default function TamingFintechMonster() {
           </p>
           <div className="rounded-lg overflow-hidden">
             <img 
-              src="/src/assets/fragment.svg" 
+              src="/images/fragment.svg" 
               alt="The Challenge Illustration" 
               className="w-full h-auto object-cover rounded-lg"
             />
@@ -166,7 +166,7 @@ export default function TamingFintechMonster() {
           </div>
           <div className="mt-16">
             <img 
-              src="/src/assets/north-star.svg" 
+              src="/images/north-star.svg" 
               alt="North Star Principles Illustration" 
               className="w-full h-auto object-cover rounded-lg"
             />
@@ -203,7 +203,7 @@ export default function TamingFintechMonster() {
           </div>
           <div className="mt-16">
             <img 
-              src="/src/assets/process.svg" 
+              src="/images/process.svg" 
               alt="Research Process Illustration" 
               className="w-full h-auto object-cover rounded-lg"
             />
@@ -229,7 +229,7 @@ export default function TamingFintechMonster() {
                   We adopted Brad Frost's Atomic Design methodology, breaking down the user interface into its smallest elements (atoms), combining them to form more complex components (molecules and organisms), and finally assembling them into templates and pages. This approach ensured reusability, scalability, and consistency.
                 </p>
                 <img 
-                  src="/src/assets/atoms.svg" 
+                  src="/images/atoms.svg" 
                   alt="Atomic Design Methodology Illustration" 
                   className="w-full h-auto object-cover rounded-lg"
                 />
@@ -240,7 +240,7 @@ export default function TamingFintechMonster() {
                   We implemented a flexible grid system designed to adapt seamlessly to various screen sizes, ensuring a consistent and visually appealing experience across desktops, laptops, tablets, and mobile devices.
                 </p>
                 <img 
-                  src="/src/assets/grid-system.svg" 
+                  src="/images/grid-system.svg" 
                   alt="Flexible Grid System Illustration" 
                   className="w-full h-auto object-cover rounded-lg"
                 />
@@ -251,7 +251,7 @@ export default function TamingFintechMonster() {
                   We established a system of design tokens to ensure consistency in spacing, typography, color palettes, and other visual elements. This centralized source of truth streamlined design handoffs and minimized inconsistencies during development.
                 </p>
                 <img 
-                  src="/src/assets/design-token.png" 
+                  src="/images/design-token.png" 
                   alt="Design Tokens Illustration" 
                   className="w-full h-auto object-cover rounded-lg"
                 />
@@ -262,7 +262,7 @@ export default function TamingFintechMonster() {
                   Our front-end developers, using tools like Figma and Storybook, played a crucial role in translating our design specifications into a robust component library, providing easy access to reusable UI elements for future development.
                 </p>
                 <img 
-                  src="/src/assets/component-library.png" 
+                  src="/images/component-library.png" 
                   alt="Component Library Illustration" 
                   className="w-full h-auto object-cover rounded-lg"
                 />
@@ -338,7 +338,7 @@ export default function TamingFintechMonster() {
             
             <div className="mt-12">
               <img 
-                src="/src/assets/UI-grid.png" 
+                src="/images/UI-grid.png" 
                 alt="UI Components Grid" 
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -359,7 +359,7 @@ export default function TamingFintechMonster() {
             </p>
             <div className="mt-8">
               <img 
-                src="/src/assets/conclusion.png" 
+                src="/images/conclusion.png" 
                 alt="Project Conclusion Illustration" 
                 className="w-full h-auto object-cover rounded-lg"
               />
