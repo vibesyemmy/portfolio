@@ -12,5 +12,15 @@
         }
       ]
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "staging": true
+    }
+  },
+  "github": {
+    "enabled": true,
+    "silent": true
+  }
 }
