@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import AvatarImage from "@/assets/avatar.png";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { BackgroundBeams } from "@/components/ui/background-beams";
@@ -149,6 +149,9 @@ const certifications = [
 ];
 
 export default function AboutMe() {
+  // Add timestamp for cache busting
+  const timestamp = useMemo(() => new Date().getTime(), []);
+  
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       {/* Hero Section with Card */}
@@ -160,7 +163,7 @@ export default function AboutMe() {
               <div className="w-20 h-20 md:w-32 md:h-32 mb-6">
                 <HoverBorderGradient>
                   <img 
-                    src={AvatarImage} 
+                    src={`${AvatarImage}?v=${timestamp}`}
                     alt="Opeyemi Ajagbe" 
                     className="w-full h-full object-cover rounded-full bg-neutral-950"
                   />
@@ -186,7 +189,10 @@ export default function AboutMe() {
                     className="text-neutral-400 hover:text-white transition-colors group"
                     aria-label={link.label}
                   >
-                    {typeof link.icon === 'function' ? link.icon() : <link.icon className="w-6 h-6" />}
+                    {typeof link.icon === 'function' ? 
+                      link.icon() : 
+                      <link.icon className="w-6 h-6" />
+                    }
                   </a>
                 ))}
               </div>
@@ -194,7 +200,7 @@ export default function AboutMe() {
               {/* Download Resume Button */}
               <BorderButton
                 as="a"
-                href="/OpeyemiAjagbe-Resume.pdf"
+                href={`/OpeyemiAjagbe-Resume.pdf?v=${timestamp}`}
                 download
                 className="w-full max-w-[280px] h-[52px] text-base"
               >
