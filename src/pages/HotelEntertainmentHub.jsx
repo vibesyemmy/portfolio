@@ -14,7 +14,16 @@ const teamMembers = [
     designation: "Product Designer",
     image: "/images/avatar.png",
   },
-  // Add other team members if needed
+  {
+    name: "Joshua Zarpota",
+    designation: "Product Manager",
+    image: "/images/joshua.png",
+  },
+  {
+    name: "Theodor",
+    designation: "Lead Engineer",
+    image: "/images/theodor.png",
+  },
 ];
 
 export default function HotelEntertainmentHub() {
@@ -61,167 +70,293 @@ export default function HotelEntertainmentHub() {
             Crafting a Hotel Entertainment Hub That Delights
           </h1>
           <p className="text-white text-center max-w-2xl mx-auto text-lg md:text-xl mb-12">
-            A UX Case Study
+            A Console Based Entertainment Solution
           </p>
           
-          {/* Team Section */}
-          <div className="flex flex-col items-center justify-center gap-4">
-            <p className="text-neutral-300">Designed by</p>
-            <div className="flex items-center justify-center gap-2">
-              <AnimatedTooltip items={teamMembers} />
+          {/* Project Details */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
+              <p className="text-white font-medium">Product Designer</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Client</h3>
+              <p className="text-white font-medium">ggCircuit</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Product</h3>
+              <p className="text-white font-medium">Console Based Solution</p>
+            </div>
+            <div className="text-center">
+              <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
+              <div className="flex justify-center">
+                <AnimatedTooltip items={teamMembers} />
+              </div>
             </div>
           </div>
         </div>
       </BlurImageBackground>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="bg-neutral-950">
         {/* Overview Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Overview</h2>
-          <p className="text-neutral-300 text-lg leading-relaxed mb-8">
-            The Hotel Entertainment Hub project aimed to revolutionize how hotel guests discover and access entertainment options during their stay. Our goal was to create an intuitive, engaging platform that would enhance the guest experience while streamlining operations for hotel staff.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg bg-neutral-900">
-              <BoltIcon className="w-8 h-8 text-blue-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Challenge</h3>
-              <p className="text-neutral-400">
-                Create a unified platform that simplifies entertainment discovery and access for hotel guests while reducing operational overhead.
-              </p>
-            </div>
-            <div className="p-6 rounded-lg bg-neutral-900">
-              <SwatchIcon className="w-8 h-8 text-purple-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Approach</h3>
-              <p className="text-neutral-400">
-                User-centered design process with extensive research, iterative prototyping, and continuous user testing.
-              </p>
-            </div>
-            <div className="p-6 rounded-lg bg-neutral-900">
-              <HeartIcon className="w-8 h-8 text-red-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Outcome</h3>
-              <p className="text-neutral-400">
-                A delightful entertainment platform that increased guest satisfaction and streamlined hotel operations.
-              </p>
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">Overview</h2>
+          <div className="prose prose-lg prose-invert">
+            <p className="text-neutral-300 text-lg leading-relaxed mb-8">
+              When guests arrive at a hotel, they're often tired, time-strapped, or simply overwhelmed by the choices around them. From on-demand spa treatments to local excursions, room service upgrades, and in-room entertainment options, many of these valuable services go undiscovered—buried in brochures, complicated TV menus, or overwhelming hotel directories.
+            </p>
+            <div className="rounded-lg overflow-hidden mt-8">
+              <img 
+                src="/images/hotel-overview.png"
+                alt="Hotel Entertainment Overview" 
+                className="w-full h-auto object-cover rounded-lg"
+              />
             </div>
           </div>
-        </section>
+        </div>
 
         {/* Problem Statement */}
-        <section className="mb-16">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <h2 className="text-3xl font-bold mb-8">The Challenge</h2>
-          <p className="text-neutral-300 text-lg leading-relaxed mb-8">
-            Hotels faced significant challenges in managing and presenting their entertainment options to guests. The existing systems were fragmented, leading to:
+          <p className="text-neutral-300 text-lg leading-relaxed">
+            Create a unified "entertainment hub" that helps hotel guests easily discover, access, and enjoy a wide range of hotel services, entertainment, and local activities. The hub needed to be flexible enough to adapt to multiple hotel brands, all while making complex pricing structures and configurations feel effortless.
           </p>
-          <ul className="list-disc list-inside text-neutral-300 text-lg leading-relaxed space-y-4 mb-8">
-            <li>Poor guest experience in discovering available entertainment options</li>
-            <li>Inefficient staff workflows in managing entertainment requests</li>
-            <li>Missed revenue opportunities from entertainment services</li>
-            <li>Lack of personalization in entertainment recommendations</li>
-          </ul>
-          <div className="rounded-lg overflow-hidden">
-            <img 
-              src="/images/hotel-research.png"
-              alt="Research Findings" 
-              className="w-full h-auto object-cover rounded-lg"
-            />
-          </div>
-        </section>
+        </div>
+      </div>
 
-        {/* Design Process */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Design Process</h2>
-          <div className="space-y-12">
+      {/* Defining the Problem */}
+      <div className="bg-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold mb-8">Defining the Problem</h2>
+          <div className="space-y-8">
+            <p className="text-neutral-300 text-lg leading-relaxed">
+              Hotels host a diverse crowd: the business traveler squeezing in a quick meal and a movie before an early flight; the family eager for kid-friendly activities after check-in; the vacationing couple hoping to find a relaxing spa treatment or a guided city tour. Often, these guests had to rely on calling the concierge or rifling through in-room directories to learn what the hotel offered.
+            </p>
+            
             <div>
-              <h3 className="text-2xl font-semibold mb-4">1. Research & Discovery</h3>
-              <p className="text-neutral-300 text-lg leading-relaxed mb-6">
-                We conducted extensive research to understand both guest and staff needs:
-              </p>
-              <ul className="list-disc list-inside text-neutral-300 text-lg leading-relaxed space-y-4">
-                <li>User interviews with hotel guests and staff</li>
-                <li>Competitive analysis of existing solutions</li>
-                <li>Service blueprint mapping</li>
-                <li>Analytics review of current entertainment usage</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">2. Design Strategy</h3>
-              <p className="text-neutral-300 text-lg leading-relaxed mb-6">
-                Based on our research, we developed a design strategy focused on:
-              </p>
-              <ul className="list-disc list-inside text-neutral-300 text-lg leading-relaxed space-y-4">
-                <li>Intuitive discovery of entertainment options</li>
-                <li>Seamless booking and access</li>
-                <li>Personalized recommendations</li>
-                <li>Efficient staff management tools</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">3. Design System</h3>
-              <p className="text-neutral-300 text-lg leading-relaxed mb-6">
-                We created a comprehensive design system to ensure consistency and scalability:
-              </p>
-              <div className="rounded-lg overflow-hidden mt-8">
-                <img 
-                  src="/images/hotel-ui.png"
-                  alt="Design System Components" 
-                  className="w-full h-auto object-cover rounded-lg"
-                />
+              <h3 className="text-xl font-semibold mb-6">Key issues we identified through initial research:</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="p-6 rounded-lg bg-red-950/30 border border-red-900/50">
+                  <h4 className="text-lg font-medium mb-2 text-red-100">Scattered Information</h4>
+                  <p className="text-neutral-300">Entertainment options, services, and promotions were spread across leaflets, TV channels, and printed menus.</p>
+                </div>
+                
+                <div className="p-6 rounded-lg bg-red-950/30 border border-red-900/50">
+                  <h4 className="text-lg font-medium mb-2 text-red-100">Limited Visibility</h4>
+                  <p className="text-neutral-300">Guests missed out on special promotions, local tours, or even unique dining experiences due to poor discovery mechanisms.</p>
+                </div>
+                
+                <div className="p-6 rounded-lg bg-red-950/30 border border-red-900/50">
+                  <h4 className="text-lg font-medium mb-2 text-red-100">Brand & Pricing Complexity</h4>
+                  <p className="text-neutral-300">Each partner hotel had its own branding guidelines, pricing models, and tax structures. Managing this complexity within a single platform was no small feat.</p>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
 
-        {/* Solution & Impact */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Solution & Impact</h2>
-          <p className="text-neutral-300 text-lg leading-relaxed mb-8">
-            The final solution delivered significant improvements across key metrics:
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="p-6 rounded-lg bg-neutral-900">
-              <h3 className="text-xl font-semibold mb-4">Guest Experience</h3>
-              <ul className="list-disc list-inside text-neutral-300 space-y-2">
-                <li>40% increase in entertainment engagement</li>
-                <li>85% positive feedback on ease of use</li>
-                <li>3x increase in personalized bookings</li>
-              </ul>
-            </div>
-            <div className="p-6 rounded-lg bg-neutral-900">
-              <h3 className="text-xl font-semibold mb-4">Business Impact</h3>
-              <ul className="list-disc list-inside text-neutral-300 space-y-2">
-                <li>25% increase in entertainment revenue</li>
-                <li>50% reduction in staff management time</li>
-                <li>90% decrease in booking errors</li>
-              </ul>
-            </div>
-          </div>
-          <div className="rounded-lg overflow-hidden">
-            <img 
-              src="/images/hotel-outcome.png"
-              alt="Project Outcome Visualization" 
-              className="w-full h-auto object-cover rounded-lg"
-            />
-          </div>
-        </section>
-
-        {/* Learnings */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Key Learnings</h2>
-          <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
-            <p>
-              This project reinforced several important principles in product design:
+      {/* Constraints & Considerations */}
+      <div className="bg-neutral-950">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold mb-8">Constraints & Considerations</h2>
+          <div className="space-y-8">
+            <p className="text-neutral-300 text-lg leading-relaxed">
+              From the start, we knew this solution had to be scalable and flexible. Each hotel—whether a boutique inn or a global chain—brought its own brand identity and a distinct set of offerings:
             </p>
-            <ul className="list-disc list-inside space-y-4">
-              <li>The importance of thorough user research in understanding complex ecosystems</li>
-              <li>The value of iterative design in refining solutions</li>
-              <li>The impact of well-designed systems on both user satisfaction and business metrics</li>
-              <li>The need for scalable design systems in enterprise solutions</li>
-            </ul>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-lg bg-neutral-900/50 border border-neutral-800">
+                <h4 className="text-lg font-medium mb-2 text-blue-200">Branding Variability</h4>
+                <p className="text-neutral-300">The solution needed a modular design system that could easily adopt different color palettes, typography, and imagery without losing the underlying UX consistency.</p>
+              </div>
+              
+              <div className="p-6 rounded-lg bg-neutral-900/50 border border-neutral-800">
+                <h4 className="text-lg font-medium mb-2 text-blue-200">Complex Pricing</h4>
+                <p className="text-neutral-300">We had to support everything from simple flat fees to intricate cost structures, including taxes and surcharges. The interface needed to make these details transparent, yet not intimidating.</p>
+              </div>
+              
+              <div className="p-6 rounded-lg bg-neutral-900/50 border border-neutral-800">
+                <h4 className="text-lg font-medium mb-2 text-blue-200">Service Onboarding</h4>
+                <p className="text-neutral-300">Hotels would be adding, modifying, and removing services frequently. We had to design an intuitive backend interface so hotel managers could manage offerings without developer intervention.</p>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
+      </div>
+
+      {/* The Design Approach */}
+      <div className="bg-green-950/30">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold mb-8">The Design Approach</h2>
+          <div className="space-y-16">
+            <p className="text-neutral-300 text-lg leading-relaxed">
+              Our approach combined user-centric research, iterative design, and stakeholder collaboration:
+            </p>
+
+            {/* User Research Section */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-white">User Research & Persona Definition</h3>
+              <p className="text-neutral-300 text-lg leading-relaxed mb-6">
+                We mapped out three main user personas:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="p-6 rounded-lg bg-green-900/20 border border-green-800/30">
+                  <h4 className="text-lg font-medium mb-2 text-green-100">Business Traveler</h4>
+                  <p className="text-neutral-300">Prioritized efficiency, seeking quick access to on-demand movies or a last-minute meal.</p>
+                </div>
+                <div className="p-6 rounded-lg bg-green-900/20 border border-green-800/30">
+                  <h4 className="text-lg font-medium mb-2 text-green-100">Vacationing Couples</h4>
+                  <p className="text-neutral-300">Desired curated local experiences, spa treatments, and romantic dining options.</p>
+                </div>
+                <div className="p-6 rounded-lg bg-green-900/20 border border-green-800/30">
+                  <h4 className="text-lg font-medium mb-2 text-green-100">Families</h4>
+                  <p className="text-neutral-300">Needed a streamlined way to find kid-friendly content and activities that could be booked without hassle.</p>
+                </div>
+              </div>
+              <p className="text-neutral-300 text-lg leading-relaxed mt-4">
+                These personas guided our content hierarchy, ensuring the platform surfaced the most relevant services at the right moments.
+              </p>
+            </div>
+
+            {/* Modular UI System */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white">Modular UI System</h3>
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                We created a design system of reusable components—iconography, cards, and responsive layouts—that could "snap" into different brand identities. A global style guide allowed us to swap in a hotel's unique branding elements seamlessly.
+              </p>
+            </div>
+
+            {/* Seamless Navigation */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white">Seamless Navigation & Discovery</h3>
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                We introduced intuitive navigation that grouped entertainment categories (e.g., in-room dining, spa services, local tours, streaming options) and surfaced relevant suggestions. For example, if a family was logged in, they'd see a carousel of kid-friendly movies and activities right on the home screen, eliminating guesswork.
+              </p>
+            </div>
+
+            {/* Transparent Pricing */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white">Transparent Pricing & Booking</h3>
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                We integrated a clear pricing breakdown screen. Before booking a service, guests could see the base cost, taxes, and any additional fees. This eliminated sticker shock and support calls related to billing confusion.
+              </p>
+            </div>
+
+            {/* Streamlined Backend */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white">Streamlined Backend Management</h3>
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                On the backend, a simple CMS allowed hotel staff to add new offers, update pricing, or launch seasonal promotions. This real-time flexibility meant no more printing pamphlets or waiting for IT support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Collaborations & Iterations */}
+      <div className="bg-blue-950/30">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold mb-8">Collaborations & Iterations</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-8">
+              <div>
+                <p className="text-neutral-300 text-lg leading-relaxed">
+                  Teamwork was crucial. Working with developers, we learned early on that implementing dynamic pricing required structured data input. We collaborated closely with project managers and hotel stakeholders to align on a scalable data model for services and fees.
+                </p>
+              </div>
+
+              <div className="bg-blue-900/20 border border-blue-800/30 rounded-lg p-8">
+                <h3 className="text-xl font-semibold mb-4 text-blue-100">Insight from Testing</h3>
+                <p className="text-neutral-300 text-lg leading-relaxed">
+                  During usability testing, one hotel manager mentioned how guests rarely discovered their specialty tours due to poor placement. By tweaking the layout and introducing a "Recommended for You" section based on guest stay length and season, these tours became a focal point—leading to more bookings and positive guest feedback.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative h-[400px] rounded-lg overflow-hidden">
+              <img
+                src="/hotel-entertainment/collaboration.webp"
+                alt="Team collaboration session showing designers and developers working together on the hotel entertainment hub"
+                className="object-cover w-full h-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/50 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* The Emotional Touch */}
+      <div className="bg-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold mb-8">The Emotional Touch: A Moment of Delight</h2>
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-neutral-800/50 border border-neutral-700 rounded-lg p-8">
+              <p className="text-neutral-300 text-lg leading-relaxed italic">
+                During a pilot test, a couple visiting for their anniversary stumbled upon a local wine-tasting event listed under the "Featured Experiences" section. They booked it spontaneously that evening. The next morning, they left a glowing note with the front desk, mentioning how they never would have known about it if not for the new hub. It was a small, heartwarming reminder that this digital solution genuinely enhanced someone's stay—turning what could have been a routine hotel night into a memorable experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Results & Impact */}
+      <div className="bg-neutral-950">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold mb-8">Results & Impact</h2>
+          <p className="text-neutral-300 text-lg mb-12">After rolling out the entertainment hub:</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-8">
+              <h3 className="text-xl font-semibold mb-4 text-white">Increased Engagement</h3>
+              <p className="text-neutral-300">
+                Guests now explored more pages and spent more time discovering content, leading to a notable uptick in bookings of services and activities.
+              </p>
+            </div>
+
+            <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-8">
+              <h3 className="text-xl font-semibold mb-4 text-white">Reduced Support Calls</h3>
+              <p className="text-neutral-300">
+                With transparent pricing and an intuitive interface, front-desk and concierge calls dropped. Guests could self-serve more effectively.
+              </p>
+            </div>
+
+            <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-8">
+              <h3 className="text-xl font-semibold mb-4 text-white">Improved Satisfaction</h3>
+              <p className="text-neutral-300">
+                Post-stay surveys showed higher satisfaction scores, and the simplified checkout process saved both guests and staff valuable time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Looking Ahead */}
+      <div className="bg-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold mb-8">Looking Ahead</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                As the platform matures, we see opportunities to integrate personalized recommendations based on a guest's history or loyalty status. We're also exploring partnerships with external service providers—further expanding the range of entertainment and amenities accessible right from the comfort of a guest's room.
+              </p>
+              
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                Ultimately, this hotel entertainment hub achieved more than just organizing content—it helped shape meaningful guest experiences. By merging intuitive design, flexible branding, and user-centric features, we made it easier for guests to discover the best their hotel had to offer, while streamlining operations and reinforcing the hotel's brand value.
+              </p>
+            </div>
+
+            <div className="relative h-[400px] rounded-lg overflow-hidden">
+              <img
+                src="/hotel-entertainment/future-vision.webp"
+                alt="Visualization of future hotel entertainment features and personalization"
+                className="object-cover w-full h-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/50 to-transparent"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Navigation */}
