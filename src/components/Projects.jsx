@@ -29,7 +29,7 @@ const items = [
         />
       </div>
     ),
-    link: "/case-study/fintech-monster"
+    link: "/fintech-monster"
   },
   {
     title: "Crafting a Hotel Entertainment Hub",
@@ -44,28 +44,24 @@ const items = [
         />
       </div>
     ),
-    link: "/case-study/hotel-entertainment"
+    link: "/hotel-hub"
   },
   {
-    title: "The Art of Design",
-    description: "Exploring the intersection of aesthetics and functionality.",
+    title: "PhoneCash: A Fintech Solution",
+    description: "Revolutionizing Mobile Money Transfers in Africa",
     header: (
       <div className="relative w-full h-full">
-        <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
-        <div className="absolute top-4 left-4 z-20">
-          <ComingSoonTag />
-        </div>
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
           <OptimizedImage 
-            src="/images/p3.png"
-            alt="Art of Design Project" 
+            src="/images/phonecash.webp"
+            alt="PhoneCash Project" 
             className="w-full h-full"
             priority={true}
           />
         </div>
       </div>
     ),
-    link: "#"
+    link: "/phonecash"
   },
   {
     title: "The Power of Communication",

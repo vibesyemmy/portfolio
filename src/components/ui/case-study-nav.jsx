@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
-const NavCard = ({ title, link, direction }) => {
+const NavCard = ({ title, path, direction }) => {
   const isNext = direction === 'next';
   
   return (
     <Link 
-      to={link}
+      to={path}
       className={`group flex flex-col justify-between p-4 rounded-xl border border-neutral-800 bg-neutral-900/50 backdrop-blur-sm hover:bg-neutral-800/50 transition-all duration-300 w-full md:max-w-[400px] max-w-[160px]`}
     >
       <div className={`flex items-center ${isNext ? 'justify-end' : 'justify-start'} space-x-2 text-neutral-400`}>
@@ -32,10 +32,10 @@ const CaseStudyNav = ({ prevCase, nextCase }) => {
     <div className="w-full max-w-7xl mx-auto px-4 py-16">
       <div className="flex justify-between items-center gap-4 md:gap-6">
         <div className={`${!prevCase ? 'hidden' : ''} flex-1 flex justify-start`}>
-          {prevCase && <NavCard title={prevCase.title} link={prevCase.link} direction="prev" />}
+          {prevCase && <NavCard title={prevCase.title} path={prevCase.path} direction="prev" />}
         </div>
         <div className={`${!nextCase ? 'hidden' : ''} flex-1 flex justify-end`}>
-          {nextCase && <NavCard title={nextCase.title} link={nextCase.link} direction="next" />}
+          {nextCase && <NavCard title={nextCase.title} path={nextCase.path} direction="next" />}
         </div>
       </div>
     </div>

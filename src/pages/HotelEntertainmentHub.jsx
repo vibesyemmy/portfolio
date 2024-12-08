@@ -17,7 +17,7 @@ const teamMembers = [
   // Add other team members if needed
 ];
 
-const HotelEntertainmentHub = () => {
+export default function HotelEntertainmentHub() {
   const [backgroundColor, setBackgroundColor] = useState("rgba(20, 20, 20, 0.9)");
 
   const images = [
@@ -46,7 +46,7 @@ const HotelEntertainmentHub = () => {
     }
   }, [dominantColor]);
 
-  const { prevCase } = getNavigation('hotel-entertainment');
+  const { prevCase, nextCase } = getNavigation('hotel-hub');
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
@@ -56,7 +56,7 @@ const HotelEntertainmentHub = () => {
         className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
         overlayClassName="bg-black/60"
       >
-        <div className="max-w-6xl mx-auto px-4 py-8 md:py-16 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 py-8 md:py-16 relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-8">
             Crafting a Hotel Entertainment Hub That Delights
           </h1>
@@ -75,7 +75,7 @@ const HotelEntertainmentHub = () => {
       </BlurImageBackground>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 py-16">
         {/* Overview Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-8">Overview</h2>
@@ -225,9 +225,7 @@ const HotelEntertainmentHub = () => {
       </div>
 
       {/* Navigation */}
-      <CaseStudyNav prevCase={prevCase} />
+      <CaseStudyNav prevCase={prevCase} nextCase={nextCase} />
     </div>
   );
-};
-
-export default HotelEntertainmentHub;
+}

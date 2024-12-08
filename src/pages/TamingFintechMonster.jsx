@@ -57,7 +57,7 @@ export default function TamingFintechMonster() {
     }
   }, [dominantColor]);
 
-  const { nextCase } = getNavigation('fintech-monster');
+  const { prevCase, nextCase } = getNavigation('fintech-monster');
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
@@ -67,7 +67,7 @@ export default function TamingFintechMonster() {
         className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
         overlayClassName="bg-black/60"
       >
-        <div className="max-w-6xl mx-auto px-4 py-8 md:py-16 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 py-8 md:py-16 relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-8">
             Poseidon: Taming the Fintech Sea Monster
           </h1>
@@ -76,7 +76,7 @@ export default function TamingFintechMonster() {
           </p>
           
           {/* Project Details */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
             <div className="text-center">
               <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
               <p className="text-white font-medium">Product Designer</p>
@@ -101,7 +101,7 @@ export default function TamingFintechMonster() {
 
       {/* Introduction */}
       <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-neutral-200 mb-8">Introduction</h2>
           <p className="text-neutral-400 leading-relaxed text-lg mb-12">
             In the fast-paced world of Nigerian fintech, a seamless and engaging user experience is paramount. HydrogenPay, a leading player in this space, faced a critical challenge: their digital platforms, spanning web, mobile, and POS terminals, lacked consistency, leading to user confusion and hindering their growth. Recognizing the need for a unified design language, HydrogenPay assembled a design team, which I had the privilege of leading, to create Poseidon – a comprehensive UI design system. This case study outlines our collaborative journey in building Poseidon, highlighting the challenges, our design thinking, and the system's significant impact on HydrogenPay's success.
@@ -118,7 +118,7 @@ export default function TamingFintechMonster() {
 
       {/* The Challenge */}
       <section className="py-16 px-4 bg-neutral-900/50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-200 mb-8">The Challenge: A Sea of Inconsistency</h2>
           <p className="text-neutral-400 leading-relaxed text-lg mb-12">
             HydrogenPay's existing solutions suffered from a fragmented user experience. User testing and internal feedback revealed jarring inconsistencies across their platforms. Users encountered different interfaces, interaction patterns, and visual cues, making it difficult to navigate seamlessly. This fragmentation stemmed from a lack of centralized design guidelines and a disjointed collaboration between designers and developers
@@ -135,7 +135,7 @@ export default function TamingFintechMonster() {
 
       {/* North Star Section */}
       <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-200 mb-8">Our North Star: Efficiency, Consistency, and User Delight</h2>
           <p className="text-neutral-400 leading-relaxed text-lg mb-8">
             Our design team approached the Poseidon project with a clear set of guiding principles:
@@ -181,7 +181,7 @@ export default function TamingFintechMonster() {
 
       {/* Setting Sail Section */}
       <section className="py-16 px-4 bg-[#cfd7e6]">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8">Setting Sail: A Research-Driven Approach</h2>
           <p className="text-neutral-700 leading-relaxed text-lg mb-12">
             We embarked on our mission with a deep dive into understanding HydrogenPay's users, their pain points, and their needs. Our research encompassed:
@@ -218,7 +218,7 @@ export default function TamingFintechMonster() {
 
       {/* Charting the Course Section */}
       <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-200 mb-8">Charting the Course: Designing the Poseidon UI Kit</h2>
           <div className="space-y-8">
             <p className="text-neutral-400 leading-relaxed text-lg">
@@ -279,7 +279,7 @@ export default function TamingFintechMonster() {
 
       {/* Navigating the Waters Section */}
       <div className="relative" style={{ backgroundColor: '#121628' }}>
-        <div className="max-w-6xl mx-auto px-8 md:px-12 py-12 md:py-24">
+        <div className="max-w-7xl mx-auto px-8 md:px-12 py-12 md:py-24">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-neutral-200">
               Navigating the Waters: Addressing Accessibility and Platform Conventions
@@ -307,7 +307,7 @@ export default function TamingFintechMonster() {
 
       {/* Impact Section */}
       <div className="relative">
-        <div className="max-w-6xl mx-auto px-8 md:px-12 py-12 md:py-24">
+        <div className="max-w-7xl mx-auto px-8 md:px-12 py-12 md:py-24">
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold text-neutral-200">
@@ -354,7 +354,7 @@ export default function TamingFintechMonster() {
 
       {/* Conclusion Section */}
       <div className="relative">
-        <div className="max-w-6xl mx-auto px-8 md:px-12 py-12 md:py-24">
+        <div className="max-w-7xl mx-auto px-8 md:px-12 py-12 md:py-24">
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-neutral-200">
               Conclusion: A Seaworthy Design System for Future Growth
@@ -373,8 +373,8 @@ export default function TamingFintechMonster() {
         </div>
       </div>
 
-      {/* Navigation */}
-      <CaseStudyNav nextCase={nextCase} />
+      {/* Case Study Navigation */}
+      <CaseStudyNav prevCase={prevCase} nextCase={nextCase} />
     </div>
   );
 }

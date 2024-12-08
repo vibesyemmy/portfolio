@@ -2,20 +2,36 @@ export const caseStudies = [
   {
     id: 'fintech-monster',
     title: 'Taming the Fintech Monster',
-    link: '/case-study/fintech-monster'
+    path: '/fintech-monster'
   },
   {
-    id: 'hotel-entertainment',
-    title: 'Crafting a Hotel Entertainment Hub',
-    link: '/case-study/hotel-entertainment'
+    id: 'hotel-hub',
+    title: 'Hotel Entertainment Hub',
+    path: '/hotel-hub'
+  },
+  {
+    id: 'phonecash',
+    title: 'PhoneCash: A Fintech Solution',
+    path: '/phonecash'
   }
 ];
 
 export const getNavigation = (currentId) => {
   const currentIndex = caseStudies.findIndex(study => study.id === currentId);
   
-  return {
-    prevCase: currentIndex > 0 ? caseStudies[currentIndex - 1] : null,
-    nextCase: currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null
-  };
+  if (currentIndex === -1) return { nextCase: null, prevCase: null };
+
+  const prevCase = currentIndex > 0 ? {
+    id: caseStudies[currentIndex - 1].id,
+    title: caseStudies[currentIndex - 1].title,
+    path: caseStudies[currentIndex - 1].path
+  } : null;
+
+  const nextCase = currentIndex < caseStudies.length - 1 ? {
+    id: caseStudies[currentIndex + 1].id,
+    title: caseStudies[currentIndex + 1].title,
+    path: caseStudies[currentIndex + 1].path
+  } : null;
+
+  return { prevCase, nextCase };
 };
