@@ -15,14 +15,14 @@ const teamMembers = [
     image: "/images/avatar.png",
   },
   {
-    name: "Joshua Zarpota",
-    designation: "Product Manager",
+    name: "Joshua Zaporta Cruz",
+    designation: "Product Designer",
     image: "/images/joshua.png",
   },
   {
     name: "Theodor",
-    designation: "Lead Engineer",
-    image: "/images/theodor.png",
+    designation: "Product Designer",
+    image: "/images/boy.png",
   },
 ];
 
@@ -98,35 +98,39 @@ export default function HotelEntertainmentHub() {
       </BlurImageBackground>
 
       {/* Main Content */}
-      <div className="bg-neutral-950">
+      <div>
         {/* Overview Section */}
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Overview</h2>
-          <div className="prose prose-lg prose-invert">
-            <p className="text-neutral-300 text-lg leading-relaxed mb-8">
-              When guests arrive at a hotel, they're often tired, time-strapped, or simply overwhelmed by the choices around them. From on-demand spa treatments to local excursions, room service upgrades, and in-room entertainment options, many of these valuable services go undiscovered—buried in brochures, complicated TV menus, or overwhelming hotel directories.
-            </p>
-            <div className="rounded-lg overflow-hidden mt-8">
-              <img 
-                src="/images/hotel-overview.png"
-                alt="Hotel Entertainment Overview" 
-                className="w-full h-auto object-cover rounded-lg"
-              />
+        <div>
+          <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">Overview</h2>
+            <div className="prose prose-lg prose-invert">
+              <p className="text-neutral-300 text-lg leading-relaxed mb-8">
+                When guests arrive at a hotel, they're often tired, time-strapped, or simply overwhelmed by the choices around them. From on-demand spa treatments to local excursions, room service upgrades, and in-room entertainment options, many of these valuable services go undiscovered—buried in brochures, complicated TV menus, or overwhelming hotel directories.
+              </p>
+              <div className="rounded-lg overflow-hidden mt-8">
+                <img 
+                  src="/images/hotel-overview.png"
+                  alt="Hotel Entertainment Overview" 
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Problem Statement */}
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
-          <h2 className="text-3xl font-bold mb-8">The Challenge</h2>
-          <p className="text-neutral-300 text-lg leading-relaxed">
-            Create a unified "entertainment hub" that helps hotel guests easily discover, access, and enjoy a wide range of hotel services, entertainment, and local activities. The hub needed to be flexible enough to adapt to multiple hotel brands, all while making complex pricing structures and configurations feel effortless.
-          </p>
+        <div>
+          <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+            <h2 className="text-3xl font-bold mb-8">The Challenge</h2>
+            <p className="text-neutral-300 text-lg leading-relaxed">
+              Create a unified "entertainment hub" that helps hotel guests easily discover, access, and enjoy a wide range of hotel services, entertainment, and local activities. The hub needed to be flexible enough to adapt to multiple hotel brands, all while making complex pricing structures and configurations feel effortless.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Defining the Problem */}
-      <div className="bg-neutral-900">
+      <div>
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <h2 className="text-3xl font-bold mb-8">Defining the Problem</h2>
           <div className="space-y-8">
@@ -158,29 +162,21 @@ export default function HotelEntertainmentHub() {
       </div>
 
       {/* Constraints & Considerations */}
-      <div className="bg-neutral-950">
+      <div>
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <h2 className="text-3xl font-bold mb-8">Constraints & Considerations</h2>
-          <div className="space-y-8">
-            <p className="text-neutral-300 text-lg leading-relaxed">
-              From the start, we knew this solution had to be scalable and flexible. Each hotel—whether a boutique inn or a global chain—brought its own brand identity and a distinct set of offerings:
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg bg-neutral-900/50 border border-neutral-800">
-                <h4 className="text-lg font-medium mb-2 text-blue-200">Branding Variability</h4>
-                <p className="text-neutral-300">The solution needed a modular design system that could easily adopt different color palettes, typography, and imagery without losing the underlying UX consistency.</p>
-              </div>
-              
-              <div className="p-6 rounded-lg bg-neutral-900/50 border border-neutral-800">
-                <h4 className="text-lg font-medium mb-2 text-blue-200">Complex Pricing</h4>
-                <p className="text-neutral-300">We had to support everything from simple flat fees to intricate cost structures, including taxes and surcharges. The interface needed to make these details transparent, yet not intimidating.</p>
-              </div>
-              
-              <div className="p-6 rounded-lg bg-neutral-900/50 border border-neutral-800">
-                <h4 className="text-lg font-medium mb-2 text-blue-200">Service Onboarding</h4>
-                <p className="text-neutral-300">Hotels would be adding, modifying, and removing services frequently. We had to design an intuitive backend interface so hotel managers could manage offerings without developer intervention.</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-white">Scalability Requirements</h3>
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                The solution needed to scale across different hotel brands and properties, each with their own unique service offerings and pricing structures. We had to create a flexible system that could accommodate various content types while maintaining a consistent user experience.
+              </p>
+            </div>
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-white">Technical Flexibility</h3>
+              <p className="text-neutral-300 text-lg leading-relaxed">
+                Integration with existing hotel management systems was crucial. The hub needed to handle real-time availability updates, dynamic pricing, and secure payment processing while being maintainable by hotel staff with varying levels of technical expertise.
+              </p>
             </div>
           </div>
         </div>
@@ -291,18 +287,16 @@ export default function HotelEntertainmentHub() {
       <div className="bg-neutral-900">
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <h2 className="text-3xl font-bold mb-8">The Emotional Touch: A Moment of Delight</h2>
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-neutral-800/50 border border-neutral-700 rounded-lg p-8">
-              <p className="text-neutral-300 text-lg leading-relaxed italic">
-                During a pilot test, a couple visiting for their anniversary stumbled upon a local wine-tasting event listed under the "Featured Experiences" section. They booked it spontaneously that evening. The next morning, they left a glowing note with the front desk, mentioning how they never would have known about it if not for the new hub. It was a small, heartwarming reminder that this digital solution genuinely enhanced someone's stay—turning what could have been a routine hotel night into a memorable experience.
-              </p>
-            </div>
+          <div className="bg-neutral-800/50 border border-neutral-700 rounded-lg p-8">
+            <p className="text-neutral-300 text-lg leading-relaxed italic">
+              During a pilot test, a couple visiting for their anniversary stumbled upon a local wine-tasting event listed under the "Featured Experiences" section. They booked it spontaneously that evening. The next morning, they left a glowing note with the front desk, mentioning how they never would have known about it if not for the new hub. It was a small, heartwarming reminder that this digital solution genuinely enhanced someone's stay—turning what could have been a routine hotel night into a memorable experience.
+            </p>
           </div>
         </div>
       </div>
 
       {/* Results & Impact */}
-      <div className="bg-neutral-950">
+      <div>
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <h2 className="text-3xl font-bold mb-8">Results & Impact</h2>
           <p className="text-neutral-300 text-lg mb-12">After rolling out the entertainment hub:</p>
@@ -333,7 +327,7 @@ export default function HotelEntertainmentHub() {
       </div>
 
       {/* Looking Ahead */}
-      <div className="bg-neutral-900">
+      <div>
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <h2 className="text-3xl font-bold mb-8">Looking Ahead</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

@@ -13,14 +13,14 @@ const teamMembers = [
     image: "/images/avatar.png",
   },
   {
-    name: "Tunde",
-    designation: "Product Manager",
-    image: "/images/tunde.png",
+    name: "Tobi Okedeji",
+    designation: "Backend Engineer",
+    image: "/images/boy.png",
   },
   {
     name: "Chioma",
     designation: "UX Researcher",
-    image: "/images/chioma.png",
+    image: "/images/girl.png",
   },
 ];
 
