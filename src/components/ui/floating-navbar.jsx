@@ -65,8 +65,14 @@ export const FloatingNav = ({ navItems, className }) => {
       >
         {/* Logo */}
         <div className="text-white">
-          <a href="/" onClick={handleLogoClick}>
-            <img src={logo} alt="Logo" className="h-6 md:h-8 w-auto" />
+          <a href="/" onClick={handleLogoClick} className="block w-[140px] md:w-[180px] h-6 md:h-8">
+            <img 
+              src={logo} 
+              alt="Logo" 
+              className="h-full w-auto" 
+              loading="eager"
+              decoding="async"
+            />
           </a>
         </div>
 

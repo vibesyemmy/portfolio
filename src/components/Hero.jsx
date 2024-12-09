@@ -22,11 +22,15 @@ export default function Hero() {
         <div className="relative z-10 w-[140px] h-[140px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] mx-auto mb-6 md:mb-8">
           <AnimatedPin>
             <HoverBorderGradient>
-              <img 
-                src={AvatarImage} 
-                alt="Opeyemi Ajagbe" 
-                className="w-full h-full object-cover rounded-full bg-neutral-950"
-              />
+              <div className="w-full h-full rounded-full bg-neutral-900 overflow-hidden">
+                <img 
+                  src={AvatarImage} 
+                  alt="Opeyemi Ajagbe" 
+                  className="w-full h-full object-cover rounded-full bg-neutral-950"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
             </HoverBorderGradient>
           </AnimatedPin>
         </div>
