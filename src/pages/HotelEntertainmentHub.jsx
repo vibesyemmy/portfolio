@@ -5,6 +5,7 @@ import { BoltIcon, SwatchIcon, HeartIcon } from "@heroicons/react/24/outline/ind
 import { useState, useEffect } from "react";
 import { useColor } from 'color-thief-react';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
 import CaseStudyNav from '../components/ui/case-study-nav';
 import { getNavigation } from '../config/case-studies';
 
@@ -55,6 +56,15 @@ export default function HotelEntertainmentHub() {
     }
   }, [dominantColor]);
 
+  const [animationData, setAnimationData] = useState(null);
+
+  useEffect(() => {
+    fetch('/animations/Hotel-Entertainment-Hub.json')
+      .then(response => response.json())
+      .then(data => setAnimationData(data))
+      .catch(error => console.error('Error loading animation:', error));
+  }, []);
+
   const { prevCase, nextCase } = getNavigation('hotel-hub');
 
   return (
@@ -100,19 +110,25 @@ export default function HotelEntertainmentHub() {
       {/* Main Content */}
       <div>
         {/* Overview Section */}
-        <div>
-          <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Overview</h2>
-            <div className="prose prose-lg prose-invert">
-              <p className="text-neutral-300 text-lg leading-relaxed mb-8">
-                When guests arrive at a hotel, they're often tired, time-strapped, or simply overwhelmed by the choices around them. From on-demand spa treatments to local excursions, room service upgrades, and in-room entertainment options, many of these valuable services go undiscovered—buried in brochures, complicated TV menus, or overwhelming hotel directories.
-              </p>
-              <div className="rounded-lg overflow-hidden mt-8">
-                <img 
-                  src="/images/hotel-overview.png"
-                  alt="Hotel Entertainment Overview" 
-                  className="w-full h-auto object-cover rounded-lg"
-                />
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">Overview</h2>
+          <div className="w-full prose prose-lg prose-invert">
+            <p className="text-neutral-300 text-lg leading-relaxed mb-8">
+              When guests arrive at a hotel, they're often tired, time-strapped, or simply overwhelmed by the choices around them. From on-demand spa treatments to local excursions, room service upgrades, and in-room entertainment options, many of these valuable services go undiscovered—buried in brochures, complicated TV menus, or overwhelming hotel directories.
+            </p>
+            <div className="w-full max-w-none">
+              <div className="relative w-full pb-[66.76%] rounded-3xl overflow-hidden">
+                {animationData && (
+                  <Lottie 
+                    animationData={animationData}
+                    loop={true}
+                    autoplay={true}
+                    className="absolute top-0 left-0 w-full h-full"
+                    rendererSettings={{
+                      preserveAspectRatio: 'xMidYMid meet'
+                    }}
+                  />
+                )}
               </div>
             </div>
           </div>
