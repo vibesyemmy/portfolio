@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import CaseStudyNav from '../components/ui/case-study-nav';
 import { getNavigation } from '../config/case-studies';
+import { Skeleton } from '../components/ui/skeleton';
 
 const teamMembers = [
   {
@@ -57,12 +58,19 @@ export default function HotelEntertainmentHub() {
   }, [dominantColor]);
 
   const [animationData, setAnimationData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/animations/Hotel-Entertainment-Hub.json')
       .then(response => response.json())
-      .then(data => setAnimationData(data))
-      .catch(error => console.error('Error loading animation:', error));
+      .then(data => {
+        setAnimationData(data);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading animation:', error);
+        setIsLoading(false);
+      });
   }, []);
 
   const { prevCase, nextCase } = getNavigation('hotel-hub');
@@ -117,8 +125,10 @@ export default function HotelEntertainmentHub() {
               When guests arrive at a hotel, they're often tired, time-strapped, or simply overwhelmed by the choices around them. From on-demand spa treatments to local excursions, room service upgrades, and in-room entertainment options, many of these valuable services go undiscovered—buried in brochures, complicated TV menus, or overwhelming hotel directories.
             </p>
             <div className="w-full max-w-none">
-              <div className="relative w-full pb-[66.76%] rounded-3xl overflow-hidden">
-                {animationData && (
+              <div className="relative w-full pb-[66.76%] rounded-lg md:rounded-3xl overflow-hidden">
+                {isLoading ? (
+                  <Skeleton className="absolute inset-0" />
+                ) : animationData ? (
                   <Lottie 
                     animationData={animationData}
                     loop={true}
@@ -128,7 +138,7 @@ export default function HotelEntertainmentHub() {
                       preserveAspectRatio: 'xMidYMid meet'
                     }}
                   />
-                )}
+                ) : null}
               </div>
             </div>
           </div>
