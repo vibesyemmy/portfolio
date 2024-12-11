@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 import { BlurImageBackground } from "../components/ui/blur-image-background";
 import { BoltIcon, SwatchIcon, HeartIcon, DocumentDuplicateIcon, EyeSlashIcon, CurrencyDollarIcon } from "@heroicons/react/24/outline/index.js";
@@ -7,13 +7,13 @@ import limitedVisibility from '../assets/illustrations/limited-visibility.svg';
 import pricingComplexity from '../assets/illustrations/pricing-complexity.svg';
 import unifiedHub from '../assets/illustrations/unified-hub.svg';
 import discoverability from '../assets/illustrations/discoverability.svg';
-import { useState, useEffect } from "react";
 import { useColor } from 'color-thief-react';
-import { motion } from 'framer-motion';
-import Lottie from 'lottie-react';
 import CaseStudyNav from '../components/ui/case-study-nav';
 import { getNavigation } from '../config/case-studies';
 import { Skeleton } from '../components/ui/skeleton';
+
+const Lottie = React.lazy(() => import('lottie-react'));
+const motion = React.lazy(() => import('framer-motion').then(mod => ({ default: mod.motion })));
 
 const teamMembers = [
   {
@@ -33,8 +33,18 @@ const teamMembers = [
   },
 ];
 
+const preloadImage = (src) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = resolve;
+    img.onerror = reject;
+    img.src = src;
+  });
+};
+
 export default function HotelEntertainmentHub() {
   const [backgroundColor, setBackgroundColor] = useState("rgba(20, 20, 20, 0.9)");
+  const [isLoading, setIsLoading] = useState(true);
 
   const images = [
     { src: "/images/hotel-hero.png", alt: "Hotel Entertainment Hub Hero" },
@@ -43,38 +53,34 @@ export default function HotelEntertainmentHub() {
     { src: "/images/hotel-outcome.png", alt: "Project Outcome" }
   ];
 
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        await preloadImage(images[0].src);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setIsLoading(false);
+      }
+    };
+    loadImages();
+  }, []);
+
   const { data: dominantColor } = useColor(images[0].src, 'hex', {
     crossOrigin: 'anonymous',
+    quality: 10, // Reduce color analysis quality for faster loading
   });
 
-  useEffect(() => {
-    if (dominantColor) {
-      const hex = dominantColor.replace('#', '');
-      const r = parseInt(hex.substring(0, 2), 16);
-      const g = parseInt(hex.substring(2, 4), 16);
-      const b = parseInt(hex.substring(4, 6), 16);
-      
-      const invertedR = 255 - r;
-      const invertedG = 255 - g;
-      const invertedB = 255 - b;
-      
-      setBackgroundColor(`rgba(${invertedR}, ${invertedG}, ${invertedB}, 0.9)`);
-    }
-  }, [dominantColor]);
-
   const [animationData, setAnimationData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/animations/Hotel-Entertainment-Hub.json')
       .then(response => response.json())
       .then(data => {
         setAnimationData(data);
-        setIsLoading(false);
       })
       .catch(error => {
         console.error('Error loading animation:', error);
-        setIsLoading(false);
       });
   }, []);
 
@@ -133,17 +139,19 @@ export default function HotelEntertainmentHub() {
               <div className="relative w-full pb-[66.76%] rounded-lg md:rounded-3xl overflow-hidden">
                 {isLoading ? (
                   <Skeleton className="absolute inset-0" />
-                ) : animationData ? (
-                  <Lottie 
-                    animationData={animationData}
-                    loop={true}
-                    autoplay={true}
-                    className="absolute top-0 left-0 w-full h-full"
-                    rendererSettings={{
-                      preserveAspectRatio: 'xMidYMid meet'
-                    }}
-                  />
-                ) : null}
+                ) : (
+                  <Suspense fallback={<Skeleton className="absolute inset-0" />}>
+                    <Lottie 
+                      animationData={animationData}
+                      loop={true}
+                      autoplay={true}
+                      className="absolute top-0 left-0 w-full h-full"
+                      rendererSettings={{
+                        preserveAspectRatio: 'xMidYMid meet'
+                      }}
+                    />
+                  </Suspense>
+                )}
               </div>
             </div>
           </div>

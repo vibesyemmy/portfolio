@@ -13,18 +13,33 @@ export default defineConfig({
     ViteImageOptimizer({
       jpg: {
         quality: 80,
+        progressive: true,
       },
       jpeg: {
         quality: 80,
+        progressive: true,
       },
       png: {
         quality: 80,
-        compressionLevel: 8,
+        progressive: true,
       },
       webp: {
-        quality: 80,
-        lossless: false,
-      }
+        lossless: true,
+      },
+      svg: {
+        multipass: true,
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+                cleanupIDs: false,
+              },
+            },
+          },
+        ],
+      },
     })
   ],
   server: {
@@ -42,21 +57,35 @@ export default defineConfig({
     copyPublicDir: true,
     assetsDir: 'assets',
     sourcemap: true,
+    target: 'esnext',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          animations: ['framer-motion'],
-        },
-        assetFileNames: (assetInfo) => {
-          let extType = assetInfo.name.split('.').at(1);
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            extType = 'img';
-          }
-          return `assets/${extType}/[name]-[hash][extname]`;
+          animations: ['framer-motion', 'lottie-react'],
+          ui: ['@heroicons/react'],
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith('.css')) {
+            return 'assets/css/[name]-[hash][extname]';
+          }
+          if (assetInfo.name.match(/\.(jpg|jpeg|png|gif|webp)$/)) {
+            return 'assets/images/[name]-[hash][extname]';
+          }
+          if (assetInfo.name.match(/\.svg$/)) {
+            return 'assets/svg/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
       },
     },
   },
