@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="none"/>
+  
+  <!-- Main Circle -->
+  <circle cx="200" cy="150" r="100" fill="#FF6B6B" opacity="0.1"/>
+  
+  <!-- Eye Shape -->
+  <path d="M100 150 Q200 50 300 150 Q200 250 100 150" fill="#FF6B6B" opacity="0.2"/>
+  <circle cx="200" cy="150" r="30" fill="#FF6B6B"/>
+  
+  <!-- Slash -->
+  <line x1="80" y1="80" x2="320" y2="220" stroke="#FF6B6B" stroke-width="8"/>
+</svg>

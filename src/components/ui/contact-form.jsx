@@ -1,16 +1,54 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback, memo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../utils/cn";
 import emailjs from '@emailjs/browser';
 import { IconX } from '@tabler/icons-react';
+import { useDebounce } from "../../hooks/useDebounce";
 
-export const ContactForm = ({ className, onClose }) => {
+// Memoized input component for better performance
+const FormInput = memo(({ label, id, type, name, placeholder, required = true }) => (
+  <div className="contain-layout">
+    <label htmlFor={id} className="text-gray-200 text-sm mb-2 block">
+      {label}
+    </label>
+    <input
+      id={id}
+      type={type}
+      name={name}
+      required={required}
+      className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-gray-800 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-none contain-paint"
+      placeholder={placeholder}
+    />
+  </div>
+));
+
+FormInput.displayName = 'FormInput';
+
+export const ContactForm = memo(({ className, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ type: '', message: '' });
   const formRef = useRef();
+  const [formData, setFormData] = useState({
+    user_name: '',
+    user_email: '',
+    user_phone: '',
+    message: ''
+  });
+
+  // Debounced form update
+  const debouncedSetFormData = useDebounce((field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  }, 100);
+
+  const handleInputChange = useCallback((e) => {
+    const { name, value } = e.target;
+    debouncedSetFormData(name, value);
+  }, [debouncedSetFormData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+    
     setLoading(true);
     setStatus({ type: '', message: '' });
 
@@ -22,7 +60,6 @@ export const ContactForm = ({ className, onClose }) => {
         'JCxo4QUF38r-E_SQZ'
       );
 
-      console.log('Success:', result.text);
       setStatus({
         type: 'success',
         message: 'Thank you! Your message has been sent successfully.'
@@ -30,6 +67,12 @@ export const ContactForm = ({ className, onClose }) => {
       
       // Clear form
       formRef.current.reset();
+      setFormData({
+        user_name: '',
+        user_email: '',
+        user_phone: '',
+        message: ''
+      });
     } catch (error) {
       console.error("Error:", error.text);
       setStatus({
@@ -42,15 +85,9 @@ export const ContactForm = ({ className, onClose }) => {
   };
 
   return (
-    <div
-      className={cn(
-        "w-full max-w-2xl relative",
-        className
-      )}
-    >
+    <div className={cn("w-full max-w-2xl relative contain-layout", className)}>
       <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
       <div className="relative shadow-xl bg-gray-900 border border-gray-800 px-8 py-12 h-full overflow-hidden rounded-2xl flex flex-col">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute right-4 top-4 p-2 rounded-full hover:bg-gray-800 transition-colors duration-200 text-gray-400 hover:text-white"
@@ -61,50 +98,37 @@ export const ContactForm = ({ className, onClose }) => {
 
         <h3 className="text-2xl font-bold text-white mb-8 text-center">Send me a Message</h3>
         
-        <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div>
-            <label htmlFor="user_name" className="text-gray-200 text-sm mb-2 block">
-              Full Name
-            </label>
-            <input
-              id="user_name"
-              type="text"
-              name="user_name"
-              required
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-gray-800 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="John Doe"
-            />
-          </div>
+        <form 
+          ref={formRef} 
+          onSubmit={handleSubmit} 
+          className="flex flex-col gap-4 contain-layout"
+          onChange={handleInputChange}
+        >
+          <FormInput
+            label="Full Name"
+            id="user_name"
+            type="text"
+            name="user_name"
+            placeholder="John Doe"
+          />
 
-          <div>
-            <label htmlFor="user_email" className="text-gray-200 text-sm mb-2 block">
-              Email Address
-            </label>
-            <input
-              id="user_email"
-              type="email"
-              name="user_email"
-              required
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-gray-800 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="john@example.com"
-            />
-          </div>
+          <FormInput
+            label="Email Address"
+            id="user_email"
+            type="email"
+            name="user_email"
+            placeholder="john@example.com"
+          />
 
-          <div>
-            <label htmlFor="user_phone" className="text-gray-200 text-sm mb-2 block">
-              Phone Number
-            </label>
-            <input
-              id="user_phone"
-              type="tel"
-              name="user_phone"
-              required
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-gray-800 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="+1 (555) 000-0000"
-            />
-          </div>
+          <FormInput
+            label="Phone Number"
+            id="user_phone"
+            type="tel"
+            name="user_phone"
+            placeholder="+1 (555) 000-0000"
+          />
 
-          <div>
+          <div className="contain-layout">
             <label htmlFor="message" className="text-gray-200 text-sm mb-2 block">
               Message
             </label>
@@ -113,40 +137,37 @@ export const ContactForm = ({ className, onClose }) => {
               name="message"
               required
               rows={4}
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-gray-800 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Type your message here..."
+              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-gray-800 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-none contain-paint"
+              placeholder="Your message here..."
             />
           </div>
 
-          {status.message && (
-            <div className={cn(
-              "text-sm px-3 py-2 rounded-lg",
-              status.type === 'success' ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
-            )}>
-              {status.message}
-            </div>
-          )}
-
-          <button
+          <motion.button
             type="submit"
             disabled={loading}
             className={cn(
-              "bg-gradient-to-br relative group/btn from-blue-500 to-teal-500 block font-medium text-white text-sm rounded-lg px-4 py-3",
+              "px-8 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-teal-500 text-white font-medium",
               "hover:opacity-90 transition-opacity",
-              loading && "opacity-50 cursor-not-allowed"
+              "disabled:opacity-50 disabled:cursor-not-allowed",
+              "contain-paint"
             )}
+            whileTap={{ scale: loading ? 1 : 0.98 }}
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-br from-blue-500 to-teal-500 rounded-lg blur opacity-30 group-hover/btn:opacity-100 transition" />
-            <span className="relative flex items-center justify-center">
-              {loading ? "Sending..." : "Send Message"}
-            </span>
-          </button>
-        </form>
+            {loading ? 'Sending...' : 'Send Message'}
+          </motion.button>
 
-        <div
-          className="absolute inset-0 pointer-events-none border border-white/5 rounded-2xl"
-        />
+          {status.message && (
+            <p className={cn(
+              "text-sm text-center",
+              status.type === 'success' ? 'text-green-400' : 'text-red-400'
+            )}>
+              {status.message}
+            </p>
+          )}
+        </form>
       </div>
     </div>
   );
-};
+});
+
+ContactForm.displayName = 'ContactForm';

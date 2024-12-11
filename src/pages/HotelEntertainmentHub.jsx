@@ -1,7 +1,12 @@
 import React from "react";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 import { BlurImageBackground } from "../components/ui/blur-image-background";
-import { BoltIcon, SwatchIcon, HeartIcon } from "@heroicons/react/24/outline/index.js";
+import { BoltIcon, SwatchIcon, HeartIcon, DocumentDuplicateIcon, EyeSlashIcon, CurrencyDollarIcon } from "@heroicons/react/24/outline/index.js";
+import scatteredInfo from '../assets/illustrations/scattered-info.svg';
+import limitedVisibility from '../assets/illustrations/limited-visibility.svg';
+import pricingComplexity from '../assets/illustrations/pricing-complexity.svg';
+import unifiedHub from '../assets/illustrations/unified-hub.svg';
+import discoverability from '../assets/illustrations/discoverability.svg';
 import { useState, useEffect } from "react";
 import { useColor } from 'color-thief-react';
 import { motion } from 'framer-motion';
@@ -88,7 +93,7 @@ export default function HotelEntertainmentHub() {
             Crafting a Hotel Entertainment Hub That Delights
           </h1>
           <p className="text-white text-center max-w-2xl mx-auto text-lg md:text-xl mb-12">
-            A Console Based Entertainment Solution
+          A console app enabling guests to access hotel services and enjoy entertainment like movies, music, and games from their rooms.
           </p>
           
           {/* Project Details */}
@@ -148,9 +153,21 @@ export default function HotelEntertainmentHub() {
         <div>
           <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <h2 className="text-3xl font-bold mb-8">The Challenge</h2>
-            <p className="text-neutral-300 text-lg leading-relaxed">
-              Create a unified "entertainment hub" that helps hotel guests easily discover, access, and enjoy a wide range of hotel services, entertainment, and local activities. The hub needed to be flexible enough to adapt to multiple hotel brands, all while making complex pricing structures and configurations feel effortless.
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <p className="text-neutral-300 text-lg leading-relaxed">
+                  Create a unified "entertainment hub" that helps hotel guests easily discover, access, and enjoy a wide range of hotel services, entertainment, and local activities. The hub needed to be flexible enough to adapt to multiple hotel brands, all while making complex pricing structures and configurations feel effortless.
+                </p>
+              </div>
+              <div className="relative bg-neutral-950/50 rounded-xl p-6">
+                <img 
+                  src={discoverability} 
+                  alt="Service Discovery Interface" 
+                  className="w-full max-w-lg mx-auto"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 to-transparent rounded-xl"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -168,17 +185,29 @@ export default function HotelEntertainmentHub() {
               <h3 className="text-xl font-semibold mb-6">Key issues we identified through initial research:</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="p-6 rounded-lg bg-red-950/30 border border-red-900/50">
-                  <h4 className="text-lg font-medium mb-2 text-red-100">Scattered Information</h4>
+                  <div className="flex items-center gap-3 mb-3">
+                    <DocumentDuplicateIcon className="w-6 h-6 text-red-400" />
+                    <h4 className="text-lg font-medium text-red-100">Scattered Information</h4>
+                  </div>
+                  <img src={scatteredInfo} alt="Scattered Information" className="w-full h-32 object-contain mb-4" />
                   <p className="text-neutral-300">Entertainment options, services, and promotions were spread across leaflets, TV channels, and printed menus.</p>
                 </div>
                 
                 <div className="p-6 rounded-lg bg-red-950/30 border border-red-900/50">
-                  <h4 className="text-lg font-medium mb-2 text-red-100">Limited Visibility</h4>
+                  <div className="flex items-center gap-3 mb-3">
+                    <EyeSlashIcon className="w-6 h-6 text-red-400" />
+                    <h4 className="text-lg font-medium text-red-100">Limited Visibility</h4>
+                  </div>
+                  <img src={limitedVisibility} alt="Limited Visibility" className="w-full h-32 object-contain mb-4" />
                   <p className="text-neutral-300">Guests missed out on special promotions, local tours, or even unique dining experiences due to poor discovery mechanisms.</p>
                 </div>
                 
                 <div className="p-6 rounded-lg bg-red-950/30 border border-red-900/50">
-                  <h4 className="text-lg font-medium mb-2 text-red-100">Brand & Pricing Complexity</h4>
+                  <div className="flex items-center gap-3 mb-3">
+                    <CurrencyDollarIcon className="w-6 h-6 text-red-400" />
+                    <h4 className="text-lg font-medium text-red-100">Brand & Pricing Complexity</h4>
+                  </div>
+                  <img src={pricingComplexity} alt="Pricing Complexity" className="w-full h-32 object-contain mb-4" />
                   <p className="text-neutral-300">Each partner hotel had its own branding guidelines, pricing models, and tax structures. Managing this complexity within a single platform was no small feat.</p>
                 </div>
               </div>

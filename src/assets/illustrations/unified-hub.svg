@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="none"/>
+  
+  <!-- Central Hub Circle -->
+  <circle cx="300" cy="200" r="80" fill="#4F46E5" opacity="0.2" stroke="#4F46E5" stroke-width="2"/>
+  <text x="265" y="205" font-family="Arial" font-size="14" fill="#4F46E5">Entertainment Hub</text>
+  
+  <!-- Connected Services -->
+  <!-- Movies -->
+  <circle cx="150" cy="120" r="40" fill="#FF6B6B" opacity="0.2" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="130" y="125" font-family="Arial" font-size="12" fill="#FF6B6B">Movies</text>
+  <path d="M200 150 L 240 180" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="4 4"/>
+  
+  <!-- Room Service -->
+  <circle cx="450" cy="120" r="40" fill="#FF6B6B" opacity="0.2" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="420" y="125" font-family="Arial" font-size="12" fill="#FF6B6B">Room Service</text>
+  <path d="M400 150 L 360 180" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="4 4"/>
+  
+  <!-- Local Tours -->
+  <circle cx="150" cy="280" r="40" fill="#FF6B6B" opacity="0.2" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="125" y="285" font-family="Arial" font-size="12" fill="#FF6B6B">Local Tours</text>
+  <path d="M200 250 L 240 220" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="4 4"/>
+  
+  <!-- Spa Services -->
+  <circle cx="450" cy="280" r="40" fill="#FF6B6B" opacity="0.2" stroke="#FF6B6B" stroke-width="2"/>
+  <text x="425" y="285" font-family="Arial" font-size="12" fill="#FF6B6B">Spa</text>
+  <path d="M400 250 L 360 220" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="4 4"/>
+  
+  <!-- Hotel Icon in Center -->
+  <rect x="275" y="175" width="50" height="50" rx="8" fill="#4F46E5" opacity="0.3"/>
+  <path d="M285 195 L315 195 L300 175 Z" fill="#4F46E5"/>
+  
+  <!-- Connected Lines Animation -->
+  <circle cx="300" cy="200" r="90" stroke="#4F46E5" stroke-width="1" stroke-dasharray="4 4" opacity="0.5">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 300 200"
+      to="360 300 200"
+      dur="20s"
+      repeatCount="indefinite"
+    />
+  </circle>
+</svg>

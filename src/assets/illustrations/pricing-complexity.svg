@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="none"/>
+  
+  <!-- Currency Symbols -->
+  <text x="120" y="100" font-size="40" fill="#FF6B6B">$</text>
+  <text x="200" y="150" font-size="40" fill="#FF6B6B">€</text>
+  <text x="280" y="200" font-size="40" fill="#FF6B6B">£</text>
+  
+  <!-- Connecting Lines -->
+  <path d="M140 110 Q200 130 260 150" stroke="#FF6B6B" stroke-width="2"/>
+  <path d="M220 160 Q240 180 270 190" stroke="#FF6B6B" stroke-width="2"/>
+  
+  <!-- Price Tags -->
+  <rect x="100" y="150" width="60" height="30" rx="4" fill="#FF6B6B" opacity="0.2"/>
+  <rect x="180" y="200" width="60" height="30" rx="4" fill="#FF6B6B" opacity="0.2"/>
+  <rect x="260" y="120" width="60" height="30" rx="4" fill="#FF6B6B" opacity="0.2"/>
+</svg>
