@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function TestPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white p-8">
+    <main className="min-h-screen bg-neutral-950 text-white p-8">
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-3xl font-bold mb-8">Component Test Page</h1>
         
@@ -58,6 +58,6 @@ export default function TestPage() {
           </section>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

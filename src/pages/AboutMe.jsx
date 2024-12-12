@@ -151,119 +151,121 @@ export default function AboutMe() {
   const timestamp = useMemo(() => new Date().getTime(), []);
   
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
-      {/* Hero Section with Card */}
-      <section className="relative pt-24 pb-16 md:pt-28 md:pb-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="relative z-10 backdrop-blur-md">
-            <div className="flex flex-col items-center">
-              {/* Avatar */}
-              <div className="w-20 h-20 md:w-32 md:h-32 mb-6">
-                <HoverBorderGradient>
-                  <img 
-                    src={`/images/avatar.png?v=${timestamp}`}
-                    alt="Opeyemi Ajagbe" 
-                    className="w-full h-full object-cover rounded-full bg-neutral-950"
-                  />
-                </HoverBorderGradient>
-              </div>
-              
-              {/* Name and Title */}
-              <h1 className="text-3xl md:text-4xl font-bold text-center text-white mb-2">
-                Opeyemi Ajagbe
-              </h1>
-              <h2 className="text-base md:text-lg font-normal mb-4 text-neutral-400 text-center">
-                Snr. Product Designer
-              </h2>
+    <main className="min-h-screen bg-neutral-950 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* Hero Section with Card */}
+        <section className="relative pt-24 pb-16 md:pt-28 md:pb-20">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="relative z-10 backdrop-blur-md">
+              <div className="flex flex-col items-center">
+                {/* Avatar */}
+                <div className="w-20 h-20 md:w-32 md:h-32 mb-6">
+                  <HoverBorderGradient>
+                    <img 
+                      src={`/images/avatar.png?v=${timestamp}`}
+                      alt="Opeyemi Ajagbe" 
+                      className="w-full h-full object-cover rounded-full bg-neutral-950"
+                    />
+                  </HoverBorderGradient>
+                </div>
+                
+                {/* Name and Title */}
+                <h1 className="text-3xl md:text-4xl font-bold text-center text-white mb-2">
+                  Opeyemi Ajagbe
+                </h1>
+                <h2 className="text-base md:text-lg font-normal mb-4 text-neutral-400 text-center">
+                  Snr. Product Designer
+                </h2>
 
-              {/* Social Links */}
-              <div className="flex items-center gap-6 mb-8">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-neutral-400 hover:text-white transition-colors group"
-                    aria-label={link.label}
-                  >
-                    {typeof link.icon === 'function' ? 
-                      link.icon() : 
-                      <link.icon className="w-6 h-6" />
-                    }
-                  </a>
-                ))}
-              </div>
+                {/* Social Links */}
+                <div className="flex items-center gap-6 mb-8">
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-neutral-400 hover:text-white transition-colors group"
+                      aria-label={link.label}
+                    >
+                      {typeof link.icon === 'function' ? 
+                        link.icon() : 
+                        <link.icon className="w-6 h-6" />
+                      }
+                    </a>
+                  ))}
+                </div>
 
-              {/* Download Resume Button */}
-              <BorderButton
-                as="a"
-                href={`/OpeyemiAjagbe-Resume.pdf?v=${timestamp}`}
-                download
-                className="w-full max-w-[280px] h-[52px] text-base"
-              >
-                <span className="flex items-center justify-center gap-3">
-                  <IconDownload className="w-6 h-6" />
-                  Download Resume
-                </span>
-              </BorderButton>
-              
-              {/* Bio */}
-              <p className="text-neutral-300 leading-relaxed text-left pt-8">
-                A seasoned UX/UI Designer with a track record spanning 9+ years across diverse sectors such as Fintech, Logistics, Edu-tech, and E-Sport Entertainment. Demonstrated expertise in the full design lifecycle, from conceptualization to deployment, achieving a 50% boost in user satisfaction and contributing to a 30% company growth. Possesses a keen aptitude for integrating cutting-edge technologies with user-centric designs. Recognized for collaborative ethos, clear communication, and aligning product visions with organizational objectives.
-              </p>
+                {/* Download Resume Button */}
+                <BorderButton
+                  as="a"
+                  href={`/OpeyemiAjagbe-Resume.pdf?v=${timestamp}`}
+                  download
+                  className="w-full max-w-[280px] h-[52px] text-base"
+                >
+                  <span className="flex items-center justify-center gap-3">
+                    <IconDownload className="w-6 h-6" />
+                    Download Resume
+                  </span>
+                </BorderButton>
+                
+                {/* Bio */}
+                <p className="text-neutral-300 leading-relaxed text-left pt-8">
+                  A seasoned UX/UI Designer with a track record spanning 9+ years across diverse sectors such as Fintech, Logistics, Edu-tech, and E-Sport Entertainment. Demonstrated expertise in the full design lifecycle, from conceptualization to deployment, achieving a 50% boost in user satisfaction and contributing to a 30% company growth. Possesses a keen aptitude for integrating cutting-edge technologies with user-centric designs. Recognized for collaborative ethos, clear communication, and aligning product visions with organizational objectives.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <BackgroundBeams className="z-0" />
-      </section>
+          <BackgroundBeams className="z-0" />
+        </section>
 
-      {/* Professional Experience Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8">Professional Experience</h2>
-          <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
-            {experiences.map((experience, index) => (
-              <Experience 
-                key={index} 
-                {...experience} 
-                isLast={index === experiences.length - 1}
-              />
-            ))}
+        {/* Professional Experience Section */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-8">Professional Experience</h2>
+            <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
+              {experiences.map((experience, index) => (
+                <Experience 
+                  key={index} 
+                  {...experience} 
+                  isLast={index === experiences.length - 1}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Education Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8">Education</h2>
-          <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
-            {education.map((edu, index) => (
-              <Education 
-                key={index} 
-                {...edu}
-              />
-            ))}
+        {/* Education Section */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-8">Education</h2>
+            <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
+              {education.map((edu, index) => (
+                <Education 
+                  key={index} 
+                  {...edu}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Trainings & Certifications Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8">Trainings & Certifications</h2>
-          <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
-            {certifications.map((cert, index) => (
-              <Certification 
-                key={index} 
-                {...cert} 
-                isLast={index === certifications.length - 1}
-              />
-            ))}
+        {/* Trainings & Certifications Section */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-8">Trainings & Certifications</h2>
+            <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors p-6">
+              {certifications.map((cert, index) => (
+                <Certification 
+                  key={index} 
+                  {...cert} 
+                  isLast={index === certifications.length - 1}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </main>
   );
 }

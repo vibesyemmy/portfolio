@@ -1,15 +1,15 @@
-import React, { useState, useEffect, Suspense } from "react";
-import { AnimatedTooltip } from "../components/ui/animated-tooltip";
-import { BlurImageBackground } from "../components/ui/blur-image-background";
+import React, { useState, useEffect, Suspense, lazy, memo } from 'react';
+import { AnimatedTooltip } from '../components/ui/animated-tooltip';
+import { BlurImageBackground } from '../components/ui/blur-image-background';
 import { Skeleton } from '../components/ui/skeleton';
 import CaseStudyNav from '../components/ui/case-study-nav';
 import { getNavigation } from '../config/case-studies';
 import { useColor } from 'color-thief-react';
-import ImageCarousel from '../components/ImageCarousel';
-import { IconX } from '@tabler/icons-react';
 import { motion, AnimatePresence } from "framer-motion";
+import { IconX } from '@tabler/icons-react';
 
-const Lottie = React.lazy(() => import('lottie-react'));
+const Lottie = lazy(() => import('lottie-react'));
+const ImageCarousel = lazy(() => import('../components/ImageCarousel'));
 
 const teamMembers = [
   {
@@ -37,6 +37,40 @@ const preloadImage = (src) => {
     img.src = src;
   });
 };
+
+const ModalImage = memo(({ src, alt, onClose }) => (
+  <div className="p-4">
+    <img
+      src={src}
+      alt={alt}
+      className="max-w-full max-h-[80vh] object-contain mx-auto"
+    />
+  </div>
+));
+
+const ImageSection = memo(({ src, alt, onClick }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  return (
+    <div className="relative w-full aspect-[16/9]">
+      {isLoading && (
+        <div className="absolute inset-0">
+          <Skeleton className="w-full h-full rounded-xl" />
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        onClick={onClick}
+        onLoad={() => setIsLoading(false)}
+        className={`w-full h-full object-cover rounded-xl cursor-pointer transition-opacity duration-300 ${
+          isLoading ? 'opacity-0' : 'opacity-100'
+        }`}
+        style={{ minHeight: '300px' }}
+      />
+    </div>
+  );
+});
 
 export default function HotelEntertainmentHub() {
   const [backgroundColor, setBackgroundColor] = useState("rgba(20, 20, 20, 0.9)");
@@ -114,10 +148,9 @@ export default function HotelEntertainmentHub() {
   }, [selectedImage]);
 
   return (
-    <div className="bg-neutral-950 text-white">
+    <>
       <CaseStudyNav navigation={getNavigation()} className="absolute top-0 left-0 right-0 z-50" />
-      
-      <main>
+      <main className="min-h-screen bg-black">
         {/* Hero Section */}
         <BlurImageBackground 
           imageSrc="/images/hotel-entertainment-hub.png"
@@ -150,7 +183,9 @@ export default function HotelEntertainmentHub() {
               <div className="text-center">
                 <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
                 <div className="flex justify-center">
-                  <AnimatedTooltip items={teamMembers} />
+                  <Suspense fallback={<Skeleton className="w-full h-full" />}>
+                    <AnimatedTooltip items={teamMembers} />
+                  </Suspense>
                 </div>
               </div>
             </div>
@@ -364,7 +399,9 @@ export default function HotelEntertainmentHub() {
 
           {/* Stay Images Grid Section */}
           <div className="max-w-7xl mx-auto px-4 pt-8 pb-16 md:pb-24">
-            <ImageCarousel images={stayImages} />
+            <Suspense fallback={<Skeleton className="w-full h-full" />}>
+              <ImageCarousel images={stayImages} />
+            </Suspense>
           </div>
 
           {/* Outcome Section */}
@@ -387,36 +424,31 @@ export default function HotelEntertainmentHub() {
 
           {/* Feature Grid Image Section */}
           <div className="max-w-7xl mx-auto px-4 pb-24">
-            <div 
-              className="relative rounded-xl cursor-pointer w-full"
-              onClick={() => setSelectedImage({ src: '/images/feature-grid.png', alt: 'Hotel Entertainment Hub Feature Grid' })}
-            >
-              <img
-                src="/images/feature-grid.png"
-                alt="Hotel Entertainment Hub Feature Grid"
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="max-w-7xl mx-auto px-4">
-            <hr className="border-t border-neutral-800 mb-16" />
-            <div className="text-center mb-16">
-              <p className="text-neutral-300 text-lg">Enjoy a full interact with the prototype below</p>
-            </div>
+            <ImageSection 
+              src="/images/feature-grid.png"
+              alt="Hotel Entertainment Hub Feature Grid"
+              onClick={() => setSelectedImage({ 
+                src: '/images/feature-grid.png', 
+                alt: 'Hotel Entertainment Hub Feature Grid' 
+              })}
+            />
           </div>
 
           {/* ProtoPie Prototype Section */}
           <div className="max-w-7xl mx-auto px-4 pb-24">
-            <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
-              <iframe
-                src="https://cloud.protopie.io/p/efd2a0e232?ui=false&scaleToFit=true&enableHotspotHints=true&cursorType=touch&mockup=true&bgColor=%23F5F5F5&bgImage=undefined&playSpeed=1"
-                title="Hotel Entertainment Hub Prototype"
-                className="absolute inset-0 w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+            <div className="relative w-full" style={{ aspectRatio: '16/9', minHeight: '500px' }}>
+              <Suspense fallback={
+                <div className="absolute inset-0">
+                  <Skeleton className="w-full h-full rounded-xl" />
+                </div>
+              }>
+                <iframe
+                  src="https://cloud.protopie.io/p/efd2a0e232?ui=false&scaleToFit=true&enableHotspotHints=true&cursorType=touch&mockup=true&bgColor=%23F5F5F5&bgImage=undefined&playSpeed=1"
+                  title="Hotel Entertainment Hub Prototype"
+                  className="absolute inset-0 w-full h-full border-0 rounded-xl"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                />
+              </Suspense>
             </div>
           </div>
 
@@ -454,13 +486,13 @@ export default function HotelEntertainmentHub() {
                         <IconX className="w-6 h-6 text-white" />
                       </button>
                     </div>
-                    <div className="p-4">
-                      <img
+                    <Suspense fallback={<Skeleton className="w-full h-full" />}>
+                      <ModalImage 
                         src={selectedImage?.src}
                         alt={selectedImage?.alt}
-                        className="max-w-full max-h-[80vh] object-contain mx-auto"
+                        onClose={() => setSelectedImage(null)}
                       />
-                    </div>
+                    </Suspense>
                   </motion.div>
                 </div>
               </div>
@@ -468,6 +500,6 @@ export default function HotelEntertainmentHub() {
           )}
         </AnimatePresence>
       </main>
-    </div>
+    </>
   );
 }
