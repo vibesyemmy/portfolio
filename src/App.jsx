@@ -10,7 +10,7 @@ import TamingFintechMonster from './pages/TamingFintechMonster';
 import HotelEntertainmentHub from './pages/HotelEntertainmentHub';
 import PhoneCash from './pages/PhoneCash';
 import AboutMe from './pages/AboutMe';
-import Test from './pages/Test';
+import TestPage from './pages/TestPage';
 import emailjs from '@emailjs/browser';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ui/scroll-to-top';
@@ -47,7 +47,7 @@ function App() {
               <Route path="/fintech-monster" element={<TamingFintechMonster />} />
               <Route path="/hotel-hub" element={<HotelEntertainmentHub />} />
               <Route path="/phonecash" element={<PhoneCash />} />
-              <Route path="/test" element={<Test />} />
+              <Route path="/test" element={<TestPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
