@@ -119,7 +119,7 @@ export default function TamingFintechMonster() {
         </section>
 
         {/* The Challenge */}
-        <section className="py-16 px-4 bg-neutral-900/50">
+        <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold text-neutral-200 mb-8">The Challenge: A Sea of Inconsistency</h2>
             <p className="text-neutral-400 leading-relaxed text-lg mb-12">

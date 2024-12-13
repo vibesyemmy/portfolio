@@ -150,7 +150,7 @@ export default function HotelEntertainmentHub() {
   return (
     <>
       <CaseStudyNav navigation={getNavigation()} className="absolute top-0 left-0 right-0 z-50" />
-      <main className="min-h-screen bg-black">
+      <main className="min-h-screen bg-neutral-950">
         {/* Hero Section */}
         <BlurImageBackground 
           imageSrc="/images/hotel-entertainment-hub.png"
@@ -158,7 +158,7 @@ export default function HotelEntertainmentHub() {
           overlayClassName="bg-black/60"
         >
           <div className="relative z-10 py-16 px-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-6">
               Hotel Entertainment Hub
             </h1>
             
@@ -193,11 +193,11 @@ export default function HotelEntertainmentHub() {
         </BlurImageBackground>
 
         {/* Main Content */}
-        <div>
+        <div className="bg-transparent">
           {/* Project Description */}
           <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div className="max-w-4xl mx-auto space-y-16">
-              <p className="text-2xl text-neutral-300 font-light mb-16 leading-relaxed">
+              <p className="text-2xl text-neutral-300 font-normal mb-16 leading-relaxed">
               Hotels often struggle to showcase their full range of services—think seasonal tours, spa treatments, specialty events, and curated dining experiences. As a result, guests miss opportunities to enhance their stay. The Hotel Entertainment Hub brings these offerings together in one intuitive interface, making it simple for guests to discover, enjoy, and manage their entire hotel experience from a single touchpoint.
               </p>
 
@@ -233,7 +233,7 @@ export default function HotelEntertainmentHub() {
           </div>
 
           {/* Overview Section */}
-          <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4 pt-16 md:pt-24 pb-8">
             <div className="w-full prose prose-lg prose-invert">
               <div className="w-full max-w-none">
                 <div className="relative w-full pb-[66.76%] rounded-lg md:rounded-3xl overflow-hidden">
