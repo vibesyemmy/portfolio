@@ -7,9 +7,9 @@ import { getNavigation } from '../config/case-studies';
 import { useColor } from 'color-thief-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { IconX } from '@tabler/icons-react';
+import ImageCarousel from '../components/ImageCarousel';
 
 const Lottie = lazy(() => import('lottie-react'));
-const ImageCarousel = lazy(() => import('../components/ImageCarousel'));
 
 const teamMembers = [
   {
@@ -158,15 +158,17 @@ export default function HotelEntertainmentHub() {
           overlayClassName="bg-black/60"
         >
           <div className="relative z-10 py-16 px-4">
+            {/* Hero Element 1: Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-6">
               Hotel Entertainment Hub
             </h1>
             
+            {/* Hero Element 2: Description */}
             <p className="text-white text-center max-w-2xl mx-auto text-lg md:text-xl mb-12">
               A console app enabling guests to access hotel services and enjoy entertainment like movies, music, and games from their rooms.
             </p>
             
-            {/* Project Details */}
+            {/* Hero Element 3: Project Details Grid */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
               <div className="text-center">
                 <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
@@ -399,9 +401,7 @@ export default function HotelEntertainmentHub() {
 
           {/* Stay Images Grid Section */}
           <div className="max-w-7xl mx-auto px-4 pt-8 pb-16 md:pb-24">
-            <Suspense fallback={<Skeleton className="w-full h-full" />}>
-              <ImageCarousel images={stayImages} />
-            </Suspense>
+            <ImageCarousel images={stayImages} />
           </div>
 
           {/* Outcome Section */}
@@ -432,6 +432,16 @@ export default function HotelEntertainmentHub() {
                 alt: 'Hotel Entertainment Hub Feature Grid' 
               })}
             />
+          </div>
+
+          {/* Divider */}
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="border-t border-neutral-800 mb-12"></div>
+          </div>
+
+          {/* ProtoPie Text */}
+          <div className="max-w-7xl mx-auto px-4 mb-8">
+            <p className="text-neutral-400 text-lg text-center">Check the full prototype below</p>
           </div>
 
           {/* ProtoPie Prototype Section */}

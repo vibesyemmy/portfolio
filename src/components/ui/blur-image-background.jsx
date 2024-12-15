@@ -18,7 +18,7 @@ export const BlurImageBackground = ({
       {/* Blur Overlay */}
       <div
         className={cn(
-          "absolute inset-0 backdrop-blur-[20px] bg-black/60 transition-all duration-500 ease-in-out group-hover:backdrop-blur-0",
+          "absolute inset-0 backdrop-blur-sm bg-black/60 transition-all duration-500 ease-in-out group-hover:backdrop-blur-0",
           overlayClassName
         )}
       />

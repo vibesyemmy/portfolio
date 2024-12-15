@@ -70,14 +70,16 @@ export default function TamingFintechMonster() {
           overlayClassName="bg-black/60"
         >
           <div className="max-w-7xl mx-auto px-4 py-8 md:py-16 relative z-10">
+            {/* Hero Element 1: Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-8">
               Poseidon: Taming the Fintech Sea Monster
             </h1>
+            {/* Hero Element 2: Description */}
             <p className="text-white text-center max-w-2xl mx-auto text-lg md:text-xl mb-12">
               A Design System Case Study
             </p>
             
-            {/* Project Details */}
+            {/* Hero Element 3: Project Details Grid */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
               <div className="text-center">
                 <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
