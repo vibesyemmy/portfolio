@@ -324,11 +324,195 @@ export default function PhoneCash() {
             <div className="w-full h-px bg-neutral-800"></div>
           </div>
 
+          {/* Insights Section */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <h2 className="text-xl font-semibold mb-4 text-neutral-200">
+              Insights
+            </h2>
+            <p className="text-xl text-neutral-300 leading-relaxed mb-12">
+              From our research findings, we derived some key insights that informed our design decisions:
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-8 rounded-lg border border-neutral-800">
+                <p className="text-base text-neutral-200 leading-relaxed">
+                  Users value simplicity, security and convenience when it comes to payment solutions. They want a solution that is easy to use.
+                </p>
+              </div>
+
+              <div className="p-8 rounded-lg border border-neutral-800">
+                <p className="text-base text-neutral-200 leading-relaxed">
+                  Users have different preferences and needs depending on their context, location and income level. Some users prefer USSD codes because they are familiar and easy to remember, while others prefer phone numbers because they are more convenient and personal.
+                </p>
+              </div>
+
+              <div className="p-8 rounded-lg border border-neutral-800">
+                <p className="text-base text-neutral-200 leading-relaxed">
+                  Users face various challenges and risks when using cash such as theft, fraud, counterfeit notes, lack of change, etc. They want a solution that can protect them from these issues and provide them with a record of their transactions.
+                </p>
+              </div>
+
+              <div className="p-8 rounded-lg border border-neutral-800">
+                <p className="text-base text-neutral-200 leading-relaxed">
+                  Reliable and fast, and does not require internet connection or bank account details.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="w-full h-px bg-neutral-800"></div>
+          </div>
+
+          {/* Information Architecture Section */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="space-y-8">
+              <h2 className="text-xl font-semibold text-neutral-200">Information Architecture</h2>
+              <img 
+                src="/images/ia.png" 
+                alt="Information Architecture Diagram" 
+                className="w-full rounded-lg"
+              />
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="w-full h-px bg-neutral-800"></div>
+          </div>
+
+          {/* Design System Section */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="space-y-8">
+              <h2 className="text-xl font-semibold text-neutral-200">Design System</h2>
+              <div className="space-y-8">
+                <img 
+                  src="/images/design-system.png" 
+                  alt="Design System" 
+                  className="w-full rounded-lg"
+                />
+                <img 
+                  src="/images/design-system2.png" 
+                  alt="Design System Components" 
+                  className="w-full rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="w-full h-px bg-neutral-800"></div>
+          </div>
+
+          {/* Mockups Section */}
+          <div className="max-w-7xl mx-auto mt-24">
+            <div className="space-y-8">
+              <div className="space-y-8">
+                <img 
+                  src="/images/phonecash-mock.png" 
+                  alt="PhoneCash Mockup" 
+                  className="w-full rounded-lg shadow-2xl"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="w-full h-px bg-neutral-800"></div>
+          </div>
+
+          {/* Testing Section */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="grid grid-cols-3 gap-8">
+              <div className="col-span-1">
+                <h2 className="text-xl font-semibold mb-4 text-neutral-200">Testing</h2>
+              </div>
+              <div className="col-span-2 space-y-8">
+                <p className="text-lg text-neutral-300 leading-relaxed">
+                  The prototype was then tested with 5 potential users using Zoom. The testing methods included:
+                </p>
+                
+                <ul className="space-y-6 text-lg text-neutral-300">
+                  <li>
+                    <span className="font-medium text-neutral-200">Task completion:</span> The users were asked to complete specific tasks using the prototype such as making a payment or checking transaction history.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Think aloud:</span> The users were asked to verbalize their thoughts while using the prototype such as what they liked or disliked or what confused them.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Post-test questionnaire:</span> The users were asked to rate and comment on the prototype's usability, functionality, and aesthetics.
+                  </li>
+                </ul>
+
+                <p className="text-lg text-neutral-300 leading-relaxed">
+                  The main findings from the testing were:
+                </p>
+
+                <ul className="space-y-6 text-lg text-neutral-300">
+                  <li>
+                    <span className="font-medium text-neutral-200">Simplicity:</span> Users liked the simplicity and convenience of PhoneCash, especially the USSD code option that works without internet connection.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Security:</span> Users appreciated the security features of PhoneCash, such as the transaction PIN and the verification code.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Clarity:</span> Users found some screens confusing or unclear, such as the topup wallet screen and the scan and pay screen. They suggested adding more instructions or labels.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Performance:</span> Users encountered some technical issues with the prototype, such as slow loading time or unresponsive buttons.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="w-full h-px bg-neutral-800"></div>
+          </div>
+
+          {/* Iteration Section */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="grid grid-cols-3 gap-8">
+              <div className="col-span-1">
+                <h2 className="text-xl font-semibold mb-4 text-neutral-200">Iteration</h2>
+              </div>
+              <div className="col-span-2 space-y-8">
+                <p className="text-lg text-neutral-300 leading-relaxed">
+                  Based on the feedback from the testing, the prototype was iterated to improve the user experience of PhoneCash. The main changes made were:
+                </p>
+                
+                <ul className="space-y-6 text-lg text-neutral-300">
+                  <li>
+                    <span className="font-medium text-neutral-200">Instructions:</span> Added more instructions and labels to clarify some screens and actions.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Simplification:</span> Simplified some screens by removing unnecessary elements or steps.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Visual Enhancement:</span> Enhanced some visuals by adjusting colors, fonts, and icons.
+                  </li>
+                  <li>
+                    <span className="font-medium text-neutral-200">Bug Fixes:</span> Fixed some bugs and errors that affected the functionality of PhoneCash.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="max-w-4xl mx-auto mt-24">
+            <div className="w-full h-px bg-neutral-800"></div>
+          </div>
+
           {/* Competitive Analysis Section */}
           <div className="max-w-4xl mx-auto mt-24">
             <div className="grid grid-cols-1 gap-8">
               <div className="col-span-1">
-                <h2 className="text-xl font-semibold text-neutral-200">Competitive Analysis</h2>
+                <h2 className="text-xl font-semibold text-neutral-200">Competitive Analysis (Supplementary information)</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -425,80 +609,10 @@ export default function PhoneCash() {
             <div className="w-full h-px bg-neutral-800"></div>
           </div>
 
-          {/* Information Architecture Section */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="space-y-8">
-              <h2 className="text-xl font-semibold text-neutral-200">Information Architecture</h2>
-              <img 
-                src="/images/ia.png" 
-                alt="Information Architecture Diagram" 
-                className="w-full rounded-lg"
-              />
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
-          </div>
-
-          {/* Design System Section */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="space-y-8">
-              <h2 className="text-xl font-semibold text-neutral-200">Design System</h2>
-              <div className="space-y-8">
-                <img 
-                  src="/images/design-system.png" 
-                  alt="Design System" 
-                  className="w-full rounded-lg"
-                />
-                <img 
-                  src="/images/design-system2.png" 
-                  alt="Design System Components" 
-                  className="w-full rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Insights Section */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <h2 className="text-xl font-semibold mb-4 text-neutral-200">
-              Insights
-            </h2>
-            <p className="text-xl text-neutral-300 leading-relaxed mb-12">
-              From our research findings, we derived some key insights that informed our design decisions:
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-8 rounded-lg border border-neutral-800">
-                <p className="text-base text-neutral-200 leading-relaxed">
-                  Users value simplicity, security and convenience when it comes to payment solutions. They want a solution that is easy to use.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-lg border border-neutral-800">
-                <p className="text-base text-neutral-200 leading-relaxed">
-                  Users have different preferences and needs depending on their context, location and income level. Some users prefer USSD codes because they are familiar and easy to remember, while others prefer phone numbers because they are more convenient and personal.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-lg border border-neutral-800">
-                <p className="text-base text-neutral-200 leading-relaxed">
-                  Users face various challenges and risks when using cash such as theft, fraud, counterfeit notes, lack of change, etc. They want a solution that can protect them from these issues and provide them with a record of their transactions.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-lg border border-neutral-800">
-                <p className="text-base text-neutral-200 leading-relaxed">
-                  Reliable and fast, and does not require internet connection or bank account details.
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Case Study Navigation */}
-          <CaseStudyNav prevCase={prevCase} nextCase={nextCase} />
+          <div className="mt-32">
+            <CaseStudyNav prevCase={prevCase} nextCase={nextCase} />
+          </div>
         </div>
       </main>
     </>
