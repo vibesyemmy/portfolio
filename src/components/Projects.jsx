@@ -64,29 +64,19 @@ const items = [
     link: "/phonecash"
   },
   {
-    title: "The Power of Communication",
-    description: "Building bridges through effective dialogue and understanding.",
+    title: "FlatMagic: Figma Plugin",
+    description: "A Figma plugin that transforms complex frame structures into single, flattened images with just one click.",
     header: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
-        <div className="absolute top-4 left-4 z-20">
-          <ComingSoonTag />
-        </div>
-        <div className="flex flex-1 w-full h-full min-h-[6rem] overflow-hidden">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src="/images/p4.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+      <div className="flex flex-1 w-full h-full min-h-[6rem]">
+        <OptimizedImage 
+          src="/images/flatmagicbg.png"
+          alt="FlatMagic Figma Plugin" 
+          className="w-full h-full"
+          priority={true}
+        />
       </div>
     ),
-    link: "#"
+    link: "/flatmagic"
   },
   {
     title: "The Pursuit of Knowledge",

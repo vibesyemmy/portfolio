@@ -13,6 +13,11 @@ export const caseStudies = [
     id: 'phonecash',
     title: 'PhoneCash: A Fintech Solution',
     path: '/phonecash'
+  },
+  {
+    id: 'flatmagic',
+    title: 'FlatMagic: Figma Plugin',
+    path: '/flatmagic'
   }
 ];
 

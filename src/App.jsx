@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import TamingFintechMonster from './pages/TamingFintechMonster';
 import HotelEntertainmentHub from './pages/HotelEntertainmentHub';
 import PhoneCash from './pages/PhoneCash';
+import FlatMagic from './pages/FlatMagic';
 import AboutMe from './pages/AboutMe';
 import TestPage from './pages/TestPage';
 import emailjs from '@emailjs/browser';
@@ -47,6 +48,7 @@ function App() {
               <Route path="/fintech-monster" element={<TamingFintechMonster />} />
               <Route path="/hotel-hub" element={<HotelEntertainmentHub />} />
               <Route path="/phonecash" element={<PhoneCash />} />
+              <Route path="/flatmagic" element={<FlatMagic />} />
               <Route path="/test" element={<TestPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
