@@ -81,6 +81,7 @@ const items = [
   {
     title: "The Pursuit of Knowledge",
     description: "A journey through learning and discovery.",
+    isComingSoon: true,
     header: (
       <div className="relative w-full h-full">
         <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
@@ -102,6 +103,7 @@ const items = [
   {
     title: "The Joy of Creation",
     description: "Bringing ideas to life through innovation.",
+    isComingSoon: true,
     header: (
       <div className="relative w-full h-full">
         <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
@@ -127,6 +129,7 @@ const items = [
   {
     title: "The Future of Design",
     description: "A glimpse into tomorrow's design landscape.",
+    isComingSoon: true,
     header: (
       <div className="relative w-full h-full">
         <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
@@ -188,6 +191,7 @@ export default function Projects() {
               header={item.header}
               className={i === 3 || i === 6 ? "md:col-span-2" : ""}
               onClick={() => handleCardClick(item.link)}
+              isComingSoon={item.isComingSoon}
             />
           ))}
         </BentoGrid>

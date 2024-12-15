@@ -22,6 +22,7 @@ export const BentoGridItem = ({
   description,
   header,
   onClick,
+  isComingSoon,
 }) => {
   return (
     <div
@@ -49,19 +50,23 @@ export const BentoGridItem = ({
           }}
         />
       )}
-      
-      <div className={cn(
-        "flex-shrink-0 w-full h-48 md:h-32 lg:h-48 relative rounded-lg bg-neutral-900 overflow-hidden mb-4",
-        onClick && "transition-transform duration-200 group-hover/bento:scale-[1.02]"
-      )}>
-        {header}
-      </div>
-      <div className="group-hover/bento:translate-x-2 transition duration-200">
-        <div className="font-bold text-neutral-200 mb-2 line-clamp-1">
-          {title}
+
+      {header && (
+        <div className="relative h-48 md:h-60 mb-4 overflow-hidden rounded-lg">
+          {header}
         </div>
-        <div className="font-normal text-neutral-300 text-sm line-clamp-2">
-          {description}
+      )}
+      <div className="relative flex flex-col flex-1">
+        <div className={cn(
+          "transition duration-200",
+          isComingSoon && "blur-[4px] select-none opacity-70"
+        )}>
+          <h3 className="font-semibold text-neutral-200 tracking-wide mb-2 mt-2">
+            {title}
+          </h3>
+          <p className="text-sm text-neutral-400 leading-relaxed">
+            {description}
+          </p>
         </div>
       </div>
     </div>
