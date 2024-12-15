@@ -107,11 +107,11 @@ export default function PhoneCash() {
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Problem Section */}
           <div className="max-w-4xl mx-auto mt-24">
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="col-span-1">
                 <h2 className="text-xl font-semibold mb-4 text-neutral-200">Problem</h2>
               </div>
-              <div className="col-span-2 space-y-8">
+              <div className="col-span-1 md:col-span-2 space-y-8">
                 <p className="text-lg text-neutral-300 leading-relaxed">
                   According to a report by 1, Nigeria has one of the lowest rates of financial inclusion in Africa, with only 40% of adults having access to formal financial services. This means that many people rely on cash for their daily transactions, which poses several challenges such as:
                 </p>
@@ -138,11 +138,11 @@ export default function PhoneCash() {
 
           {/* Goal Section */}
           <div className="max-w-4xl mx-auto mt-24">
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="col-span-1">
                 <h2 className="text-xl font-semibold mb-4 text-neutral-200">Goal</h2>
               </div>
-              <div className="col-span-2 space-y-8">
+              <div className="col-span-1 md:col-span-2 space-y-8">
                 <p className="text-lg text-neutral-300 leading-relaxed">
                   The goal of PhoneCash is to provide a simple, secure and accessible way for people to make and receive payments without relying on cash or bank accounts. The product aims to:
                 </p>
@@ -240,14 +240,14 @@ export default function PhoneCash() {
             
             <div className="space-y-16">
               {/* Persona 1 */}
-              <div className="grid grid-cols-12 gap-8 border border-neutral-800 rounded-3xl p-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border border-neutral-800 rounded-3xl p-8">
                 {/* Profile Card */}
-                <div className="col-span-4">
+                <div className="col-span-1">
                   <img src="/images/persona1.png" alt="Aisha Alabi Persona" className="w-full h-auto rounded-3xl" />
                 </div>
 
                 {/* Details */}
-                <div className="col-span-8 space-y-8">
+                <div className="col-span-2 space-y-8">
                   <div>
                     <h4 className="text-base font-semibold mb-3">ABOUT</h4>
                     <p className="text-sm text-neutral-300">
@@ -279,14 +279,14 @@ export default function PhoneCash() {
               </div>
 
               {/* Persona 2 */}
-              <div className="grid grid-cols-12 gap-8 border border-neutral-800 rounded-3xl p-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border border-neutral-800 rounded-3xl p-8">
                 {/* Profile Card */}
-                <div className="col-span-4">
+                <div className="col-span-1">
                   <img src="/images/persona2.png" alt="Tunde Adamu Persona" className="w-full h-auto rounded-3xl" />
                 </div>
 
                 {/* Details */}
-                <div className="col-span-8 space-y-8">
+                <div className="col-span-2 space-y-8">
                   <div>
                     <h4 className="text-base font-semibold mb-3">ABOUT</h4>
                     <p className="text-sm text-neutral-300">
@@ -317,11 +317,6 @@ export default function PhoneCash() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
           </div>
 
           {/* Insights Section */}
@@ -360,11 +355,6 @@ export default function PhoneCash() {
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
-          </div>
-
           {/* Information Architecture Section */}
           <div className="max-w-4xl mx-auto mt-24">
             <div className="space-y-8">
@@ -375,11 +365,6 @@ export default function PhoneCash() {
                 className="w-full rounded-lg"
               />
             </div>
-          </div>
-
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
           </div>
 
           {/* Design System Section */}
@@ -401,11 +386,6 @@ export default function PhoneCash() {
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
-          </div>
-
           {/* Mockups Section */}
           <div className="max-w-7xl mx-auto mt-24">
             <div className="space-y-8">
@@ -415,22 +395,59 @@ export default function PhoneCash() {
                   alt="PhoneCash Mockup" 
                   className="w-full rounded-lg shadow-2xl"
                 />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <img 
+                    src="/images/pc1.png" 
+                    alt="PhoneCash Interface 1" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                  <img 
+                    src="/images/pc2.png" 
+                    alt="PhoneCash Interface 2" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                  <img 
+                    src="/images/pc3.png" 
+                    alt="PhoneCash Interface 3" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                  <img 
+                    src="/images/pc4.png" 
+                    alt="PhoneCash Interface 4" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                  <img 
+                    src="/images/pc5.png" 
+                    alt="PhoneCash Interface 5" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                  <img 
+                    src="/images/pc6.png" 
+                    alt="PhoneCash Interface 6" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                  <img 
+                    src="/images/pc7.png" 
+                    alt="PhoneCash Interface 7" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                  <img 
+                    src="/images/pc8.png" 
+                    alt="PhoneCash Interface 8" 
+                    className="w-full rounded-lg shadow-xl"
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
-          </div>
-
           {/* Testing Section */}
           <div className="max-w-4xl mx-auto mt-24">
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="col-span-1">
                 <h2 className="text-xl font-semibold mb-4 text-neutral-200">Testing</h2>
               </div>
-              <div className="col-span-2 space-y-8">
+              <div className="col-span-1 md:col-span-2 space-y-8">
                 <p className="text-lg text-neutral-300 leading-relaxed">
                   The prototype was then tested with 5 potential users using Zoom. The testing methods included:
                 </p>
@@ -469,18 +486,13 @@ export default function PhoneCash() {
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
-          </div>
-
           {/* Iteration Section */}
           <div className="max-w-4xl mx-auto mt-24">
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="col-span-1">
                 <h2 className="text-xl font-semibold mb-4 text-neutral-200">Iteration</h2>
               </div>
-              <div className="col-span-2 space-y-8">
+              <div className="col-span-1 md:col-span-2 space-y-8">
                 <p className="text-lg text-neutral-300 leading-relaxed">
                   Based on the feedback from the testing, the prototype was iterated to improve the user experience of PhoneCash. The main changes made were:
                 </p>
@@ -503,16 +515,11 @@ export default function PhoneCash() {
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
-          </div>
-
           {/* Competitive Analysis Section */}
           <div className="max-w-4xl mx-auto mt-24">
             <div className="grid grid-cols-1 gap-8">
-              <div className="col-span-1">
-                <h2 className="text-xl font-semibold text-neutral-200">Competitive Analysis (Supplementary information)</h2>
+              <div>
+                <h2 className="text-xl font-semibold text-neutral-200 mb-8">Competitive Analysis (Supplementary information)</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -524,7 +531,7 @@ export default function PhoneCash() {
                   <div className="space-y-4">
                     <div>
                       <h3 className="text-base font-semibold text-neutral-200 mb-2">Value Proposition</h3>
-                      <p className="text-sm text-neutral-300">Paga provides financial freedom to customers by allowing them to send and receive money, pay bills, buy airtime and data, request money, access loans, receive foreign transfers and save money in a separate wallet. Paga also operates an agent network across Nigeria.</p>
+                      <p className="text-sm text-neutral-300">Paga provides financial freedom to customers by allowing them to send and receive money, pay bills, buy airtime and data, access loans, receive foreign transfers and save money in a separate wallet. Paga also operates an agent network across Nigeria.</p>
                     </div>
                     <div>
                       <h3 className="text-base font-semibold text-neutral-200 mb-2">Market Share</h3>
@@ -602,11 +609,6 @@ export default function PhoneCash() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Divider */}
-          <div className="max-w-4xl mx-auto mt-24">
-            <div className="w-full h-px bg-neutral-800"></div>
           </div>
 
           {/* Case Study Navigation */}
