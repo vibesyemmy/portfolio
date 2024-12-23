@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconBrandLinkedin, IconBrandDribbble, IconBrandBehance, IconMail } from '@tabler/icons-react';
+import { IconBrandLinkedin, IconBrandDribbble, IconBrandFigma, IconMail } from '@tabler/icons-react';
 import UxcelIcon from '../assets/uxcel.svg';
 import { Modal } from './ui/modal';
 import { ContactForm } from './ui/contact-form';
@@ -21,9 +21,9 @@ const socialLinks = [
     label: 'Dribbble',
   },
   {
-    icon: IconBrandBehance,
-    href: 'https://behance.net/your-profile',
-    label: 'Behance',
+    icon: IconBrandFigma,
+    href: 'https://www.figma.com/@opeyemiajagbe',
+    label: 'Figma',
   },
   {
     icon: () => <img src={UxcelIcon} alt="UXcel" className="w-6 h-6 brightness-50 opacity-80 group-hover:brightness-200 group-hover:opacity-100" />,

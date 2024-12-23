@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { BackgroundBeams } from "@/components/ui/background-beams";
-import { IconBrandLinkedin, IconBrandDribbble, IconBrandBehance, IconMail, IconDownload } from '@tabler/icons-react';
+import { IconBrandLinkedin, IconBrandDribbble, IconBrandFigma, IconMail, IconDownload } from '@tabler/icons-react';
 import { Experience } from '@/components/ui/Experience';
 import { Education } from '@/components/ui/Education';
 import { Certification } from '@/components/ui/Certification';
@@ -25,9 +25,9 @@ const socialLinks = [
     label: 'Dribbble',
   },
   {
-    icon: IconBrandBehance,
-    href: 'https://behance.net/your-profile',
-    label: 'Behance',
+    icon: IconBrandFigma,
+    href: 'https://www.figma.com/@opeyemi_ajagbe',
+    label: 'Figma',
   },
   {
     icon: () => <img src="/images/uxcel.svg" alt="UXcel" className="w-6 h-6 brightness-50 opacity-80 group-hover:brightness-200 group-hover:opacity-100" />,

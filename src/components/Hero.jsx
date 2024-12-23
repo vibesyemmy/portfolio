@@ -4,6 +4,8 @@ import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { AnimatedPin } from "./ui/animated-pin";
 import AvatarImage from "../assets/avatar.png";
 import BgVideo from "../assets/bg-video.mp4";
+import UxcelIcon from "../assets/uxcel.svg";
+import { IconBrandLinkedin, IconBrandDribbble, IconBrandFigma, IconMail } from '@tabler/icons-react';
 
 export default function Hero() {
   return (
@@ -43,6 +45,59 @@ export default function Hero() {
         <p className="text-neutral-500 max-w-lg mx-auto my-2 text-sm sm:text-base md:text-lg text-center relative z-10">
           I craft digital products that empower people and drive business growth.
         </p>
+        
+        
+        
+        
+        {/* Social Icons */}
+        <div className="flex justify-center space-x-4 mb-8 mt-8">
+          {[
+            {
+              icon: IconMail,
+              href: 'mailto:opeyemiajagbe@gmail.com',
+              label: 'Email'
+            },
+            {
+              icon: IconBrandLinkedin,
+              href: 'https://linkedin.com/in/opeyemiajagbe',
+              label: 'LinkedIn'
+            },
+            {
+              icon: IconBrandDribbble,
+              href: 'https://dribbble.com/your-profile',
+              label: 'Dribbble'
+            },
+            {
+              icon: IconBrandFigma,
+              href: 'https://www.figma.com/@opeyemi_ajagbe',
+              label: 'Figma'
+            },
+            {
+              icon: UxcelIcon,
+              href: 'https://app.uxcel.com/ux/opeyemiajagbe',
+              label: 'Uxcel'
+            }
+          ].map(({ icon: Icon, href, label }) => (
+            <a 
+              key={label} 
+              href={href} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-neutral-400 hover:text-neutral-100 transition-colors duration-300 group"
+              aria-label={label}
+            >
+              {typeof Icon === 'string' ? (
+                <img 
+                  src={Icon} 
+                  alt={label} 
+                  className="w-6 h-6 brightness-50 opacity-80 group-hover:brightness-200 group-hover:opacity-100 group-hover:scale-110 transition-transform"
+                />
+              ) : (
+                <Icon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              )}
+            </a>
+          ))}
+        </div>
       </div>
       <div className="absolute bottom-4 md:bottom-5 w-full z-10">
         <InfiniteMovingLogos />
