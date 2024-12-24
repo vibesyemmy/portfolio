@@ -6,7 +6,11 @@ import { cn } from "../utils/cn";
 import OptimizedImage from './ui/optimized-image';
 
 const ComingSoonTag = () => (
-  <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-purple-600/80 to-purple-800/80 text-white border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+  <span 
+    className="px-4 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-purple-600/80 to-purple-800/80 text-white border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+    tabIndex="-1"
+    aria-label="Project status: Coming Soon"
+  >
     Coming Soon
   </span>
 );
@@ -83,12 +87,12 @@ const items = [
     description: "A journey through learning and discovery.",
     isComingSoon: true,
     header: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
-        <div className="absolute top-4 left-4 z-20">
+      <div className="relative w-full h-full" tabIndex="-1">
+        <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" tabIndex="-1" />
+        <div className="absolute top-4 left-4 z-20" tabIndex="-1">
           <ComingSoonTag />
         </div>
-        <div className="flex flex-1 w-full h-full min-h-[6rem]">
+        <div className="flex flex-1 w-full h-full min-h-[6rem]" tabIndex="-1">
           <OptimizedImage 
             src="/images/phonecash.webp"
             alt="PhoneCash Project" 
