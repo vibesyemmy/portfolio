@@ -61,7 +61,6 @@ export default function TamingFintechMonster() {
 
   return (
     <>
-      <CaseStudyNav prevCase={prevCase} nextCase={nextCase} className="absolute top-0 left-0 right-0 z-50" />
       <main className="min-h-screen bg-neutral-950 text-white">
         {/* Hero Section */}
         <BlurImageBackground
@@ -376,10 +375,8 @@ export default function TamingFintechMonster() {
             </div>
           </div>
         </div>
-
-        {/* Case Study Navigation */}
-        <CaseStudyNav prevCase={prevCase} nextCase={nextCase} />
       </main>
+      <CaseStudyNav prevCase={prevCase} nextCase={nextCase} />
     </>
   );
 }
