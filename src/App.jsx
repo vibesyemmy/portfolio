@@ -16,6 +16,7 @@ import emailjs from '@emailjs/browser';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollToTop from './components/ui/scroll-to-top';
 import BackToTop from './components/ui/back-to-top';
+import StripBanner from './components/StripBanner';
 
 // Loading component
 const Loading = () => (
@@ -40,6 +41,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <div className="min-h-screen bg-neutral-950 overflow-hidden">
+          <StripBanner />
           <Navbar />
           <Suspense fallback={<Loading />}>
             <Routes>
