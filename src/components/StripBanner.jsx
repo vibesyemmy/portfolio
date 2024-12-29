@@ -24,8 +24,8 @@ export default function StripBanner() {
       <div className="h-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center h-full gap-1">
           <p className="text-sm text-white font-medium">
-            <span className="hidden sm:inline">🪄Introducing FlatMagic - A Figma plugin that flattens complex frames into single images.</span>
-            <span className="sm:hidden">🪄Introducing FlatMagic</span>
+            <span className="hidden lg:inline">🪄Introducing <span className="font-bold">FlatMagic 1.2.0</span> - A Figma plugin that flattens complex frames into single images.</span>
+            <span className="lg:hidden">🪄Introducing <span className="font-bold">FlatMagic 1.2.0</span>.</span>
           </p>
           <a 
             href="https://www.figma.com/community/plugin/1448869823988608422/flatmagic"
