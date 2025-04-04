@@ -184,7 +184,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <div id="projects" className="py-20 bg-gradient-to-b from-black to-transparent">
+    <div id="projects" className="py-20 bg-neutral-950">
       <div className="max-w-6xl mx-auto px-4">
         <BentoGrid className="max-w-5xl mx-auto">
           {items.map((item, i) => (
