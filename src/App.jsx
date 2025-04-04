@@ -25,6 +25,17 @@ const Loading = () => (
   </div>
 );
 
+// Layout with Navbar, Footer, and StripBanner
+const MainLayout = ({ children }) => (
+  <>
+    <StripBanner />
+    <Navbar />
+    {children}
+    <Footer />
+    <BackToTop />
+  </>
+);
+
 function App() {
   useEffect(() => {
     // Initialize EmailJS
@@ -41,22 +52,18 @@ function App() {
       <Router>
         <ScrollToTop />
         <div className="min-h-screen bg-neutral-950 overflow-hidden">
-          <StripBanner />
-          <Navbar />
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={<><Hero /><Projects /></>} />
-              <Route path="/about" element={<AboutMe />} />
-              <Route path="/fintech-monster" element={<TamingFintechMonster />} />
-              <Route path="/hotel-hub" element={<HotelEntertainmentHub />} />
-              <Route path="/phonecash" element={<PhoneCash />} />
-              <Route path="/flatmagic" element={<FlatMagic />} />
+              <Route path="/" element={<MainLayout><Hero /><Projects /></MainLayout>} />
+              <Route path="/about" element={<MainLayout><AboutMe /></MainLayout>} />
+              <Route path="/fintech-monster" element={<MainLayout><TamingFintechMonster /></MainLayout>} />
+              <Route path="/hotel-hub" element={<MainLayout><HotelEntertainmentHub /></MainLayout>} />
+              <Route path="/phonecash" element={<MainLayout><PhoneCash /></MainLayout>} />
+              <Route path="/flatmagic" element={<MainLayout><FlatMagic /></MainLayout>} />
               <Route path="/test" element={<TestPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
-          <Footer />
-          <BackToTop />
           <SpeedInsights />
           <Analytics />
         </div>

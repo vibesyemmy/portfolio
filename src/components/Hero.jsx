@@ -3,11 +3,11 @@ import { InfiniteMovingLogos } from "./ui/infinite-moving-logos";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { AnimatedPin } from "./ui/animated-pin";
 import AvatarImage from "../assets/avatar.png";
-import BgVideo from "../assets/bg-video.mp4";
 import UxcelIcon from "../assets/uxcel.svg";
 import { IconBrandLinkedin, IconBrandDribbble, IconBrandFigma, IconMail } from '@tabler/icons-react';
 import { Modal } from './ui/modal';
 import { ContactForm } from './ui/contact-form';
+import { BackgroundBeams } from "./ui/background-beams.tsx";
 
 export default function Hero() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -15,16 +15,8 @@ export default function Hero() {
   return (
     <>
       <div className="xs:h-[150vh] h-[105vh] md:h-screen w-full relative flex flex-col items-center justify-center antialiased">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-100"
-        >
-          <source src={BgVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <BackgroundBeams className="opacity-90" />
+        
         <div className="max-w-6xl mx-auto px-4 relative z-10 py-12 md:py-0">
           <div className="relative z-10 w-[140px] h-[140px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] mx-auto mb-6 md:mb-8">
             <AnimatedPin>
