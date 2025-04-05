@@ -4,7 +4,7 @@ import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { AnimatedPin } from "./ui/animated-pin";
 import AvatarImage from "../assets/avatar.png";
 import UxcelIcon from "../assets/uxcel.svg";
-import { IconBrandLinkedin, IconBrandDribbble, IconBrandFigma, IconMail } from '@tabler/icons-react';
+import { IconBrandLinkedin, IconBrandGithub, IconBrandDribbble, IconBrandFigma, IconMail } from '@tabler/icons-react';
 import { Modal } from './ui/modal';
 import { ContactForm } from './ui/contact-form';
 import { BackgroundBeams } from "./ui/background-beams.tsx";
@@ -14,8 +14,11 @@ export default function Hero() {
   
   return (
     <>
-      <div className="xs:h-[150vh] h-[105vh] md:h-screen w-full relative flex flex-col items-center justify-center antialiased">
-        <BackgroundBeams className="opacity-90" />
+      <div className="xs:h-[150vh] h-[105vh] md:h-screen w-full relative flex flex-col items-center justify-center antialiased overflow-hidden">
+        {/* Background with enhanced opacity for mobile */}
+        <div className="absolute inset-0 w-full h-full bg-neutral-950">
+          <BackgroundBeams className="opacity-75 sm:opacity-85 md:opacity-90" />
+        </div>
         
         <div className="max-w-6xl mx-auto px-4 relative z-10 py-12 md:py-0">
           <div className="relative z-10 w-[140px] h-[140px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] mx-auto mb-6 md:mb-8">
@@ -61,6 +64,11 @@ export default function Hero() {
                 icon: IconBrandDribbble,
                 href: 'https://dribbble.com/opeyemiajagbe',
                 label: 'Dribbble'
+              },
+              {
+                icon: IconBrandGithub,
+                href: 'https://github.com/vibesyemmy',
+                label: 'Github'
               },
               {
                 icon: IconBrandFigma,
