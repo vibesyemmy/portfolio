@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconBrandLinkedin, IconBrandDribbble, IconBrandFigma, IconMail } from '@tabler/icons-react';
+import { IconBrandLinkedin, IconBrandDribbble, IconBrandGithub, IconBrandFigma, IconMail } from '@tabler/icons-react';
 import UxcelIcon from '../assets/uxcel.svg';
 import { Modal } from './ui/modal';
 import { ContactForm } from './ui/contact-form';
@@ -19,6 +19,11 @@ const socialLinks = [
     icon: IconBrandDribbble,
     href: 'https://dribbble.com/opeyemiajagbe',
     label: 'Dribbble',
+  },
+  {
+    icon: IconBrandGithub,
+    href: 'https://github.com/vibesyemmy',
+    label: 'GitHub',
   },
   {
     icon: IconBrandFigma,
