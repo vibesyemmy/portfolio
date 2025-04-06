@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { InfiniteMovingLogos } from "./ui/infinite-moving-logos";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { AnimatedPin } from "./ui/animated-pin";
-import AvatarImage from "../assets/avatar.png";
+import HeroVideo from "../assets/hero-video.mp4";
 import UxcelIcon from "../assets/uxcel.svg";
 import { IconBrandLinkedin, IconBrandGithub, IconBrandDribbble, IconBrandFigma, IconMail } from '@tabler/icons-react';
 import { Modal } from './ui/modal';
@@ -25,12 +25,14 @@ export default function Hero() {
             <AnimatedPin>
               <HoverBorderGradient>
                 <div className="w-full h-full rounded-full bg-neutral-900 overflow-hidden">
-                  <img 
-                    src={AvatarImage} 
-                    alt="Opeyemi Ajagbe" 
+                  <video 
+                    src={HeroVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className="w-full h-full object-cover rounded-full bg-neutral-950"
-                    loading="eager"
-                    decoding="async"
+                    aria-label="Profile video"
                   />
                 </div>
               </HoverBorderGradient>
