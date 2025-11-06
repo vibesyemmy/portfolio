@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { BackgroundBeams } from "@/components/ui/background-beams";
 import { IconBrandLinkedin, IconBrandDribbble, IconBrandFigma, IconMail, IconDownload } from '@tabler/icons-react';
 import { Experience } from '@/components/ui/Experience';
 import { Education } from '@/components/ui/Education';
@@ -216,7 +215,6 @@ export default function AboutMe() {
               </div>
             </div>
           </div>
-          <BackgroundBeams className="z-0" />
         </section>
 
         {/* Professional Experience Section */}
