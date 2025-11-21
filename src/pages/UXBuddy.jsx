@@ -16,7 +16,7 @@ const teamMembers = [
   {
     name: "Thompson Edolo",
     designation: "Developer",
-    image: "/images/avatar.png",
+    image: "/images/tom.jpg",
   }
 ];
 
