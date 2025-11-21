@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
@@ -23,6 +23,7 @@ const items = [
   {
     title: "Taming the Fintech Monster",
     description: "A unified UI system to streamline development, and enhance user experience.",
+    category: "design",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <OptimizedImage 
@@ -38,6 +39,7 @@ const items = [
   {
     title: "Crafting a Hotel Entertainment Hub",
     description: "Creating a delightful entertainment experience for hotel guests.",
+    category: "design",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <OptimizedImage 
@@ -53,6 +55,7 @@ const items = [
   {
     title: "PhoneCash: A Fintech Solution",
     description: "Revolutionizing Mobile Money Transfers in Africa",
+    category: "design",
     header: (
       <div className="relative w-full h-full">
         <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -70,6 +73,7 @@ const items = [
   {
     title: "FlatMagic: Figma Plugin",
     description: "A Figma plugin that transforms complex frame structures into single, flattened images with just one click.",
+    category: "development",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
         <OptimizedImage 
@@ -83,8 +87,25 @@ const items = [
     link: "/flatmagic"
   },
   {
+    title: "UX Buddy: AI-Powered UX Analysis",
+    description: "An intelligent Figma plugin that provides real-time UX analysis and actionable design recommendations using Claude AI.",
+    category: "development",
+    header: (
+      <div className="flex flex-1 w-full h-full min-h-[6rem]">
+        <OptimizedImage 
+          src="/images/UX-buddy.png"
+          alt="UX Buddy"
+          className="w-full h-full"
+          priority={true}
+        />
+      </div>
+    ),
+    link: "/ux-buddy"
+  },
+  {
     title: "The Pursuit of Knowledge",
     description: "A journey through learning and discovery.",
+    category: "design",
     isComingSoon: true,
     header: (
       <div className="relative w-full h-full" tabIndex="-1">
@@ -107,6 +128,7 @@ const items = [
   {
     title: "The Joy of Creation",
     description: "Bringing ideas to life through innovation.",
+    category: "development",
     isComingSoon: true,
     header: (
       <div className="relative w-full h-full">
@@ -130,32 +152,17 @@ const items = [
     ),
     link: "#"
   },
-  {
-    title: "The Future of Design",
-    description: "A glimpse into tomorrow's design landscape.",
-    isComingSoon: true,
-    header: (
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 bg-neutral-900/50 backdrop-blur-[2px] z-10" />
-        <div className="absolute top-4 left-4 z-20">
-          <ComingSoonTag />
-        </div>
-        <div className="flex flex-1 w-full h-full min-h-[6rem]">
-          <OptimizedImage 
-            src="/images/p7.png"
-            alt="Future of Design Project" 
-            className="w-full h-full"
-            priority={true}
-          />
-        </div>
-      </div>
-    ),
-    link: "#"
-  },
+];
+
+const tabs = [
+  { id: "all", label: "All Projects" },
+  { id: "design", label: "Design" },
+  { id: "development", label: "Development" }
 ];
 
 export default function Projects() {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("all");
 
   const handleCardClick = (link) => {
     if (link === "#") {
@@ -163,6 +170,10 @@ export default function Projects() {
     }
     navigate(link);
   };
+
+  const filteredItems = activeTab === "all" 
+    ? items 
+    : items.filter(item => item.category === activeTab);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -186,19 +197,50 @@ export default function Projects() {
   return (
     <div id="projects" className="py-20 bg-neutral-950">
       <div className="max-w-6xl mx-auto px-4">
-        <BentoGrid className="max-w-5xl mx-auto">
-          {items.map((item, i) => (
-            <BentoGridItem
-              key={i}
-              title={item.title}
-              description={item.description}
-              header={item.header}
-              className={i === 3 || i === 6 ? "md:col-span-2" : ""}
-              onClick={() => handleCardClick(item.link)}
-              isComingSoon={item.isComingSoon}
-            />
-          ))}
-        </BentoGrid>
+        {/* Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex items-center gap-2 p-1 bg-neutral-900/50 backdrop-blur-md rounded-lg border border-neutral-800">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  "px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-200",
+                  activeTab === tab.id
+                    ? "bg-[#232A39] text-white shadow-lg"
+                    : "text-neutral-400 hover:text-white hover:bg-neutral-800/50"
+                )}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Projects Grid */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <BentoGrid className="max-w-5xl mx-auto">
+            {filteredItems.map((item, i) => {
+              const originalIndex = items.indexOf(item);
+              return (
+                <BentoGridItem
+                  key={originalIndex}
+                  title={item.title}
+                  description={item.description}
+                  header={item.header}
+                  className={originalIndex === 3 || originalIndex === 6 ? "md:col-span-2" : ""}
+                  onClick={() => handleCardClick(item.link)}
+                  isComingSoon={item.isComingSoon}
+                />
+              );
+            })}
+          </BentoGrid>
+        </motion.div>
       </div>
     </div>
   );

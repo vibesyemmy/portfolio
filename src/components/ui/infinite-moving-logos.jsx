@@ -5,6 +5,7 @@ import hydrogen from "../../assets/logos/hydrogen 1-200h.png";
 import kobo from "../../assets/logos/kobo-1 2-200h.png";
 import sabi from "../../assets/logos/sabi.svg";
 import tunnel from "../../assets/logos/tunnel-1 1-200h.png";
+import lingawa from "../../assets/logos/lingawa.svg";
 
 const logos = [
   {
@@ -30,6 +31,10 @@ const logos = [
   {
     url: tunnel,
     alt: "Tunnel",
+  },
+  {
+    url: lingawa,
+    alt: "Lingawa",
   },
 ];
 

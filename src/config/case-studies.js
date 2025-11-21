@@ -18,6 +18,11 @@ export const caseStudies = [
     id: 'flatmagic',
     title: 'FlatMagic: Figma Plugin',
     path: '/flatmagic'
+  },
+  {
+    id: 'ux-buddy',
+    title: 'UX Buddy: AI-Powered UX Analysis',
+    path: '/ux-buddy'
   }
 ];
 
