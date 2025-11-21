@@ -10,6 +10,7 @@ import TamingFintechMonster from './pages/TamingFintechMonster';
 import HotelEntertainmentHub from './pages/HotelEntertainmentHub';
 import PhoneCash from './pages/PhoneCash';
 import FlatMagic from './pages/FlatMagic';
+import UXBuddy from './pages/UXBuddy';
 import AboutMe from './pages/AboutMe';
 import TestPage from './pages/TestPage';
 import emailjs from '@emailjs/browser';
@@ -60,6 +61,7 @@ function App() {
               <Route path="/hotel-hub" element={<MainLayout><HotelEntertainmentHub /></MainLayout>} />
               <Route path="/phonecash" element={<MainLayout><PhoneCash /></MainLayout>} />
               <Route path="/flatmagic" element={<MainLayout><FlatMagic /></MainLayout>} />
+              <Route path="/ux-buddy" element={<MainLayout><UXBuddy /></MainLayout>} />
               <Route path="/test" element={<TestPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
