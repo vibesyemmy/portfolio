@@ -45,6 +45,42 @@ export default function UXBuddy() {
               A personal story of frustration, invention, and the joy of building something that helps others design better.
             </p>
 
+            {/* Try UX Buddy Button */}
+            <div className="flex justify-center mb-12">
+              <a
+                href="https://www.figma.com/community/plugin/1513874084032014970/ux-buddy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative inline-flex items-center overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+              >
+                <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#9333EA_0%,#3B82F6_50%,#9333EA_100%)]" />
+                <span className="relative inline-flex items-center px-6 py-3 font-medium transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg group">
+                  <img
+                    src="/images/figma-logo.svg"
+                    alt="Figma Logo"
+                    className="mr-2 w-5 h-5 transition-opacity group-hover:opacity-70 brightness-0 invert"
+                  />
+                  <span className="text-white group-hover:text-neutral-100">
+                    Try UX Buddy
+                  </span>
+                  <svg
+                    className="ml-2 w-4 h-4 text-white group-hover:text-neutral-100"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </span>
+              </a>
+            </div>
+
             {/* Hero Element 3: Project Details Grid */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
               <div className="text-center">
@@ -440,6 +476,50 @@ export default function UXBuddy() {
               <p className="text-neutral-400 italic text-center max-w-lg mx-auto">
                 "Sometimes the best tools are born from frustration — and faith."
               </p>
+            </div>
+          </section>
+
+          {/* Final CTA Section */}
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold text-white mb-6">Ready to Transform Your Design Process?</h2>
+              <p className="text-lg text-neutral-300 mb-8">
+                Get instant, expert-level UX feedback directly in Figma. Start analyzing your designs today.
+              </p>
+              <div className="flex justify-center">
+                <a
+                  href="https://www.figma.com/community/plugin/1513874084032014970/ux-buddy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-flex items-center overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                >
+                  <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#9333EA_0%,#3B82F6_50%,#9333EA_100%)]" />
+                  <span className="relative inline-flex items-center px-6 py-3 font-medium transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg group">
+                    <img
+                      src="/images/figma-logo.svg"
+                      alt="Figma Logo"
+                      className="mr-2 w-5 h-5 transition-opacity group-hover:opacity-70 brightness-0 invert"
+                    />
+                    <span className="text-white group-hover:text-neutral-100">
+                      Try UX Buddy
+                    </span>
+                    <svg
+                      className="ml-2 w-4 h-4 text-white group-hover:text-neutral-100"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
             </div>
           </section>
         </div>
