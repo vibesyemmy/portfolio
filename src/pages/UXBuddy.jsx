@@ -33,6 +33,17 @@ export default function UXBuddy() {
           overlayClassName="bg-black/60"
         >
           <div className="max-w-7xl mx-auto px-4 py-8 md:py-16 relative z-10">
+            {/* Hero Element 0: Logo */}
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <div className="absolute inset-0 blur-xl bg-purple-500/60 animate-pulse"></div>
+                <img
+                  src="/images/uxbuddy.svg"
+                  alt="UX Buddy Logo"
+                  className="w-24 h-24 md:w-32 md:h-32 relative z-10 drop-shadow-2xl"
+                />
+              </div>
+            </div>
             {/* Hero Element 1: Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-8">
               UX Buddy
