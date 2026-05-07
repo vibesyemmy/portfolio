@@ -1,7 +1,7 @@
 export const caseStudies = [
   {
     id: 'fintech-monster',
-    title: 'Taming the Fintech Monster',
+    title: 'Poseidon: Taming the Fintech Sea Monster',
     path: '/fintech-monster'
   },
   {
