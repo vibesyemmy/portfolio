@@ -16,17 +16,17 @@ heroImage: /images/hotel-entertainment-hub.png
 
 Hotel Entertainment Hub is a TV-console app for ggCircuit, designed for hotel guests in their rooms — a single touchpoint that bundles entertainment (movies, music, games) with the hotel's bookable services (spa, tours, dining, checkout). Three product designers built it together; I led the research-to-IA work and the cross-section interaction patterns.
 
-Before the Hub existed, hotels had no clean way to surface their full catalog inside the room. A guest who wanted a spa appointment, a private tour, or an event ticket reached for the phone, the printed binder on the nightstand, or the front desk. Entertainment lived on a different remote, on a different system, behind a different login. The full range of offerings — the part hotels wanted guests to discover — was the part guests almost never saw.
+Before the Hub existed, hotels had no clean way to surface their full catalog inside the room. A guest who wanted a spa appointment, a private tour, or an event ticket reached for the phone, the printed binder on the nightstand, or the front desk. Entertainment lived on a different remote and a different login.
 
 The trigger was ggCircuit's push to consolidate in-room experience onto a console-class device hotels were already deploying. The brief: one app, one input device, the whole stay.
 
 ## Problem
 
-Guests were missing most of what the hotel offered, and the hotel was paying for the discovery gap in concierge load and lost ancillary revenue.
+Guests missed most of the hotel's catalog, and the hotel paid in concierge load and lost ancillary revenue.
 
 - Research surfaced fragmented information as the top complaint: guests defaulted to the concierge or front desk for questions the room could have answered.
 - Pricing was unclear across services — guests hesitated to book spa, tours, or dining because the cost showed up only at the desk.
-- Awareness of seasonal tours, specialty events, and curated dining was low across all traveler segments — business, couples, families.
+- Awareness of seasonal tours and curated dining was low across business, couples, and family travelers.
 - Entertainment and services lived on separate surfaces, so a guest never moved naturally from "watch a movie" to "book tomorrow's tour."
 
 `[METRIC NEEDED: baseline ancillary booking rate per stay — Opeyemi to confirm if ggCircuit shared any pre-launch figure]`
@@ -39,21 +39,20 @@ Cost of inaction: every booking the guest didn't make from the room was either a
 
 - **TV-console hardware.** Ten-foot UI, remote-only input, no touch, no hover, no keyboard. Every interaction had to survive a five-button remote.
 - **Mixed-audience scope.** Same surface for business travelers, couples, and families — three jobs, one IA. No personalization layer at launch.
-- **Hotel operator coupling.** Catalog (rooms, spa, tours, dining, events) lived in the hotel's PMS; the app had to read pricing and availability without a guest-side login flow.
-- **Payment inside the room.** Charges had to land on the room folio cleanly — no second checkout, no card re-entry — without compromising on confirmation clarity.
-- **Accessibility for a transient audience.** Guests use this for one or two nights; affordances had to be legible without a tutorial. Plain language, large type, predictable focus order.
+- **Folio + catalog coupling.** Catalog (rooms, spa, tours, dining, events) lived in the hotel's PMS, and charges had to land on the room folio cleanly — no guest-side login, no second checkout, no card re-entry.
+- **Accessibility for a transient audience.** Guests use this for one or two nights; affordances had to be legible without a tutorial.
 
 When constraints collided, the lens was **recognition over recall, every time** — guests should never have to remember where something lives. A hotel app the guest learns once and never sees again has to lead with cues, not memory.
 
 ## Process
 
-1. **Research before IA.** Surveys and interviews across business guests, vacationing couples, and families surfaced a consistent shape: guests wanted one place to see everything, upfront pricing to remove the surprise, and recommendations that knew the segment they were in. **Lens: Jobs-to-Be-Done** — the job was not "find a movie" or "book a spa," it was "spend the evening without calling the front desk." That reframed the home screen from a content grid into a hub of intents.
+1. **Research before IA.** Surveys and interviews across business, couples, and families surfaced one shape: guests wanted one place to see everything, upfront pricing, and recommendations tuned to their segment. **Lens: Jobs-to-Be-Done** — the job was not "find a movie," it was "spend the evening without calling the front desk." That reframed the home from content grid to hub of intents.
 
-2. **Sorted the catalog into four verbs.** The full offering — entertainment plus services — sorted cleanly into Watch, Play, Listen, Stay. One verb per primary section, one job per verb. **Lens: Hick's Law + Chunking** — four top-level choices kept the remote's d-pad sane, and the verbs let guests navigate by intent instead of by hotel taxonomy. Stay absorbed every bookable service so the operator's complexity stayed hidden from the guest.
+2. **Sorted the catalog into four verbs.** Entertainment plus services sorted cleanly into Watch, Play, Listen, Stay — one verb, one job. **Lens: Hick's Law + Chunking** — four top-level choices kept the d-pad sane; Stay absorbed every bookable service so operator complexity stayed hidden from the guest.
 
-3. **Designed for the remote, not the mouse.** Every grid was reworked for d-pad traversal: predictable focus order, generous focus rings, no nested controls deeper than two levels. **Lens: Fitts's Law (ten-foot variant)** — at remote distance, the cost is not pixels-to-target but presses-to-target. Cutting average press-count became the design metric. `[METRIC NEEDED: average presses-to-action target and post-launch number — Opeyemi to confirm if this was instrumented]`
+3. **Designed for the remote, not the mouse.** Every grid reworked for d-pad traversal: predictable focus order, generous focus rings, no controls nested deeper than two. **Lens: Fitts's Law (ten-foot).** Press-count became the design metric. `[METRIC NEEDED: average presses-to-action target and post-launch number — Opeyemi to confirm if this was instrumented]`
 
-4. **Made pricing legible upfront.** Every bookable card carried the price on the tile, not behind a tap. Total costs surfaced before the confirmation, not at the desk. **Lens: Plain Language + Loss-aversion framing (honest variant)** — guests hesitate when the number is hidden; showing it earlier moved the hesitation moment to where they could still say yes.
+4. **Made pricing legible upfront.** Every bookable card carried the price on the tile; totals surfaced before confirmation, not at the desk. **Lens: Plain Language + Loss-aversion (honest variant).** Hesitation moved earlier — where guests could still say yes.
 
 5. **Folio-only checkout.** Booking a spa session, a tour, or a dining reservation charged the room directly — one confirmation screen, no card entry, no second auth. **Lens: Doherty Threshold + Recognition over Recall** — sub-second confirmation, with the room number echoed back so guests trusted the charge had gone to the right place.
 
@@ -73,15 +72,14 @@ When constraints collided, the lens was **recognition over recall, every time** 
 
 ## Outcome
 
-Headline: **the room became the front desk for things guests never used to ask for.** Inside the prototype rounds, ggCircuit and partner-hotel reviewers consistently completed a full booking flow — spa selection, time slot, folio confirmation — without leaving the couch and without asking how it worked. The reaction in playback sessions was the Peak-End signal: *"so this just charges the room?"* — followed by the booking going through.
+Headline: **the room became the front desk for things guests never used to ask for.** In prototype rounds, ggCircuit and partner-hotel reviewers completed full booking flows — spa, time slot, folio confirmation — without leaving the couch. Peak-End reaction: *"so this just charges the room?"* — followed by the booking going through.
 
 Supporting signals:
 
-- The four-verb IA (Watch, Play, Listen, Stay) tested cleanly across all three traveler segments — no segment needed a different home screen, which validated killing the personalization-led direction.
-- Upfront pricing on every bookable card removed the hesitation moment reviewers flagged in the prior concierge-led flow — the question shifted from *"how much is this?"* to *"which time slot?"*.
-- Folio-only checkout collapsed booking into a single confirmation screen — no card entry, no second auth — which reviewers cited as the moment the app stopped feeling like a hotel system and started feeling like a stay.
-- The full prototype is live and interactive on the case-study page via ProtoPie — `{{prototype}}` above.
-- `[METRIC NEEDED: post-launch ancillary booking lift, concierge call deflection, or guest CSAT — Opeyemi to confirm if ggCircuit shared any operational numbers post-deployment]`
-- `[METRIC NEEDED: any quote from an operator or guest after rollout — Opeyemi to confirm if any verbatim is on file]`
+- Four-verb IA tested cleanly across all three traveler segments — no segment needed a different home, which validated killing the personalization-led direction.
+- Upfront pricing on every bookable card shifted the question from *"how much is this?"* to *"which time slot?"*.
+- Folio-only checkout collapsed booking to one confirmation — the moment reviewers cited as the app no longer feeling like a hotel system.
+- `[METRIC NEEDED: post-launch ancillary booking lift, concierge call deflection, or guest CSAT — Opeyemi to confirm if ggCircuit shared any operational numbers]`
+- `[METRIC NEEDED: any operator or guest quote post-rollout — Opeyemi to confirm]`
 
-Residual risks and follow-ups: personalization is the obvious next investment, but it has to be earned with profile data the hotel can responsibly collect (loyalty tier, prior stays) — guessing from room number alone is what killed the first attempt. Accessibility on the ten-foot surface needs a deeper audit pass — focus rings and type scale held in review, but no formal WCAG-equivalent audit for TV-console UI was run, and that is the next quality bar. Long-term, the Stay section is the lever: every operator-side service that lands on the folio (laundry, room service, late checkout, paid upgrades) compounds the per-stay value of the Hub without changing the IA.
+Residual risks: personalization is the next investment, earned with profile data the hotel can responsibly collect — guessing from room number alone is what killed the first attempt. No formal WCAG-equivalent audit for TV-console UI was run; that is the next quality bar.
