@@ -11,10 +11,15 @@ const BORDER = "#262626";
 const TEXT = "#fafafa";
 const MUTED = "#a3a3a3";
 const DIM = "#525252";
-const PURPLE = "#a855f7";
-const PURPLE_DEEP = "#7e22ce";
-const FUCHSIA = "#d946ef";
-const GREEN = "#22c55e";
+// Hydrogen brand: yellow primary + black, green secondary.
+// Keeping the PURPLE/FUCHSIA names so existing render code keeps working —
+// the values are now yellows.
+const PURPLE = "#eab308";       // yellow-500 (Hydrogen primary accent)
+const PURPLE_DEEP = "#a16207";  // yellow-700 (hover / shade)
+const FUCHSIA = "#fbbf24";      // amber-400 (gradient warm-stop, atoms layer)
+const GREEN = "#22c55e";        // secondary accent (success / confirmation)
+const GREEN_LIGHT = "#4ade80";  // green-400 (molecules layer)
+const ON_YELLOW = "#0a0a0a";    // black ink — needed for AA contrast on yellow fills
 const RED = "#ef4444";
 const AMBER = "#f59e0b";
 
@@ -115,7 +120,7 @@ function hero() {
 function beforeAfter() {
   const w = 1600, h = 900;
   // panel renderer
-  const screen = (x, y, label, fill, btn, btnLabel, accent) => `
+  const screen = (x, y, label, fill, btn, btnLabel, accent, btnInk = TEXT) => `
     <g transform="translate(${x},${y})">
       <rect width="200" height="240" rx="10" fill="${PANEL}" stroke="${BORDER}"/>
       <rect x="14" y="18" width="80" height="8" rx="3" fill="${MUTED}"/>
@@ -125,7 +130,7 @@ function beforeAfter() {
       <rect x="14" y="138" width="172" height="8" rx="3" fill="${MUTED}"/>
       <rect x="14" y="154" width="140" height="6" rx="3" fill="${DIM}"/>
       <rect x="14" y="184" width="172" height="38" rx="${btn}" fill="${fill}"/>
-      <text x="100" y="208" text-anchor="middle" font-family="${FONT}" font-size="13" font-weight="600" fill="${TEXT}">${btnLabel}</text>
+      <text x="100" y="208" text-anchor="middle" font-family="${FONT}" font-size="13" font-weight="600" fill="${btnInk}">${btnLabel}</text>
       <text x="100" y="270" text-anchor="middle" font-family="${FONT}" font-size="13" fill="${DIM}">${label}</text>
     </g>`;
 
@@ -144,17 +149,17 @@ function beforeAfter() {
 
     <!-- BEFORE: 3 inconsistent screens -->
     ${screen(120, 360, "Web", "#0ea5e9", 6, "DONE", "#0ea5e9")}
-    ${screen(360, 380, "Mobile", "#22c55e", 22, "Confirm ✓", "#22c55e")}
-    ${screen(560, 420, "POS", "#f59e0b", 0, "OK", "#f59e0b")}
+    ${screen(360, 380, "Mobile", "#22c55e", 22, "Confirm ✓", "#22c55e", ON_YELLOW)}
+    ${screen(560, 420, "POS", "#f59e0b", 0, "OK", "#f59e0b", ON_YELLOW)}
 
     <!-- AFTER label -->
     <text x="860" y="280" font-family="${FONT}" font-size="14" letter-spacing="3" font-weight="700" fill="${GREEN}">AFTER · UNIFIED</text>
     <text x="860" y="316" font-family="${FONT}" font-size="22" fill="${MUTED}">One pattern. Tokens flex per surface.</text>
 
     <!-- AFTER: 3 consistent screens -->
-    ${screen(860, 380, "Web", PURPLE, 8, "Confirm payment", GREEN)}
-    ${screen(1100, 380, "Mobile", PURPLE, 8, "Confirm payment", GREEN)}
-    ${screen(1340, 380, "POS", PURPLE, 8, "Confirm payment", GREEN)}
+    ${screen(860, 380, "Web", PURPLE, 8, "Confirm payment", GREEN, ON_YELLOW)}
+    ${screen(1100, 380, "Mobile", PURPLE, 8, "Confirm payment", GREEN, ON_YELLOW)}
+    ${screen(1340, 380, "POS", PURPLE, 8, "Confirm payment", GREEN, ON_YELLOW)}
 
     <!-- footer caption -->
     <line x1="100" y1="780" x2="260" y2="780" stroke="url(#accentLine)" stroke-width="3"/>
@@ -168,12 +173,12 @@ function buttonSpecimen() {
   const w = 1200, h = 1200;
   const surfaces = ["Web", "Mobile", "POS"];
   const states = [
-    { label: "Default",    fill: PURPLE,        text: TEXT,    border: "none" },
-    { label: "Hover",      fill: PURPLE_DEEP,   text: TEXT,    border: "none" },
-    { label: "Focus",      fill: PURPLE,        text: TEXT,    border: PURPLE, ring: true },
-    { label: "Loading",    fill: PURPLE,        text: TEXT,    border: "none", spinner: true },
+    { label: "Default",    fill: PURPLE,        text: ON_YELLOW, border: "none" },
+    { label: "Hover",      fill: PURPLE_DEEP,   text: TEXT,      border: "none" },
+    { label: "Focus",      fill: PURPLE,        text: ON_YELLOW, border: PURPLE, ring: true },
+    { label: "Loading",    fill: PURPLE,        text: ON_YELLOW, border: "none", spinner: true },
     { label: "Disabled",   fill: "#3f3f46",     text: "#71717a", border: "none" },
-    { label: "Destructive",fill: RED,           text: TEXT,    border: "none" },
+    { label: "Destructive",fill: RED,           text: TEXT,      border: "none" },
   ];
 
   const cellW = 150, cellH = 56, gapX = 18, gapY = 28;
@@ -262,7 +267,7 @@ function systemDiagram() {
 
     ${layer(tokensY, "TOKENS",     [{t:"color",s:"semantic + raw"},{t:"space",s:"4 / 8 / 16…"},{t:"radius",s:"per surface"},{t:"type",s:"label · body · h"}], PURPLE)}
     ${layer(atomsY,  "ATOMS",      [{t:"button",s:"6 states"},{t:"input",s:"text · num · select"},{t:"badge",s:"status"},{t:"icon",s:"24px grid"}], FUCHSIA)}
-    ${layer(molY,    "MOLECULES",  [{t:"form row",s:"label + input + help"},{t:"list item",s:"avatar + meta"},{t:"toast",s:"success · error"},{t:"tab bar",s:"surface aware"}], "#22d3ee")}
+    ${layer(molY,    "MOLECULES",  [{t:"form row",s:"label + input + help"},{t:"list item",s:"avatar + meta"},{t:"toast",s:"success · error"},{t:"tab bar",s:"surface aware"}], GREEN_LIGHT)}
     ${layer(orgY,    "ORGANISMS",  [{t:"transaction card",s:"web · mobile · POS"},{t:"KYC step",s:"3-stage flow"},{t:"refund flow",s:"dialog → receipt"},{t:"settings panel",s:"shared"}], GREEN)}
 
     ${arrows}
@@ -300,7 +305,7 @@ function userFlow() {
         <rect x="${sx+fw/2-110}" y="${sy+fh-46}" width="100" height="32" rx="8" fill="${PANEL_2}" stroke="${BORDER}"/>
         <text x="${sx+fw/2-60}" y="${sy+fh-26}" text-anchor="middle" font-family="${FONT}" font-size="12" fill="${MUTED}">Cancel</text>
         <rect x="${sx+fw/2+10}" y="${sy+fh-46}" width="100" height="32" rx="8" fill="${PURPLE}"/>
-        <text x="${sx+fw/2+60}" y="${sy+fh-26}" text-anchor="middle" font-family="${FONT}" font-size="12" font-weight="600" fill="${TEXT}">Confirm</text>
+        <text x="${sx+fw/2+60}" y="${sy+fh-26}" text-anchor="middle" font-family="${FONT}" font-size="12" font-weight="600" fill="${ON_YELLOW}">Confirm</text>
     ` },
     { label: "3 · RECEIPT",      body: (sx,sy,fw,fh) => `
         <circle cx="${sx+fw/2}" cy="${sy+fh/2-30}" r="22" fill="${GREEN}"/>
