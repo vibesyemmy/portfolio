@@ -4,6 +4,7 @@ import { BlurImageBackground } from "../components/ui/blur-image-background";
 import { BoltIcon, SwatchIcon, HeartIcon } from "@heroicons/react/24/outline/index.js";
 import { useState, useEffect } from "react";
 import CaseStudyNav from '../components/ui/case-study-nav';
+import CaseStudyMeta from '../components/ui/case-study-meta';
 import { getNavigation } from '../config/case-studies';
 
 const teamMembers = [
@@ -48,26 +49,22 @@ export default function PhoneCash() {
             </p>
             
             {/* Hero Element 3: Project Details Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
-                <p className="text-white font-medium">Lead Product Designer</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Client</h3>
-                <p className="text-white font-medium">PhoneCash</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Timeline</h3>
-                <p className="text-white font-medium">2 months</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
-                <div className="flex justify-center">
-                  <AnimatedTooltip items={teamMembers} />
-                </div>
-              </div>
-            </div>
+            <CaseStudyMeta
+              className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto"
+              items={[
+                { label: "Role", value: "Lead Product Designer" },
+                { label: "Client", value: "PhoneCash" },
+                { label: "Timeline", value: "2 months" },
+                {
+                  label: "Team",
+                  value: (
+                    <div className="flex justify-center">
+                      <AnimatedTooltip items={teamMembers} />
+                    </div>
+                  ),
+                },
+              ]}
+            />
           </div>
         </BlurImageBackground>
 

@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 import { BlurImageBackground } from "../components/ui/blur-image-background";
 import CaseStudyNav from "../components/ui/case-study-nav";
+import CaseStudyMeta from "../components/ui/case-study-meta";
 import { getNavigation } from "../config/case-studies";
 
 const teamMembers = [
@@ -42,26 +43,21 @@ export default function TamingFintechMonster() {
               How a Nigerian fintech got one design language across web, mobile, and POS.
             </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
-                <p className="text-white font-medium">Lead Product Designer</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Client</h3>
-                <p className="text-white font-medium">HydrogenPay</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Platforms</h3>
-                <p className="text-white font-medium">Web · iOS · Android · POS</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
-                <div className="flex justify-center">
-                  <AnimatedTooltip items={teamMembers} />
-                </div>
-              </div>
-            </div>
+            <CaseStudyMeta
+              items={[
+                { label: "Role", value: "Lead Product Designer" },
+                { label: "Client", value: "HydrogenPay" },
+                { label: "Platforms", value: "Web · iOS · Android · POS" },
+                {
+                  label: "Team",
+                  value: (
+                    <div className="flex justify-center">
+                      <AnimatedTooltip items={teamMembers} />
+                    </div>
+                  ),
+                },
+              ]}
+            />
           </div>
         </BlurImageBackground>
 

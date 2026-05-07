@@ -3,6 +3,7 @@ import { AnimatedTooltip } from '../components/ui/animated-tooltip';
 import { BlurImageBackground } from '../components/ui/blur-image-background';
 import { Skeleton } from '../components/ui/skeleton';
 import CaseStudyNav from '../components/ui/case-study-nav';
+import CaseStudyMeta from '../components/ui/case-study-meta';
 import { getNavigation } from '../config/case-studies';
 import { useColor } from 'color-thief-react';
 import { motion, AnimatePresence } from "framer-motion";
@@ -169,28 +170,24 @@ export default function HotelEntertainmentHub() {
             </p>
             
             {/* Hero Element 3: Project Details Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
-                <p className="text-white font-medium">Product Designer</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Client</h3>
-                <p className="text-white font-medium">ggCircuit</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Product</h3>
-                <p className="text-white font-medium">Console Based Solution</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
-                <div className="flex justify-center">
-                  <Suspense fallback={<Skeleton className="w-full h-full" />}>
-                    <AnimatedTooltip items={teamMembers} />
-                  </Suspense>
-                </div>
-              </div>
-            </div>
+            <CaseStudyMeta
+              className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto"
+              items={[
+                { label: "Role", value: "Product Designer" },
+                { label: "Client", value: "ggCircuit" },
+                { label: "Product", value: "Console Based Solution" },
+                {
+                  label: "Team",
+                  value: (
+                    <div className="flex justify-center">
+                      <Suspense fallback={<Skeleton className="w-full h-full" />}>
+                        <AnimatedTooltip items={teamMembers} />
+                      </Suspense>
+                    </div>
+                  ),
+                },
+              ]}
+            />
           </div>
         </BlurImageBackground>
 
