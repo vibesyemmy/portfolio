@@ -52,9 +52,9 @@ When constraints collided, the tradeoff lens was **trust over feature breadth** 
 
 2. **Locked a structured response rhythm: Strengths → Opportunities → Recommendations.** Early outputs were a wall of issues. Every analysis got restructured into the same three-beat rhythm — a predictable shape to scan and act on. **Lens: Chunking + Progressive Disclosure** — short, structured, human. Leading with strengths lowered the emotional cost of receiving the rest.
 
-3. **Solved contrast on transparent layers.** WCAG contrast on a button over a semi-transparent layer kept failing — math fell apart without the background underneath. Factoring the resolved background color in unlocked accurate accessibility on real Figma compositions, not opaque mockups. **Lens: Accessibility floor (WCAG 2.1 AA)** — getting this wrong would have made the tool untrustworthy on the most ship-blocking issues.
+3. **Solved contrast on transparent layers.** WCAG contrast on a semi-transparent button kept failing — math fell apart without the background underneath. Factoring resolved background color in unlocked accurate accessibility on real Figma compositions, not opaque mockups. **Lens: Accessibility floor (WCAG 2.1 AA)** — wrong here would have made the tool untrustworthy on ship-blocking issues.
 
-4. **Split the plugin into two cooperating processes.** Figma's sandbox forced the shape: a data process (layer analysis, screenshots) and a UI process exchanging lightweight messages, plus a smart cache over `clientStorage` for analysis persistence (see `{{system_diagram}}`). **Lens: Constraint-as-protagonist** — every limit became a design decision, not a workaround.
+4. **Split the plugin into two cooperating processes.** Figma's sandbox forced the shape: a data process (layers, screenshots) and a UI process exchanging lightweight messages, plus a smart cache over `clientStorage` for analysis persistence (see `{{system_diagram}}`). **Lens: Constraint-as-protagonist** — every limit became a design decision.
 
 5. **Taught the plugin to remember.** Biggest trust break: re-running an analysis returned a fresh list. Fix: diff each run against the previous, tag items ✅ Resolved, 🆕 New, 🔁 Ongoing. **Lens: Recognition over Recall + Doherty Threshold** — no mental load, sub-second response. This was the move that turned the plugin from critic into mentor.
 
