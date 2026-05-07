@@ -4,6 +4,7 @@ import { BlurImageBackground } from "../components/ui/blur-image-background";
 import OptimizedImage from "../components/ui/optimized-image";
 import { ThreeDMarquee } from "../components/ui/3d-marquee";
 import CaseStudyNav from "../components/ui/case-study-nav";
+import CaseStudyMeta from "../components/ui/case-study-meta";
 import { getNavigation } from "../config/case-studies";
 
 const teamMembers = [
@@ -92,26 +93,21 @@ export default function UXBuddy() {
               <TryButton />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
-                <p className="text-white font-medium">Creator & Lead Developer</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Platform</h3>
-                <p className="text-white font-medium">Figma Plugin</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Timeline</h3>
-                <p className="text-white font-medium">~3 months (solo, evenings & weekends)</p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
-                <div className="flex justify-center">
-                  <AnimatedTooltip items={teamMembers} />
-                </div>
-              </div>
-            </div>
+            <CaseStudyMeta
+              items={[
+                { label: "Role", value: "Creator & Lead Developer" },
+                { label: "Platform", value: "Figma Plugin" },
+                { label: "Timeline", value: "~3 months (solo, evenings & weekends)" },
+                {
+                  label: "Team",
+                  value: (
+                    <div className="flex justify-center">
+                      <AnimatedTooltip items={teamMembers} />
+                    </div>
+                  ),
+                },
+              ]}
+            />
           </div>
         </BlurImageBackground>
 
