@@ -31,7 +31,7 @@ export default function TamingFintechMonster() {
       <main className="min-h-screen bg-neutral-950 text-white">
         {/* Hero */}
         <BlurImageBackground
-          imageSrc="/images/UI-grid.png"
+          imageSrc="/images/case-studies/poseidon-hero.png"
           className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
           overlayClassName="bg-black/60"
         >
@@ -192,7 +192,7 @@ export default function TamingFintechMonster() {
                 </div>
                 <div className="mt-8 rounded-lg overflow-hidden">
                   <img
-                    src="/images/hydrogen-ds.png"
+                    src="/images/case-studies/poseidon-before-after.png"
                     alt="Before/after: confirmation screen. Left: three divergent success states across web, mobile, POS. Right: one shared pattern."
                     className="w-full h-auto object-cover rounded-lg"
                     loading="lazy"
@@ -233,7 +233,7 @@ export default function TamingFintechMonster() {
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="rounded-lg overflow-hidden">
                     <img
-                      src="/images/component-library.png"
+                      src="/images/case-studies/poseidon-button-specimen.png"
                       alt="Component specimen: button — default, hover, focus, loading, disabled, destructive states across web, mobile, and POS."
                       className="w-full h-auto object-cover rounded-lg"
                       loading="lazy"
@@ -241,7 +241,7 @@ export default function TamingFintechMonster() {
                   </div>
                   <div className="rounded-lg overflow-hidden">
                     <img
-                      src="/images/atoms.svg"
+                      src="/images/case-studies/poseidon-system-diagram.png"
                       alt="System diagram: design tokens feeding atoms (button, input), feeding molecules (form row, list item), feeding organisms (transaction card, KYC step)."
                       className="w-full h-auto object-cover rounded-lg"
                       loading="lazy"
@@ -282,7 +282,7 @@ export default function TamingFintechMonster() {
                 </div>
                 <div className="mt-8 rounded-lg overflow-hidden">
                   <img
-                    src="/images/process.svg"
+                    src="/images/case-studies/poseidon-user-flow.png"
                     alt="User flow: refund transaction → confirmation → receipt, rendered identically on web, mobile, and POS."
                     className="w-full h-auto object-cover rounded-lg"
                     loading="lazy"
@@ -332,7 +332,7 @@ export default function TamingFintechMonster() {
 
             <div className="mt-12 rounded-lg overflow-hidden shadow-2xl">
               <img
-                src="/images/UI-grid.png"
+                src="/images/case-studies/poseidon-hero.png"
                 alt="Final Poseidon UI grid — unified components rendered across web, mobile, and POS surfaces."
                 className="w-full h-auto object-cover"
                 loading="lazy"
