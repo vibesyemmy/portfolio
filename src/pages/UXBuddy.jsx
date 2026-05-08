@@ -1,11 +1,11 @@
 import React from "react";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
+import CaseStudyNav from '../components/ui/case-study-nav';
+import { getNavigation } from '../config/case-studies';
 import { BlurImageBackground } from "../components/ui/blur-image-background";
 import OptimizedImage from "../components/ui/optimized-image";
 import { ThreeDMarquee } from "../components/ui/3d-marquee";
-import CaseStudyNav from "../components/ui/case-study-nav";
-import CaseStudyMeta from "../components/ui/case-study-meta";
-import { getNavigation } from "../config/case-studies";
+import TestimonialCards from "../components/ui/testimonial-cards";
 
 const teamMembers = [
   {
@@ -17,399 +17,455 @@ const teamMembers = [
     name: "Thompson Edolo",
     designation: "Developer",
     image: "/images/tom.jpg",
-  },
+  }
 ];
 
-const TryButton = () => (
-  <a
-    href="https://www.figma.com/community/plugin/1513874084032014970/ux-buddy"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="relative inline-flex items-center overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-  >
-    <span className="absolute inset-[-1000%] motion-safe:animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#9333EA_0%,#3B82F6_50%,#9333EA_100%)]" />
-    <span className="relative inline-flex items-center px-6 py-3 font-medium transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg group">
-      <img
-        src="/images/figma-logo.svg"
-        alt=""
-        aria-hidden="true"
-        className="mr-2 w-5 h-5 transition-opacity group-hover:opacity-70 brightness-0 invert"
-      />
-      <span className="text-white group-hover:text-neutral-100">Try UX Buddy</span>
-      <svg
-        className="ml-2 w-4 h-4 text-white group-hover:text-neutral-100"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-        />
-      </svg>
-    </span>
-  </a>
-);
-
 export default function UXBuddy() {
-  const { prevCase, nextCase } = getNavigation("ux-buddy");
+  const { prevCase, nextCase } = getNavigation('ux-buddy');
 
   return (
     <>
       <main className="min-h-screen bg-neutral-950 text-white">
-        {/* Hero */}
-        <BlurImageBackground
+        {/* Hero Section */}
+        <BlurImageBackground 
           imageSrc="/images/UX-buddy.png"
           className="min-h-[60vh] flex items-center justify-center pt-24 md:pt-16"
           overlayClassName="bg-black/60"
         >
           <div className="max-w-7xl mx-auto px-4 py-8 md:py-16 relative z-10">
+            {/* Hero Element 0: Logo */}
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <div className="absolute inset-0 blur-xl bg-purple-500/60 motion-safe:animate-pulse" aria-hidden="true"></div>
+                <div className="absolute inset-0 blur-xl bg-purple-500/60 animate-pulse"></div>
                 <img
                   src="/images/uxbuddy.svg"
-                  alt=""
-                  aria-hidden="true"
+                  alt="UX Buddy Logo"
                   className="w-24 h-24 md:w-32 md:h-32 relative z-10 drop-shadow-2xl"
                 />
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-4">
+            {/* Hero Element 1: Title */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white mb-8">
               UX Buddy
             </h1>
-            <p className="text-white text-center max-w-3xl mx-auto text-2xl md:text-3xl mb-4 font-semibold">
+            {/* Hero Element 2: Subtitle */}
+            <p className="text-white text-center max-w-2xl mx-auto text-2xl md:text-3xl mb-4 font-semibold">
               The Future of Feedback
             </p>
-            <p className="text-neutral-200 text-center max-w-3xl mx-auto text-lg md:text-xl mb-10">
-              An AI design co-pilot that brings the review meeting forward.
+            <p className="text-neutral-300 text-center max-w-2xl mx-auto text-lg md:text-xl mb-10">
+              A personal story of frustration, invention, and the joy of building something that helps others design better.
             </p>
 
+            {/* Try UX Buddy Button */}
             <div className="flex justify-center mb-12">
-              <TryButton />
+              <a
+                href="https://www.figma.com/community/plugin/1513874084032014970/ux-buddy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative inline-flex items-center overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+              >
+                <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#9333EA_0%,#3B82F6_50%,#9333EA_100%)]" />
+                <span className="relative inline-flex items-center px-6 py-3 font-medium transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg group">
+                  <img
+                    src="/images/figma-logo.svg"
+                    alt="Figma Logo"
+                    className="mr-2 w-5 h-5 transition-opacity group-hover:opacity-70 brightness-0 invert"
+                  />
+                  <span className="text-white group-hover:text-neutral-100">
+                    Try UX Buddy
+                  </span>
+                  <svg
+                    className="ml-2 w-4 h-4 text-white group-hover:text-neutral-100"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </span>
+              </a>
             </div>
 
-            <CaseStudyMeta
-              items={[
-                { label: "Role", value: "Creator & Lead Developer" },
-                { label: "Platform", value: "Figma Plugin" },
-                { label: "Timeline", value: "~3 months (solo, evenings & weekends)" },
-                {
-                  label: "Team",
-                  value: (
-                    <div className="flex justify-center">
-                      <AnimatedTooltip items={teamMembers} />
-                    </div>
-                  ),
-                },
-              ]}
-            />
+            {/* Hero Element 3: Project Details Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
+                <p className="text-white font-medium">Creator & Lead Developer</p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Platform</h3>
+                <p className="text-white font-medium">Figma Plugin</p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Timeline</h3>
+                <p className="text-white font-medium">3 months</p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
+                <div className="flex justify-center">
+                  <AnimatedTooltip items={teamMembers} />
+                </div>
+              </div>
+            </div>
           </div>
         </BlurImageBackground>
 
-        {/* Context */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-100 mb-8">Context</h2>
-            <div className="space-y-6 text-neutral-300 text-base md:text-lg leading-relaxed">
+        {/* Content Section */}
+        <div className="max-w-5xl mx-auto px-4 py-16">
+          {/* The Vision */}
+          <section className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">The Vision</h2>
+            <p className="text-sm md:text-base text-purple-300 mb-8 italic">
+              What if feedback came before the meeting?
+            </p>
+            
+            <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
               <p>
-                UX Buddy is a Figma plugin built for product designers — a quiet, in-canvas reviewer that critiques the screen you are working on before you take it into a stakeholder meeting. I built it as a solo project with developer Thompson Edolo on the hardest pieces, over roughly three months of evenings and weekends.
+                Every designer knows that sinking feeling: the project that should have been simple, wrapped up by Friday, but somehow drags on for weeks of endless reviews.
               </p>
               <p>
-                Before UX Buddy existed, my own work had a recurring shape: a project that should have wrapped on Friday would slip into weeks of review cycles. Stakeholder meetings surfaced feedback that could have been spotted earlier; developers found UX issues during handoff; each loop meant more changes, more time, more frustration. Talking to other designers turned that pattern into a signal — the same waste was showing up across teams and tools.
+                For me, it became a pattern.
               </p>
               <p>
-                The trigger was personal. I wanted a design co-pilot beside me in Figma giving thoughtful UX feedback as I worked, instead of waiting for the next review to find out what I had missed.
+                Stakeholder meetings were full of feedback that could've been spotted earlier. Developers found UX issues during handoff. Each cycle meant more changes, more time, more frustration.
+              </p>
+              <p className="font-semibold text-white">
+                I remember thinking, there has to be a better way.
+              </p>
+              <p>
+                I wanted something that could act as a design co-pilot: a quiet partner beside me in Figma, giving thoughtful, professional UX feedback as I worked. No waiting for reviews. No endless loops. Just instant insight.
+              </p>
+              <p>
+                At first, it was about solving my own pain. But the more I talked to other designers, the clearer it became: we all face the same struggle.
+              </p>
+              <p>
+                That's how UX Buddy was born: an AI-powered Figma plugin that acts like a mentor, critic, and friend.
+              </p>
+              <p className="font-semibold text-white">
+                It doesn't replace human feedback. It brings it closer.
               </p>
             </div>
+
+            {/* Vision Image */}
             <div className="mt-12 bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 p-2">
-              <OptimizedImage
+              <OptimizedImage 
                 src="/images/the-vision.png"
-                alt="UX Buddy vision: Figma workspace with the analysis panel docked alongside a design file."
+                alt="UX Buddy Vision: Figma workspace with analysis panel"
                 className="rounded-lg"
                 priority={true}
               />
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Problem */}
-        <section className="py-16 md:py-24 px-4 bg-neutral-900/40">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-100 mb-8">Problem</h2>
-            <p className="text-neutral-300 text-base md:text-lg leading-relaxed mb-8">
-              Designers were getting their most important feedback at the wrong time — after the meeting, after handoff, after the cycle had already cost a week.
+          {/* The Design Journey */}
+          <section className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">The Design Journey</h2>
+            <p className="text-sm md:text-base text-purple-300 mb-8 italic">
+              From blank canvas to beating heart.
             </p>
-            <ul className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed mb-8 list-disc pl-6 marker:text-purple-400">
-              <li>
-                Stakeholder reviews repeatedly surfaced UX issues a designer could have caught alone, given a structured second pair of eyes.
-              </li>
-              <li>
-                Developers flagged UX problems at handoff that should have been resolved upstream — a recognition tax paid in re-work, not in the design phase.
-              </li>
-              <li>
-                Existing audit tools either felt cold and checklist-shaped, or required leaving the canvas — both broke flow.
-              </li>
-            </ul>
-
-            <blockquote className="border-l-4 border-purple-500 bg-neutral-900/60 rounded-r-lg p-6 mb-8">
-              <p className="text-white text-base md:text-lg italic leading-relaxed">
-                "I ran UX Buddy before my review — it caught three things I would've missed. The meeting went so much smoother."
-              </p>
-              <footer className="mt-2 text-neutral-400 text-sm not-italic">
-                — Junior designer, early access tester
-              </footer>
-            </blockquote>
-
-            <p className="text-neutral-400 text-base md:text-lg leading-relaxed mb-6 italic">
-              Quantitative review-cycle and per-analysis issue baselines were not formally tracked pre-launch — current install and weekly-active counts on Figma Community are being pulled in. Numbers will replace this note once instrumentation lands.
-            </p>
-
-            <div className="rounded-lg border-l-4 border-purple-500 bg-neutral-900/60 p-6">
-              <p className="text-neutral-200 text-base md:text-lg leading-relaxed">
-                <span className="font-semibold text-white">Cost of inaction:</span> every late-arriving piece of feedback was a designer's afternoon spent re-doing work that a five-minute pre-review check could have prevented.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Constraints */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-100 mb-8">Constraints</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-neutral-900/50 rounded-xl p-6 border border-neutral-800">
-                <h3 className="text-lg font-semibold text-white mb-3">Figma plugin sandbox</h3>
-                <p className="text-neutral-400 text-base leading-relaxed">
-                  No direct web APIs, restricted storage, strict UI ↔ core message passing. The whole architecture had to live inside that bottle.
-                </p>
-              </div>
-              <div className="bg-neutral-900/50 rounded-xl p-6 border border-neutral-800">
-                <h3 className="text-lg font-semibold text-white mb-3">Solo build, lean engineering</h3>
-                <p className="text-neutral-400 text-base leading-relaxed">
-                  One designer-developer plus Thompson on the hardest bits — no room for scope creep, no team to absorb a re-architecture.
-                </p>
-              </div>
-              <div className="bg-neutral-900/50 rounded-xl p-6 border border-neutral-800">
-                <h3 className="text-lg font-semibold text-white mb-3">AI unpredictability</h3>
-                <p className="text-neutral-400 text-base leading-relaxed">
-                  Re-running an analysis on the same file could return a fresh list of issues, breaking the designer's trust in the tool.
-                </p>
-              </div>
-              <div className="bg-neutral-900/50 rounded-xl p-6 border border-neutral-800">
-                <h3 className="text-lg font-semibold text-white mb-3">Accessibility math on transparent layers</h3>
-                <p className="text-neutral-400 text-base leading-relaxed">
-                  WCAG 2.1 AA contrast had to account for backgrounds beneath semi-transparent elements — the naive calculation was wrong.
-                </p>
-              </div>
-              <div className="bg-neutral-900/50 rounded-xl p-6 border border-neutral-800 md:col-span-2">
-                <h3 className="text-lg font-semibold text-white mb-3">Tone, not just correctness</h3>
-                <p className="text-neutral-400 text-base leading-relaxed">
-                  A cold audit voice would have shipped on time and still failed — designers receive feedback emotionally; the language had to be conversational, calm, kind.
-                </p>
-              </div>
-            </div>
-            <div className="mt-10 rounded-lg bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 p-6">
-              <p className="text-neutral-200 text-base md:text-lg leading-relaxed">
-                When constraints collided, the tradeoff lens was{" "}
-                <span className="font-semibold text-white">trust over feature breadth</span> — every decision optimized for "would a designer believe this output and act on it?" over "how much can the tool detect?"
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Process */}
-        <section className="py-16 md:py-24 px-4 bg-neutral-900/40">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-100 mb-12">Process</h2>
-            <ol className="space-y-16">
-              {/* Beat 1 */}
-              <li>
-                <div className="flex items-baseline gap-4 mb-4">
-                  <span className="text-purple-400 font-bold text-xl md:text-2xl">01</span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">
-                    Reframed the problem from audit to companion.
-                  </h3>
-                </div>
-                <div className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed">
-                  <p>
-                    The first instinct was a checklist tool — alignment, contrast, spacing pass/fail. Designer interviews reframed it: what they wanted was the review meeting brought forward, in a voice they trusted.
-                  </p>
-                  <p className="text-neutral-400">
-                    <span className="font-semibold text-purple-300">Lens — Jobs-to-Be-Done:</span> designers were not hiring an audit tool, they were hiring a calmer review experience.
-                  </p>
-                </div>
-              </li>
-
-              {/* Beat 2 */}
-              <li>
-                <div className="flex items-baseline gap-4 mb-4">
-                  <span className="text-purple-400 font-bold text-xl md:text-2xl">02</span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">
-                    Locked a structured response rhythm: Strengths → Opportunities → Recommendations.
-                  </h3>
-                </div>
-                <div className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed">
-                  <p>
-                    Early outputs were a wall of issues. Every analysis got restructured into the same three-beat rhythm — a predictable shape to scan and act on.
-                  </p>
-                  <p className="text-neutral-400">
-                    <span className="font-semibold text-purple-300">Lens — Chunking + Progressive Disclosure:</span> short, structured, human. Leading with strengths lowered the emotional cost of receiving the rest.
-                  </p>
-                </div>
-                <div className="mt-8 rounded-lg overflow-hidden">
-                  <img
-                    src="/images/ux-buddy-chart.png"
-                    alt="UX Buddy flow: Select → Analyze → Review → Iterate → Track."
-                    className="w-full h-auto object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </div>
-              </li>
-
-              {/* Beat 3 */}
-              <li>
-                <div className="flex items-baseline gap-4 mb-4">
-                  <span className="text-purple-400 font-bold text-xl md:text-2xl">03</span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">
-                    Solved contrast on transparent layers.
-                  </h3>
-                </div>
-                <div className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed">
-                  <p>
-                    WCAG contrast on a semi-transparent button kept failing — math fell apart without the background underneath. Factoring resolved background color in unlocked accurate accessibility on real Figma compositions, not opaque mockups.
-                  </p>
-                  <p className="text-neutral-400">
-                    <span className="font-semibold text-purple-300">Lens — Accessibility floor (WCAG 2.1 AA):</span> wrong here would have made the tool untrustworthy on ship-blocking issues.
-                  </p>
-                </div>
-                <div className="mt-8 rounded-lg overflow-hidden">
-                  <img
-                    src="/images/analysis.png"
-                    alt="Before/after: contrast feedback on a transparent-layer button. Left: naive contrast result. Right: corrected reading factoring in resolved background color."
-                    className="w-full h-auto object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </div>
-              </li>
-
-              {/* Beat 4 */}
-              <li>
-                <div className="flex items-baseline gap-4 mb-4">
-                  <span className="text-purple-400 font-bold text-xl md:text-2xl">04</span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">
-                    Split the plugin into two cooperating processes.
-                  </h3>
-                </div>
-                <div className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed">
-                  <p>
-                    Figma's sandbox forced the shape: a data process (layers, screenshots) and a UI process exchanging lightweight messages, plus a smart cache over <code className="px-1.5 py-0.5 rounded bg-neutral-800 text-purple-300">clientStorage</code> for analysis persistence.
-                  </p>
-                  <p className="text-neutral-400">
-                    <span className="font-semibold text-purple-300">Lens — Constraint-as-protagonist:</span> every limit became a design decision.
-                  </p>
-                  <p className="text-neutral-500 italic text-sm">
-                    System diagram (16:9, two-process architecture + <code className="px-1 py-0.5 rounded bg-neutral-800 text-purple-300/80 not-italic">clientStorage</code> cache layer) is in flight — will land before this case study moves into the portfolio rotation.
-                  </p>
-                </div>
-              </li>
-
-              {/* Beat 5 */}
-              <li>
-                <div className="flex items-baseline gap-4 mb-4">
-                  <span className="text-purple-400 font-bold text-xl md:text-2xl">05</span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">
-                    Taught the plugin to remember.
-                  </h3>
-                </div>
-                <div className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed">
-                  <p>
-                    Biggest trust break: re-running an analysis returned a fresh list. Fix: diff each run against the previous, tag items{" "}
-                    <span className="text-green-400 font-semibold">✅ Resolved</span>,{" "}
-                    <span className="text-purple-400 font-semibold">🆕 New</span>,{" "}
-                    <span className="text-blue-400 font-semibold">🔁 Ongoing</span>.
-                  </p>
-                  <p className="text-neutral-400">
-                    <span className="font-semibold text-purple-300">Lens — Recognition over Recall + Doherty Threshold:</span> no mental load, sub-second response.
-                  </p>
-                  <p className="font-semibold text-white">
-                    This was the move that turned the plugin from critic into mentor.
-                  </p>
-                </div>
-              </li>
-            </ol>
-
-            {/* Discarded direction */}
-            <div className="mt-16 rounded-lg border-l-4 border-neutral-600 bg-neutral-900/60 p-6">
-              <h3 className="text-lg font-semibold text-white mb-3">Discarded direction: the cold-audit voice</h3>
-              <p className="text-neutral-300 text-base md:text-lg leading-relaxed">
-                An early version mimicked accessibility scanners — flat issue list, severity tags. Accurate, awful to use. Killed it for the rhythm above. Lesson: in a tool designers reach for under deadline pressure, tone is not polish — it is product.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Outcome */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-100 mb-8">Outcome</h2>
-            <div className="space-y-6 text-neutral-300 text-base md:text-lg leading-relaxed">
+            
+            <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
               <p>
-                Headline: <span className="font-semibold text-white">the first analysis that felt human</span> — a coworker test where the plugin surfaced, in seconds, issues that had previously taken an entire review meeting to spot. The reaction in the room was the Peak-End signal: wide eyes, then <em>"can I get access?"</em>
+                The early days were pure chaos, and pure excitement.
               </p>
-              <p className="font-semibold text-white">Supporting signals:</p>
-              <ul className="space-y-3 list-disc pl-6 marker:text-purple-400">
-                <li>
-                  A junior designer reported running UX Buddy before a review and catching three issues that would have otherwise landed in the meeting — feedback moved upstream, exactly where the tool was aimed.
-                </li>
-                <li>
-                  The plugin shipped publicly on the Figma Community:{" "}
-                  <a
-                    href="https://www.figma.com/community/plugin/1513874084032014970/ux-buddy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-purple-300 underline underline-offset-4 hover:text-purple-200"
-                  >
-                    UX Buddy on Figma Community
-                  </a>
-                  .
-                </li>
-                <li>
-                  The diff-tagging behavior (
-                  <span className="text-green-400 font-semibold">✅ Resolved</span> /{" "}
-                  <span className="text-purple-400 font-semibold">🆕 New</span> /{" "}
-                  <span className="text-blue-400 font-semibold">🔁 Ongoing</span>) became the most-cited reason testers said the tool felt like a mentor rather than a critic — the architecture decision in Process beat 5 was the one that earned trust.
-                </li>
-              </ul>
-              <p className="text-neutral-400 italic">
-                Install / weekly active counts and a structured tester satisfaction signal are being pulled from the Figma Community dashboard — this section will swap to a numeric headline once those land.
+              <p>
+                After weeks of tinkering, I finally saw it: my first AI-generated review.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "It was judging my design like a real UX professional. It wasn't perfect, but it was alive."
+              </blockquote>
+              <p>
+                That tiny moment made every late night worth it.
+              </p>
+              <p>
+                One of the earliest hurdles was color contrast. Calculating accessibility for transparent elements nearly broke me. When a button sat on a semi-transparent layer, the math fell apart.
+              </p>
+              <p>
+                Eventually, I realized I had to factor in the background color beneath the transparency: a small change that unlocked much greater accuracy.
+              </p>
+              <p className="font-semibold text-white">
+                Balancing AI complexity with UX simplicity became my guiding principle.
+              </p>
+              <p>
+                I didn't want UX Buddy to feel like a cold audit tool. I wanted it to feel conversational, like a friendly expert who gives clear, balanced feedback.
+              </p>
+              <p>
+                That's why every report follows a rhythm: <span className="text-purple-400 font-semibold">Strengths, Opportunities, and Recommendations</span>. Short, structured, human.
+              </p>
+              <p>
+                I also learned something profound while building it:
+              </p>
+              <p className="font-semibold text-white">
+                good UX isn't a static screen. It's an ongoing conversation between the designer, the user, and now, even the tools we create.
+              </p>
+              <p>
+                And then came the breakthrough night.
+              </p>
+              <p>
+                I ran a test, and for the first time, the plugin gave genuinely insightful feedback. It understood hierarchy, spacing, and tone.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "This is it. This is what I've been chasing."
+              </blockquote>
+              <p>
+                That was the moment UX Buddy stopped being an idea and started being a companion.
               </p>
             </div>
 
-            <blockquote className="mt-12 border-l-4 border-purple-500 bg-gradient-to-r from-purple-900/20 to-blue-900/20 rounded-r-lg p-6 md:p-8">
-              <p className="text-white text-lg md:text-xl italic leading-relaxed mb-3">
-                "It feels like having a calm, honest mentor by your side — one who notices the details you miss and cheers when you improve."
-              </p>
-              <footer className="text-neutral-400 text-sm md:text-base not-italic">
-                — Tester, early access
-              </footer>
-            </blockquote>
+            {/* Image Placeholders */}
+            <div className="mt-12 space-y-6">
+              <img 
+                src="/images/ux-buddy-chart.png"
+                alt="UX Buddy Flow Diagram: Select → Analyze → Review → Iterate → Track"
+                className="w-full h-auto rounded-[0.75rem]"
+              />
+        
+            </div>
+          </section>
 
-            <div className="mt-12 rounded-lg bg-neutral-900/50 border border-neutral-800 p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-white mb-3">Residual risks &amp; follow-ups</h3>
-              <p className="text-neutral-400 text-base md:text-lg leading-relaxed">
-                The next iteration adds a persistence layer that saves every analysis to a database, so designers can track accessibility and usability scores across versions and see their own growth over time. Tone calibration is the other open thread — designers receive feedback emotionally, and there is more to tune in language, timing, and the order of strengths vs. opportunities than the current rhythm captures. Longer term, UX Buddy is positioned to become a family of empathetic design tools that understand intent, not just pixels.
+          {/* The Challenges */}
+          <section className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">The Challenges</h2>
+            <p className="text-sm md:text-base text-purple-300 mb-8 italic">
+              Taming the machine.
+            </p>
+            
+            <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
+              <p>
+                Of course, nothing great ever comes easy.
+              </p>
+              <p>
+                Building UX Buddy meant wrestling with Figma's plugin limitations and AI's unpredictable behavior: two wild horses pulling in opposite directions.
+              </p>
+              <p>
+                Figma plugins live inside a sandbox: no direct web APIs, limited storage, strict communication between the UI and the core code.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "It felt like trying to build a brain inside a bottle."
+              </blockquote>
+              <p>
+                I had to rethink how the whole thing worked.
+              </p>
+              <p>
+                Eventually, I split the plugin into two parts: one that handled the data (analyzing design layers and screenshots) and another that handled the interface. They communicated through lightweight messages, a kind of quiet telepathy inside Figma's walls.
+              </p>
+              <p>
+                When storage became a bottleneck, I built a smart caching system using Figma's limited clientStorage, so UX Buddy could "remember" past analyses without breaking. Each obstacle forced me to engineer something smarter.
+              </p>
+              <p className="font-semibold text-white">
+                There were nights when I wanted to quit.
+              </p>
+              <blockquote className="text-xl text-neutral-400 italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "Maybe this is too big for me. I'm a designer, not an engineer."
+              </blockquote>
+              <p>
+                But every time I reached that edge, I'd remember why I started: that vision of a designer getting real feedback before the meeting, saving hours of frustration. That thought pulled me back, again and again.
+              </p>
+              <p className="font-semibold text-white">
+                Then came the AI rebellion.
+              </p>
+              <p>
+                At one point, UX Buddy kept changing its mind. Designers would fix issues, re-run the analysis, and get an entirely new list of problems.
+              </p>
+              <p>
+                It was chaos.
+              </p>
+              <p>
+                So I taught it to remember. UX Buddy began comparing current feedback with previous runs, tagging issues as <span className="text-green-400">✅ Resolved</span>, <span className="text-purple-400">🆕 New</span>, or <span className="text-blue-400">🔁 Ongoing</span>.
+              </p>
+              <p className="font-semibold text-white">
+                That one feature changed everything.
+              </p>
+              <p>
+                The plugin stopped acting like a critic and started behaving like a mentor.
+              </p>
+              <p>
+                It took about three months for UX Buddy to finally feel good to use: fast, reliable, and surprisingly empathetic.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "It stopped feeling like I was fighting it. It started feeling like we were building together."
+              </blockquote>
+            </div>
+
+            {/* Image Placeholders */}
+            <div className="mt-12 space-y-6">
+              <img 
+                src="/images/analysis.png"
+                alt="Before/after contrast image showing improved accessibility feedback"
+                className="w-full h-auto rounded-[0.75rem]"
+              />
+            </div>
+          </section>
+
+          {/* The Reveal */}
+          <section className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">The Reveal</h2>
+            <p className="text-sm md:text-base text-purple-300 mb-8 italic">
+              The first analysis that felt human.
+            </p>
+            
+            <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
+              <p>
+                And then, one quiet evening, everything clicked.
+              </p>
+              <p>
+                The plugin ran a full analysis, and the feedback felt... real. It noticed hierarchy, applauded clarity, and acknowledged improvements from before.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "I just stared at the screen. It understood me."
+              </blockquote>
+              <p>
+                I immediately called my friend Thompson Edolo, the developer who'd been helping me with the toughest bits.
+              </p>
+              <p>
+                "It works," I said, laughing.
+              </p>
+              <p>
+                "No way," he replied. "Send me proof."
+              </p>
+              <p className="font-semibold text-white">
+                We both knew that moment changed everything.
+              </p>
+              <p>
+                The next day, I showed UX Buddy to my coworkers.
+              </p>
+              <p>
+                I ran it on one of our ongoing projects, and within seconds, it surfaced issues that usually took an entire review meeting to spot.
+              </p>
+              <p>
+                Their reactions said it all: wide eyes, curious smiles, and the same question: "Can I get access?"
+              </p>
+              <p>
+                A few weeks later, a junior designer messaged me:
+              </p>
+              <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 p-6 my-8">
+                <p className="text-white italic">
+                  "I ran UX Buddy before my review — it caught three things I would've missed. The meeting went so much smoother."
+                </p>
+              </div>
+              <p className="font-semibold text-white">
+                That message made every struggle worth it.
+              </p>
+              <p>
+                I'm most proud of the tone UX Buddy uses: calm, clear, and kind. It doesn't shame; it guides.
+              </p>
+              <p>
+                That was the moment I realized UX Buddy didn't just make design better. It made designers feel better about designing.
+              </p>
+              <p>
+                It also shifted how I saw myself.
+              </p>
+              <p>
+                I wasn't just a designer using someone else's tools anymore. I'd built one.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "I stopped seeing design and development as separate worlds. They're just two ways of expressing creativity."
+              </blockquote>
+            </div>
+
+            {/* Testimonial Cards */}
+            <TestimonialCards />
+          </section>
+
+          {/* Reflection & Legacy */}
+          <section className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Reflection & Legacy</h2>
+            <p className="text-sm md:text-base text-purple-300 mb-8 italic">
+              The future of feedback.
+            </p>
+            
+            <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
+              <p>
+                When the dust settled, I finally had space to reflect.
+              </p>
+              <p>
+                Through UX Buddy, I discovered that AI and human creativity aren't rivals. They're collaborators.
+              </p>
+              <p>
+                AI can't imagine or empathize the way we do, but it can mirror our intent, analyze our patterns, and help us grow faster.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "The best tools don't replace us. They reflect us."
+              </blockquote>
+              <p>
+                If I could start again, I'd focus even more on how UX Buddy talks: the language, the tone, the timing of its feedback.
+              </p>
+              <p>
+                Designers are emotional beings; the way we receive feedback changes how we create.
+              </p>
+              <p>
+                I'd also involve more designers early. Some of the best insights came from tiny suggestions: someone saying, "What if it tracked progress?" or "Could it compare versions?"
+              </p>
+              <p>
+                I've learned that collaboration always brings out better ideas.
+              </p>
+              <p className="font-semibold text-white">
+                Looking ahead, I see UX Buddy evolving beyond Figma into a family of empathetic design tools that understand not just pixels, but intent.
+              </p>
+              <p>
+                Tools that don't just check alignment, but understand why something was placed there.
+              </p>
+              <p>
+                And for the next iteration, I'm building a new layer that will save every analysis to a database, allowing designers to track their progress across time.
+              </p>
+              <p>
+                This means designers will be able to see their growth visually: how their accessibility scores improved, how their usability ratings evolved, and how each iteration made the product stronger.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "I want UX Buddy to become not just a feedback tool, but a living record of a designer's growth."
+              </blockquote>
+              <p>
+                If I had to describe UX Buddy in one sentence:
+              </p>
+              <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-md rounded-xl border border-purple-700/50 p-8 my-8">
+                <p className="text-white text-xl font-semibold text-center">
+                  "It feels like having a calm, honest mentor by your side: one who notices the details you miss and cheers when you improve."
+                </p>
+              </div>
+              <p>
+                I built it mostly alone, at home over several months, with Thompson always a message away.
+              </p>
+              <p>
+                There were countless nights spent sketching ideas on paper, debugging till dawn, and moments of small joy when something finally clicked.
+              </p>
+              <p>
+                One tester told me, half-jokingly:
+              </p>
+              <div className="bg-neutral-900/50 backdrop-blur-md rounded-xl border border-neutral-800 p-6 my-8">
+                <p className="text-white italic">
+                  "I wish UX Buddy could just apply the changes itself."
+                </p>
+              </div>
+              <p>
+                That made me laugh, and think. Because it meant the plugin had already become more than a tool; it had become a trusted part of their process.
+              </p>
+              <p>
+                When I look at UX Buddy now, I don't just see lines of code or interface components.
+              </p>
+              <p>
+                I see proof that frustration can spark creation, that curiosity can bridge design and engineering, and that empathy can be built into anything, even a plugin.
+              </p>
+              <blockquote className="text-xl text-white italic border-l-4 border-neutral-700 pl-6 py-6 my-8">
+                "I built this because I was frustrated. But along the way, I built a better version of myself."
+              </blockquote>
+              <p className="font-semibold text-white text-xl">
+                UX Buddy is more than an AI tool.
+              </p>
+              <p>
+                It's a reflection of everything I believe about design: that feedback should empower, not intimidate, and that the tools we make can be just as human as the people who use them.
               </p>
             </div>
 
-            {/* Showcase marquee */}
-            <div className="mt-16 space-y-4">
+            {/* 3D Marquee Showcase */}
+            <div className="mt-12 space-y-4">
               <div className="mx-auto max-w-7xl rounded-3xl bg-gray-950/5 p-2 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
-                <ThreeDMarquee
+                <ThreeDMarquee 
                   images={[
                     "/3d-marquee/Login.png",
                     "/3d-marquee/OTP.png",
@@ -429,25 +485,58 @@ export default function UXBuddy() {
                 />
               </div>
               <p className="text-neutral-400 italic text-center max-w-lg mx-auto">
-                Sample screens analyzed by UX Buddy across a real product flow.
+                "Sometimes the best tools are born from frustration — and faith."
               </p>
             </div>
+          </section>
 
-            {/* Final CTA */}
-            <div className="mt-16 text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Ready to bring the review forward?
-              </h3>
-              <p className="text-neutral-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
-                Get instant, expert-level UX feedback directly in Figma.
+          {/* Final CTA Section */}
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold text-white mb-6">Ready to Transform Your Design Process?</h2>
+              <p className="text-lg text-neutral-300 mb-8">
+                Get instant, expert-level UX feedback directly in Figma. Start analyzing your designs today.
               </p>
               <div className="flex justify-center">
-                <TryButton />
+                <a
+                  href="https://www.figma.com/community/plugin/1513874084032014970/ux-buddy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-flex items-center overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                >
+                  <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#9333EA_0%,#3B82F6_50%,#9333EA_100%)]" />
+                  <span className="relative inline-flex items-center px-6 py-3 font-medium transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg group">
+                    <img
+                      src="/images/figma-logo.svg"
+                      alt="Figma Logo"
+                      className="mr-2 w-5 h-5 transition-opacity group-hover:opacity-70 brightness-0 invert"
+                    />
+                    <span className="text-white group-hover:text-neutral-100">
+                      Try UX Buddy
+                    </span>
+                    <svg
+                      className="ml-2 w-4 h-4 text-white group-hover:text-neutral-100"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </span>
+                </a>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
+
+      {/* Case Study Navigation */}
       <CaseStudyNav prevCase={prevCase} nextCase={nextCase} />
     </>
   );
