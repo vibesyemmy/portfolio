@@ -20,6 +20,7 @@ export const BentoGridItem = ({
   className,
   title,
   description,
+  meta,
   header,
   onClick,
   isComingSoon,
@@ -67,6 +68,11 @@ export const BentoGridItem = ({
           <p className="text-sm text-neutral-400 leading-relaxed">
             {description}
           </p>
+          {meta && (
+            <p className="text-xs italic text-neutral-500 mt-1.5">
+              {meta}
+            </p>
+          )}
         </div>
       </div>
     </div>

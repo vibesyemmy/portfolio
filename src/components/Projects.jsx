@@ -21,8 +21,9 @@ const Skeleton = () => (
 
 const items = [
   {
-    title: "FintechMonster",
-    description: "Unified UI system for Hydrogen Pay's merchant and ops surfaces.",
+    title: "Taming Fintech Monster",
+    description: "A unified UI system for a payments platform.",
+    meta: "Hydrogen Pay",
     category: "design",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -37,8 +38,9 @@ const items = [
     link: "/fintech-monster"
   },
   {
-    title: "HotelHub",
-    description: "In-room IPTV interface for hotel guests.",
+    title: "Hotel Entertainment Hub",
+    description: "An entertainment platform for hotel guests.",
+    meta: "[client TBC]",
     category: "design",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -54,7 +56,8 @@ const items = [
   },
   {
     title: "PhoneCash",
-    description: "Mobile money transfer flow for African feature-phone users.",
+    description: "A mobile-money product for African consumers.",
+    meta: "[client TBC]",
     category: "design",
     header: (
       <div className="relative w-full h-full">
@@ -72,7 +75,8 @@ const items = [
   },
   {
     title: "FlatMagic",
-    description: "Figma plugin that flattens nested frames into a single image in one click.",
+    description: "A plugin that flattens complex frames into single images.",
+    meta: "Figma plugin",
     category: "development",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -88,7 +92,8 @@ const items = [
   },
   {
     title: "UX Buddy",
-    description: "Figma plugin that runs Claude-powered UX analysis on selected frames.",
+    description: "A plugin that runs AI-powered UX analysis on your designs.",
+    meta: "Figma plugin",
     category: "development",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -232,6 +237,7 @@ export default function Projects() {
                   key={originalIndex}
                   title={item.title}
                   description={item.description}
+                  meta={item.meta}
                   header={item.header}
                   className={originalIndex === 3 || originalIndex === 6 ? "md:col-span-2" : ""}
                   onClick={() => handleCardClick(item.link)}
