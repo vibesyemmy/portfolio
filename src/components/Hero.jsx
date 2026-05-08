@@ -39,19 +39,21 @@ export default function Hero() {
           <h1 className="relative z-10 text-3xl sm:text-5xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-sans font-bold">
             Opeyemi Ajagbe
           </h1>
-          <p className="text-neutral-500 max-w-2xl mx-auto mt-6 text-sm sm:text-base md:text-lg text-center relative z-10 leading-relaxed">
-            Senior Product Designer at Sabi, working on their design system and Trace &mdash; the platform routing African commodities into global supply chains. Recent: contract Senior PD at the payments platform Hydrogen Pay. Earlier: Senior PD at ggCircuit (esports/gaming).{' '}
+          <p className="text-neutral-400 max-w-2xl mx-auto mt-3 text-base sm:text-lg md:text-xl text-center relative z-10">
+            Senior Product Designer
+          </p>
+          <p className="text-neutral-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base md:text-lg text-center relative z-10 leading-relaxed">
+            I design B2B platforms, fintech tools, and operating systems for ops teams. Ten years of work across supply chains, payments, logistics, and gaming. Case studies below.
+          </p>
+          <p className="text-neutral-500 max-w-2xl mx-auto mt-5 text-xs sm:text-sm md:text-base text-center relative z-10">
+            Available for select projects ·{' '}
             <button
               type="button"
               onClick={() => setIsContactModalOpen(true)}
-              className="text-neutral-200 underline underline-offset-4 decoration-neutral-600 hover:decoration-neutral-200 transition-colors bg-transparent border-0 p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded"
+              className="text-neutral-300 underline underline-offset-4 decoration-neutral-600 hover:decoration-neutral-200 transition-colors bg-transparent border-0 p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded"
             >
               Email me
             </button>
-            .
-          </p>
-          <p className="text-neutral-500 max-w-lg mx-auto mt-4 text-sm sm:text-base md:text-lg text-center relative z-10">
-            Lagos.
           </p>
         </div>
         <div className="absolute bottom-4 md:bottom-5 w-full z-10">
