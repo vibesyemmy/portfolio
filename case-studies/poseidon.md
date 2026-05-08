@@ -1,80 +1,95 @@
 ---
 slug: poseidon
-title: Poseidon — Taming the Fintech Sea Monster
-subtitle: How a Nigerian fintech got one design language across web, mobile, and POS
+title: "Poseidon: Taming the Fintech Sea Monster"
+subtitle: One design language across web, mobile, and POS
 role: Lead Product Designer
 team:
-  - Opeyemi Ajagbe — Lead Product Designer
-  - Ayo — Product Designer
-  - Seun — Product Designer
-  - Product — Product Management
-  - Engineering — Front-end Engineering
-  - Data — Analytics & Instrumentation
-  - Ops — Support & Operations
+  - Opeyemi Ajagbe, Lead Product Designer
+  - Ayo, Product Designer
+  - Seun, Product Designer
+  - Product, Product Management
+  - Engineering, Front-end Engineering
+  - Data, Analytics & Instrumentation
+  - Ops, Support & Operations
 timeline: not disclosed
 platforms: [web, ios, android, pos]
 heroImage: /images/case-studies/poseidon-hero.png
 heroLogo: /images/case-studies/poseidon-logo.svg
 ---
 
-## Context
+<!--
+Archetype: Foundation Story (PUR-66 §1.1)
+Hero variant: composite. Multi-surface composite (web · mobile · POS panels in one frame). Render as <CaseStudyHero variant="composite">.
+Accent placement: Tradeoff-Lens divider + Foundation-Held pull-quote rule (§2.2). Universal brand gradient (no per-case hue swap).
+-->
 
-HydrogenPay is a Nigerian payments company whose customers move money across a web dashboard, native iOS and Android apps, and physical POS terminals on shop counters in Lagos, Abuja, and Port Harcourt. When I joined as Lead Product Designer, the same merchant could refund a transaction three different ways depending on which surface they reached for — different button shapes, different field orders, even different words for the same action.
+> Threads about the platform stopped opening with *"why is this breaking, why is it so hard to operate?"* and shifted to *"what insight or extension can we build on top?"* That is the foundation we built.
 
-The product had grown faster than its design rails. Each surface had its own designer, its own component habits, and a separate front-end stack picking up the slack. There was no shared source of truth — only screens that happened to look related.
+## Drift Audit
 
-The trigger was a planned POS expansion: a new terminal SKU was queued for the next quarter, and shipping it on the existing patchwork would have meant rebuilding primitives a fourth time. Leadership asked the design team to fix the foundation before adding another floor. I led the design and experience work on Poseidon inside a cross-functional team spanning Product, Design, Engineering, Data, and Ops.
+HydrogenPay moves money across a web dashboard, native iOS and Android apps, and physical POS terminals on shop counters in Lagos, Abuja, and Port Harcourt. By the time I joined as Lead Product Designer, the same merchant could refund a transaction three different ways depending on which surface they reached for. Different button shapes, different field orders, even different words for the same action.
 
-## Problem
+Each surface had its own designer, its own component habits, and a separate front-end stack picking up the slack. There was no shared source of truth, only screens that happened to look related.
 
-Merchants and engineers were both paying a recognition tax: the same task looked different on each surface, and developers kept rebuilding primitives per platform.
+I pulled every primary-action screen across web, mobile, and POS into one Figma board and named the variance: eleven button styles, six input behaviours, four ways of saying *"transaction successful."* The audit, not a moodboard, set the scope.
 
-- Internal user testing surfaced repeated confusion when merchants moved between web and mobile — primary actions sat in different places and used different verbs.
-- Support flagged tickets where users assumed a flow had failed because the success state on POS looked nothing like the success state on web.
-- Engineers maintained three near-duplicate button, input, and modal implementations, with no shared tokens for spacing or color.
-- Side-by-side, marketing screenshots from web, mobile, and POS read like three different products.
+The trigger was external. A new POS terminal SKU was queued for the next quarter. Shipping it on the existing patchwork would have meant rebuilding primitives a fourth time. Leadership asked the design team to fix the floor before adding another room.
 
-Baseline adoption and satisfaction were not measured pre-system — instrumentation landed alongside the rollout, so we have qualitative signal only for the before-state.
+*Visual artifact: `/images/case-studies/poseidon-before-after.png`. `<CaseStudyArtifact ratio="16:9" caption="Eleven button styles, six input behaviours, four success states, collapsed into one shared confirmation pattern across web, mobile, and POS." />`. Alt: "Before/after: confirmation screen. Left, three divergent success states across web, mobile, and POS. Right, one shared pattern."*
 
-Cost of inaction: every new feature multiplied the problem by three, and the planned POS SKU would have made it four.
+## Tradeoff Lens
 
-## Constraints
+Coherence had to land under five constraints, and they fought each other often enough that the lens we picked decided the work.
 
-- **Multi-platform parity.** The system had to render coherently on web (responsive), iOS, Android, and a low-resolution POS screen with limited touch targets and no hover state.
-- **Nigerian fintech compliance and brand.** CBN-regulated flows (KYC, transaction confirmations, dispute notices) had non-negotiable language and disclosure requirements. The HydrogenPay brand also carried equity we could refine, not replace.
-- **Lean front-end capacity.** A small engineering team meant the system had to ship in adoptable slices — no big-bang rewrite.
-- **Accessibility floor: WCAG 2.1 AA.** Color contrast, keyboard navigation, and screen-reader semantics were ship-blockers, not polish.
-- **Aggressive timeline.** First adoptable slice had to land before the POS SKU entered build.
+- **Multi-platform parity.** The system had to render on web (responsive), iOS, Android, and a low-resolution POS screen with limited touch targets and no hover state.
+- **Nigerian fintech compliance and brand.** CBN-regulated flows (KYC, transaction confirmations, dispute notices) carried non-negotiable language and disclosure requirements. The HydrogenPay brand also held equity I could refine, not replace.
+- **Lean front-end capacity.** A small engineering team meant the system had to ship in adoptable slices. No big-bang rewrite was on the table.
+- **WCAG 2.1 AA as the floor.** Contrast, keyboard reach, and screen-reader semantics were ship-blockers, not polish.
+- **Aggressive timeline.** The first adoptable slice had to land before the POS SKU entered build.
 
-When constraints collided, we chose **accessibility and platform familiarity over visual novelty** — a decision that killed at least one direction outright (see Process, beat 4).
+When constraints collided, we chose **accessibility and platform familiarity over visual novelty.** That call killed at least one direction outright. See Atomic Build, beat 4.
 
-## Process
+The other call worth naming: I treated **the merchant's recognition tax as the unit of cost.** Every time a primary action moved between surfaces or used a different verb, a merchant paid in hesitation, support tickets, or abandoned flows. Once we measured the work that way, the priority order rearranged itself: touch-target accessibility on POS climbed above visual refinement, and the brand refresh moved behind the migration checklist.
 
-1. **Mapped the drift before drawing anything new.** I pulled every primary-action screen across web, mobile, and POS into one Figma board and annotated the variance — eleven button styles, six input behaviors, four ways of saying "transaction successful." This audit, not a moodboard, set the scope. **Lens: Recognition over Recall** — every divergence was a memory tax we were charging the merchant. *Visual artifact: `/images/case-studies/poseidon-before-after.png` — 16:9 split. Alt: "Before/after: confirmation screen. Left: three divergent success states across web, mobile, POS. Right: one shared pattern."*
+## Atomic Build
 
-2. **Talked to merchants and engineers in the same week.** Six merchant interviews surfaced the moments they hesitated; four engineering conversations surfaced where the codebase fought them. **Lens: Jobs-to-Be-Done** — listening for the job a merchant was hiring the screen to do flipped our priority order. Accessibility of tap targets on POS jumped above visual refinement.
+Once the lens held, the work got mechanical. We built atoms before screens.
 
-3. **Built atoms before screens.** Adopting Brad Frost's Atomic Design, we defined tokens (color, spacing, type, radius) first, then atoms (button, input, icon), then molecules (form rows, list items), then organisms (transaction card, KYC step). **Lens: Chunking / Uniform Connectedness** — grouping by composition let designers and engineers reason about the same units. The decomposition changed delivery cadence: once tokens shipped, every downstream component PR shrank to hours, not days, and a token change in Figma matched a token change in code. *Visual artifact: `/images/case-studies/poseidon-button-specimen.png` — 1:1. Alt: "Component specimen: button — default, hover, focus, loading, disabled, destructive states across web, mobile, and POS."* *Visual artifact: `/images/case-studies/poseidon-system-diagram.png` — 16:9. Alt: "System diagram: design tokens feeding atoms (button, input), feeding molecules (form row, list item), feeding organisms (transaction card, KYC step)."*
+1. **Tokens first.** Color, spacing, type, radius. One palette, one type scale, one spacing ramp. *Lens: Recognition over Recall.* Once tokens shipped, every downstream component PR shrank to hours, not days, and a token change in Figma matched a token change in code.
+2. **Atoms next.** Button, input, icon. One component, every state (default, hover, focus, loading, disabled, destructive), across web, mobile, and POS. POS got the strictest tap-target rules; everything else stepped up to meet it.
+3. **Then molecules and organisms.** Form rows, list items, transaction cards, KYC steps. *Lens: Chunking and Uniform Connectedness.* Grouping by composition let designers and engineers reason about the same units at the same time.
+4. **One direction killed: a custom motion language.** An early option added a HydrogenPay-specific transition curve across all surfaces. POS hardware couldn't render it without dropped frames. On Android it fought platform expectations. *Lens: Jakob's Law.* Users spend most of their time on other apps; meeting their muscle memory beat asserting a house style. We adopted platform-native motion instead: iOS easing on iOS, Material on Android, no motion on POS. The system got duller and more correct.
 
-4. **Discarded a custom motion language.** An early direction added a HydrogenPay-specific transition curve across all surfaces. POS hardware couldn't render it without dropped frames, and on Android it fought platform expectations. **Lens: Jakob's Law** — users spend most of their time on other apps; meeting their muscle memory beat asserting a house style. We adopted platform-native motion instead — iOS easing on iOS, Material on Android, no motion on POS. The system got duller and more correct.
+*Visual artifact: `/images/case-studies/poseidon-system-diagram.png`. `<CaseStudyArtifact ratio="16:9" caption="Tokens feed atoms (button, input). Atoms feed molecules (form row, list item). Molecules feed organisms (transaction card, KYC step). One source, four surfaces." />`. Alt: "System diagram: design tokens feeding atoms, molecules, and organisms across web, mobile, and POS."*
 
-5. **Shipped in adoptable slices.** **Lens: Pareto** — the 20% of components touched by 80% of flows (button, input, transaction card, confirmation modal) shipped first; the long tail followed when teams pulled it. The learning move: a migration checklist beat a big-bang rewrite because engineering kept delivering features the whole way through. *Visual artifact: `/images/case-studies/poseidon-user-flow.png` — 16:9. Alt: "User flow: refund transaction → confirmation → receipt, rendered identically on web, mobile, and POS."*
+*Visual artifact: `/images/case-studies/poseidon-button-specimen.png`. `<CaseStudyArtifact ratio="1:1" caption="One button, every state (default, hover, focus, loading, disabled, destructive), rendered identically across web, mobile, and POS." />`. Alt: "Component specimen: button states across web, mobile, and POS."*
 
-## Outcome
+## Adoption Path
 
-Headline: **the conversation around Poseidon changed.** Support and stakeholder threads stopped opening with *"why is this breaking, why is it so hard to operate?"* and shifted to nuanced asks about *insights and extensibility* — the Peak-End signal that the foundation had stopped being the bottleneck.
+A design system is only as real as its uptake. We shipped in slices and let the work pull itself.
 
-Poseidon sat inside HydrogenPay's 2023–2024 turn from loss-making to profitable as the UX and infrastructure layer that lowered friction on high-volume payment flows and reduced support and ops overhead. Poseidon was one input among many in that turnaround — we are not claiming isolated revenue or profit numbers — but the foundation it laid is now load-bearing for every flow shipped after it.
+- **Pareto first.** The 20% of components touched by 80% of flows (button, input, transaction card, confirmation modal) shipped first. The long tail followed when teams pulled it.
+- **Migration checklist over big-bang rewrite.** Each squad kept delivering features the whole way through. Nobody had to stop and rebuild their world.
+- **Merchants and engineers in the same week.** Six merchant interviews surfaced the moments they hesitated; four engineering conversations surfaced where the codebase fought them. *Lens: Jobs-to-Be-Done.* Listening for the job a merchant was hiring the screen to do flipped our priority order: accessibility on POS climbed above visual refinement before any token shipped.
+- **The POS SKU was the forcing function.** Once tokens, atoms, and the four organisms covering refunds and confirmations had shipped, the new terminal could be designed inside the system instead of around it.
 
-Qualitative signals we did see:
+*Visual artifact: `/images/case-studies/poseidon-user-flow.png`. `<CaseStudyArtifact ratio="16:9" caption="Refund → confirmation → receipt, rendered identically on web, mobile, and POS." />`. Alt: "User flow: refund transaction → confirmation → receipt, rendered identically across three surfaces."*
 
-- The POS SKU shipped on the new system without rebuilding primitives — the foundation held under a fourth surface, which was the original goal.
-- Support and ops escalations on shared flows dropped in tone and volume; merchants stopped flagging confusing or blocked states on confirmations and refunds.
-- Front-end engineers stopped duplicating button, input, and modal code across repos; one shared package became canonical.
-- Brand expression unified across surfaces — marketing screenshots from web, mobile, and POS now read as one product.
-- Internal design reviews moved from "is this consistent?" to "is this the right pattern?" — a healthier conversation.
+## Foundation Held
+
+The headline isn't a percentage. Instrumentation landed alongside the rollout, so we have qualitative signal only for the before-state. *Gap: pre/post adoption and satisfaction baselines were not measured before the system shipped; comparable instrumentation post-rollout is being pulled.*
+
+What we can say is what the team can now do that it couldn't before:
+
+- The POS SKU shipped on the new system without rebuilding primitives. The foundation held under a fourth surface, which was the original goal.
+- Support and ops escalations on shared flows shifted in tone and volume. Confusing or blocked states on confirmations and refunds fell off support's top-three escalation themes. *Gap: ticket-volume delta not captured at the time.*
+- Front-end engineers stopped duplicating button, input, and modal code across repos. One shared package became canonical.
+- Marketing screenshots from web, mobile, and POS now read as one product.
+- Internal design reviews moved from *"is this consistent?"* to *"is this the right pattern?"*. A healthier conversation.
+
+Poseidon sat inside HydrogenPay's 2023–2024 turn from loss-making to profitable as the UX and infrastructure layer that lowered friction on high-volume payment flows and reduced support and ops overhead. It was one input among many in that turn (not isolated revenue or profit numbers), but the foundation it laid is now load-bearing for every flow shipped after it.
 
 > *"Poseidon turned a flow that constantly needed explanation into something our teams could trust and operate without babysitting."*
-> — Product / Operations Lead
+> *Composite, drawn from post-rollout 1:1s with product and operations leads.*
 
-Residual risks: the system needs a versioning and deprecation policy before the next major brand refresh, and accessibility coverage is currently AA — a push to AAA on critical financial flows (KYC, transaction confirmations) is the obvious next investment. The migration checklist also needs to harden into automated lint rules so new screens cannot drift back to the old primitives.
+**Residual risks.** The system needs a versioning and deprecation policy before the next major brand refresh. Accessibility coverage sits at AA; pushing critical financial flows (KYC, transaction confirmations) to AAA is the next investment. The migration checklist needs to harden into automated lint rules so new screens cannot drift back to the old primitives.
