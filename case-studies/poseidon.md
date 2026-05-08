@@ -82,7 +82,7 @@ The headline isn't a percentage — instrumentation landed alongside the rollout
 What we can say is what the team can now do that it couldn't before:
 
 - The POS SKU shipped on the new system without rebuilding primitives. The foundation held under a fourth surface, which was the original goal.
-- Support and ops escalations on shared flows dropped in tone and volume. Merchants stopped flagging confusing or blocked states on confirmations and refunds.
+- Support and ops escalations on shared flows shifted in tone and volume. Confusing or blocked states on confirmations and refunds fell off support's top-three escalation themes. *[METRIC NEEDED] — ticket-volume delta not captured at the time.*
 - Front-end engineers stopped duplicating button, input, and modal code across repos. One shared package became canonical.
 - Marketing screenshots from web, mobile, and POS now read as one product.
 - Internal design reviews moved from *"is this consistent?"* to *"is this the right pattern?"* — a healthier conversation.
@@ -90,6 +90,6 @@ What we can say is what the team can now do that it couldn't before:
 Poseidon sat inside HydrogenPay's 2023–2024 turn from loss-making to profitable as the UX and infrastructure layer that lowered friction on high-volume payment flows and reduced support and ops overhead. It was one input among many in that turn — not isolated revenue or profit numbers — but the foundation it laid is now load-bearing for every flow shipped after it.
 
 > *"Poseidon turned a flow that constantly needed explanation into something our teams could trust and operate without babysitting."*
-> — Product / Operations Lead
+> — *Composite, drawn from post-rollout 1:1s with product and operations leads.*
 
 **Residual risks.** The system needs a versioning and deprecation policy before the next major brand refresh. Accessibility coverage sits at AA; pushing critical financial flows (KYC, transaction confirmations) to AAA is the next investment. The migration checklist needs to harden into automated lint rules so new screens cannot drift back to the old primitives.
