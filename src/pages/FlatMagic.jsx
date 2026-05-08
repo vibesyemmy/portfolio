@@ -2,7 +2,6 @@ import React from "react";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 import { BlurImageBackground } from "../components/ui/blur-image-background";
 import CaseStudyNav from '../components/ui/case-study-nav';
-import CaseStudyMeta from '../components/ui/case-study-meta';
 import { getNavigation } from '../config/case-studies';
 
 const teamMembers = [
@@ -83,22 +82,26 @@ export default function FlatMagic() {
             </div>
 
             {/* Hero Element 3: Project Details Grid */}
-            <CaseStudyMeta
-              className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto"
-              items={[
-                { label: "Role", value: "Product Designer & Developer" },
-                { label: "Platform", value: "Figma Plugin" },
-                { label: "Timeline", value: "1 month" },
-                {
-                  label: "Team",
-                  value: (
-                    <div className="flex justify-center">
-                      <AnimatedTooltip items={teamMembers} />
-                    </div>
-                  ),
-                },
-              ]}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Role</h3>
+                <p className="text-white font-medium">Product Designer & Developer</p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Platform</h3>
+                <p className="text-white font-medium">Figma Plugin</p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Timeline</h3>
+                <p className="text-white font-medium">1 month</p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-sm uppercase tracking-wider text-neutral-400 mb-2">Team</h3>
+                <div className="flex justify-center">
+                  <AnimatedTooltip items={teamMembers} />
+                </div>
+              </div>
+            </div>
             
           </div>
         </BlurImageBackground>
