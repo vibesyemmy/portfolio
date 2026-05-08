@@ -59,9 +59,12 @@ Coherence comes from constants. Distinctiveness comes from variables. The split 
 **Voice & language**
 
 - §0 six traits from PUR-64 voice-guide: Direct + efficient · Purposeful, not casual · Technically literate, no over-explain · Collaborative + decisive · Nigerian directness, professional · Confident, concise, outcome-focused.
-- §3 plain-English rules — short sentences, one idea per line, no hedging, no "I had the pleasure of…".
-- §5 honesty pattern — `[METRIC NEEDED]` / `[ARTIFACT NEEDED]` italic gap-acks instead of inventing numbers. Same shape across all 4 archetypes; no per-archetype hedging variants.
-- §7 worked examples (hero, about, card row) as reference patterns. Card row stays the Ekemini three-line shape (hook · what · proof) regardless of archetype.
+- §3.1–3.3 plain-English mechanics — short word over long word, one idea per sentence, concrete nouns, active voice, 14–18 word average sentence (≤ 30 words longest in any paragraph). No empty intensifiers (*very*, *really*, *truly*, *extensively*).
+- §3.1 approved verb shortlist (Ekemini-style, board-confirmed): *designed, led, shipped, built, launched, supported, owned, cut, decided, talked to, tested with*. Reach for these first across all archetypes.
+- §3.4 first-person — **"I" not "we"** for solo work; *I* + named teammate (e.g. *with developer Thompson Edolo*) for collaborative work. Never *the designer* or third-person résumé voice. *What I owned* required on every multi-person case study.
+- §5 honesty pattern — `[METRIC NEEDED]` / `[ARTIFACT NEEDED]` italic gap-acks instead of inventing numbers. Approximate-metric convention `~` (e.g. *~900k users, per ChipperCash 2023 press release*) for honest hedging; never stack hedges (*roughly approximately ~900k* is broken). Same shape across all 4 archetypes; no per-archetype hedging variants.
+- §6 glossary — use left-column verbs (*shipped*, *built*, *helped*, *led*, *owned*, *cut*, *talked to*, *tested with*); avoid right-column (*operationalized*, *crafted*, *empowered*, *spearheaded*, *was responsible for the strategic direction of*). Phrases banned outright across all archetypes: *game-changing*, *best-in-class*, *world-class*, *cutting-edge*, *synergy*, *impact* (as verb), *solution* (when *design* / *tool* / *fix* works), *click here*, *learn more* (standalone CTA), *I had the pleasure of*, *operationalized synergies*, *leveraged*.
+- §7 worked examples (§7.1 hero · §7.2 about · §7.3 card row) as reference patterns. Card row stays the Ekemini three-line shape (hook · what · proof) regardless of archetype.
 
 **Information architecture & meta**
 
