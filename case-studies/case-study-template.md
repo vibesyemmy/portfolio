@@ -1,3 +1,5 @@
+> **Retired 2026-05-08; see `narrative-system.md` for the case-study narrative system. Legacy 5-section spine preserved below as the underlying beats absorbed into Foundation Story archetype.**
+
 # Case-Study Template
 
 Reusable schema for every case study on the portfolio site. Five sections, in order, no nesting:
