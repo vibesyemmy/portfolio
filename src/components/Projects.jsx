@@ -21,8 +21,8 @@ const Skeleton = () => (
 
 const items = [
   {
-    title: "Taming the Fintech Monster",
-    description: "A unified UI system to streamline development, and enhance user experience.",
+    title: "FintechMonster",
+    description: "Unified UI system for Hydrogen Pay's merchant and ops surfaces.",
     category: "design",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -37,8 +37,8 @@ const items = [
     link: "/fintech-monster"
   },
   {
-    title: "Crafting a Hotel Entertainment Hub",
-    description: "Creating a delightful entertainment experience for hotel guests.",
+    title: "HotelHub",
+    description: "In-room IPTV interface for hotel guests.",
     category: "design",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -53,8 +53,8 @@ const items = [
     link: "/hotel-hub"
   },
   {
-    title: "PhoneCash: A Fintech Solution",
-    description: "Revolutionizing Mobile Money Transfers in Africa",
+    title: "PhoneCash",
+    description: "Mobile money transfer flow for African feature-phone users.",
     category: "design",
     header: (
       <div className="relative w-full h-full">
@@ -71,8 +71,8 @@ const items = [
     link: "/phonecash"
   },
   {
-    title: "FlatMagic: Figma Plugin",
-    description: "A Figma plugin that transforms complex frame structures into single, flattened images with just one click.",
+    title: "FlatMagic",
+    description: "Figma plugin that flattens nested frames into a single image in one click.",
     category: "development",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
@@ -87,8 +87,8 @@ const items = [
     link: "/flatmagic"
   },
   {
-    title: "UX Buddy: AI-Powered UX Analysis",
-    description: "An intelligent Figma plugin that provides real-time UX analysis and actionable design recommendations using Claude AI.",
+    title: "UX Buddy",
+    description: "Figma plugin that runs Claude-powered UX analysis on selected frames.",
     category: "development",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem]">
