@@ -1,26 +1,20 @@
 import React from "react";
+import arenaGaming from "../../assets/logos/arena-gaming 1-200h.png";
 import circuit from "../../assets/logos/ggcircuit 2-200h.png";
 import hydrogen from "../../assets/logos/hydrogen 1-200h.png";
 import kobo from "../../assets/logos/kobo-1 2-200h.png";
 import sabi from "../../assets/logos/sabi.svg";
+import tunnel from "../../assets/logos/tunnel-1 1-200h.png";
+import lingawa from "../../assets/logos/lingawa.svg";
 
 const logos = [
-  {
-    url: sabi,
-    alt: "Sabi",
-  },
-  {
-    url: hydrogen,
-    alt: "Hydrogen Pay",
-  },
-  {
-    url: circuit,
-    alt: "ggCircuit",
-  },
-  {
-    url: kobo,
-    alt: "Kobo360",
-  },
+  { url: sabi, alt: "Sabi" },
+  { url: hydrogen, alt: "Hydrogen Pay" },
+  { url: circuit, alt: "ggCircuit" },
+  { url: kobo, alt: "Kobo360" },
+  { url: arenaGaming, alt: "Arena Gaming" },
+  { url: tunnel, alt: "Tunnel" },
+  { url: lingawa, alt: "Lingawa" },
 ];
 
 export const InfiniteMovingLogos = () => {

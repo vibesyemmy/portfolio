@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { InfiniteMovingLogos } from "./ui/infinite-moving-logos";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { AnimatedPin } from "./ui/animated-pin";
 import HeroVideo from "../assets/hero-video.mp4";
-import { Modal } from './ui/modal';
-import { ContactForm } from './ui/contact-form';
 import { BackgroundBeams } from "./ui/background-beams.tsx";
 
 export default function Hero() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  
   return (
     <>
       <div className="xs:h-[150vh] h-[105vh] md:h-screen w-full relative flex flex-col items-center justify-center antialiased overflow-hidden">
@@ -45,25 +41,11 @@ export default function Hero() {
           <p className="text-neutral-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base md:text-lg text-center relative z-10 leading-relaxed">
             I design B2B platforms, fintech tools, and operating systems for ops teams. Ten years of work across supply chains, payments, logistics, and gaming. Case studies below.
           </p>
-          <p className="text-neutral-500 max-w-2xl mx-auto mt-5 text-xs sm:text-sm md:text-base text-center relative z-10">
-            Available for select projects ·{' '}
-            <button
-              type="button"
-              onClick={() => setIsContactModalOpen(true)}
-              className="text-neutral-300 underline underline-offset-4 decoration-neutral-600 hover:decoration-neutral-200 transition-colors bg-transparent border-0 p-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded"
-            >
-              Email me
-            </button>
-          </p>
         </div>
         <div className="absolute bottom-4 md:bottom-5 w-full z-10">
           <InfiniteMovingLogos />
         </div>
       </div>
-
-      <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)}>
-        <ContactForm onClose={() => setIsContactModalOpen(false)} />
-      </Modal>
     </>
   );
 }
