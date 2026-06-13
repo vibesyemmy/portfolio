@@ -7,29 +7,11 @@ gsap.registerPlugin(ScrollTrigger);
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!reduced) {
-  // Headline line reveals
-  document.querySelectorAll<HTMLElement>('[data-split]').forEach((el) => {
-    const split = new SplitType(el, { types: 'lines', lineClass: 'line-inner' });
-    split.lines?.forEach((line) => {
-      const wrap = document.createElement('div');
-      wrap.className = 'line';
-      line.replaceWith(wrap);
-      wrap.appendChild(line);
-    });
-    gsap.from(el.querySelectorAll('.line-inner'), {
-      yPercent: 110,
-      duration: 0.8,
-      stagger: 0.08,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-    });
-  });
-
-  // Single-element reveals
+  // Single-element reveals (autoAlpha clears the CSS visibility pre-hide)
   document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
     gsap.from(el, {
       y: 40,
-      opacity: 0,
+      autoAlpha: 0,
       duration: 0.7,
       ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },
@@ -66,5 +48,28 @@ if (!reduced) {
       xTo(0);
       yTo(0);
     });
+  });
+
+  // Headline line reveals — wait for fonts so line breaks measure correctly,
+  // then reveal the (CSS-prehidden) heading and slide its lines up from the mask.
+  document.fonts.ready.then(() => {
+    document.querySelectorAll<HTMLElement>('[data-split]').forEach((el) => {
+      const split = new SplitType(el, { types: 'lines', lineClass: 'line-inner' });
+      split.lines?.forEach((line) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'line';
+        line.replaceWith(wrap);
+        wrap.appendChild(line);
+      });
+      gsap.set(el, { autoAlpha: 1 });
+      gsap.from(el.querySelectorAll('.line-inner'), {
+        yPercent: 110,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      });
+    });
+    ScrollTrigger.refresh();
   });
 }

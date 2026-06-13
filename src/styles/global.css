@@ -23,6 +23,13 @@ html {
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal],
+  html.js [data-split] {
+    visibility: hidden;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
