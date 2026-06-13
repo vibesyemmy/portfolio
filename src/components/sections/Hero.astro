@@ -1,0 +1,57 @@
+<section class="hero" aria-label="Intro">
+  <div class="hero__bg" id="hero-canvas" aria-hidden="true"></div>
+  <div class="hero__content container">
+    <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
+    <h1 class="hero__title" data-split>
+      Designing digital experiences that feel intuitive &amp; alive
+    </h1>
+    <p class="hero__sub" data-reveal>
+      Fintech · Logistics · Edu-tech · E-sport — design &amp; build
+    </p>
+    <a class="pill" href="#work" data-reveal data-magnetic>See projects ↓</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 50% 60%,
+      rgb(251 152 38 / 22%),
+      rgb(0 153 255 / 10%) 50%,
+      transparent 75%
+    );
+  }
+
+  .hero__bg :global(canvas) {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__content {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 1.5rem;
+    padding-block: 8rem 6rem;
+  }
+
+  .hero__title {
+    font-size: var(--text-display);
+    max-width: 18ch;
+  }
+
+  .hero__sub {
+    color: var(--ink-2);
+  }
+</style>

@@ -97,3 +97,7 @@ h3 {
   outline: 2px solid var(--accent-2);
   outline-offset: 2px;
 }
+
+html {
+  scroll-padding-top: 6rem;
+}
