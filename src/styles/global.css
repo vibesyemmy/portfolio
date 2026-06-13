@@ -37,7 +37,6 @@ a {
 .container {
   max-width: var(--container);
   margin-inline: auto;
-  padding-inline: var(--space-gutter);
 }
 
 .section {
