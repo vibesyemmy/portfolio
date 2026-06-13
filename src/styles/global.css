@@ -39,6 +39,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Contain the transient horizontal overflow from the velocity-skew scroll
+   effect (sections lean up to 15deg). overflow-x: clip leaves vertical scroll
+   untouched and does not create a scroll container. */
+main {
+  overflow-x: clip;
+}
+
 img {
   max-width: 100%;
   display: block;
