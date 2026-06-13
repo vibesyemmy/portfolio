@@ -15,7 +15,7 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
 <section class="dark-section section" aria-label="Testimonials">
   <div class="container">
     <h2 class="h2" data-split>Success.</h2>
-    <div class="row" data-stagger>
+    <div class="row" data-stagger tabindex="0" role="group" aria-label="Client testimonials">
       {
         rendered.map((t) => (
           <figure class="quote">
@@ -30,9 +30,9 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
         ))
       }
     </div>
-    <p class="logos" data-reveal>
-      {companies.map((c) => <span>{c}</span>)}
-    </p>
+    <ul class="logos" data-reveal>
+      {companies.map((c) => <li>{c}</li>)}
+    </ul>
   </div>
 </section>
 
@@ -69,15 +69,17 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
     flex-wrap: wrap;
     gap: 2rem;
     margin-top: 3rem;
+    list-style: none;
+    padding: 0;
     font-weight: 700;
     color: var(--dark-ink-2);
   }
 
-  .logos span {
+  .logos li {
     transition: color 0.25s;
   }
 
-  .logos span:hover {
+  .logos li:hover {
     color: var(--dark-ink);
   }
 </style>
