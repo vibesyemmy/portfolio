@@ -1,0 +1,228 @@
+---
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const names = projects.map((p) => p.data.title);
+
+// Placeholder tile styles (light-theme friendly, brand-tinted). To use a real
+// screenshot later, give a tile an <img> in place of the gradient background.
+const gradients = [
+  'linear-gradient(150deg, #fde2b8, #fb9826)',
+  'linear-gradient(150deg, #cfeaff, #0099ff)',
+  'linear-gradient(150deg, #ffffff, #d9d9d9)',
+  'linear-gradient(150deg, #ffe0c2, #ff7a45)',
+  'linear-gradient(150deg, #e7ecff, #6f8cff)',
+  'linear-gradient(150deg, #1d1d1d, #3c3c3c)',
+];
+const ratios = ['3 / 4', '4 / 3', '1 / 1', '9 / 16', '4 / 5'];
+
+const COLUMNS = 5;
+const TILES_PER_COL = 4;
+
+const columns = Array.from({ length: COLUMNS }, (_, c) =>
+  Array.from({ length: TILES_PER_COL }, (_, r) => {
+    const i = c * TILES_PER_COL + r;
+    return {
+      label: names.length ? names[i % names.length] : `Project ${i + 1}`,
+      gradient: gradients[i % gradients.length],
+      ratio: ratios[(i + c) % ratios.length],
+      dark: i % gradients.length === 5,
+    };
+  })
+);
+
+// Per-column motion: alternating direction, varied speed.
+const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
+  dir: c % 2 === 0 ? 'up' : 'down',
+  dur: 38 + (c % 3) * 8, // 38, 46, 54, 38, 46
+}));
+---
+
+<section class="hero-wall" aria-label="Intro">
+  <div class="wall" aria-hidden="true">
+    {
+      columns.map((col, c) => (
+        <div class="wall__col">
+          <div
+            class="wall__track"
+            data-wall-track
+            data-dir={colMeta[c].dir}
+            data-dur={colMeta[c].dur}
+          >
+            {[...col, ...col].map((tile) => (
+              <div
+                class="tile"
+                data-dark={tile.dark}
+                style={`aspect-ratio:${tile.ratio};background:${tile.gradient}`}
+              >
+                <span class="tile__label">{tile.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="hero-wall__scrim" aria-hidden="true"></div>
+
+  <div class="hero-wall__content container">
+    <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
+    <h1 class="hero-wall__title" data-split>
+      Designing digital experiences that feel intuitive &amp; alive
+    </h1>
+    <p class="hero-wall__sub" data-reveal>
+      Fintech · Logistics · Edu-tech · E-sport — design &amp; build
+    </p>
+    <a class="pill" href="#work" data-reveal data-magnetic>See projects ↓</a>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-wall-track]').forEach((track) => {
+      const down = track.dataset.dir === 'down';
+      const dur = parseFloat(track.dataset.dur || '40');
+      // Track holds two identical tile sets; -50% advances exactly one set.
+      gsap.fromTo(
+        track,
+        { yPercent: down ? -50 : 0 },
+        { yPercent: down ? 0 : -50, duration: dur, ease: 'none', repeat: -1 }
+      );
+    });
+  }
+</script>
+
+<style>
+  .hero-wall {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .wall {
+    position: absolute;
+    inset: -12% 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wall__col {
+    flex: 0 0 clamp(170px, 16vw, 270px);
+  }
+
+  .wall__col:nth-child(even) {
+    margin-top: -5%;
+  }
+
+  .wall__track {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    will-change: transform;
+  }
+
+  .tile {
+    width: 100%;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgb(0 0 0 / 7%);
+  }
+
+  .tile__label {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    background: rgb(255 255 255 / 72%);
+    padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .tile[data-dark='true'] .tile__label {
+    color: #fff;
+    background: rgb(0 0 0 / 38%);
+  }
+
+  /* dissolve the wall into the page at top and bottom */
+  .hero-wall::before,
+  .hero-wall::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 30%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-wall::before {
+    top: 0;
+    background: linear-gradient(var(--bg), transparent);
+  }
+
+  .hero-wall::after {
+    bottom: 0;
+    background: linear-gradient(transparent, var(--bg));
+  }
+
+  /* readability scrim behind the headline */
+  .hero-wall__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 58% 46% at 50% 50%,
+      rgb(245 245 245 / 0.86) 0%,
+      rgb(245 245 245 / 0.62) 38%,
+      transparent 70%
+    );
+  }
+
+  .hero-wall__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .hero-wall__title {
+    font-size: var(--text-display);
+    max-width: 18ch;
+  }
+
+  .hero-wall__sub {
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 900px) {
+    .wall__col:nth-child(n + 5) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .wall__col:nth-child(n + 3) {
+      display: none;
+    }
+  }
+</style>
