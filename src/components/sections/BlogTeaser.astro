@@ -12,10 +12,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     {
       posts.map((post) => (
         <li>
-          <a class="rowlink" href="#" aria-disabled="true" title="Post pages coming in next phase">
+          <span class="rowlink" title="Post pages coming in next phase">
             <span>{post.data.title}</span>
             <span class="arrow" aria-hidden="true">→</span>
-          </a>
+          </span>
         </li>
       ))
     }
