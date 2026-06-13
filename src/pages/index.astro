@@ -2,11 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/sections/Hero.astro';
+import Marquee from '../components/Marquee.astro';
 ---
 
 <Layout>
   <Nav />
   <main>
     <Hero />
+    <Marquee
+      items={['UX/UI', 'Design Systems', 'Motion', 'Figma Plugins', 'Product Design']}
+    />
   </main>
 </Layout>
