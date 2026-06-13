@@ -39,6 +39,12 @@ a {
   margin-inline: auto;
 }
 
+@media (max-width: 700px) {
+  .container {
+    padding-inline: 1.25rem;
+  }
+}
+
 .section {
   padding-block: var(--space-section);
 }
