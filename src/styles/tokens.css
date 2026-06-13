@@ -30,5 +30,5 @@
   /* rhythm */
   --space-section: clamp(5rem, 12vh, 9rem);
   --space-gutter: clamp(1.25rem, 4vw, 4rem);
-  --container: 80rem;
+  --container: 95rem;
 }
