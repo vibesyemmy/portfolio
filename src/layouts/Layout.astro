@@ -1,0 +1,29 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource/fragment-mono';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Opeyemi Ajagbe — Senior Product Designer',
+  description = 'Senior Product Designer with 9+ years across Fintech, Logistics, Edu-tech, and E-sport. Design systems, product design, and Figma tooling.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
