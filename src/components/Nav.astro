@@ -1,0 +1,66 @@
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="/">Opeyemi</a>
+    <div class="nav__links">
+      <a href="#work">Work</a>
+      <a href="#blog">Blog</a>
+      <a class="pill nav__cta" href="#contact" data-magnetic>Let's Talk</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav-wrap {
+    position: fixed;
+    inset-inline: 0;
+    top: 1rem;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .nav {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    border: 1px solid rgb(0 0 0 / 12%);
+    border-radius: var(--radius-pill);
+    background: rgb(255 255 255 / 75%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+  }
+
+  .nav__brand {
+    font-weight: 700;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: var(--text-small);
+  }
+
+  .nav__links a:not(.pill) {
+    color: var(--ink-2);
+    transition: color 0.2s;
+  }
+
+  .nav__links a:not(.pill):hover {
+    color: var(--ink);
+  }
+
+  .nav__cta {
+    padding: 0.5rem 1.1rem;
+  }
+
+  @media (max-width: 480px) {
+    .nav__links a:not(.pill) {
+      display: none;
+    }
+  }
+</style>
