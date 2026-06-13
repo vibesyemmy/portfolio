@@ -84,17 +84,25 @@ export function initHeroBackground(host: HTMLElement): void {
 
   const io = new IntersectionObserver(([entry]) => {
     running = entry.isIntersecting && !document.hidden;
-    if (running) loop();
+    if (running) start();
   });
   io.observe(host);
 
   document.addEventListener('visibilitychange', () => {
     running = !document.hidden;
-    if (running) loop();
+    if (running) start();
   });
 
+  function start(): void {
+    if (rafId) return; // a frame chain is already live — never spawn a second
+    rafId = requestAnimationFrame(loop);
+  }
+
   function loop(): void {
-    if (!running) return;
+    if (!running) {
+      rafId = 0; // chain stops cleanly so start() can restart it later
+      return;
+    }
     pointer.lerp(target, 0.08);
 
     const pos = geometry.getAttribute('position') as THREE.BufferAttribute;
@@ -121,7 +129,7 @@ export function initHeroBackground(host: HTMLElement): void {
     renderer.render(scene, camera);
     rafId = requestAnimationFrame(loop);
   }
-  loop();
+  start();
 
   window.addEventListener('resize', () => {
     camera.aspect = host.clientWidth / host.clientHeight;
