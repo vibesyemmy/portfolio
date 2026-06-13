@@ -1,0 +1,83 @@
+---
+import { getCollection, render } from 'astro:content';
+
+const testimonials = (await getCollection('testimonials', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const rendered = await Promise.all(
+  testimonials.map(async (t) => ({ ...t, Content: (await render(t)).Content }))
+);
+
+const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
+---
+
+<section class="dark-section section" aria-label="Testimonials">
+  <div class="container">
+    <h2 class="h2" data-split>Success.</h2>
+    <div class="row" data-stagger>
+      {
+        rendered.map((t) => (
+          <figure class="quote">
+            <blockquote>
+              <t.Content />
+            </blockquote>
+            <figcaption>
+              — {t.data.author}, {t.data.role}
+              {t.data.company ? ` · ${t.data.company}` : ''}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+    <p class="logos" data-reveal>
+      {companies.map((c) => <span>{c}</span>)}
+    </p>
+  </div>
+</section>
+
+<style>
+  .row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(18rem, 24rem);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+  }
+
+  .quote {
+    background: var(--dark-surface);
+    border-radius: var(--radius-card);
+    padding: 1.5rem;
+  }
+
+  .quote blockquote {
+    font-size: var(--text-body);
+  }
+
+  .quote figcaption {
+    margin-top: 1rem;
+    color: var(--dark-ink-2);
+    font-size: var(--text-small);
+  }
+
+  .logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+    font-weight: 700;
+    color: var(--dark-ink-2);
+  }
+
+  .logos span {
+    transition: color 0.25s;
+  }
+
+  .logos span:hover {
+    color: var(--dark-ink);
+  }
+</style>
