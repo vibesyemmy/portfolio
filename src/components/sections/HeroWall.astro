@@ -36,7 +36,7 @@ const columns = Array.from({ length: COLUMNS }, (_, c) =>
 // Per-column motion: alternating direction, varied speed.
 const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   dir: c % 2 === 0 ? 'up' : 'down',
-  dur: 38 + (c % 3) * 8, // 38, 46, 54, 38, 46
+  dist: 80 + (c % 3) * 50, // 80, 130, 180, 80, 130 — px of scroll-parallax travel
 }));
 ---
 
@@ -49,7 +49,7 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
             class="wall__track"
             data-wall-track
             data-dir={colMeta[c].dir}
-            data-dur={colMeta[c].dur}
+            data-dist={colMeta[c].dist}
           >
             {[...col, ...col].map((tile) => (
               <div
@@ -82,18 +82,34 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 
 <script>
   import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Scroll-driven parallax: adjacent columns drift in opposite directions as
+  // the hero scrolls past. Nothing moves at rest. Gated for reduced-motion.
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll<HTMLElement>('[data-wall-track]').forEach((track) => {
-      const down = track.dataset.dir === 'down';
-      const dur = parseFloat(track.dataset.dur || '40');
-      // Track holds two identical tile sets; -50% advances exactly one set.
-      gsap.fromTo(
-        track,
-        { yPercent: down ? -50 : 0 },
-        { yPercent: down ? 0 : -50, duration: dur, ease: 'none', repeat: -1 }
-      );
-    });
+    const section = document.querySelector<HTMLElement>('.hero-wall');
+    if (section) {
+      document.querySelectorAll<HTMLElement>('[data-wall-track]').forEach((track) => {
+        const down = track.dataset.dir === 'down';
+        const dist = parseFloat(track.dataset.dist || '120');
+        gsap.fromTo(
+          track,
+          { y: 0 },
+          {
+            y: down ? dist : -dist,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
+      });
+    }
   }
 </script>
 
@@ -109,7 +125,7 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 
   .wall {
     position: absolute;
-    inset: -12% 0;
+    inset: -20% 0;
     display: flex;
     justify-content: center;
     gap: 1.25rem;
