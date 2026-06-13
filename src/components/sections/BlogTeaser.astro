@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<section class="section container" id="blog" aria-label="Blog">
+  <h2 class="h2" data-split>Newest insights.</h2>
+  <ul class="list" data-stagger>
+    {
+      posts.map((post) => (
+        <li>
+          <a class="rowlink" href="#" aria-disabled="true" title="Post pages coming in next phase">
+            <span>{post.data.title}</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+  }
+
+  .rowlink {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-weight: 500;
+    transition: padding-left 0.25s ease;
+  }
+
+  li:last-child .rowlink {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .rowlink:hover {
+    padding-left: 0.75rem;
+  }
+
+  .arrow {
+    color: var(--ink-2);
+  }
+</style>
