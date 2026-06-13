@@ -12,6 +12,25 @@
   </div>
 </section>
 
+<script>
+  const host = document.getElementById('hero-canvas');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (host && !reduced) {
+    const io = new IntersectionObserver(async ([entry]) => {
+      if (!entry.isIntersecting) return;
+      io.disconnect();
+      try {
+        const { initHeroBackground } = await import('../../scripts/hero-bg');
+        initHeroBackground(host);
+      } catch {
+        // CSS gradient fallback stays — no console spam
+      }
+    });
+    io.observe(host);
+  }
+</script>
+
 <style>
   .hero {
     position: relative;
