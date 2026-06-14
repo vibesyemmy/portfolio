@@ -37,19 +37,28 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
 </section>
 
 <style>
-  /* much larger section title (hero display scale), outlined instead of filled */
+  /* oversized faded outline title, dropped behind the cards which overlap it */
   .h2 {
-    font-size: var(--text-display);
+    position: relative;
+    z-index: 0;
+    font-size: clamp(2.75rem, 13vw, 12rem);
+    line-height: 0.9;
     color: transparent;
-    -webkit-text-stroke: 1.5px var(--dark-ink);
+    -webkit-text-stroke: 1.5px rgb(255 255 255 / 22%);
+    /* let the card row overlap the lower half of the title */
+    margin-bottom: -0.45em;
+    white-space: nowrap;
+    pointer-events: none;
   }
 
   .row {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(18rem, 24rem);
     gap: 1.25rem;
-    margin-top: 2.5rem;
+    margin-top: 0;
     overflow-x: auto;
     padding-bottom: 1rem;
     scrollbar-width: thin;
