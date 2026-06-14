@@ -30,6 +30,9 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   dir: c % 2 === 0 ? 'up' : 'down',
   dist: 80 + (c % 3) * 50, // 80, 130, 180, 80, 130 — px of scroll-parallax travel
 }));
+
+// Mobile collapses to a single-column list: cards shown before the show-more toggle
+const MOBILE_VISIBLE = 6;
 ---
 
 <section class="hero-wall" id="work" aria-label="Intro">
@@ -68,6 +71,23 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   </div>
 
   <div class="hero-wall__fade" aria-hidden="true"></div>
+
+  <div class="wall-mobile container">
+    <ul class="wall-mobile__list" data-wall-mobile-list data-collapsed>
+      {
+        imageFiles.map((src, i) => (
+          <li class="wall-mobile__item" data-extra={i >= MOBILE_VISIBLE ? 'true' : 'false'}>
+            <img src={src} alt="" loading="lazy" />
+          </li>
+        ))
+      }
+    </ul>
+    {imageFiles.length > MOBILE_VISIBLE && (
+      <button class="wall-mobile__toggle" data-wall-toggle aria-expanded="false">
+        Show more
+      </button>
+    )}
+  </div>
 </section>
 
 <script>
@@ -101,6 +121,17 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
       });
     }
   }
+
+  // Mobile single-column wall: show more / show less toggle
+  document.querySelectorAll<HTMLButtonElement>('[data-wall-toggle]').forEach((btn) => {
+    const list = document.querySelector<HTMLElement>('[data-wall-mobile-list]');
+    if (!list) return;
+    btn.addEventListener('click', () => {
+      const nowCollapsed = list.toggleAttribute('data-collapsed');
+      btn.setAttribute('aria-expanded', String(!nowCollapsed));
+      btn.textContent = nowCollapsed ? 'Show more' : 'Show less';
+    });
+  });
 </script>
 
 <style>
@@ -204,6 +235,52 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
     background: linear-gradient(to bottom, transparent, var(--bg));
   }
 
+  /* mobile single-column expandable list (replaces the parallax wall) */
+  .wall-mobile {
+    display: none;
+    width: 100%;
+    padding-bottom: clamp(2rem, 6vh, 4rem);
+  }
+
+  .wall-mobile__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .wall-mobile__list[data-collapsed] .wall-mobile__item[data-extra='true'] {
+    display: none;
+  }
+
+  .wall-mobile__item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgb(0 0 0 / 7%);
+  }
+
+  .wall-mobile__toggle {
+    display: block;
+    margin: 1.25rem auto 0;
+    padding: 0.65rem 1.6rem;
+    border: 1px solid rgb(0 0 0 / 14%);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: var(--text-small);
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .wall-mobile__toggle:hover {
+    border-color: rgb(0 0 0 / 28%);
+  }
+
   @media (max-width: 900px) {
     .wall__col:nth-child(n + 4) {
       display: none;
@@ -216,9 +293,19 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
     }
   }
 
-  @media (max-width: 560px) {
-    .wall__col:nth-child(n + 3) {
+  /* mobile: swap the parallax wall for the single-column expandable list */
+  @media (max-width: 600px) {
+    .hero-wall {
+      min-height: 100svh;
+    }
+
+    .wall,
+    .hero-wall__fade {
       display: none;
+    }
+
+    .wall-mobile {
+      display: block;
     }
   }
 </style>
