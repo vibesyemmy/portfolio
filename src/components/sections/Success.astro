@@ -8,8 +8,6 @@ const testimonials = (await getCollection('testimonials', ({ data }) => !data.dr
 const rendered = await Promise.all(
   testimonials.map(async (t) => ({ ...t, Content: (await render(t)).Content }))
 );
-
-const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
 ---
 
 <section class="dark-section section" aria-label="Testimonials">
@@ -30,9 +28,6 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
         ))
       }
     </div>
-    <ul class="logos" data-reveal>
-      {companies.map((c) => <li>{c}</li>)}
-    </ul>
   </div>
 </section>
 
@@ -56,7 +51,7 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
     z-index: 1;
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(18rem, 24rem);
+    grid-auto-columns: minmax(20rem, 27rem);
     gap: 1.25rem;
     margin-top: 0;
     overflow-x: auto;
@@ -86,24 +81,5 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
     margin-top: 1rem;
     color: var(--dark-ink-2);
     font-size: var(--text-small);
-  }
-
-  .logos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 3rem;
-    list-style: none;
-    padding: 0;
-    font-weight: 700;
-    color: var(--dark-ink-2);
-  }
-
-  .logos li {
-    transition: color 0.25s;
-  }
-
-  .logos li:hover {
-    color: var(--dark-ink);
   }
 </style>
