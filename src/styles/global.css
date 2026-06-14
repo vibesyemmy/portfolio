@@ -5,15 +5,12 @@
   margin: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* No CSS smooth-scroll: Lenis owns the scroll position and anchor links are
+   routed through lenis.scrollTo() in smooth-scroll.ts. A native smooth-scroll
+   here would fight Lenis and stutter. Reduced-motion users (no Lenis) fall back
+   to instant native jumps, cleared by scroll-padding-top below. */
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {

@@ -190,9 +190,9 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
     gap: 0.45rem;
     padding: 0.35rem 0.7rem 0.35rem 0.5rem;
     border-radius: 999px;
-    background: rgb(255 255 255 / 80%);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    /* solid translucent (no backdrop blur): visually identical at this size and
+       avoids re-sampling the backdrop every frame while the section skews */
+    background: rgb(255 255 255 / 92%);
     color: var(--ink);
     font-size: 0.8rem;
     font-weight: 600;

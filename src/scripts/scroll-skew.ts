@@ -13,8 +13,10 @@ gsap.registerPlugin(ScrollTrigger);
  * is contained by `main { overflow-x: clip }` in global.css.
  */
 
-const MAX_ANGLE = 15; // degrees, clamp
-const DAMPING = 400; // higher = calmer / less reactive to velocity
+const MAX_ANGLE = 5; // degrees, clamp — kept small so the lean reads as a subtle
+// diagonal rather than a jarring tilt, and so the skewed sections sweep a much
+// smaller repaint/overflow area each frame (smoother, cheaper)
+const DAMPING = 550; // higher = calmer / less reactive to velocity spikes
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

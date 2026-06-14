@@ -39,10 +39,19 @@ if (!reduced) {
   document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
     const xTo = gsap.quickTo(el, 'x', { duration: 0.4, ease: 'power3' });
     const yTo = gsap.quickTo(el, 'y', { duration: 0.4, ease: 'power3' });
-    el.addEventListener('mousemove', (e) => {
+    // Measure the rest position once per hover instead of on every mousemove —
+    // avoids a forced layout read in the pointer hot path (and the cached centre
+    // is the correct reference: pull is relative to home, not the pulled state).
+    let cx = 0;
+    let cy = 0;
+    el.addEventListener('mouseenter', () => {
       const r = el.getBoundingClientRect();
-      xTo((e.clientX - (r.left + r.width / 2)) * 0.3);
-      yTo((e.clientY - (r.top + r.height / 2)) * 0.3);
+      cx = r.left + r.width / 2;
+      cy = r.top + r.height / 2;
+    });
+    el.addEventListener('mousemove', (e) => {
+      xTo((e.clientX - cx) * 0.3);
+      yTo((e.clientY - cy) * 0.3);
     });
     el.addEventListener('mouseleave', () => {
       xTo(0);
