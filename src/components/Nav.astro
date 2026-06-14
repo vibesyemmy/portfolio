@@ -7,6 +7,7 @@ import fs from 'node:fs';
 const hasIcon = (name: string) => fs.existsSync(`public/icons/${name}.json`);
 const workIcon = hasIcon('work');
 const blogIcon = hasIcon('blog');
+const aboutIcon = hasIcon('avatar'); // the About item uses the avatar Lordicon
 const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
 ---
 
@@ -41,6 +42,20 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
           )
         }
         <span>Blog</span>
+      </a>
+      <a class="nav__link" href="#about">
+        {
+          aboutIcon && (
+            <lord-icon
+              class="nav__icon"
+              src="/icons/avatar.json"
+              trigger="hover"
+              target=".nav__link"
+              colors={`primary:${ICON_COLOR}`}
+            />
+          )
+        }
+        <span>About</span>
       </a>
       <a class="pill nav__cta" href="#contact" data-magnetic>Let's Talk</a>
     </div>
