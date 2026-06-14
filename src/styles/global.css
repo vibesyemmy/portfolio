@@ -46,6 +46,14 @@ main {
   overflow-x: clip;
 }
 
+/* Overlap adjacent sections by 1px. The velocity-skew transforms each section
+   independently, and at their shared edge the two tilted layers' anti-aliasing
+   can reveal a hairline of the page background (most visible between stacked
+   dark sections). The 1px overlap lets each section's background cover it. */
+main > * + * {
+  margin-top: -1px;
+}
+
 img {
   max-width: 100%;
   display: block;
