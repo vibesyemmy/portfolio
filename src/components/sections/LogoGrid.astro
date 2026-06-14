@@ -30,10 +30,14 @@ const placeholders = [
   'Cadence',
   'Vector',
 ];
+
+// Columns adapt to the count so the logos always balance across two rows.
+const count = logos.length || placeholders.length;
+const cols = Math.ceil(count / 2);
 ---
 
 <section class="logos" aria-label="Companies I've worked with">
-  <ul class="logos__grid container">
+  <ul class="logos__grid container" style={`--logo-cols:${cols}`}>
     {
       logos.length
         ? logos.map((src) => (
@@ -68,7 +72,7 @@ const placeholders = [
     /* narrower than the page container so the logos sit closer together */
     max-width: 58rem;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(var(--logo-cols, 6), 1fr);
     gap: clamp(2rem, 4vh, 3.25rem) clamp(1rem, 2vw, 2rem);
     align-items: center;
     justify-items: center;
