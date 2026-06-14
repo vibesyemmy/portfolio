@@ -149,17 +149,21 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
        column stretch to the same height for one even bottom edge */
     flex: 1 1 0;
     min-height: 0;
+    /* match the section container width so the wall lines up with the rest */
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
     display: flex;
     align-items: stretch;
-    justify-content: center;
     gap: 0.5rem;
-    padding-inline: 1.25rem;
     overflow: visible;
     pointer-events: none;
   }
 
   .wall__col {
-    flex: 0 0 clamp(170px, 16vw, 270px);
+    /* grow equally to fill the wall width so the columns span the full section */
+    flex: 1 1 0;
+    min-width: 0;
     /* each column crops its own parallax with rounded corners, so cards stay
        rounded as they scroll instead of being chopped flat by the wrapper */
     overflow: hidden;
@@ -202,6 +206,12 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   @media (max-width: 900px) {
     .wall__col:nth-child(n + 5) {
       display: none;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .wall {
+      padding-inline: 1.25rem;
     }
   }
 
