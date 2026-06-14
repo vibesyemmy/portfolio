@@ -11,7 +11,7 @@ const imageFiles: string[] = fs
   .sort()
   .map((f: string) => `/demo-img/${encodeURIComponent(f)}`);
 
-const COLUMNS = 5;
+const COLUMNS = 4;
 
 // Round-robin the images into columns, then pad short columns so every column
 // overfills the viewport for the parallax.
@@ -204,7 +204,7 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   }
 
   @media (max-width: 900px) {
-    .wall__col:nth-child(n + 5) {
+    .wall__col:nth-child(n + 4) {
       display: none;
     }
   }
