@@ -1,0 +1,141 @@
+---
+import fs from 'node:fs';
+
+// Real logos: drop SVG/PNG files into public/logos/ and they replace the
+// placeholders automatically. Until then, generic placeholder wordmarks render.
+const LOGO_DIR = 'public/logos';
+let logoFiles: string[] = [];
+try {
+  logoFiles = fs
+    .readdirSync(LOGO_DIR)
+    .filter((f: string) => /\.(svg|png|jpe?g|webp|avif)$/i.test(f))
+    .sort();
+} catch {
+  // public/logos/ doesn't exist yet — fall back to placeholders
+}
+const logos = logoFiles.map((f) => `/logos/${encodeURIComponent(f)}`);
+
+// Placeholder wordmarks (fictional — swap for the real companies you worked with).
+const placeholders = [
+  'Acme',
+  'Lumen',
+  'Northwind',
+  'Quasar',
+  'Vertex',
+  'Hyperion',
+  'Cobalt',
+  'Monarch',
+  'Atlas',
+  'Pinnacle',
+  'Cadence',
+  'Vector',
+];
+---
+
+<section class="logos" aria-label="Companies I've worked with">
+  <ul class="logos__grid container">
+    {
+      logos.length
+        ? logos.map((src) => (
+            <li class="logos__item">
+              <img src={src} alt="" loading="lazy" />
+            </li>
+          ))
+        : placeholders.map((name, i) => (
+            <li class="logos__item logos__item--ph">
+              <span class="logos__logo">
+                <svg viewBox="0 0 20 20" aria-hidden="true" class="logos__mark">
+                  {i % 3 === 0 && <circle cx="10" cy="10" r="8" />}
+                  {i % 3 === 1 && <rect x="2.5" y="2.5" width="15" height="15" rx="4.5" />}
+                  {i % 3 === 2 && <path d="M10 2 L18 17 L2 17 Z" />}
+                </svg>
+                <span class="logos__name">{name}</span>
+              </span>
+            </li>
+          ))
+    }
+  </ul>
+</section>
+
+<style>
+  .logos {
+    padding-block: clamp(3rem, 8vh, 6rem);
+  }
+
+  .logos__grid {
+    list-style: none;
+    padding-inline: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(2rem, 4vh, 3.25rem) clamp(1rem, 2vw, 2rem);
+    align-items: center;
+    justify-items: center;
+  }
+
+  .logos__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+  }
+
+  /* real-logo image */
+  .logos__item img {
+    max-height: 2rem;
+    width: auto;
+    filter: grayscale(1);
+    opacity: 0.65;
+    transition: opacity 0.25s, filter 0.25s;
+  }
+
+  .logos__item:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+
+  /* placeholder wordmark */
+  .logos__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink-2);
+    opacity: 0.75;
+    transition: color 0.25s, opacity 0.25s;
+  }
+
+  .logos__item--ph:hover .logos__logo {
+    color: var(--ink);
+    opacity: 1;
+  }
+
+  .logos__mark {
+    width: 1.35rem;
+    height: 1.35rem;
+    fill: currentColor;
+    flex: none;
+  }
+
+  .logos__name {
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 900px) {
+    .logos__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .logos__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .logos__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

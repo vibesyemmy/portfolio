@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import HeroWall from '../components/sections/HeroWall.astro';
-import Marquee from '../components/Marquee.astro';
+import LogoGrid from '../components/sections/LogoGrid.astro';
 import Success from '../components/sections/Success.astro';
 import BlogTeaser from '../components/sections/BlogTeaser.astro';
 import ContactCTA from '../components/sections/ContactCTA.astro';
@@ -12,9 +12,7 @@ import ContactCTA from '../components/sections/ContactCTA.astro';
   <Nav />
   <main>
     <HeroWall />
-    <Marquee
-      items={['UX/UI', 'Design Systems', 'Motion', 'Figma Plugins', 'Product Design']}
-    />
+    <LogoGrid />
     <Success />
     <BlogTeaser />
     <ContactCTA />
