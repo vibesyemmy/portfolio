@@ -1,9 +1,47 @@
+---
+import fs from 'node:fs';
+
+// Animated nav icons (Lordicon). Drop a Lordicon JSON export at
+// public/icons/work.json / public/icons/blog.json and it's picked up
+// automatically; until then the link renders as plain text (no broken state).
+const hasIcon = (name: string) => fs.existsSync(`public/icons/${name}.json`);
+const workIcon = hasIcon('work');
+const blogIcon = hasIcon('blog');
+const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
+---
+
 <header class="nav-wrap">
   <nav class="nav" aria-label="Primary">
     <a class="nav__brand" href="/">Opeyemi</a>
     <div class="nav__links">
-      <a href="#work">Work</a>
-      <a href="#blog">Blog</a>
+      <a class="nav__link" href="#work">
+        {
+          workIcon && (
+            <lord-icon
+              class="nav__icon"
+              src="/icons/work.json"
+              trigger="hover"
+              target=".nav__link"
+              colors={`primary:${ICON_COLOR}`}
+            />
+          )
+        }
+        <span>Work</span>
+      </a>
+      <a class="nav__link" href="#blog">
+        {
+          blogIcon && (
+            <lord-icon
+              class="nav__icon"
+              src="/icons/blog.json"
+              trigger="hover"
+              target=".nav__link"
+              colors={`primary:${ICON_COLOR}`}
+            />
+          )
+        }
+        <span>Blog</span>
+      </a>
       <a class="pill nav__cta" href="#contact" data-magnetic>Let's Talk</a>
     </div>
   </nav>
@@ -54,6 +92,18 @@
 
   .nav__links a:not(.pill):hover {
     color: var(--ink);
+  }
+
+  /* icon + label sit on one line; gap collapses to nothing when no icon */
+  .nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .nav__icon {
+    width: 1.15rem;
+    height: 1.15rem;
   }
 
   .nav__cta {
