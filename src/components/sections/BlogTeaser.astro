@@ -85,6 +85,12 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
                 </article>
               ))}
             </div>
+
+            <div class="blog__cta" data-reveal>
+              <a class="pill pill--ghost" href="/blog" data-magnetic>
+                View all stories
+              </a>
+            </div>
           </>
         )
       }
@@ -241,6 +247,13 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  /* link to the full blog index (built later) */
+  .blog__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2rem, 4vw, 3rem);
   }
 
   @media (max-width: 860px) {
