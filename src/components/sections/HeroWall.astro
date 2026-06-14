@@ -41,6 +41,17 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 ---
 
 <section class="hero-wall" aria-label="Intro">
+  <div class="hero-wall__content container">
+    <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
+    <h1 class="hero-wall__title" data-split>
+      Designing digital experiences that feel intuitive &amp; alive
+    </h1>
+    <p class="hero-wall__sub" data-reveal>
+      Fintech · Logistics · Edu-tech · E-sport — design &amp; build
+    </p>
+    <a class="pill" href="#work" data-reveal data-magnetic>See projects ↓</a>
+  </div>
+
   <div class="wall" aria-hidden="true">
     {
       columns.map((col, c) => (
@@ -64,19 +75,6 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
         </div>
       ))
     }
-  </div>
-
-  <div class="hero-wall__scrim" aria-hidden="true"></div>
-
-  <div class="hero-wall__content container">
-    <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
-    <h1 class="hero-wall__title" data-split>
-      Designing digital experiences that feel intuitive &amp; alive
-    </h1>
-    <p class="hero-wall__sub" data-reveal>
-      Fintech · Logistics · Edu-tech · E-sport — design &amp; build
-    </p>
-    <a class="pill" href="#work" data-reveal data-magnetic>See projects ↓</a>
   </div>
 </section>
 
@@ -117,20 +115,46 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   .hero-wall {
     position: relative;
     min-height: 100svh;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     isolation: isolate;
   }
 
+  .hero-wall__content {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 auto;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding-block: clamp(7rem, 16vh, 11rem) clamp(2.5rem, 5vh, 4rem);
+  }
+
+  .hero-wall__title {
+    font-size: var(--text-display);
+    max-width: 18ch;
+  }
+
+  .hero-wall__sub {
+    color: var(--ink-2);
+    max-width: 42ch;
+  }
+
   .wall {
-    position: absolute;
-    inset: -20% 0;
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     justify-content: center;
     gap: 1.25rem;
+    padding-inline: 1.25rem;
+    overflow: hidden;
     pointer-events: none;
-    z-index: 0;
+    /* cards emerge from the page background at the top edge */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%);
+    mask-image: linear-gradient(to bottom, transparent, #000 14%);
   }
 
   .wall__col {
@@ -138,7 +162,7 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   }
 
   .wall__col:nth-child(even) {
-    margin-top: -5%;
+    margin-top: -6%;
   }
 
   .wall__track {
@@ -174,60 +198,6 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   .tile[data-dark='true'] .tile__label {
     color: #fff;
     background: rgb(0 0 0 / 38%);
-  }
-
-  /* dissolve the wall into the page at top and bottom */
-  .hero-wall::before,
-  .hero-wall::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 30%;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .hero-wall::before {
-    top: 0;
-    background: linear-gradient(var(--bg), transparent);
-  }
-
-  .hero-wall::after {
-    bottom: 0;
-    background: linear-gradient(transparent, var(--bg));
-  }
-
-  /* readability scrim behind the headline */
-  .hero-wall__scrim {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: radial-gradient(
-      ellipse 58% 46% at 50% 50%,
-      rgb(245 245 245 / 0.86) 0%,
-      rgb(245 245 245 / 0.62) 38%,
-      transparent 70%
-    );
-  }
-
-  .hero-wall__content {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    justify-items: center;
-    text-align: center;
-    gap: 1.5rem;
-  }
-
-  .hero-wall__title {
-    font-size: var(--text-display);
-    max-width: 18ch;
-  }
-
-  .hero-wall__sub {
-    color: var(--ink-2);
   }
 
   @media (max-width: 900px) {
