@@ -129,6 +129,7 @@ const MOBILE_VISIBLE = 6;
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { attachCursorFollower } from '../../scripts/cursor-follower';
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -166,50 +167,8 @@ const MOBILE_VISIBLE = 6;
   }
 
   // "View Project" cursor follower over the wall (fine-pointer devices only)
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const wall = document.querySelector<HTMLElement>('.wall');
-  if (finePointer && !reducedMotion && wall) {
-    const pill = document.createElement('div');
-    pill.textContent = 'View Project';
-    Object.assign(pill.style, {
-      position: 'fixed',
-      left: '0',
-      top: '0',
-      zIndex: '300',
-      padding: '0.55rem 1.1rem',
-      borderRadius: '999px',
-      background: '#fff',
-      color: '#0a0a0a',
-      fontFamily: 'var(--font-sans)',
-      fontWeight: '600',
-      fontSize: '0.8rem',
-      lineHeight: '1',
-      letterSpacing: '0.01em',
-      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.18)',
-      pointerEvents: 'none',
-      whiteSpace: 'nowrap',
-      willChange: 'transform',
-    });
-    document.body.appendChild(pill);
-
-    gsap.set(pill, { xPercent: -50, yPercent: -50, scale: 0.7, autoAlpha: 0 });
-    const xTo = gsap.quickTo(pill, 'x', { duration: 0.45, ease: 'power3' });
-    const yTo = gsap.quickTo(pill, 'y', { duration: 0.45, ease: 'power3' });
-
-    wall.style.cursor = 'none';
-    wall.addEventListener('pointerenter', (e) => {
-      gsap.set(pill, { x: e.clientX, y: e.clientY });
-      gsap.to(pill, { autoAlpha: 1, scale: 1, duration: 0.3, ease: 'power3' });
-    });
-    wall.addEventListener('pointermove', (e) => {
-      xTo(e.clientX);
-      yTo(e.clientY);
-    });
-    wall.addEventListener('pointerleave', () => {
-      gsap.to(pill, { autoAlpha: 0, scale: 0.7, duration: 0.25, ease: 'power3' });
-    });
-  }
+  if (wall) attachCursorFollower([wall], 'View Project');
 
   // Mobile single-column wall: show more / show less toggle
   document.querySelectorAll<HTMLButtonElement>('[data-wall-toggle]').forEach((btn) => {

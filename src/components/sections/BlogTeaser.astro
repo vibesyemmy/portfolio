@@ -98,6 +98,14 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
   </div>
 </section>
 
+<script>
+  import { attachCursorFollower } from '../../scripts/cursor-follower';
+
+  // Same cursor-follower as the project wall, over every blog card.
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.bcard'));
+  attachCursorFollower(cards, 'Read Story');
+</script>
+
 <style>
   /* tighter vertical padding than the default section rhythm */
   .blog {
