@@ -1,53 +1,219 @@
 ---
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const [featured, ...rest] = posts;
+const moreStories = rest.slice(0, 3);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Placeholder gradient headers until posts get real cover images. Cycled per card.
+const gradients = [
+  'linear-gradient(135deg, #b6ecf7, #56c4e8)',
+  'linear-gradient(135deg, #ffd9a8, #ff9a8b 55%, #ff6a88)',
+  'linear-gradient(135deg, #aecbff, #5b8def)',
+  'linear-gradient(135deg, #dcbcff, #ad79ff)',
+];
+const AUTHOR = 'Opeyemi';
 ---
 
-<section class="section container" id="blog" aria-label="Blog">
-  <h2 class="h2" data-split>Newest insights.</h2>
-  <ul class="list" data-stagger>
-    {
-      posts.map((post) => (
-        <li>
-          <span class="rowlink" title="Post pages coming in next phase">
-            <span>{post.data.title}</span>
-            <span class="arrow" aria-hidden="true">→</span>
-          </span>
-        </li>
-      ))
-    }
-  </ul>
+<section class="blog dark-section section" id="blog" aria-label="Blog">
+  <div class="container">
+    <div class="blog__panel">
+      {
+        featured && (
+          <div class="blog__featured">
+            <div class="blog__intro" data-reveal>
+              <h2 class="blog__title">{featured.data.title}</h2>
+              <p class="blog__lead">{featured.data.description}</p>
+              <span class="pill blog__readmore">Read More</span>
+            </div>
+
+            <article class="bcard bcard--featured" data-reveal>
+              <div class="bcard__media" style={`background:${gradients[0]}`}>
+                <span class="bcard__badge">{AUTHOR}</span>
+              </div>
+              <div class="bcard__body">
+                <time class="bcard__date">{fmtDate(featured.data.pubDate)}</time>
+                <h3 class="bcard__title">{featured.data.title}</h3>
+                <p class="bcard__desc">{featured.data.description}</p>
+              </div>
+            </article>
+          </div>
+        )
+      }
+
+      {
+        moreStories.length > 0 && (
+          <>
+            <h3 class="blog__more" data-reveal>More Stories</h3>
+            <div class="blog__grid" data-stagger>
+              {moreStories.map((post, i) => (
+                <article class="bcard">
+                  <div
+                    class="bcard__media"
+                    style={`background:${gradients[(i + 1) % gradients.length]}`}
+                  >
+                    <span class="bcard__badge">{AUTHOR}</span>
+                  </div>
+                  <div class="bcard__body">
+                    <time class="bcard__date">{fmtDate(post.data.pubDate)}</time>
+                    <h3 class="bcard__title">{post.data.title}</h3>
+                    <p class="bcard__desc">{post.data.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
+        )
+      }
+    </div>
+  </div>
 </section>
 
 <style>
-  .list {
-    list-style: none;
-    padding: 0;
-    margin-top: 2rem;
+  /* light panel floating on the dark section */
+  .blog__panel {
+    color: var(--ink);
+    background:
+      radial-gradient(110% 70% at 0% 0%, rgb(251 152 38 / 7%), transparent 55%),
+      radial-gradient(110% 70% at 100% 0%, rgb(0 153 255 / 7%), transparent 55%),
+      var(--bg);
+    border-radius: clamp(1.25rem, 2vw, 1.75rem);
+    padding: clamp(1.5rem, 4vw, 3.75rem);
   }
 
-  .rowlink {
-    display: flex;
-    justify-content: space-between;
+  /* featured row: intro + large card */
+  .blog__featured {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(1.5rem, 4vw, 4rem);
     align-items: center;
-    padding-block: 1.25rem;
-    border-top: 1px solid var(--line);
-    font-weight: 500;
-    transition: padding-left 0.25s ease;
   }
 
-  li:last-child .rowlink {
-    border-bottom: 1px solid var(--line);
+  .blog__intro {
+    display: grid;
+    gap: 1.5rem;
+    align-content: center;
   }
 
-  .rowlink:hover {
-    padding-left: 0.75rem;
+  .blog__title {
+    font-size: clamp(2rem, 3.4vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    max-width: 14ch;
   }
 
-  .arrow {
+  .blog__lead {
     color: var(--ink-2);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    max-width: 44ch;
+  }
+
+  .blog__readmore {
+    justify-self: start;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid rgb(0 0 0 / 6%);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 10%);
+    cursor: pointer;
+  }
+
+  /* cards */
+  .bcard {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid rgb(0 0 0 / 6%);
+    border-radius: 1.1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 6%);
+  }
+
+  .bcard__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+
+  .bcard--featured .bcard__media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .bcard__badge {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.7rem 0.35rem 0.5rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 80%);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .bcard__badge::before {
+    content: '';
+    width: 0.95rem;
+    height: 0.95rem;
+    border-radius: 5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+
+  .bcard__body {
+    display: grid;
+    gap: 0.55rem;
+    padding: clamp(1.1rem, 1.6vw, 1.6rem);
+  }
+
+  .bcard__date {
+    color: var(--ink-2);
+    font-size: 0.85rem;
+  }
+
+  .bcard__title {
+    font-size: clamp(1.15rem, 1.4vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .bcard__desc {
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  /* more stories grid */
+  .blog__more {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .blog__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  @media (max-width: 860px) {
+    .blog__featured {
+      grid-template-columns: 1fr;
+    }
+
+    .blog__grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
