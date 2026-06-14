@@ -158,6 +158,10 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 
   .wall__col {
     flex: 0 0 clamp(170px, 16vw, 270px);
+    /* each column crops its own parallax with rounded corners, so cards stay
+       rounded as they scroll instead of being chopped flat by the wrapper */
+    overflow: hidden;
+    border-radius: 14px;
   }
 
   .wall__track {
