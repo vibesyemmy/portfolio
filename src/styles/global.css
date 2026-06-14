@@ -56,17 +56,11 @@ a {
   text-decoration: none;
 }
 
+/* Capped at --container, but always keeps a 1.5rem gutter on each side until
+   the viewport is wide enough for the cap — content never touches the edges. */
 .container {
-  max-width: var(--container);
+  width: min(100% - 3rem, var(--container));
   margin-inline: auto;
-}
-
-/* Side gutter on tablet and below so content never touches the screen edges;
-   desktop (>1024px) stays full-bleed, capped by max-width. */
-@media (max-width: 1024px) {
-  .container {
-    padding-inline: 1.5rem;
-  }
 }
 
 .section {

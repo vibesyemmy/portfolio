@@ -214,10 +214,13 @@ const MOBILE_VISIBLE = 6;
        column stretch to the same height for one even bottom edge */
     flex: 1 1 0;
     min-height: 0;
-    /* match the section container width so the wall lines up with the rest */
-    width: 100%;
-    max-width: var(--container);
+    /* match the section container: capped at --container, always a 1.5rem
+       gutter each side until the cap so cards never touch the screen edges */
+    width: min(100% - 3rem, var(--container));
     margin-inline: auto;
+    /* overlap the opaque content panel by 1px so the panel/wall seam can't
+       flicker as a hairline under Lenis's sub-pixel scroll positions */
+    margin-top: -1px;
     display: flex;
     align-items: stretch;
     gap: 0.5rem;
@@ -317,12 +320,6 @@ const MOBILE_VISIBLE = 6;
   @media (max-width: 900px) {
     .wall__col:nth-child(n + 4) {
       display: none;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .wall {
-      padding-inline: 1.5rem;
     }
   }
 
