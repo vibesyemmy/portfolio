@@ -68,7 +68,7 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 const MOBILE_VISIBLE = 6;
 ---
 
-<section class="hero-wall" id="work" aria-label="Intro">
+<section class="hero-wall" aria-label="Intro">
   <div class="hero-wall__content">
     <div class="container hero-wall__inner">
       <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
@@ -78,11 +78,14 @@ const MOBILE_VISIBLE = 6;
       <p class="hero-wall__sub" data-reveal>
         Fintech · Logistics · Edu-tech · E-sport — design &amp; build
       </p>
-      <a class="pill" href="#contact" data-reveal data-magnetic>Let's talk</a>
+      <div class="hero-wall__actions" data-reveal>
+        <a class="pill" href="#contact" data-magnetic>Let's talk</a>
+        <a class="pill pill--ghost" href="#work" data-magnetic>View Projects</a>
+      </div>
     </div>
   </div>
 
-  <div class="wall" aria-hidden="true">
+  <div class="wall" id="work" aria-hidden="true">
     {
       columns.map((col, c) => (
         <div class="wall__col">
@@ -250,6 +253,13 @@ const MOBILE_VISIBLE = 6;
   .hero-wall__sub {
     color: var(--ink-2);
     max-width: 42ch;
+  }
+
+  .hero-wall__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
   }
 
   .wall {

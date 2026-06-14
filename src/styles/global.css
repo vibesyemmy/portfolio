@@ -106,6 +106,18 @@ h3 {
   color: var(--ink);
 }
 
+.pill--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgb(0 0 0 / 16%);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.pill--ghost:hover {
+  background: rgb(0 0 0 / 4%);
+  border-color: rgb(0 0 0 / 30%);
+}
+
 .dark-section {
   background: var(--dark-bg);
   color: var(--dark-ink);
