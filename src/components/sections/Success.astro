@@ -13,7 +13,14 @@ const rendered = await Promise.all(
 <section class="dark-section section" aria-label="Testimonials">
   <div class="container">
     <h2 class="h2" data-split>Testimonials</h2>
-    <div class="row" data-stagger tabindex="0" role="group" aria-label="Client testimonials">
+    <div
+      class="row"
+      data-stagger
+      data-fade-scroll
+      tabindex="0"
+      role="group"
+      aria-label="Client testimonials"
+    >
       {
         rendered.map((t) => (
           <figure class="quote">
@@ -30,6 +37,22 @@ const rendered = await Promise.all(
     </div>
   </div>
 </section>
+
+<script>
+  // Scroll-aware edge fades: left fade appears only after scrolling, right fade
+  // shrinks to nothing at the end.
+  document.querySelectorAll<HTMLElement>('[data-fade-scroll]').forEach((row) => {
+    const FADE = 64; // px — matches the --fade-right default (4rem)
+    const update = () => {
+      const max = row.scrollWidth - row.clientWidth;
+      row.style.setProperty('--fade-left', `${Math.min(row.scrollLeft, FADE)}px`);
+      row.style.setProperty('--fade-right', `${Math.min(Math.max(max - row.scrollLeft, 0), FADE)}px`);
+    };
+    row.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+</script>
 
 <style>
   /* oversized faded outline title, dropped behind the cards which overlap it */
@@ -56,9 +79,25 @@ const rendered = await Promise.all(
     margin-top: 0;
     overflow-x: auto;
     padding-bottom: 1rem;
-    /* fade the cards at the scroll edges instead of a hard cut */
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+    /* edge fade, scroll-aware via JS: left starts solid (card at the start) and
+       grows once scrolled; right fade disappears at the end. No-JS keeps the
+       rest-state defaults below (left solid, right faded). */
+    --fade-left: 0px;
+    --fade-right: 4rem;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--fade-left),
+      #000 calc(100% - var(--fade-right)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--fade-left),
+      #000 calc(100% - var(--fade-right)),
+      transparent 100%
+    );
     /* hide the scrollbar (still scrollable via drag / trackpad / keyboard) */
     scrollbar-width: none;
   }
