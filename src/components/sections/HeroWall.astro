@@ -144,14 +144,16 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   .wall {
     position: relative;
     z-index: 1;
-    flex: 1 1 auto;
+    /* flex-basis 0 so the wall fills the viewport remainder at a definite
+       height instead of growing to its (tall) content — this lets every
+       column stretch to the same height for one even bottom edge */
+    flex: 1 1 0;
     min-height: 0;
     display: flex;
+    align-items: stretch;
     justify-content: center;
     gap: 0.5rem;
     padding-inline: 1.25rem;
-    /* NOT clipped — cards keep their shape; the hero clips the page-level
-       overflow and the content panel covers the upward drift. */
     overflow: visible;
     pointer-events: none;
   }
