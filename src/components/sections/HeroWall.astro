@@ -14,10 +14,10 @@ const imageFiles: string[] = fs
 const COLUMNS = 5;
 
 // Round-robin the images into columns, then pad short columns so every column
-// overfills the viewport for the parallax to never expose an edge.
+// overfills the viewport for the parallax.
 const columns: string[][] = Array.from({ length: COLUMNS }, () => []);
 imageFiles.forEach((src, i) => columns[i % COLUMNS].push(src));
-const minPerCol = Math.max(3, Math.ceil(imageFiles.length / COLUMNS));
+const minPerCol = Math.max(4, Math.ceil(imageFiles.length / COLUMNS) + 1);
 columns.forEach((col, c) => {
   let i = 0;
   while (col.length < minPerCol && imageFiles.length) {
@@ -33,15 +33,17 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 ---
 
 <section class="hero-wall" id="work" aria-label="Intro">
-  <div class="hero-wall__content container">
-    <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
-    <h1 class="hero-wall__title" data-split>
-      Designing digital experiences that feel intuitive &amp; alive
-    </h1>
-    <p class="hero-wall__sub" data-reveal>
-      Fintech · Logistics · Edu-tech · E-sport — design &amp; build
-    </p>
-    <a class="pill" href="#contact" data-reveal data-magnetic>Let's talk</a>
+  <div class="hero-wall__content">
+    <div class="container hero-wall__inner">
+      <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
+      <h1 class="hero-wall__title" data-split>
+        Designing digital experiences that feel intuitive &amp; alive
+      </h1>
+      <p class="hero-wall__sub" data-reveal>
+        Fintech · Logistics · Edu-tech · E-sport — design &amp; build
+      </p>
+      <a class="pill" href="#contact" data-reveal data-magnetic>Let's talk</a>
+    </div>
   </div>
 
   <div class="wall" aria-hidden="true">
@@ -64,6 +66,8 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
       ))
     }
   </div>
+
+  <div class="hero-wall__fade" aria-hidden="true"></div>
 </section>
 
 <script>
@@ -109,15 +113,22 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
     isolation: isolate;
   }
 
+  /* Full-width opaque panel. Cards that drift up on scroll slide BEHIND this
+     (occluded, not clipped) so they always keep their rounded corners. Its
+     bottom edge is the even line every column starts at. */
   .hero-wall__content {
     position: relative;
     z-index: 2;
     flex: 0 0 auto;
+    background: var(--bg);
+    padding-block: clamp(7rem, 16vh, 11rem) clamp(2.5rem, 5vh, 4rem);
+  }
+
+  .hero-wall__inner {
     display: grid;
     justify-items: center;
     text-align: center;
     gap: 1.5rem;
-    padding-block: clamp(7rem, 16vh, 11rem) clamp(2.5rem, 5vh, 4rem);
   }
 
   .hero-wall__title {
@@ -132,17 +143,17 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 
   .wall {
     position: relative;
+    z-index: 1;
     flex: 1 1 auto;
     min-height: 0;
     display: flex;
     justify-content: center;
     gap: 1.25rem;
     padding-inline: 1.25rem;
-    overflow: hidden;
+    /* NOT clipped — cards keep their shape; the hero clips the page-level
+       overflow and the content panel covers the upward drift. */
+    overflow: visible;
     pointer-events: none;
-    /* even straight top edge; cards dissolve into the background at the bottom */
-    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
-    mask-image: linear-gradient(to bottom, #000 80%, transparent);
   }
 
   .wall__col {
@@ -153,9 +164,6 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    /* overfill above the wall's even top edge so the alternating parallax
-       never exposes a gap at the top; the visible top stays one straight line */
-    margin-top: -14rem;
     will-change: transform;
   }
 
@@ -171,6 +179,18 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  /* cards dissolve into the page background at the bottom */
+  .hero-wall__fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: clamp(6rem, 18vh, 12rem);
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--bg));
   }
 
   @media (max-width: 900px) {
