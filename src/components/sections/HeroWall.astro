@@ -140,23 +140,22 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
     padding-inline: 1.25rem;
     overflow: hidden;
     pointer-events: none;
-    /* cards emerge from the page background at the top edge */
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%);
-    mask-image: linear-gradient(to bottom, transparent, #000 14%);
+    /* even straight top edge; cards dissolve into the background at the bottom */
+    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
+    mask-image: linear-gradient(to bottom, #000 80%, transparent);
   }
 
   .wall__col {
     flex: 0 0 clamp(170px, 16vw, 270px);
   }
 
-  .wall__col:nth-child(even) {
-    margin-top: -6%;
-  }
-
   .wall__track {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    /* overfill above the wall's even top edge so the alternating parallax
+       never exposes a gap at the top; the visible top stays one straight line */
+    margin-top: -14rem;
     will-change: transform;
   }
 
