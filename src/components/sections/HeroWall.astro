@@ -274,7 +274,9 @@ const MOBILE_VISIBLE = 6;
   /* mobile single-column expandable list (replaces the parallax wall) */
   .wall-mobile {
     display: none;
-    width: 100%;
+    /* same gutter as the text container so cards never touch the screen edges */
+    width: min(100% - 3rem, var(--container));
+    margin-inline: auto;
     padding-bottom: clamp(2rem, 6vh, 4rem);
   }
 
