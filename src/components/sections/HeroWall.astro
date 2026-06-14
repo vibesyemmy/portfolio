@@ -61,7 +61,7 @@ files.forEach((f: string) => {
 
 const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   dir: c % 2 === 0 ? 'up' : 'down',
-  dist: 80 + (c % 3) * 50, // px of scroll-parallax travel
+  dist: 50 + (c % 3) * 35, // px of scroll-parallax travel (kept under the overfill)
 }));
 
 // Mobile collapses to a single-column list: cards shown before the show-more toggle
@@ -170,8 +170,8 @@ const MOBILE_VISIBLE = 6;
 <style>
   .hero-wall {
     position: relative;
-    /* taller than the viewport so the wall shows more card rows below the fold */
-    min-height: 150svh;
+    /* sizes to its content (panel + wall); the wall's height is width-based
+       below, so a tall viewport can't leave empty space under the cards */
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -209,10 +209,13 @@ const MOBILE_VISIBLE = 6;
   .wall {
     position: relative;
     z-index: 1;
-    /* flex-basis 0 so the wall fills the viewport remainder at a definite
-       height instead of growing to its (tall) content — this lets every
-       column stretch to the same height for one even bottom edge */
-    flex: 1 1 0;
+    /* width-proportional height: tracks the card content on every screen
+       aspect ratio, so a tall viewport never leaves empty space under the
+       cards (and columns still stretch to one even bottom edge) */
+    aspect-ratio: 16 / 10;
+    /* min-height:0 lets the aspect-ratio actually set the height — without it a
+       flex item's default min-height:auto lets the tallest column's content
+       force the wall taller, leaving shorter columns with empty bottoms */
     min-height: 0;
     /* match the section container: capped at --container, always a 1.5rem
        gutter each side until the cap so cards never touch the screen edges */
