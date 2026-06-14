@@ -140,11 +140,18 @@ const MOBILE_VISIBLE = 6;
       document.querySelectorAll<HTMLElement>('[data-wall-track]').forEach((track) => {
         const down = track.dataset.dir === 'down';
         const dist = parseFloat(track.dataset.dist || '120');
+        // Tracks are top-aligned, so all overfill sits at the bottom. A column
+        // that drifts DOWN has no headroom above its first tile, so moving down
+        // would expose a bare band at the column's top clip edge (the "janky
+        // line" under the panel). Offset its rest position up by `dist` so it
+        // drifts -dist -> 0 (top stays at/above the clip edge the whole way).
+        // Up columns keep 0 -> -dist. Both drift `dist` in opposite directions;
+        // overfill (>> dist) keeps the bottom covered throughout.
         gsap.fromTo(
           track,
-          { y: 0 },
+          { y: down ? -dist : 0 },
           {
-            y: down ? dist : -dist,
+            y: down ? 0 : -dist,
             ease: 'none',
             scrollTrigger: {
               trigger: section,
