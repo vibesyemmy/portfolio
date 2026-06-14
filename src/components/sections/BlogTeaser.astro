@@ -1,4 +1,5 @@
 ---
+import fs from 'node:fs';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
@@ -18,6 +19,13 @@ const gradients = [
   'linear-gradient(135deg, #dcbcff, #ad79ff)',
 ];
 const AUTHOR = 'Opeyemi';
+
+// Author avatar for the card badge: drop public/avatar.{png,jpg,webp,avif} and
+// it's picked up automatically. Falls back to the gradient chip when absent.
+const avatarFile = fs
+  .readdirSync('public')
+  .find((f) => /^avatar\.(png|jpe?g|webp|avif)$/i.test(f));
+const AVATAR = avatarFile ? `/${avatarFile}` : null;
 ---
 
 <section class="blog dark-section section" id="blog" aria-label="Blog">
@@ -34,7 +42,12 @@ const AUTHOR = 'Opeyemi';
 
             <article class="bcard bcard--featured" data-reveal>
               <div class="bcard__media" style={`background:${gradients[0]}`}>
-                <span class="bcard__badge">{AUTHOR}</span>
+                <span class:list={['bcard__badge', { 'has-avatar': AVATAR }]}>
+                  {AVATAR && (
+                    <img class="bcard__avatar" src={AVATAR} alt="" width="22" height="22" loading="lazy" />
+                  )}
+                  {AUTHOR}
+                </span>
               </div>
               <div class="bcard__body">
                 <time class="bcard__date">{fmtDate(featured.data.pubDate)}</time>
@@ -57,7 +70,12 @@ const AUTHOR = 'Opeyemi';
                     class="bcard__media"
                     style={`background:${gradients[(i + 1) % gradients.length]}`}
                   >
-                    <span class="bcard__badge">{AUTHOR}</span>
+                    <span class:list={['bcard__badge', { 'has-avatar': AVATAR }]}>
+                      {AVATAR && (
+                        <img class="bcard__avatar" src={AVATAR} alt="" width="22" height="22" loading="lazy" />
+                      )}
+                      {AUTHOR}
+                    </span>
                   </div>
                   <div class="bcard__body">
                     <time class="bcard__date">{fmtDate(post.data.pubDate)}</time>
@@ -172,6 +190,19 @@ const AUTHOR = 'Opeyemi';
     height: 0.95rem;
     border-radius: 5px;
     background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+
+  /* real avatar replaces the gradient chip */
+  .bcard__badge.has-avatar::before {
+    content: none;
+  }
+
+  .bcard__avatar {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
   }
 
   .bcard__body {
