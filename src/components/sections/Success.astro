@@ -14,7 +14,7 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
 
 <section class="dark-section section" aria-label="Testimonials">
   <div class="container">
-    <h2 class="h2" data-split>Success.</h2>
+    <h2 class="h2" data-split>Testimonials</h2>
     <div class="row" data-stagger tabindex="0" role="group" aria-label="Client testimonials">
       {
         rendered.map((t) => (
@@ -37,6 +37,11 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
 </section>
 
 <style>
+  /* much larger section title (hero display scale) — scoped to this section */
+  .h2 {
+    font-size: var(--text-display);
+  }
+
   .row {
     display: grid;
     grid-auto-flow: column;

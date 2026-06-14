@@ -19,7 +19,11 @@ const DAMPING = 400; // higher = calmer / less reactive to velocity
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!reduced) {
-  const targets = Array.from(document.querySelectorAll<HTMLElement>('main > *'));
+  // Skip sections that opt out (e.g. the pinned horizontal testimonials, whose
+  // own transform would fight the skew).
+  const targets = Array.from(document.querySelectorAll<HTMLElement>('main > *')).filter(
+    (el) => !el.hasAttribute('data-no-skew')
+  );
 
   if (targets.length) {
     const proxy = { skew: 0 };
