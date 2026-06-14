@@ -1,46 +1,38 @@
 ---
-import { getCollection } from 'astro:content';
+import fs from 'node:fs';
 
-const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
-  (a, b) => a.data.order - b.data.order
-);
-const names = projects.map((p) => p.data.title);
-
-// Placeholder tile styles (light-theme friendly, brand-tinted). To use a real
-// screenshot later, give a tile an <img> in place of the gradient background.
-const gradients = [
-  'linear-gradient(150deg, #fde2b8, #fb9826)',
-  'linear-gradient(150deg, #cfeaff, #0099ff)',
-  'linear-gradient(150deg, #ffffff, #d9d9d9)',
-  'linear-gradient(150deg, #ffe0c2, #ff7a45)',
-  'linear-gradient(150deg, #e7ecff, #6f8cff)',
-  'linear-gradient(150deg, #1d1d1d, #3c3c3c)',
-];
-const ratios = ['3 / 4', '4 / 3', '1 / 1', '9 / 16', '4 / 5'];
+// Demo placeholder images for the wall. Drop files into public/demo-img/ and
+// they are picked up automatically here. These are temporary stand-ins served
+// unoptimized from public/ — replace with real, owned/licensed, optimized
+// project assets (ideally via astro:assets) before launch.
+const imageFiles: string[] = fs
+  .readdirSync('public/demo-img')
+  .filter((f: string) => /\.(png|jpe?g|webp|avif)$/i.test(f))
+  .sort()
+  .map((f: string) => `/demo-img/${encodeURIComponent(f)}`);
 
 const COLUMNS = 5;
-const TILES_PER_COL = 4;
 
-const columns = Array.from({ length: COLUMNS }, (_, c) =>
-  Array.from({ length: TILES_PER_COL }, (_, r) => {
-    const i = c * TILES_PER_COL + r;
-    return {
-      label: names.length ? names[i % names.length] : `Project ${i + 1}`,
-      gradient: gradients[i % gradients.length],
-      ratio: ratios[(i + c) % ratios.length],
-      dark: i % gradients.length === 5,
-    };
-  })
-);
+// Round-robin the images into columns, then pad short columns so every column
+// overfills the viewport for the parallax to never expose an edge.
+const columns: string[][] = Array.from({ length: COLUMNS }, () => []);
+imageFiles.forEach((src, i) => columns[i % COLUMNS].push(src));
+const minPerCol = Math.max(3, Math.ceil(imageFiles.length / COLUMNS));
+columns.forEach((col, c) => {
+  let i = 0;
+  while (col.length < minPerCol && imageFiles.length) {
+    col.push(imageFiles[(c + i) % imageFiles.length]);
+    i++;
+  }
+});
 
-// Per-column motion: alternating direction, varied speed.
 const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   dir: c % 2 === 0 ? 'up' : 'down',
   dist: 80 + (c % 3) * 50, // 80, 130, 180, 80, 130 — px of scroll-parallax travel
 }));
 ---
 
-<section class="hero-wall" aria-label="Intro">
+<section class="hero-wall" id="work" aria-label="Intro">
   <div class="hero-wall__content container">
     <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
     <h1 class="hero-wall__title" data-split>
@@ -49,7 +41,7 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
     <p class="hero-wall__sub" data-reveal>
       Fintech · Logistics · Edu-tech · E-sport — design &amp; build
     </p>
-    <a class="pill" href="#work" data-reveal data-magnetic>See projects ↓</a>
+    <a class="pill" href="#contact" data-reveal data-magnetic>Let's talk</a>
   </div>
 
   <div class="wall" aria-hidden="true">
@@ -62,13 +54,9 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
             data-dir={colMeta[c].dir}
             data-dist={colMeta[c].dist}
           >
-            {[...col, ...col].map((tile) => (
-              <div
-                class="tile"
-                data-dark={tile.dark}
-                style={`aspect-ratio:${tile.ratio};background:${tile.gradient}`}
-              >
-                <span class="tile__label">{tile.label}</span>
+            {[...col, ...col].map((src) => (
+              <div class="tile">
+                <img src={src} alt="" loading="lazy" />
               </div>
             ))}
           </div>
@@ -175,29 +163,15 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   .tile {
     width: 100%;
     border-radius: 14px;
-    position: relative;
     overflow: hidden;
+    background: var(--surface);
     box-shadow: 0 6px 20px rgb(0 0 0 / 7%);
   }
 
-  .tile__label {
-    position: absolute;
-    left: 12px;
-    bottom: 10px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    background: rgb(255 255 255 / 72%);
-    padding: 3px 9px;
-    border-radius: var(--radius-pill);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-  }
-
-  .tile[data-dark='true'] .tile__label {
-    color: #fff;
-    background: rgb(0 0 0 / 38%);
+  .tile img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   @media (max-width: 900px) {
