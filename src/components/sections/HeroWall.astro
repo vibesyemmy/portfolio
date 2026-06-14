@@ -301,7 +301,6 @@ const MOBILE_VISIBLE = 6;
     overflow: hidden;
     background: var(--surface);
     box-shadow: 0 6px 20px rgb(0 0 0 / 7%);
-    transition: opacity 0.3s ease;
   }
 
   .tile img {
@@ -311,16 +310,7 @@ const MOBILE_VISIBLE = 6;
     transition: scale 0.45s ease;
   }
 
-  /* With the cursor hidden, make the hovered card unmistakable: it pops while
-     the others dim, so you always know which tile the "View Project" pill targets */
-  .wall:has(.tile:hover) .tile {
-    opacity: 0.45;
-  }
-
-  .wall:has(.tile:hover) .tile:hover {
-    opacity: 1;
-  }
-
+  /* slight zoom marks the hovered card (the cursor is hidden over the wall) */
   .tile:hover img {
     scale: 1.06;
   }
