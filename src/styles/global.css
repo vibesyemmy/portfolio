@@ -61,9 +61,11 @@ a {
   margin-inline: auto;
 }
 
-@media (max-width: 700px) {
+/* Side gutter on tablet and below so content never touches the screen edges;
+   desktop (>1024px) stays full-bleed, capped by max-width. */
+@media (max-width: 1024px) {
   .container {
-    padding-inline: 1.25rem;
+    padding-inline: 1.5rem;
   }
 }
 
