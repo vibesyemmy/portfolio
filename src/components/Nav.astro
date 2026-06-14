@@ -29,8 +29,10 @@
     border: 1px solid rgb(0 0 0 / 12%);
     border-radius: var(--radius-pill);
     background: rgb(255 255 255 / 75%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* smaller blur kernel than the original 12px: still reads as frosted glass
+       but the fixed nav re-samples a much cheaper backdrop on every scroll frame */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
   }
 
