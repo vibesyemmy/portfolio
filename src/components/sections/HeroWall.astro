@@ -106,7 +106,8 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
 <style>
   .hero-wall {
     position: relative;
-    min-height: 100svh;
+    /* taller than the viewport so the wall shows more card rows below the fold */
+    min-height: 150svh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
