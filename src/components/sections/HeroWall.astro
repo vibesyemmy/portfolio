@@ -48,14 +48,36 @@ const imageFiles: string[] = files.map((f: string) => `/demo-img/${encodeURIComp
 
 const COLUMNS = 4;
 
+// Placeholder project titles shown on card hover. The demo filenames are opaque
+// Framer hashes, so these are stand-ins assigned per card — replace with the real
+// case-study titles when the wall is swapped for actual projects.
+const TITLES = [
+  'Payments Dashboard',
+  'Logistics Tracker',
+  'Learning Platform',
+  'Tournament Hub',
+  'Wallet Onboarding',
+  'Fleet Console',
+  'Course Builder',
+  'Match Analytics',
+  'Merchant Portal',
+  'Delivery App',
+  'Student Planner',
+  'Live Scoreboard',
+  'Savings Flow',
+  'Route Optimizer',
+  'Design System',
+  'Esports Arena',
+];
+
 // Height-balanced bin-packing: each card goes to the currently shortest column
 // so columns end up roughly even — no duplicates needed for balance.
-const columns: string[][] = Array.from({ length: COLUMNS }, () => []);
+const columns: { src: string; title: string }[][] = Array.from({ length: COLUMNS }, () => []);
 const colHeights: number[] = new Array(COLUMNS).fill(0);
-files.forEach((f: string) => {
+files.forEach((f: string, i: number) => {
   let min = 0;
   for (let c = 1; c < COLUMNS; c++) if (colHeights[c] < colHeights[min]) min = c;
-  columns[min].push(`/demo-img/${encodeURIComponent(f)}`);
+  columns[min].push({ src: `/demo-img/${encodeURIComponent(f)}`, title: TITLES[i % TITLES.length] });
   colHeights[min] += imageRatio(f) + 0.05; // ratio + gap allowance
 });
 
@@ -95,9 +117,10 @@ const MOBILE_VISIBLE = 6;
             data-dir={colMeta[c].dir}
             data-dist={colMeta[c].dist}
           >
-            {col.map((src) => (
+            {col.map(({ src, title }) => (
               <div class="tile">
                 <img src={src} alt="" loading="lazy" />
+                <span class="tile__title">{title}</span>
               </div>
             ))}
           </div>
@@ -272,6 +295,7 @@ const MOBILE_VISIBLE = 6;
   }
 
   .tile {
+    position: relative;
     width: 100%;
     border-radius: 14px;
     overflow: hidden;
@@ -289,6 +313,35 @@ const MOBILE_VISIBLE = 6;
   /* slight zoom marks the hovered card (the cursor is hidden over the wall) */
   .tile:hover img {
     scale: 1.06;
+  }
+
+  /* project title: fade-to-black band + label at the card bottom, on hover */
+  .tile__title {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 2.25rem 0.9rem 0.8rem;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    background: linear-gradient(
+      to top,
+      rgb(0 0 0 / 88%),
+      rgb(0 0 0 / 55%) 45%,
+      transparent
+    );
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+    pointer-events: none;
+  }
+
+  .tile:hover .tile__title {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* cards dissolve into the page background at the bottom */
