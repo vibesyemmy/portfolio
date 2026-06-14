@@ -1,34 +1,67 @@
 ---
 import fs from 'node:fs';
 
-// Demo placeholder images for the wall. Drop files into public/demo-img/ and
-// they are picked up automatically here. These are temporary stand-ins served
-// unoptimized from public/ — replace with real, owned/licensed, optimized
-// project assets (ideally via astro:assets) before launch.
-const imageFiles: string[] = fs
-  .readdirSync('public/demo-img')
+const DEMO_DIR = 'public/demo-img';
+
+// Read intrinsic image ratio (height / width) from the file header so columns
+// can be balanced by height. Handles PNG + JPEG; other formats fall back.
+function imageRatio(file: string): number {
+  try {
+    const buf = fs.readFileSync(`${DEMO_DIR}/${file}`);
+    if (buf.length >= 24 && buf.toString('ascii', 12, 16) === 'IHDR') {
+      const w = buf.readUInt32BE(16);
+      const h = buf.readUInt32BE(20);
+      if (w) return h / w;
+    }
+    if (buf[0] === 0xff && buf[1] === 0xd8) {
+      let o = 2;
+      while (o < buf.length - 8) {
+        if (buf[o] !== 0xff) {
+          o++;
+          continue;
+        }
+        const m = buf[o + 1];
+        if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) {
+          const h = buf.readUInt16BE(o + 5);
+          const w = buf.readUInt16BE(o + 7);
+          if (w) return h / w;
+        }
+        o += 2 + buf.readUInt16BE(o + 2);
+      }
+    }
+  } catch {
+    /* fall through to default */
+  }
+  return 0.72;
+}
+
+// Demo placeholder images. Drop files into public/demo-img/ and they are picked
+// up automatically. Temporary stand-ins served unoptimized from public/ —
+// replace with real, owned/licensed, optimized assets (via astro:assets) before
+// launch. Each card appears exactly once — no repeats.
+const files: string[] = fs
+  .readdirSync(DEMO_DIR)
   .filter((f: string) => /\.(png|jpe?g|webp|avif)$/i.test(f))
-  .sort()
-  .map((f: string) => `/demo-img/${encodeURIComponent(f)}`);
+  .sort();
+
+const imageFiles: string[] = files.map((f: string) => `/demo-img/${encodeURIComponent(f)}`);
 
 const COLUMNS = 4;
 
-// Round-robin the images into columns, then pad short columns so every column
-// overfills the viewport for the parallax.
+// Height-balanced bin-packing: each card goes to the currently shortest column
+// so columns end up roughly even — no duplicates needed for balance.
 const columns: string[][] = Array.from({ length: COLUMNS }, () => []);
-imageFiles.forEach((src, i) => columns[i % COLUMNS].push(src));
-const minPerCol = Math.max(4, Math.ceil(imageFiles.length / COLUMNS) + 1);
-columns.forEach((col, c) => {
-  let i = 0;
-  while (col.length < minPerCol && imageFiles.length) {
-    col.push(imageFiles[(c + i) % imageFiles.length]);
-    i++;
-  }
+const colHeights: number[] = new Array(COLUMNS).fill(0);
+files.forEach((f: string) => {
+  let min = 0;
+  for (let c = 1; c < COLUMNS; c++) if (colHeights[c] < colHeights[min]) min = c;
+  columns[min].push(`/demo-img/${encodeURIComponent(f)}`);
+  colHeights[min] += imageRatio(f) + 0.05; // ratio + gap allowance
 });
 
 const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   dir: c % 2 === 0 ? 'up' : 'down',
-  dist: 80 + (c % 3) * 50, // 80, 130, 180, 80, 130 — px of scroll-parallax travel
+  dist: 80 + (c % 3) * 50, // px of scroll-parallax travel
 }));
 
 // Mobile collapses to a single-column list: cards shown before the show-more toggle
@@ -59,7 +92,7 @@ const MOBILE_VISIBLE = 6;
             data-dir={colMeta[c].dir}
             data-dist={colMeta[c].dist}
           >
-            {[...col, ...col].map((src) => (
+            {col.map((src) => (
               <div class="tile">
                 <img src={src} alt="" loading="lazy" />
               </div>
