@@ -45,8 +45,8 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
     line-height: 0.9;
     color: transparent;
     -webkit-text-stroke: 1.5px rgb(255 255 255 / 22%);
-    /* let the card row overlap the lower half of the title */
-    margin-bottom: -0.45em;
+    /* let the card row overlap the lower part of the title (showing more of it) */
+    margin-bottom: -0.3em;
     white-space: nowrap;
     pointer-events: none;
   }
@@ -61,7 +61,15 @@ const companies = ['Kobo360', 'Hydrogen Pay', 'ggCircuit'];
     margin-top: 0;
     overflow-x: auto;
     padding-bottom: 1rem;
-    scrollbar-width: thin;
+    /* fade the cards at the scroll edges instead of a hard cut */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+    /* hide the scrollbar (still scrollable via drag / trackpad / keyboard) */
+    scrollbar-width: none;
+  }
+
+  .row::-webkit-scrollbar {
+    display: none;
   }
 
   .quote {
