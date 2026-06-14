@@ -1,30 +1,315 @@
+---
+const CONTACT_EMAIL = 'hello@opeyemi.app';
+
+const SOCIALS = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/opeyemi-ajagbe/' },
+  { label: 'Dribbble', href: 'https://dribbble.com/opeyemiajagbe' },
+  { label: 'GitHub', href: 'https://github.com/vibesyemmy' },
+  { label: 'Figma', href: 'https://www.figma.com/@opeyemiajagbe' },
+  { label: 'Uxcel', href: 'https://app.uxcel.com/ux/opeyemiajagbe' },
+];
+---
+
 <section class="dark-section section cta" id="contact" aria-label="Contact">
-  <div class="container">
-    <h2 class="cta__title" data-split>Let's Talk</h2>
-    <a class="pill pill--accent" href="mailto:hello@opeyemi.app" data-magnetic>
-      hello@opeyemi.app
-    </a>
+  <div class="container cta__grid">
+    <!-- left: intro + who you'll be talking to -->
+    <div class="cta__intro">
+      <p class="eyebrow" data-reveal>Contact</p>
+      <h2 class="cta__title" data-split>Let's work together</h2>
+      <p class="cta__lead" data-reveal>
+        Have a product, a role, or an idea you want to move on? Tell me a little
+        about it and I'll get back to you within a couple of days.
+      </p>
+
+      <div class="person" data-reveal>
+        <img
+          class="person__avatar"
+          src="/avatar.png"
+          alt="Opeyemi Ajagbe"
+          width="64"
+          height="64"
+        />
+        <div>
+          <p class="person__name">Opeyemi Ajagbe</p>
+          <p class="person__role">Senior Product Designer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: contact form. No backend yet — submit composes a mailto (see
+         <script> below). The action/enctype is a no-JS fallback. Swap for a
+         Formspree/Netlify/API endpoint when one exists. -->
+    <form
+      class="cform"
+      data-reveal
+      novalidate
+      action={`mailto:${CONTACT_EMAIL}`}
+      method="post"
+      enctype="text/plain"
+    >
+      <div class="cform__fields" data-stagger>
+        <div class="field">
+          <label for="cf-name">Name <span class="req">*</span></label>
+          <input
+            id="cf-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            placeholder="Your full name"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="cf-email">Email <span class="req">*</span></label>
+          <input
+            id="cf-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="Your email address"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="cf-phone">Phone</label>
+          <input
+            id="cf-phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            placeholder="Your phone number"
+          />
+        </div>
+
+        <div class="field">
+          <label for="cf-message">Message <span class="req">*</span></label>
+          <textarea
+            id="cf-message"
+            name="message"
+            rows="4"
+            placeholder="Tell me about your project"
+            required></textarea>
+        </div>
+      </div>
+
+      <div class="cform__foot">
+        <button class="pill pill--accent cform__submit" type="submit">Send Message</button>
+        <p class="cform__status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+
+  <div class="container cta__footer">
     <nav class="socials" aria-label="Social links">
-      <a href="https://www.linkedin.com/in/opeyemi-ajagbe/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://dribbble.com/opeyemiajagbe" target="_blank" rel="noopener noreferrer">Dribbble</a>
-      <a href="https://github.com/vibesyemmy" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.figma.com/@opeyemiajagbe" target="_blank" rel="noopener noreferrer">Figma</a>
-      <a href="https://app.uxcel.com/ux/opeyemiajagbe" target="_blank" rel="noopener noreferrer">Uxcel</a>
+      {
+        SOCIALS.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener noreferrer">
+            {s.label}
+          </a>
+        ))
+      }
     </nav>
     <p class="fineprint">© 2026 Opeyemi Ajagbe</p>
   </div>
 </section>
 
+<script>
+  // No backend: compose a prefilled mailto from the fields. Progressive
+  // enhancement over the form's mailto action (which is the no-JS fallback).
+  const form = document.querySelector<HTMLFormElement>('.cform');
+  const status = form?.querySelector<HTMLElement>('.cform__status');
+  const EMAIL = 'hello@opeyemi.app';
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const data = new FormData(form);
+    const name = String(data.get('name') || '');
+    const email = String(data.get('email') || '');
+    const phone = String(data.get('phone') || '');
+    const message = String(data.get('message') || '');
+
+    const subject = encodeURIComponent(`Portfolio enquiry — ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}\n`
+    );
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    if (status) status.textContent = 'Opening your email app…';
+  });
+</script>
+
 <style>
-  .cta .container {
+  .cta {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* soft accent glow for depth (echoes the reference's mood, in-brand orange) */
+  .cta::before {
+    content: '';
+    position: absolute;
+    left: -12%;
+    bottom: -18%;
+    width: 42rem;
+    height: 42rem;
+    background: radial-gradient(circle, rgb(251 152 38 / 9%), transparent 62%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cta__grid {
+    position: relative;
+    z-index: 1;
     display: grid;
-    justify-items: center;
-    gap: 2rem;
-    text-align: center;
+    grid-template-columns: 1fr 1.05fr;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  /* left column */
+  .cta__intro {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    max-width: 34rem;
+  }
+
+  .cta__intro .eyebrow {
+    color: var(--accent);
   }
 
   .cta__title {
     font-size: var(--text-display);
+    line-height: 1.02;
+  }
+
+  .cta__lead {
+    color: var(--dark-ink-2);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    max-width: 38ch;
+  }
+
+  .person {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .person__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--dark-line);
+    flex: 0 0 auto;
+  }
+
+  .person__name {
+    font-weight: 600;
+  }
+
+  .person__role {
+    color: var(--dark-ink-2);
+    font-size: var(--text-small);
+  }
+
+  /* right column: form */
+  .cform {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .cform__fields {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .field label {
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--dark-ink-2);
+  }
+
+  .req {
+    color: var(--accent);
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-line);
+    border-radius: 14px;
+    padding: 0.95rem 1.1rem;
+    color: var(--dark-ink);
+    font: inherit;
+    font-size: 1rem;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: #6a6a6a;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgb(251 152 38 / 18%);
+  }
+
+  .cform__foot {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .cform__submit {
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    padding: 0.95rem 1.75rem;
+  }
+
+  .cform__status {
+    color: var(--dark-ink-2);
+    font-size: var(--text-small);
+  }
+
+  /* footer row (socials + copyright) */
+  .cta__footer {
+    position: relative;
+    z-index: 1;
+    margin-top: clamp(3rem, 8vh, 6rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--dark-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
   }
 
   .socials {
@@ -43,5 +328,12 @@
     font-family: var(--font-mono);
     font-size: var(--text-eyebrow);
     color: var(--dark-ink-2);
+  }
+
+  @media (max-width: 880px) {
+    .cta__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
   }
 </style>
