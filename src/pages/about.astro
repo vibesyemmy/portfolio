@@ -1,0 +1,326 @@
+---
+import fs from 'node:fs';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+
+const bio =
+  'A seasoned UX/UI designer with 9+ years across Fintech, Logistics, Edu-tech, and E-sport. I work the full design lifecycle — from concept to deployment — and have driven a 50% boost in user satisfaction and contributed to 30% company growth. I pair user-centred design with emerging technology, and I am known for collaboration, clear communication, and aligning product vision with business goals.';
+
+const experience = [
+  {
+    role: 'UI/UX Lead Engineer',
+    company: 'Kobo360',
+    period: 'Dec 2021 — Present',
+    current: true,
+    summary:
+      'Directing the design of a global logistics operating system — fuelling platform adoption and business expansion through user-centred methodologies and cross-functional collaboration.',
+    points: [
+      'Championed user-centred design, leading research through interviews, surveys, and competitive analyses.',
+      'Pioneered a holistic design system, expediting prototyping and ensuring consistent brand representation.',
+      'Bridged functional requirements and design solutions — a 15% reduction in project delivery time.',
+    ],
+  },
+  {
+    role: 'Senior Product Designer · Contract',
+    company: 'Hydrogen Pay',
+    period: 'Jan 2023 — Mar 2024',
+    summary:
+      'Led design solutions that grew engagement and retention, refining the product interface across web and mobile.',
+    points: [
+      'Designed the API portal — a developer-facing guide for smooth integration with the HydrogenPay payment solution.',
+      'Designed an intuitive POS interface, accelerating transaction times and improving the payment experience.',
+      'Built a dispute-resolution & reconciliation portal, reducing conflicts and streamlining operations.',
+      'Architected the Poseidon design system for consistent UI across all Hydrogen web and mobile apps.',
+    ],
+  },
+  {
+    role: 'Senior Product Designer',
+    company: 'ggCircuit',
+    period: 'Nov 2021 — Jun 2022',
+    summary: 'Drove design for an esports product suite, lifting satisfaction and engagement across the platform.',
+    points: [
+      'Led design for Omega, ggLeap, ggRock, and EGL Arcade — a 25% uplift in user satisfaction.',
+      'Orchestrated a website overhaul, cutting bounce rates by 40%.',
+      'Ran user research, translating insights into design that improved core-task efficiency.',
+      'Built a design system unifying the visual identity across the product suite.',
+    ],
+  },
+  {
+    role: 'Senior UI/UX Designer',
+    company: 'Kobo360',
+    period: 'May 2019 — Oct 2021',
+    points: [
+      'Delivered interfaces and wireframes that improved user engagement by 20%.',
+      'Aligned design with business objectives across teams — a 10% increase in goal conversions.',
+      'Maintained an evolving set of design patterns, elevating consistency and comprehension.',
+    ],
+  },
+  {
+    role: 'UI/UX Designer',
+    company: 'Kobo360',
+    period: 'Nov 2018 — Apr 2019',
+    points: [
+      'Developed MVP designs instrumental in securing over $80M in investor funding.',
+      'Managed the design and maintenance of all digital assets — a 25% increase in satisfaction ratings.',
+      'Established communication channels with developers and stakeholders, improving workflow efficiency by 20%.',
+    ],
+  },
+];
+
+const certifications = [
+  { name: 'UI/UX Designer — Professional Certification', issuer: 'Uxcel', year: '2024' },
+  { name: 'UI Designer — Professional Certification', issuer: 'Uxcel', year: '2024' },
+  { name: 'Strategic Innovation', issuer: 'Hydrogen Pay', year: '2022' },
+  { name: 'Google UX Design', issuer: 'Google', year: '2021' },
+  { name: 'Product Management', issuer: 'Product School', year: '2021' },
+  { name: 'UI/UX Design Thinking', issuer: 'Uxcel', year: '2020' },
+  { name: 'Product Design', issuer: 'Udacity', year: '2019' },
+];
+
+const education = {
+  school: 'Federal University of Technology, Minna',
+  degree: 'Mechanical Engineering (B.Eng.)',
+  year: 'Nov 2011',
+};
+
+// Optional résumé download — drop public/resume.pdf and the button appears.
+const RESUME = fs.existsSync('public/resume.pdf') ? '/resume.pdf' : null;
+---
+
+<Layout
+  title="About — Opeyemi Ajagbe"
+  description="Senior Product Designer with 9+ years across fintech, logistics, edu-tech, and esport — work experience, certifications, and education."
+>
+  <Nav />
+  <main>
+    <section class="about">
+      <div class="about__wrap">
+        <header class="about__intro" data-reveal>
+          <p class="eyebrow">About</p>
+          <h1 class="about__title">Designing intuitive products, end to end.</h1>
+          <p class="about__bio">{bio}</p>
+          {RESUME && (
+            <a class="pill pill--accent" href={RESUME} download data-magnetic>
+              Download résumé ↓
+            </a>
+          )}
+        </header>
+
+        <div class="about__section">
+          <h2 class="about__h2" data-reveal>Experience</h2>
+          <ol class="timeline" data-stagger>
+            {
+              experience.map((e) => (
+                <li class="tl-item" data-current={e.current ? 'true' : 'false'}>
+                  <span class="tl-marker" aria-hidden="true" />
+                  <p class="tl-period">{e.period}</p>
+                  <h3 class="tl-role">{e.role}</h3>
+                  <p class="tl-company">{e.company}</p>
+                  {e.summary && <p class="tl-summary">{e.summary}</p>}
+                  <ul class="tl-points">
+                    {e.points.map((p) => (
+                      <li>{p}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+
+        <div class="about__section about__cols" data-reveal>
+          <div>
+            <h2 class="about__h2">Certifications</h2>
+            <ul class="certs">
+              {
+                certifications.map((c) => (
+                  <li class="cert">
+                    <span class="cert__name">{c.name}</span>
+                    <span class="cert__meta">
+                      {c.issuer} · {c.year}
+                    </span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div>
+            <h2 class="about__h2">Education</h2>
+            <div class="edu">
+              <p class="edu__school">{education.school}</p>
+              <p class="edu__degree">{education.degree}</p>
+              <p class="edu__year">{education.year}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ContactCTA />
+  </main>
+</Layout>
+
+<style>
+  .about {
+    padding-top: clamp(7rem, 16vh, 10rem);
+    padding-bottom: clamp(4rem, 10vh, 7rem);
+  }
+
+  .about__wrap {
+    width: min(100% - 3rem, 62rem);
+    margin-inline: auto;
+  }
+
+  .about__intro {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
+  }
+
+  .about__title {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+  }
+
+  .about__bio {
+    color: var(--ink-2);
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.7;
+    max-width: 62ch;
+  }
+
+  .about__section {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .about__h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: -0.02em;
+    margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  /* timeline */
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tl-item {
+    position: relative;
+    padding-left: 2.25rem;
+    padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    border-left: 2px solid var(--line);
+  }
+  .tl-item:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+
+  .tl-marker {
+    position: absolute;
+    left: -8px;
+    top: 0.25rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 3px solid var(--line);
+  }
+  .tl-item[data-current='true'] .tl-marker {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 5px rgb(251 152 38 / 18%);
+  }
+
+  .tl-period {
+    color: var(--ink-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-small);
+  }
+
+  .tl-role {
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-top: 0.4rem;
+  }
+
+  .tl-company {
+    color: var(--accent-text);
+    font-weight: 600;
+    margin-top: 0.1rem;
+  }
+
+  .tl-summary {
+    color: var(--ink);
+    line-height: 1.6;
+    margin-top: 0.85rem;
+    max-width: 58ch;
+  }
+
+  .tl-points {
+    margin: 0.85rem 0 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+  .tl-points li {
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+
+  /* certifications + education */
+  .about__cols {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .certs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .cert {
+    display: grid;
+    gap: 0.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .cert:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .cert__name {
+    font-weight: 600;
+  }
+  .cert__meta {
+    color: var(--ink-2);
+    font-size: var(--text-small);
+  }
+
+  .edu__school {
+    font-weight: 600;
+  }
+  .edu__degree {
+    margin-top: 0.25rem;
+  }
+  .edu__year {
+    color: var(--ink-2);
+    font-size: var(--text-small);
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 720px) {
+    .about__cols {
+      grid-template-columns: 1fr;
+      gap: clamp(2.5rem, 8vw, 4rem);
+    }
+  }
+</style>
