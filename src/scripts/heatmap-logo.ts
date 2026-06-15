@@ -29,7 +29,7 @@ export interface HeatmapLogoOptions {
   scale?: number;
 }
 
-export const HEATMAP_DEFAULTS = {
+const DEFAULTS = {
   colors: ['#112069', '#1f3ca3', '#3265e7', '#6bd8ff', '#ffe77a', '#ff9a1f', '#ff4d00', '#9933cc', '#cc3399'],
   colorBack: '#ffffff00',
   contour: 0.54,
@@ -45,7 +45,7 @@ export async function mountHeatmapLogo(
   parent: HTMLElement,
   opts: HeatmapLogoOptions
 ): Promise<ShaderMount | null> {
-  const o = { ...HEATMAP_DEFAULTS, ...opts };
+  const o = { ...DEFAULTS, ...opts };
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let image: HTMLImageElement;
