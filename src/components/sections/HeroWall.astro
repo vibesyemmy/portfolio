@@ -34,45 +34,63 @@ function imageRatio(publicPath: string): number {
   return 0.72;
 }
 
-// The wall is the project index: one tile per project, linking to its case study.
+// Case studies the cards link to. Until there are enough real projects to fill
+// the wall, cards cycle through them — several cards can point to the same case
+// study. The demo imagery + placeholder titles keep the look for now.
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order
 );
+const projectHref = (i: number) =>
+  projects.length ? `/work/${projects[i % projects.length].id}` : '#work';
 
-// Fallback thumbnails for projects without a cover yet — swap by setting `cover`
-// in the project's frontmatter (public path, e.g. /work-media/x.jpg).
-const demoFiles = fs
+// Demo placeholder imagery — replace with real, optimised covers before launch.
+const files: string[] = fs
   .readdirSync('public/demo-img')
   .filter((f: string) => /\.(png|jpe?g|webp|avif)$/i.test(f))
   .sort();
+const imageFiles: string[] = files.map((f) => `/demo-img/${encodeURIComponent(f)}`);
+
+const COLUMNS = 4;
+
+// Placeholder card titles, swapped for real case-study titles later.
+const TITLES = [
+  'Payments Dashboard',
+  'Logistics Tracker',
+  'Learning Platform',
+  'Tournament Hub',
+  'Wallet Onboarding',
+  'Fleet Console',
+  'Course Builder',
+  'Match Analytics',
+  'Merchant Portal',
+  'Delivery App',
+  'Student Planner',
+  'Live Scoreboard',
+  'Savings Flow',
+  'Route Optimizer',
+  'Design System',
+  'Esports Arena',
+];
 
 interface Tile {
-  href: string;
-  title: string;
   src: string;
+  title: string;
+  href: string;
 }
-const items: Tile[] = projects.map((p, i) => ({
-  href: `/work/${p.id}`,
-  title: p.data.title,
-  src: p.data.cover ?? `/demo-img/${encodeURIComponent(demoFiles[i % demoFiles.length])}`,
-}));
-
-// Fewer columns when there are fewer projects, so the wall never looks empty.
-const COLUMNS = items.length >= 9 ? 4 : 3;
-
-// Height-balanced bin-packing: each tile goes to the currently shortest column.
+// Height-balanced bin-packing: each card goes to the currently shortest column.
 const columns: Tile[][] = Array.from({ length: COLUMNS }, () => []);
 const colHeights: number[] = new Array(COLUMNS).fill(0);
-items.forEach((it) => {
+files.forEach((f, i) => {
   let min = 0;
   for (let c = 1; c < COLUMNS; c++) if (colHeights[c] < colHeights[min]) min = c;
-  columns[min].push(it);
-  colHeights[min] += imageRatio(it.src) + 0.05; // ratio + gap allowance
+  const src = `/demo-img/${encodeURIComponent(f)}`;
+  columns[min].push({ src, title: TITLES[i % TITLES.length], href: projectHref(i) });
+  colHeights[min] += imageRatio(src) + 0.05; // ratio + gap allowance
 });
 
 const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   dir: c % 2 === 0 ? 'up' : 'down',
-  dist: 40 + (c % 3) * 25, // px of scroll-parallax travel
+  dist: 50 + (c % 3) * 35, // px of scroll-parallax travel (kept under the overfill)
 }));
 
 // Mobile collapses to a single-column list: cards shown before the show-more toggle
@@ -123,17 +141,16 @@ const MOBILE_VISIBLE = 6;
   <div class="wall-mobile container">
     <ul class="wall-mobile__list" data-wall-mobile-list data-collapsed>
       {
-        items.map((it, i) => (
+        imageFiles.map((src, i) => (
           <li class="wall-mobile__item" data-extra={i >= MOBILE_VISIBLE ? 'true' : 'false'}>
-            <a href={it.href}>
-              <img src={it.src} alt={it.title} loading="lazy" />
-              <span class="wall-mobile__title">{it.title}</span>
+            <a href={projectHref(i)}>
+              <img src={src} alt={TITLES[i % TITLES.length]} loading="lazy" />
             </a>
           </li>
         ))
       }
     </ul>
-    {items.length > MOBILE_VISIBLE && (
+    {imageFiles.length > MOBILE_VISIBLE && (
       <button class="wall-mobile__toggle" data-wall-toggle data-magnetic aria-expanded="false">
         Show more
       </button>
@@ -246,17 +263,22 @@ const MOBILE_VISIBLE = 6;
   .wall {
     position: relative;
     z-index: 1;
-    /* sizes to the tile content (masonry). The project count varies, so a fixed
-       height would leave empty columns; bin-packing keeps the columns even-ish
-       and they share one even top edge via align-items: start */
+    /* width-proportional height so a tall viewport never leaves empty space
+       under the cards (columns still stretch to one even bottom edge) */
+    aspect-ratio: 16 / 10;
+    /* min-height:0 lets the aspect-ratio set the height — without it a flex
+       item's default min-height:auto lets the tallest column force the wall
+       taller, leaving shorter columns with empty bottoms */
+    min-height: 0;
+    /* match the section container: capped at --container, always a 1.5rem
+       gutter each side until the cap so cards never touch the screen edges */
     width: min(100% - 3rem, var(--container));
     margin-inline: auto;
     /* overlap the opaque content panel by 1px so the panel/wall seam can't
        flicker as a hairline under Lenis's sub-pixel scroll positions */
     margin-top: -1px;
-    padding-bottom: clamp(2rem, 6vh, 5rem);
     display: flex;
-    align-items: start;
+    align-items: stretch;
     gap: 0.5rem;
     overflow: visible;
     /* auto so the tiles receive hover for the "View Project" cursor follower */
@@ -370,13 +392,6 @@ const MOBILE_VISIBLE = 6;
     height: auto;
     border-radius: 14px;
     box-shadow: 0 6px 20px rgb(0 0 0 / 7%);
-  }
-
-  .wall-mobile__title {
-    display: block;
-    margin: 0.6rem 0.15rem 0;
-    font-size: var(--text-small);
-    font-weight: 600;
   }
 
   .wall-mobile__toggle {
