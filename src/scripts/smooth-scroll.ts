@@ -24,4 +24,12 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       lenis.scrollTo(target as HTMLElement, { offset: NAV_OFFSET });
     });
   });
+
+  // Scroll-to-top links (e.g. the logo) glide to the top instead of reloading.
+  document.querySelectorAll<HTMLElement>('[data-scroll-top]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      lenis.scrollTo(0);
+    });
+  });
 }
