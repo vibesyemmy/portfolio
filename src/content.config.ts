@@ -36,6 +36,9 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    // Cover image as a public path (e.g. /demo-img/x.png or /blog/x.jpg). Optional
+    // so the card falls back to its gradient when absent.
+    cover: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
