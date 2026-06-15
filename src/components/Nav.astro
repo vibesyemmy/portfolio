@@ -13,7 +13,9 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
 
 <header class="nav-wrap">
   <nav class="nav" aria-label="Primary">
-    <a class="nav__brand" href="/">Opeyemi</a>
+    <a class="nav__brand" href="/" aria-label="Opeyemi Ajagbe — home">
+      <img src="/logo-opeyemi.svg" alt="" width="183" height="32" />
+    </a>
     <div class="nav__links">
       <a class="nav__link" href="#work">
         {
@@ -90,7 +92,14 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
   }
 
   .nav__brand {
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__brand img {
+    height: 1.25rem;
+    width: auto;
+    display: block;
   }
 
   .nav__links {
