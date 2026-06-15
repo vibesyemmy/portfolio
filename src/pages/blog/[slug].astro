@@ -1,4 +1,5 @@
 ---
+import fs from 'node:fs';
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
@@ -18,6 +19,10 @@ const date = d.pubDate.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric',
 });
+
+const AUTHOR = 'Opeyemi';
+const avatarFile = fs.readdirSync('public').find((f) => /^avatar\.(png|jpe?g|webp|avif)$/i.test(f));
+const AVATAR = avatarFile ? `/${avatarFile}` : null;
 ---
 
 <Layout title={`${d.title} — Opeyemi Ajagbe`} description={d.description}>
@@ -29,6 +34,10 @@ const date = d.pubDate.toLocaleDateString('en-US', {
         <p class="eyebrow">{date}</p>
         <h1 class="post__title">{d.title}</h1>
         <p class="post__lead">{d.description}</p>
+        <div class="post__byline">
+          {AVATAR && <img class="post__avatar" src={AVATAR} alt="" width="40" height="40" loading="lazy" />}
+          <span class="post__author">{AUTHOR}</span>
+        </div>
       </header>
 
       {
@@ -82,6 +91,24 @@ const date = d.pubDate.toLocaleDateString('en-US', {
     font-size: clamp(1.05rem, 2vw, 1.3rem);
     line-height: 1.5;
     max-width: 44ch;
+  }
+
+  .post__byline {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+  .post__avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+  .post__author {
+    font-weight: 600;
+    font-size: var(--text-small);
   }
 
   .post__cover {
