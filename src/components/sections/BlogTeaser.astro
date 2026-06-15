@@ -1,6 +1,8 @@
 ---
 import fs from 'node:fs';
 import { getCollection } from 'astro:content';
+import BlogCard from '../BlogCard.astro';
+import '../../styles/blog-card.css';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -37,10 +39,10 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
             <div class="blog__intro" data-reveal>
               <h2 class="blog__title">{featured.data.title}</h2>
               <p class="blog__lead">{featured.data.description}</p>
-              <span class="pill blog__readmore" data-magnetic>Read More</span>
+              <a class="pill blog__readmore" href={`/blog/${featured.id}`} data-magnetic>Read More</a>
             </div>
 
-            <article class="bcard bcard--featured" data-reveal>
+            <a class="bcard bcard--featured" href={`/blog/${featured.id}`} data-reveal>
               <div class="bcard__media" style={`background:${gradients[0]}`}>
                 {featured.data.cover && (
                   <img class="bcard__cover" src={featured.data.cover} alt="" loading="lazy" />
@@ -57,7 +59,7 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
                 <h3 class="bcard__title">{featured.data.title}</h3>
                 <p class="bcard__desc">{featured.data.description}</p>
               </div>
-            </article>
+            </a>
           </div>
         )
       }
@@ -68,27 +70,12 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
             <h3 class="blog__more" data-reveal>More Stories</h3>
             <div class="blog__grid" data-stagger>
               {moreStories.map((post, i) => (
-                <article class="bcard">
-                  <div
-                    class="bcard__media"
-                    style={`background:${gradients[(i + 1) % gradients.length]}`}
-                  >
-                    {post.data.cover && (
-                      <img class="bcard__cover" src={post.data.cover} alt="" loading="lazy" />
-                    )}
-                    <span class:list={['bcard__badge', { 'has-avatar': AVATAR }]}>
-                      {AVATAR && (
-                        <img class="bcard__avatar" src={AVATAR} alt="" width="22" height="22" loading="lazy" />
-                      )}
-                      {AUTHOR}
-                    </span>
-                  </div>
-                  <div class="bcard__body">
-                    <time class="bcard__date">{fmtDate(post.data.pubDate)}</time>
-                    <h3 class="bcard__title">{post.data.title}</h3>
-                    <p class="bcard__desc">{post.data.description}</p>
-                  </div>
-                </article>
+                <BlogCard
+                  post={post}
+                  gradient={gradients[(i + 1) % gradients.length]}
+                  avatar={AVATAR}
+                  author={AUTHOR}
+                />
               ))}
             </div>
 
@@ -165,97 +152,6 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
     border: 1px solid rgb(0 0 0 / 6%);
     box-shadow: 0 6px 18px rgb(0 0 0 / 10%);
     cursor: pointer;
-  }
-
-  /* cards */
-  .bcard {
-    display: flex;
-    flex-direction: column;
-    background: var(--surface);
-    border: 1px solid rgb(0 0 0 / 6%);
-    border-radius: 1.1rem;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgb(0 0 0 / 6%);
-  }
-
-  .bcard__media {
-    position: relative;
-    aspect-ratio: 16 / 7;
-  }
-
-  .bcard--featured .bcard__media {
-    aspect-ratio: 16 / 8;
-  }
-
-  /* cover image fills the media box (over the gradient fallback) */
-  .bcard__cover {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .bcard__badge {
-    position: absolute;
-    top: 0.85rem;
-    left: 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.35rem 0.7rem 0.35rem 0.5rem;
-    border-radius: 999px;
-    /* solid translucent (no backdrop blur): visually identical at this size and
-       avoids re-sampling the backdrop every frame while the section skews */
-    background: rgb(255 255 255 / 92%);
-    color: var(--ink);
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-
-  .bcard__badge::before {
-    content: '';
-    width: 0.95rem;
-    height: 0.95rem;
-    border-radius: 5px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  }
-
-  /* real avatar replaces the gradient chip */
-  .bcard__badge.has-avatar::before {
-    content: none;
-  }
-
-  .bcard__avatar {
-    width: 1.2rem;
-    height: 1.2rem;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .bcard__body {
-    display: grid;
-    gap: 0.55rem;
-    padding: clamp(1.1rem, 1.6vw, 1.6rem);
-  }
-
-  .bcard__date {
-    color: var(--ink-2);
-    font-size: 0.85rem;
-  }
-
-  .bcard__title {
-    font-size: clamp(1.15rem, 1.4vw, 1.4rem);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-
-  .bcard__desc {
-    color: var(--ink-2);
-    font-size: 0.95rem;
-    line-height: 1.55;
   }
 
   /* more stories grid */

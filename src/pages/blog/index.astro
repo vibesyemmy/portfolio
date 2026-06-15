@@ -1,0 +1,90 @@
+---
+import fs from 'node:fs';
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import ContactCTA from '../../components/sections/ContactCTA.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const gradients = [
+  'linear-gradient(135deg, #b6ecf7, #56c4e8)',
+  'linear-gradient(135deg, #ffd9a8, #ff9a8b 55%, #ff6a88)',
+  'linear-gradient(135deg, #aecbff, #5b8def)',
+  'linear-gradient(135deg, #dcbcff, #ad79ff)',
+];
+const AUTHOR = 'Opeyemi';
+const avatarFile = fs.readdirSync('public').find((f) => /^avatar\.(png|jpe?g|webp|avif)$/i.test(f));
+const AVATAR = avatarFile ? `/${avatarFile}` : null;
+---
+
+<Layout
+  title="Blog — Opeyemi Ajagbe"
+  description="Writing on product design, design systems, and building tools."
+>
+  <Nav />
+  <main>
+    <section class="blog-index">
+      <div class="container">
+        <header class="blog-index__head">
+          <p class="eyebrow">Writing</p>
+          <h1 class="blog-index__title">Blog</h1>
+          <p class="blog-index__sub">
+            Notes on product design, design systems, and the joy of building tools.
+          </p>
+        </header>
+
+        <div class="blog-index__grid">
+          {
+            posts.map((post, i) => (
+              <BlogCard
+                post={post}
+                gradient={gradients[i % gradients.length]}
+                avatar={AVATAR}
+                author={AUTHOR}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <ContactCTA />
+  </main>
+</Layout>
+
+<style>
+  .blog-index {
+    padding-top: clamp(7rem, 16vh, 10rem);
+    padding-bottom: clamp(3rem, 8vh, 6rem);
+  }
+
+  .blog-index__head {
+    max-width: 52rem;
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .blog-index__title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .blog-index__sub {
+    color: var(--ink-2);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.5;
+    max-width: 44ch;
+  }
+
+  .blog-index__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+  }
+</style>

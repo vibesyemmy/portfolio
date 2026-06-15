@@ -1,0 +1,102 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import ContactCTA from '../../components/sections/ContactCTA.astro';
+import '../../styles/case-study.css'; // reuse the .prose article typography
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const date = d.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={`${d.title} — Opeyemi Ajagbe`} description={d.description}>
+  <Nav />
+  <main>
+    <article class="post">
+      <header class="post__header">
+        <a class="post__back" href="/blog">← All stories</a>
+        <p class="eyebrow">{date}</p>
+        <h1 class="post__title">{d.title}</h1>
+        <p class="post__lead">{d.description}</p>
+      </header>
+
+      {
+        d.cover && (
+          <div class="post__cover">
+            <img src={d.cover} alt="" />
+          </div>
+        )
+      }
+
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+
+    <ContactCTA />
+  </main>
+</Layout>
+
+<style>
+  .post {
+    padding-top: clamp(7rem, 16vh, 10rem);
+  }
+
+  .post__header {
+    width: min(100% - 3rem, 46rem);
+    margin-inline: auto;
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+  }
+
+  .post__back {
+    color: var(--ink-2);
+    font-size: var(--text-small);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .post__back:hover {
+    color: var(--ink);
+  }
+
+  .post__title {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .post__lead {
+    color: var(--ink-2);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.5;
+    max-width: 44ch;
+  }
+
+  .post__cover {
+    width: min(100% - 3rem, var(--container));
+    margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+  }
+  .post__cover img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+  }
+
+  .prose {
+    margin-top: clamp(2.5rem, 6vw, 5rem);
+  }
+</style>

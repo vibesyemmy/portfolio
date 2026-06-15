@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import '../styles/blog-card.css';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  gradient: string;
+  avatar?: string | null;
+  author?: string;
+}
+const { post, gradient, avatar = null, author = 'Opeyemi' } = Astro.props;
+const d = post.data;
+const date = d.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<a class="bcard" href={`/blog/${post.id}`}>
+  <div class="bcard__media" style={`background:${gradient}`}>
+    {d.cover && <img class="bcard__cover" src={d.cover} alt="" loading="lazy" />}
+    <span class:list={['bcard__badge', { 'has-avatar': avatar }]}>
+      {avatar && <img class="bcard__avatar" src={avatar} alt="" width="22" height="22" loading="lazy" />}
+      {author}
+    </span>
+  </div>
+  <div class="bcard__body">
+    <time class="bcard__date">{date}</time>
+    <h3 class="bcard__title">{d.title}</h3>
+    <p class="bcard__desc">{d.description}</p>
+  </div>
+</a>
