@@ -1,0 +1,54 @@
+---
+// A 2- or 3-up grid of images.
+interface Item {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+interface Props {
+  items?: Item[];
+  cols?: 2 | 3;
+  width?: 'content' | 'wide' | 'full';
+}
+const { items = [], cols = 2, width = 'wide' } = Astro.props;
+---
+
+<div class="cs-grid" data-width={width} style={`--cols:${cols}`}>
+  {
+    items.map((it) => (
+      <figure>
+        <img src={it.src} alt={it.alt || ''} loading="lazy" />
+        {it.caption && <figcaption>{it.caption}</figcaption>}
+      </figure>
+    ))
+  }
+</div>
+
+<style>
+  .cs-grid {
+    margin: clamp(2rem, 5vw, 4rem) 0;
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 2), 1fr);
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  .cs-grid figure {
+    margin: 0;
+  }
+  .cs-grid img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+  }
+  .cs-grid figcaption {
+    margin-top: 0.5rem;
+    color: var(--ink-2);
+    font-size: var(--text-small);
+  }
+  @media (max-width: 640px) {
+    .cs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

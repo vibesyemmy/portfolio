@@ -1,0 +1,59 @@
+---
+title: Taming the Fintech Monster
+summary: Poseidon — a unified design system that ended fragmented UX across HydrogenPay's platforms.
+client: HydrogenPay
+role: Senior Product Designer
+year: 2024
+kind: case-study
+services: [Design System, Design Tokens, Accessibility]
+cover: /demo-img/wD6CCUIINtCNzgZW9HQtNnW0YrU.jpg
+tags: [Design System, Fintech, Accessibility]
+order: 1
+featured: true
+---
+
+HydrogenPay grew fast — and its interfaces grew with it, in every direction at once. Three product teams shipped three button styles, three definitions of "primary", and three subtly different shades of the same blue. Onboarding a new screen meant reverse-engineering whichever pattern happened to be nearby.
+
+Poseidon is the design system that ended that. It gave design and engineering one shared language — tokens, components, and accessible patterns — and cut the distance between a Figma frame and production code.
+
+## The problem
+
+Every team was solving the same problems in isolation. The cost wasn't just visual inconsistency; it was velocity. Designers re-drew components that already existed, developers re-implemented them, and QA chased regressions that a shared library would have prevented.
+
+<Metrics
+  items={[
+    { value: '5', label: 'products unified' },
+    { value: '180+', label: 'components & variants' },
+    { value: 'WCAG AA', label: 'accessibility baseline' },
+    { value: '−40%', label: 'design-to-ship time' },
+  ]}
+/>
+
+## The approach
+
+We built Poseidon on atomic design — foundations first, then components, then patterns — so every decision compounded. Colour, type, spacing, and elevation became **tokens**: a single source of truth shared by Figma and the codebase.
+
+<MediaFull
+  src="/demo-img/gm6G5tPm5Eelvoyl6edoNJ58qDk.jpeg"
+  caption="Foundations: colour, type, spacing, and elevation tokens, themeable across products."
+/>
+
+### Built with engineering, not for them
+
+The system was authored alongside front-end developers from day one. Token names, component APIs, and state coverage were agreed together, so adoption wasn't a hand-off — it was a habit.
+
+<MediaGrid
+  cols={2}
+  items={[
+    { src: '/demo-img/ngIss00CAh70aoEKRyfijGw6Mg.jpeg', caption: 'Component library in Figma' },
+    { src: '/demo-img/Ia2Cum6hrToZyplIstjPrfmLx9c.png', caption: 'One source, themed for light and dark' },
+  ]}
+/>
+
+<Quote cite="Front-end Lead, HydrogenPay">
+  For the first time, design and code spoke the same language. We stopped arguing about pixels and started shipping.
+</Quote>
+
+## The outcome
+
+New screens now start from accessible, on-brand components instead of a blank canvas. Accessibility stopped being a final-stage audit and became the default — every component ships meeting WCAG AA contrast and focus requirements. Most importantly, the teams move faster because the system carries the consistency for them.

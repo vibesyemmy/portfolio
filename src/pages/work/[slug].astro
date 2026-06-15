@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import MediaFull from '../../components/case-study/MediaFull.astro';
+import MediaGrid from '../../components/case-study/MediaGrid.astro';
+import Gallery from '../../components/case-study/Gallery.astro';
+import Quote from '../../components/case-study/Quote.astro';
+import Metrics from '../../components/case-study/Metrics.astro';
+import ColorPalette from '../../components/case-study/ColorPalette.astro';
+import TypeSpecimen from '../../components/case-study/TypeSpecimen.astro';
+import LogoGrid from '../../components/case-study/LogoGrid.astro';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: { project, prev: projects[i - 1], next: projects[i + 1] },
+  }));
+}
+
+const { project, prev, next } = Astro.props;
+const { Content } = await render(project);
+
+// the block kit, available in MDX bodies without per-file imports
+const components = {
+  MediaFull,
+  MediaGrid,
+  Gallery,
+  Quote,
+  Metrics,
+  ColorPalette,
+  TypeSpecimen,
+  LogoGrid,
+};
+---
+
+<ProjectLayout project={project} prev={prev} next={next}>
+  <Content components={components} />
+</ProjectLayout>

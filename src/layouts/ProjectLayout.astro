@@ -1,0 +1,176 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Layout from './Layout.astro';
+import Nav from '../components/Nav.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+import '../styles/case-study.css';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  prev?: CollectionEntry<'projects'>;
+  next?: CollectionEntry<'projects'>;
+}
+
+const { project, prev, next } = Astro.props;
+const d = project.data;
+
+const KIND_LABEL: Record<string, string> = {
+  'case-study': 'Case Study',
+  showcase: 'Showcase',
+  branding: 'Brand Identity',
+};
+const nextOrPrev = next ?? prev;
+---
+
+<Layout title={`${d.title} — Opeyemi Ajagbe`} description={d.summary}>
+  <Nav />
+  <main>
+    <article class="cs">
+      <header class="cs__header">
+        <a class="cs__back" href="/#work">← All work</a>
+        <p class="eyebrow">{KIND_LABEL[d.kind] ?? 'Project'}{d.year ? ` · ${d.year}` : ''}</p>
+        <h1 class="cs__title">{d.title}</h1>
+        <p class="cs__summary">{d.summary}</p>
+
+        <dl class="cs__meta">
+          {d.client && (
+            <div><dt>Client</dt><dd>{d.client}</dd></div>
+          )}
+          <div><dt>Role</dt><dd>{d.role}</dd></div>
+          {d.services && d.services.length > 0 && (
+            <div><dt>Services</dt><dd>{d.services.join(', ')}</dd></div>
+          )}
+          {d.tags && d.tags.length > 0 && (
+            <div><dt>Focus</dt><dd>{d.tags.join(', ')}</dd></div>
+          )}
+        </dl>
+
+        {d.liveUrl && (
+          <a class="pill cs__live" href={d.liveUrl} target="_blank" rel="noopener noreferrer" data-magnetic>
+            Visit live ↗
+          </a>
+        )}
+      </header>
+
+      {d.cover && (
+        <div class="cs__cover">
+          <img src={d.cover} alt="" />
+        </div>
+      )}
+
+      <div class="prose">
+        <slot />
+      </div>
+
+      {nextOrPrev && (
+        <nav class="cs__next" aria-label="More work">
+          <span class="cs__next-label">{next ? 'Next project' : 'Previous project'}</span>
+          <a class="cs__next-link" href={`/work/${nextOrPrev.id}`}>
+            {nextOrPrev.data.title} <span aria-hidden="true">→</span>
+          </a>
+        </nav>
+      )}
+    </article>
+
+    <ContactCTA />
+  </main>
+</Layout>
+
+<style>
+  .cs {
+    padding-top: clamp(7rem, 16vh, 10rem);
+  }
+
+  .cs__header {
+    width: min(100% - 3rem, 52rem);
+    margin-inline: auto;
+    display: grid;
+    justify-items: start;
+    gap: 1.1rem;
+  }
+
+  .cs__back {
+    color: var(--ink-2);
+    font-size: var(--text-small);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .cs__back:hover {
+    color: var(--ink);
+  }
+
+  .cs__title {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .cs__summary {
+    color: var(--ink-2);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.5;
+    max-width: 44ch;
+  }
+
+  .cs__meta {
+    margin: 1rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 2.5rem;
+  }
+  .cs__meta dt {
+    font-size: var(--text-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+  }
+  .cs__meta dd {
+    margin: 0.25rem 0 0;
+    font-weight: 600;
+    font-size: var(--text-small);
+  }
+
+  .cs__live {
+    margin-top: 0.5rem;
+  }
+
+  .cs__cover {
+    width: min(100% - 3rem, var(--container));
+    margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+  }
+  .cs__cover img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+  }
+
+  .prose {
+    margin-top: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .cs__next {
+    width: min(100% - 3rem, 52rem);
+    margin: clamp(3rem, 8vw, 6rem) auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0.4rem;
+  }
+  .cs__next-label {
+    font-size: var(--text-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+  }
+  .cs__next-link {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: color 0.2s;
+  }
+  .cs__next-link:hover {
+    color: var(--accent-text);
+  }
+</style>

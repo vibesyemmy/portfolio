@@ -1,0 +1,85 @@
+/* Case-study article body. A centred reading column with named bleed tracks so
+   block components (data-width="wide" | "full") can break wider than the text.
+   Loaded globally by ProjectLayout so it styles the MDX-generated children. */
+
+.prose {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(1.5rem, 1fr)
+    [wide-start] minmax(0, 3.5rem)
+    [content-start] min(100% - 3rem, 46rem) [content-end]
+    minmax(0, 3.5rem) [wide-end]
+    minmax(1.5rem, 1fr) [full-end];
+}
+
+/* every top-level block sits in the reading column by default … */
+.prose > * {
+  grid-column: content;
+}
+/* … unless it opts into a wider track */
+.prose > [data-width='wide'] {
+  grid-column: wide;
+}
+.prose > [data-width='full'] {
+  grid-column: full;
+}
+
+/* typography (low specificity via :where so component styles win) */
+.prose :where(p) {
+  margin: 1.1em 0;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.prose :where(h2) {
+  margin: 2.4em 0 0.6em;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.prose :where(h3) {
+  margin: 2em 0 0.5em;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.prose :where(ul, ol) {
+  margin: 1.1em 0;
+  padding-left: 1.3em;
+}
+.prose :where(li) {
+  margin: 0.35em 0;
+  line-height: 1.7;
+}
+.prose :where(a) {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose :where(strong) {
+  font-weight: 600;
+}
+.prose :where(blockquote) {
+  margin: 1.6em 0;
+  padding-left: 1.1em;
+  border-left: 3px solid var(--line);
+  color: var(--ink-2);
+}
+.prose :where(hr) {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.6em 0;
+}
+.prose :where(p) :where(img) {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+}
+.prose :where(code) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}

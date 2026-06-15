@@ -1,0 +1,58 @@
+---
+// Typography specimen rows. `font` is an optional CSS font-family for the sample.
+interface Item {
+  name: string;
+  sample?: string;
+  note?: string;
+  font?: string;
+}
+interface Props {
+  items?: Item[];
+  width?: 'content' | 'wide';
+}
+const { items = [], width = 'wide' } = Astro.props;
+---
+
+<div class="cs-type" data-width={width}>
+  {
+    items.map((it) => (
+      <div class="cs-type__row">
+        <div class="cs-type__meta">
+          <span class="cs-type__name">{it.name}</span>
+          {it.note && <span class="cs-type__note">{it.note}</span>}
+        </div>
+        <p class="cs-type__sample" style={it.font ? `font-family:${it.font}` : undefined}>
+          {it.sample || 'AaBbCc 0123'}
+        </p>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .cs-type {
+    margin: clamp(2rem, 5vw, 4rem) 0;
+    display: grid;
+    gap: 2rem;
+  }
+  .cs-type__row {
+    display: grid;
+    gap: 0.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+  }
+  .cs-type__name {
+    font-weight: 600;
+  }
+  .cs-type__note {
+    color: var(--ink-2);
+    font-size: var(--text-small);
+    margin-left: 0.5rem;
+  }
+  .cs-type__sample {
+    margin: 0;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+</style>

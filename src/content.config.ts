@@ -3,15 +3,20 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-  schema: ({ image }) =>
-    z.object({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+  schema: z.object({
       title: z.string(),
       summary: z.string(),
       client: z.string().optional(),
       role: z.string(),
       year: z.number().optional(),
-      cover: image().optional(),
+      // case-study | showcase | branding — a label/hint only; all share one layout
+      kind: z.enum(['case-study', 'showcase', 'branding']).default('case-study'),
+      services: z.array(z.string()).optional(),
+      liveUrl: z.string().optional(),
+      // cover as a public path (e.g. /demo-img/x.png); optional, hero falls back
+      // to a typographic header when absent
+      cover: z.string().optional(),
       tags: z.array(z.string()),
       order: z.number(),
       featured: z.boolean().default(false),

@@ -1,0 +1,43 @@
+---
+// A row of headline stats / outcomes.
+interface Item {
+  value: string;
+  label: string;
+}
+interface Props {
+  items?: Item[];
+  width?: 'content' | 'wide';
+}
+const { items = [], width = 'wide' } = Astro.props;
+---
+
+<div class="cs-metrics" data-width={width}>
+  {
+    items.map((it) => (
+      <div class="cs-metric">
+        <div class="cs-metric__value">{it.value}</div>
+        <div class="cs-metric__label">{it.label}</div>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .cs-metrics {
+    margin: clamp(2rem, 5vw, 4rem) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: clamp(1rem, 3vw, 2.5rem);
+  }
+  .cs-metric__value {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .cs-metric__label {
+    margin-top: 0.4rem;
+    color: var(--ink-2);
+    font-size: var(--text-small);
+  }
+</style>

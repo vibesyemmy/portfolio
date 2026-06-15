@@ -1,0 +1,55 @@
+---
+// Brand colour swatches.
+interface Swatch {
+  hex: string;
+  name?: string;
+}
+interface Props {
+  colors?: Swatch[];
+  width?: 'content' | 'wide' | 'full';
+}
+const { colors = [], width = 'wide' } = Astro.props;
+---
+
+<div class="cs-palette" data-width={width}>
+  {
+    colors.map((c) => (
+      <div class="cs-swatch">
+        <div class="cs-swatch__chip" style={`background:${c.hex}`} />
+        <div class="cs-swatch__meta">
+          {c.name && <span>{c.name}</span>}
+          <code>{c.hex}</code>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .cs-palette {
+    margin: clamp(2rem, 5vw, 4rem) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1rem;
+  }
+  .cs-swatch__chip {
+    aspect-ratio: 1;
+    border-radius: var(--radius-card);
+    border: 1px solid rgb(0 0 0 / 6%);
+  }
+  .cs-swatch__meta {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+  .cs-swatch__meta code {
+    color: var(--ink-2);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+</style>

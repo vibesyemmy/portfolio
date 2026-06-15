@@ -1,0 +1,44 @@
+---
+// Full-bleed (or container-width) image/video with optional caption.
+interface Props {
+  src: string;
+  alt?: string;
+  caption?: string;
+  width?: 'content' | 'wide' | 'full';
+  poster?: string;
+}
+const { src, alt = '', caption, width = 'full', poster } = Astro.props;
+const isVideo = /\.(mp4|webm|mov)$/i.test(src);
+---
+
+<figure class="cs-media" data-width={width}>
+  {
+    isVideo ? (
+      <video src={src} poster={poster} autoplay muted loop playsinline />
+    ) : (
+      <img src={src} alt={alt} loading="lazy" />
+    )
+  }
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .cs-media {
+    margin: clamp(2rem, 5vw, 4rem) 0;
+  }
+  .cs-media :where(img, video) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+  }
+  .cs-media[data-width='full'] :where(img, video) {
+    border-radius: 0;
+  }
+  .cs-media figcaption {
+    margin-top: 0.75rem;
+    color: var(--ink-2);
+    font-size: var(--text-small);
+    text-align: center;
+  }
+</style>
