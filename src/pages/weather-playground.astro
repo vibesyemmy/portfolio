@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/weather-logo.css';
+
+const CONDITIONS = ['clear', 'clouds', 'fog', 'rain', 'snow', 'storm'] as const;
+---
+
+<Layout title="Weather Logo — Playground">
+  <main class="pg" data-bg="light">
+    <header class="pg__head">
+      <h1>Weather Logo Playground</h1>
+      <p>Pick a condition to preview the effect. Toggle day/night and the backdrop, or load your real local weather. Hover the logo for the tooltip.</p>
+    </header>
+
+    <div class="pg__stage-wrap">
+      <div class="logo-stage pg__stage" data-weather-logo>
+        <img src="/logo-opeyemi.svg" alt="Opeyemi" width="183" height="32" />
+      </div>
+    </div>
+
+    <div class="pg__controls">
+      <div class="pg__row" role="group" aria-label="Weather condition">
+        {
+          CONDITIONS.map((c, i) => (
+            <button class:list={['pg__btn', { 'is-active': i === 0 }]} data-cond={c}>
+              {c}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="pg__row">
+        <label class="pg__toggle"><input type="checkbox" data-day checked /> Daytime</label>
+        <label class="pg__toggle"><input type="checkbox" data-darkbg /> Dark backdrop</label>
+        <button class="pg__btn pg__btn--accent" data-real>Use my real weather</button>
+        <span class="pg__status" data-status aria-live="polite"></span>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { WeatherLogo, fetchWeather, type Condition } from '../scripts/weather-logo';
+
+  const stage = document.querySelector<HTMLElement>('[data-weather-logo]');
+  const main = document.querySelector<HTMLElement>('.pg');
+  const dayToggle = document.querySelector<HTMLInputElement>('[data-day]');
+  const darkBg = document.querySelector<HTMLInputElement>('[data-darkbg]');
+  const status = document.querySelector<HTMLElement>('[data-status]');
+  const condButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-cond]'));
+
+  if (stage && main && dayToggle && darkBg) {
+    const wl = new WeatherLogo(stage);
+    let cond: Condition = 'clear';
+
+    const apply = () => wl.set({ condition: cond, isDay: dayToggle.checked, city: 'Lagos' });
+    const markActive = () =>
+      condButtons.forEach((b) => b.classList.toggle('is-active', b.dataset.cond === cond));
+
+    condButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        cond = btn.dataset.cond as Condition;
+        markActive();
+        apply();
+      });
+    });
+
+    dayToggle.addEventListener('change', apply);
+    darkBg.addEventListener('change', () => {
+      main.dataset.bg = darkBg.checked ? 'dark' : 'light';
+    });
+
+    document.querySelector<HTMLButtonElement>('[data-real]')?.addEventListener('click', async () => {
+      if (status) status.textContent = 'Locating…';
+      const s = await fetchWeather();
+      if (!s) {
+        if (status) status.textContent = 'Could not load weather (blocked or offline).';
+        return;
+      }
+      cond = s.condition;
+      markActive();
+      dayToggle.checked = s.isDay;
+      wl.set(s);
+      if (status)
+        status.textContent = `${s.city ?? '?'} · ${s.condition} · ${s.tempC ?? '?'}°C · ${s.isDay ? 'day' : 'night'}`;
+    });
+
+    apply();
+  }
+</script>
+
+<style>
+  .pg {
+    min-height: 100vh;
+    display: grid;
+    align-content: start;
+    gap: 2.5rem;
+    padding: clamp(2rem, 6vh, 5rem) 1.5rem 4rem;
+    max-width: 60rem;
+    margin-inline: auto;
+  }
+
+  .pg__head h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+  }
+
+  .pg__head p {
+    color: var(--ink-2);
+    max-width: 46ch;
+    margin-top: 0.75rem;
+  }
+
+  .pg__stage-wrap {
+    display: grid;
+    place-items: center;
+    min-height: 16rem;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--line);
+    transition: background 0.3s ease;
+  }
+
+  .pg[data-bg='light'] .pg__stage-wrap {
+    background: #f0f1f3;
+  }
+
+  .pg[data-bg='dark'] .pg__stage-wrap {
+    background: #14161a;
+    border-color: #262a30;
+  }
+
+  /* show the logo much larger than the nav so effects are easy to judge */
+  .pg__stage img {
+    height: 88px;
+    width: auto;
+  }
+
+  .pg__controls {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .pg__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .pg__btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: var(--text-small);
+    font-weight: 600;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .pg__btn:hover {
+    border-color: rgb(0 0 0 / 30%);
+  }
+
+  .pg__btn.is-active {
+    background: var(--ink);
+    color: var(--surface);
+    border-color: var(--ink);
+  }
+
+  .pg__btn--accent {
+    background: var(--accent);
+    border-color: transparent;
+    color: var(--ink);
+  }
+
+  .pg__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--text-small);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .pg__status {
+    font-size: var(--text-small);
+    color: var(--ink-2);
+  }
+</style>
