@@ -26,7 +26,7 @@ import Layout from '../layouts/Layout.astro';
   const err = document.querySelector<HTMLElement>('[data-err]');
 
   if (stage && main) {
-    mountHeatmapLogo(stage, { image: '/favicon.svg' }).then((mount) => {
+    mountHeatmapLogo(stage, { image: '/logo-opeyemi.svg' }).then((mount) => {
       if (!mount && err) {
         err.textContent = 'Could not load the shader / logo.';
         err.hidden = false;
@@ -80,10 +80,10 @@ import Layout from '../layouts/Layout.astro';
     border-color: #262a30;
   }
 
-  /* ShaderMount injects a canvas sized to this box */
+  /* ShaderMount injects a canvas sized to this box; match the wordmark aspect */
   .pg__stage {
-    width: min(78vw, 420px);
-    height: min(78vw, 420px);
+    width: min(90vw, 760px);
+    aspect-ratio: 183 / 32;
   }
 
   .pg__err {
