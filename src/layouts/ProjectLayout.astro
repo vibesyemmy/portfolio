@@ -19,7 +19,6 @@ const KIND_LABEL: Record<string, string> = {
   showcase: 'Showcase',
   branding: 'Brand Identity',
 };
-const nextOrPrev = next ?? prev;
 ---
 
 <Layout title={`${d.title} — Opeyemi Ajagbe`} description={d.summary}>
@@ -62,12 +61,24 @@ const nextOrPrev = next ?? prev;
         <slot />
       </div>
 
-      {nextOrPrev && (
-        <nav class="cs__next" aria-label="More work">
-          <span class="cs__next-label">{next ? 'Next project' : 'Previous project'}</span>
-          <a class="cs__next-link" href={`/work/${nextOrPrev.id}`}>
-            {nextOrPrev.data.title} <span aria-hidden="true">→</span>
-          </a>
+      {(prev || next) && (
+        <nav class="cs__pager" aria-label="More work">
+          {prev ? (
+            <a class="cs__pager-link cs__pager-link--prev" href={`/work/${prev.id}`}>
+              <span class="cs__pager-label">← Previous</span>
+              <span class="cs__pager-title">{prev.data.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <a class="cs__pager-link cs__pager-link--next" href={`/work/${next.id}`}>
+              <span class="cs__pager-label">Next →</span>
+              <span class="cs__pager-title">{next.data.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
         </nav>
       )}
     </article>
@@ -150,27 +161,43 @@ const nextOrPrev = next ?? prev;
     margin-top: clamp(2.5rem, 6vw, 5rem);
   }
 
-  .cs__next {
+  .cs__pager {
     width: min(100% - 3rem, 52rem);
     margin: clamp(3rem, 8vw, 6rem) auto 0;
     padding-top: 2rem;
     border-top: 1px solid var(--line);
-    display: grid;
-    gap: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
   }
-  .cs__next-label {
+  .cs__pager-link {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .cs__pager-link--next {
+    text-align: right;
+  }
+  .cs__pager-label {
     font-size: var(--text-eyebrow);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--ink-2);
   }
-  .cs__next-link {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
+  .cs__pager-title {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     transition: color 0.2s;
   }
-  .cs__next-link:hover {
+  .cs__pager-link:hover .cs__pager-title {
     color: var(--accent-text);
+  }
+  @media (max-width: 520px) {
+    .cs__pager {
+      flex-direction: column;
+    }
+    .cs__pager-link--next {
+      text-align: left;
+    }
   }
 </style>
