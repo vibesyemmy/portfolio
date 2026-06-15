@@ -16,7 +16,17 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
     <a class="nav__brand" href="/" aria-label="Opeyemi Ajagbe — home">
       <img src="/logo-opeyemi.svg" alt="" width="183" height="32" />
     </a>
-    <div class="nav__links">
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      data-nav-toggle
+    >
+      <span class="nav__burger" aria-hidden="true"></span>
+    </button>
+    <div class="nav__links" id="nav-menu">
       <a class="nav__link" href="#work">
         {
           workIcon && (
@@ -63,6 +73,31 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
     </div>
   </nav>
 </header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.toggleAttribute('data-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(!menu.hasAttribute('data-open'));
+    });
+    // close after picking a destination, on Escape, or on an outside tap
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    document.addEventListener('click', (e) => {
+      const t = e.target as Node;
+      if (!menu.contains(t) && !toggle.contains(t)) setOpen(false);
+    });
+  }
+</script>
 
 <style>
   .nav-wrap {
@@ -134,9 +169,121 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
     padding: 0.5rem 1.1rem;
   }
 
-  @media (max-width: 480px) {
-    .nav__links a:not(.pill) {
-      display: none;
+  /* hamburger toggle — hidden on desktop, shown on mobile */
+  .nav__toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .nav__burger,
+  .nav__burger::before,
+  .nav__burger::after {
+    width: 1.25rem;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+  }
+
+  .nav__burger {
+    position: relative;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav__burger::before,
+  .nav__burger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .nav__burger::before {
+    top: -6px;
+  }
+
+  .nav__burger::after {
+    top: 6px;
+  }
+
+  /* open: middle bar hides, outer bars cross into an X */
+  .nav__toggle[aria-expanded='true'] .nav__burger {
+    background: transparent;
+  }
+
+  .nav__toggle[aria-expanded='true'] .nav__burger::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .nav__toggle[aria-expanded='true'] .nav__burger::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  @media (max-width: 600px) {
+    .nav {
+      position: relative;
+      gap: 0.75rem;
+      padding-right: 0.4rem;
+    }
+
+    .nav__toggle {
+      display: inline-flex;
+    }
+
+    /* links become a dropdown panel below the pill */
+    .nav__links {
+      position: absolute;
+      top: calc(100% + 0.6rem);
+      left: 50%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.2rem;
+      width: max-content;
+      min-width: 12rem;
+      padding: 0.5rem;
+      border: 1px solid rgb(0 0 0 / 12%);
+      border-radius: 1rem;
+      background: rgb(255 255 255 / 96%);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 30px rgb(0 0 0 / 14%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-0.4rem);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+    .nav__links[data-open] {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .nav__link {
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.6rem;
+    }
+
+    .nav__link:hover {
+      background: rgb(0 0 0 / 4%);
+    }
+
+    .nav__cta {
+      justify-content: center;
+      margin-top: 0.25rem;
+      padding: 0.6rem 1.1rem;
     }
   }
 </style>
