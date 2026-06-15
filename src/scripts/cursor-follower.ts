@@ -7,17 +7,24 @@ import gsap from 'gsap';
  * stays identical in both places). Gated to fine-pointer, non-reduced-motion.
  *
  * @param triggers elements that reveal the pill on hover (share one pill)
- * @param label    text shown in the pill, e.g. "View Project" / "Read Story"
+ * @param label    pill text — a fixed string, or a resolver called with the
+ *                 hovered element so it can vary per card (e.g. "View Project"
+ *                 vs "Coming soon" for a locked card)
  */
-export function attachCursorFollower(triggers: HTMLElement[], label: string): void {
+export function attachCursorFollower(
+  triggers: HTMLElement[],
+  label: string | ((target: EventTarget | null) => string)
+): void {
   if (!triggers.length) return;
 
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!finePointer || reducedMotion) return;
 
+  const resolve = (t: EventTarget | null) => (typeof label === 'function' ? label(t) : label);
+
   const pill = document.createElement('div');
-  pill.textContent = label;
+  pill.textContent = resolve(null);
   Object.assign(pill.style, {
     position: 'fixed',
     left: '0',
@@ -46,10 +53,12 @@ export function attachCursorFollower(triggers: HTMLElement[], label: string): vo
   triggers.forEach((el) => {
     el.style.cursor = 'none';
     el.addEventListener('pointerenter', (e) => {
+      pill.textContent = resolve(e.target);
       gsap.set(pill, { x: e.clientX, y: e.clientY });
       gsap.to(pill, { autoAlpha: 1, scale: 1, duration: 0.3, ease: 'power3' });
     });
     el.addEventListener('pointermove', (e) => {
+      if (typeof label === 'function') pill.textContent = resolve(e.target);
       xTo(e.clientX);
       yTo(e.clientY);
     });

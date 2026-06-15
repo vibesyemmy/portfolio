@@ -34,58 +34,49 @@ function imageRatio(publicPath: string): number {
   return 0.72;
 }
 
-// Case studies the cards link to. Until there are enough real projects to fill
-// the wall, cards cycle through them — several cards can point to the same case
-// study. The demo imagery + placeholder titles keep the look for now.
+// Real case studies (each has a /work/[slug] page). Every project gets one
+// clear, clickable card; the remaining demo cards keep the wall full but are
+// shown "locked" (blurred + Coming soon on hover) until a real project backs them.
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order
 );
-const projectHref = (i: number) =>
-  projects.length ? `/work/${projects[i % projects.length].id}` : '#work';
 
 // Demo placeholder imagery — replace with real, optimised covers before launch.
 const files: string[] = fs
   .readdirSync('public/demo-img')
   .filter((f: string) => /\.(png|jpe?g|webp|avif)$/i.test(f))
   .sort();
-const imageFiles: string[] = files.map((f) => `/demo-img/${encodeURIComponent(f)}`);
 
 const COLUMNS = 4;
 
-// Placeholder card titles, swapped for real case-study titles later.
-const TITLES = [
-  'Payments Dashboard',
-  'Logistics Tracker',
-  'Learning Platform',
-  'Tournament Hub',
-  'Wallet Onboarding',
-  'Fleet Console',
-  'Course Builder',
-  'Match Analytics',
-  'Merchant Portal',
-  'Delivery App',
-  'Student Planner',
-  'Live Scoreboard',
-  'Savings Flow',
-  'Route Optimizer',
-  'Design System',
-  'Esports Arena',
-];
-
 interface Tile {
   src: string;
-  title: string;
-  href: string;
+  locked: boolean;
+  href?: string;
+  title?: string;
 }
+
+// Spread the real projects across the demo cards (every `step`th card) so the
+// clickable tiles aren't clumped together.
+const step = Math.max(1, Math.floor(files.length / Math.max(projects.length, 1)));
+let assigned = 0;
+const cards: Tile[] = files.map((f, i) => {
+  const src = `/demo-img/${encodeURIComponent(f)}`;
+  if (i % step === 0 && assigned < projects.length) {
+    const p = projects[assigned++];
+    return { src, locked: false, href: `/work/${p.id}`, title: p.data.title };
+  }
+  return { src, locked: true };
+});
+
 // Height-balanced bin-packing: each card goes to the currently shortest column.
 const columns: Tile[][] = Array.from({ length: COLUMNS }, () => []);
 const colHeights: number[] = new Array(COLUMNS).fill(0);
-files.forEach((f, i) => {
+cards.forEach((card) => {
   let min = 0;
   for (let c = 1; c < COLUMNS; c++) if (colHeights[c] < colHeights[min]) min = c;
-  const src = `/demo-img/${encodeURIComponent(f)}`;
-  columns[min].push({ src, title: TITLES[i % TITLES.length], href: projectHref(i) });
-  colHeights[min] += imageRatio(src) + 0.05; // ratio + gap allowance
+  columns[min].push(card);
+  colHeights[min] += imageRatio(card.src) + 0.05; // ratio + gap allowance
 });
 
 const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
@@ -93,7 +84,8 @@ const colMeta = Array.from({ length: COLUMNS }, (_, c) => ({
   dist: 50 + (c % 3) * 35, // px of scroll-parallax travel (kept under the overfill)
 }));
 
-// Mobile collapses to a single-column list: cards shown before the show-more toggle
+// Mobile shows just the real, browsable projects (one card each).
+const realCards = cards.filter((c) => !c.locked);
 const MOBILE_VISIBLE = 6;
 ---
 
@@ -124,12 +116,24 @@ const MOBILE_VISIBLE = 6;
             data-dir={colMeta[c].dir}
             data-dist={colMeta[c].dist}
           >
-            {col.map((it) => (
-              <a class="tile" href={it.href}>
-                <img src={it.src} alt={it.title} loading="lazy" />
-                <span class="tile__title">{it.title}</span>
-              </a>
-            ))}
+            {col.map((it) =>
+              it.locked ? (
+                <div class="tile tile--locked" data-locked>
+                  <img src={it.src} alt="" loading="lazy" />
+                  <span class="tile__lock" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="11" width="16" height="9" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+                    </svg>
+                  </span>
+                </div>
+              ) : (
+                <a class="tile" href={it.href}>
+                  <img src={it.src} alt={it.title} loading="lazy" />
+                  <span class="tile__title">{it.title}</span>
+                </a>
+              )
+            )}
           </div>
         </div>
       ))
@@ -141,16 +145,17 @@ const MOBILE_VISIBLE = 6;
   <div class="wall-mobile container">
     <ul class="wall-mobile__list" data-wall-mobile-list data-collapsed>
       {
-        imageFiles.map((src, i) => (
+        realCards.map((it, i) => (
           <li class="wall-mobile__item" data-extra={i >= MOBILE_VISIBLE ? 'true' : 'false'}>
-            <a href={projectHref(i)}>
-              <img src={src} alt={TITLES[i % TITLES.length]} loading="lazy" />
+            <a href={it.href}>
+              <img src={it.src} alt={it.title} loading="lazy" />
+              <span class="wall-mobile__title">{it.title}</span>
             </a>
           </li>
         ))
       }
     </ul>
-    {imageFiles.length > MOBILE_VISIBLE && (
+    {realCards.length > MOBILE_VISIBLE && (
       <button class="wall-mobile__toggle" data-wall-toggle data-magnetic aria-expanded="false">
         Show more
       </button>
@@ -198,9 +203,14 @@ const MOBILE_VISIBLE = 6;
     }
   }
 
-  // "View Project" cursor follower over the wall (fine-pointer devices only)
+  // cursor follower over the wall: "View Project" on real cards, "Coming soon"
+  // on locked placeholders (fine-pointer devices only)
   const wall = document.querySelector<HTMLElement>('.wall');
-  if (wall) attachCursorFollower([wall], 'View Project');
+  if (wall) {
+    attachCursorFollower([wall], (t) =>
+      (t as HTMLElement | null)?.closest?.('[data-locked]') ? 'Coming soon' : 'View Project'
+    );
+  }
 
   // Mobile single-column wall: show more / show less toggle
   document.querySelectorAll<HTMLButtonElement>('[data-wall-toggle]').forEach((btn) => {
@@ -316,12 +326,47 @@ const MOBILE_VISIBLE = 6;
     display: block;
     width: 100%;
     height: auto;
-    transition: scale 0.45s ease;
+    transition:
+      scale 0.45s ease,
+      filter 0.45s ease;
   }
 
   /* slight zoom marks the hovered card (the cursor is hidden over the wall) */
   .tile:hover img {
     scale: 1.06;
+  }
+
+  /* locked placeholders: blur + lock badge on hover, not clickable */
+  .tile--locked {
+    cursor: default;
+  }
+  .tile--locked:hover img {
+    scale: 1.1;
+    filter: blur(7px) brightness(0.55);
+  }
+  .tile__lock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .tile--locked:hover .tile__lock {
+    opacity: 1;
+  }
+  .tile__lock svg {
+    width: 2rem;
+    height: 2rem;
+    filter: drop-shadow(0 2px 8px rgb(0 0 0 / 45%));
   }
 
   /* project title: fade-to-black band + label at the card bottom, on hover */
@@ -392,6 +437,13 @@ const MOBILE_VISIBLE = 6;
     height: auto;
     border-radius: 14px;
     box-shadow: 0 6px 20px rgb(0 0 0 / 7%);
+  }
+
+  .wall-mobile__title {
+    display: block;
+    margin: 0.6rem 0.15rem 0;
+    font-size: var(--text-small);
+    font-weight: 600;
   }
 
   .wall-mobile__toggle {
