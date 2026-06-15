@@ -36,7 +36,7 @@ const DEFAULTS = {
   angle: 240,
   noise: 0,
   innerGlow: 0.25,
-  outerGlow: 0.17,
+  outerGlow: 0,
   speed: 1.26,
   scale: 0.91,
 };
