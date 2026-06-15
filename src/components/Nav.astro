@@ -14,7 +14,10 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
 <header class="nav-wrap">
   <nav class="nav" aria-label="Primary">
     <a class="nav__brand" href="/" aria-label="Opeyemi Ajagbe — home" data-scroll-top>
-      <img src="/logo-opeyemi.svg" alt="" width="183" height="32" />
+      <span class="nav__logo" data-heatmap-logo>
+        <img class="nav__logo-img" src="/logo-opeyemi.svg" alt="" width="183" height="32" />
+        <span class="nav__logo-fx" aria-hidden="true"></span>
+      </span>
     </a>
     <button
       class="nav__toggle"
@@ -99,6 +102,42 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
   }
 </script>
 
+<script>
+  import gsap from 'gsap';
+  import { mountHeatmapLogo, HEATMAP_DEFAULTS } from '../scripts/heatmap-logo';
+
+  // Heatmap "ignite" on the nav logo. Rest state = the static orange wordmark;
+  // a heatmap canvas overlays it and plays one burst on load and again on hover,
+  // then fades back to the static logo. Skipped entirely for reduced-motion.
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.querySelector<HTMLElement>('[data-heatmap-logo]');
+  const fx = root?.querySelector<HTMLElement>('.nav__logo-fx');
+
+  if (root && fx && !reduced) {
+    mountHeatmapLogo(fx, { image: '/logo-opeyemi.svg', speed: 0 }).then((mount) => {
+      if (!mount) return;
+      let busy = false;
+      const ignite = () => {
+        if (busy) return;
+        busy = true;
+        mount.setFrame(0);
+        mount.setSpeed(HEATMAP_DEFAULTS.speed);
+        gsap
+          .timeline({
+            onComplete: () => {
+              mount.setSpeed(0); // stop rAF once the burst is done
+              busy = false;
+            },
+          })
+          .to(fx, { opacity: 1, duration: 0.25, ease: 'power2.out' })
+          .to(fx, { opacity: 0, duration: 0.6, ease: 'power2.in' }, '+=1.6');
+      };
+      ignite(); // play once on page load
+      root.addEventListener('mouseenter', ignite);
+    });
+  }
+</script>
+
 <style>
   .nav-wrap {
     position: fixed;
@@ -131,10 +170,29 @@ const ICON_COLOR = '#666666'; // matches --ink-2 (the resting link colour)
     align-items: center;
   }
 
-  .nav__brand img {
+  .nav__logo {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .nav__logo-img {
     height: 1.75rem;
     width: auto;
     display: block;
+  }
+
+  /* heatmap canvas overlays the logo exactly; hidden until it ignites */
+  .nav__logo-fx {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav__logo-fx canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .nav__links {
