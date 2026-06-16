@@ -4,7 +4,7 @@ interface Props {
   src: string;
   alt?: string;
   caption?: string;
-  width?: 'content' | 'wide' | 'full';
+  width?: 'content' | 'wide' | 'full' | 'container';
   poster?: string;
 }
 const { src, alt = '', caption, width = 'full', poster } = Astro.props;

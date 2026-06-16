@@ -64,7 +64,8 @@ const cards: Tile[] = files.map((f, i) => {
   const src = `/demo-img/${encodeURIComponent(f)}`;
   if (i % step === 0 && assigned < projects.length) {
     const p = projects[assigned++];
-    return { src, locked: false, href: `/work/${p.id}`, title: p.data.title };
+    // real cards show their own cover; fall back to the placeholder if unset
+    return { src: p.data.cover ?? src, locked: false, href: `/work/${p.id}`, title: p.data.title };
   }
   return { src, locked: true };
 });

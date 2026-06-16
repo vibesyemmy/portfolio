@@ -23,6 +23,12 @@
 .prose > [data-width='full'] {
   grid-column: full;
 }
+/* matches the case-study hero/cover exactly: container-capped with side gutters */
+.prose > [data-width='container'] {
+  grid-column: full;
+  width: min(100% - 3rem, var(--container));
+  justify-self: center; /* center within the full track; survives the component's margin shorthand */
+}
 
 /* typography (low specificity via :where so component styles win) */
 .prose :where(p) {

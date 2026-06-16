@@ -9,7 +9,7 @@ services: [Design System, UI Design, Accessibility, Design Tokens]
 tags: [Design System, Fintech, Accessibility]
 order: 1
 featured: true
-cover: /demo-img/wD6CCUIINtCNzgZW9HQtNnW0YrU.jpg
+cover: /poseidon-grid.webp
 ---
 
 ## −35% design-to-dev handoff time · 120+ components · WCAG 2.1 AA · SUS 62 → 78
@@ -26,6 +26,8 @@ The root cause wasn't talent. Every product squad had good designers and good de
 
 My role: Lead Product Designer. I led a team of 5 designers and coordinated with 2 front-end developers, working across all five product squads to build Poseidon, HydrogenPay's first design system.
 
+<MediaFull src="/fragment-1.webp" width="wide" caption="Five products, five visual languages — the fragmentation users felt every time they moved between surfaces." />
+
 ---
 
 ## The Bet
@@ -39,6 +41,8 @@ We set three principles before writing a single line of code:
 **2. Accessibility is infrastructure, not a checklist.** WCAG 2.1 AA wasn't a post-launch audit. Color contrast ratios (≥4.5:1), keyboard navigation, and screen reader labels were baked into the design tokens themselves. If you used Poseidon tokens, you got accessibility for free.
 
 **3. Consistency ships faster than creativity.** For 80% of UI needs, one pattern wins. We saved custom work for the 20% where it actually mattered.
+
+<MediaFull src="/north-star.webp" width="wide" caption="The bet: one UI kit and one component library feeding every product — design efficiency in, consistent experience out." />
 
 ---
 
@@ -59,9 +63,21 @@ I ran a stakeholder workshop where I put all five product dashboards side-by-sid
 
 We adopted Brad Frost's Atomic Design methodology: atoms (tokens, icons), molecules (inputs, badges), organisms (nav bars, data tables). But with a rule: every component had to ship with a real use case from a real product. No speculative components. If nobody needed a date-range picker today, we didn't build one.
 
+<MediaFull src="/atoms.webp" width="wide" caption="Atoms up — color, states, inputs, and controls assembled from one shared foundation." />
+
 Design tokens handled spacing (4px scale), typography (modular type scale, 2 families max), and color: semantic tokens (never raw hex in production code). The token layer meant designers and developers referenced the same source of truth. A spacing change in Figma updated everywhere.
 
+<MediaGrid
+  cols={2}
+  items={[
+    { src: '/design-token.webp', caption: 'Semantic tokens, light and dark from a single source.' },
+    { src: '/grid-system.webp', caption: 'A 4px spacing and layout grid across every screen.' },
+  ]}
+/>
+
 Our 2 front-end developers built the component library in Storybook, working directly from Figma specs. Designers reviewed components in Storybook, not just in mockups. That closed the gap between what we designed and what actually shipped.
+
+<MediaFull src="/component-library.webp" width="wide" caption="Poseidon's documentation — every component shipped with props, presets, and a live preview." />
 
 ### The thing that failed (and what we learned)
 
@@ -78,6 +94,8 @@ The lesson: half-migrated is worse than not migrated. Users trust consistency mo
 ---
 
 ## The Outcomes
+
+<MediaFull src="/hydrogen-ds.webp" width="container" caption="Poseidon in Figma — auto-layout, variants, and variables, accessible by default." />
 
 ### Developer velocity: −35% handoff time
 
@@ -112,3 +130,5 @@ The merchant dashboard, mobile POS, API portal, and admin console adopted Poseid
 ---
 
 Poseidon taught me that a design system isn't a Figma library. It's an organizational intervention. The components matter less than the shared language. The tokens matter less than the trust that comes from opening two products and knowing they belong to the same company. Everything else is implementation detail.
+
+<MediaFull src="/conclusion.webp" width="container" caption="One company, one language — HydrogenPay after Poseidon." />
