@@ -1,5 +1,8 @@
 ---
-const CONTACT_EMAIL = 'hello@opeyemi.app';
+// Web3Forms access key (public — it's embedded client-side). Set
+// PUBLIC_WEB3FORMS_KEY in .env (and on your host). Get a free key at
+// https://web3forms.com by entering your email.
+const WEB3FORMS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
 
 const SOCIALS = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/opeyemi-ajagbe/' },
@@ -36,17 +39,22 @@ const SOCIALS = [
       </div>
     </div>
 
-    <!-- right: contact form. No backend yet — submit composes a mailto (see
-         <script> below). The action/enctype is a no-JS fallback. Swap for a
-         Formspree/Netlify/API endpoint when one exists. -->
+    <!-- right: contact form, powered by Web3Forms (POSTs to their API; they email
+         submissions to you). The native POST is the no-JS fallback; the <script>
+         below enhances it with an inline success/error message. -->
     <form
       class="cform"
       data-reveal
       novalidate
-      action={`mailto:${CONTACT_EMAIL}`}
-      method="post"
-      enctype="text/plain"
+      action="https://api.web3forms.com/submit"
+      method="POST"
     >
+      <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+      <input type="hidden" name="subject" value="New enquiry from opeyemi.app" />
+      <input type="hidden" name="from_name" value="opeyemi.app contact form" />
+      {/* honeypot: bots tick this; Web3Forms drops those submissions */}
+      <input type="checkbox" name="botcheck" class="cform__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
       <div class="cform__fields" data-stagger>
         <div class="field">
           <label for="cf-name">Name <span class="req">*</span></label>
@@ -116,28 +124,35 @@ const SOCIALS = [
 </section>
 
 <script>
-  // No backend: compose a prefilled mailto from the fields. Progressive
-  // enhancement over the form's mailto action (which is the no-JS fallback).
+  // Web3Forms AJAX submit with inline feedback. The form's native POST is the
+  // no-JS fallback; this enhances it with success/error messaging in place.
   const form = document.querySelector<HTMLFormElement>('.cform');
   const status = form?.querySelector<HTMLElement>('.cform__status');
-  const EMAIL = 'hello@opeyemi.app';
+  const submit = form?.querySelector<HTMLButtonElement>('.cform__submit');
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;
 
-    const data = new FormData(form);
-    const name = String(data.get('name') || '');
-    const email = String(data.get('email') || '');
-    const phone = String(data.get('phone') || '');
-    const message = String(data.get('message') || '');
+    if (submit) submit.disabled = true;
+    if (status) status.textContent = 'Sending…';
 
-    const subject = encodeURIComponent(`Portfolio enquiry — ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}\n`
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    if (status) status.textContent = 'Opening your email app…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || 'Submission failed');
+      if (status) status.textContent = "Thanks — I'll get back to you soon.";
+      form.reset();
+    } catch {
+      if (status)
+        status.textContent = 'Something went wrong — email hello@opeyemi.app instead.';
+    } finally {
+      if (submit) submit.disabled = false;
+    }
   });
 </script>
 
@@ -227,6 +242,11 @@ const SOCIALS = [
   .cform__fields {
     display: grid;
     gap: 1.25rem;
+  }
+
+  /* honeypot — kept out of the visual + a11y trees; bots fill it, humans don't */
+  .cform__hp {
+    display: none;
   }
 
   .field {
