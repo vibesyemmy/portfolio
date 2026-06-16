@@ -9,6 +9,7 @@ services: [Design System, UI Design, Accessibility, Design Tokens]
 tags: [Design System, Fintech, Accessibility]
 order: 1
 featured: true
+cover: /demo-img/wD6CCUIINtCNzgZW9HQtNnW0YrU.jpg
 ---
 
 ## −35% design-to-dev handoff time · 120+ components · WCAG 2.1 AA · SUS 62 → 78
