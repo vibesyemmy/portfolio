@@ -16,73 +16,77 @@ cover: /lingawa-hero.png
 
 ---
 
-## The Problem
+## 1. The Arrival
 
-Language learning apps are a solved problem, if you're learning French from English. But if you're a second-generation Nigerian in London trying to reconnect with Yoruba, the apps don't understand you. They don't know your auntie already taught you greetings. They don't know you can understand more than you can speak. They certainly don't have exercises for tonal pronunciation.
+When I joined Lingawa as the sole product designer, the company had a working web platform but no mobile presence. No mobile design system. No app brand identity. No research on how diaspora learners would use the product on a phone.
 
-Lingawa set out to build for this learner: the diaspora user who carries fragmented knowledge, cultural context, and a different kind of motivation. Not "learn a language for travel," but "learn the language your grandmother speaks."
+The goal was straightforward: take a web-only language learning platform and bring it to iOS and Android. But the context was trickier. Language learning apps are a solved problem, if you're learning French from English. Lingawa served a different learner: the second-generation Nigerian in London trying to reconnect with Yoruba. Someone whose auntie already taught them greetings. Someone who can understand more than they can speak. Someone who doesn't need "learn a language for travel," they need "learn the language your grandmother speaks."
 
-When I joined as the sole product designer, the company had a working web platform but no mobile presence. No mobile design system. No app brand identity. The goal: take a web-only learning platform and bring it to iOS and Android, with a design system that could serve both the existing web experience and the new mobile app.
+I was the only designer. Every screen, every component, every interaction state had to be consistent because there was nobody to double-check my work. The design system wasn't a nice-to-have. It was survival.
 
 Two years later, the app holds a 5.0 rating on both stores. The company raised $1.1 million. And I designed every screen.
 
 ---
 
-## The Bet
+## 2. What We Learned From Learners
 
-Most language apps compete on content volume: thousands of lessons, endless vocab lists, gamification loops designed to maximize session time. That wasn't our play.
+We interviewed diaspora learners across Nigeria, the UK, and the US. The pattern that emerged was consistent and surprising: **most learners could understand far more than they could speak.** Listening comprehension outpaced speaking ability by a wide margin. Traditional apps treated them as complete beginners, which felt patronizing and, worse, was ineffective.
 
-We bet on **breadth of modality over depth of content**. Instead of one exercise type repeated across 500 lessons, we built seven distinct ways to engage with the language:
+This single insight reshaped everything. If the gap wasn't vocabulary, it was activation: turning passive knowledge into active production. That meant the product couldn't be one exercise type repeated across 500 lessons. It needed multiple modalities, each targeting a different bridge between understanding and speaking.
 
-- **Lesson slides** for structured instruction
-- **Vocab drills** for spaced repetition
-- **Matching games** for rapid recall
-- **Dialogue practice** for conversational fluency
-- **Sentence construction** with two difficulty tiers
-- **Story-time reader** for immersive comprehension
-- **Practice hub** tying it all together
-
-The logic: a diaspora learner's weak spot isn't vocabulary. It's the gap between understanding and speaking. You know "Ẹ káàárọ̀" means good morning. But can you use it naturally in a sentence? Can you respond when someone says it faster than you expected? Different modalities target different gaps.
-
-The second bet: **a solo designer with a design system can outpace a team without one.** Every screen, every component, every interaction state had to be consistent because there was nobody to double-check my work. The design system wasn't a nice-to-have. It was survival.
+Dialogue practice and story-time reader would lean into comprehension strength, building confidence through exposure. Sentence construction would bridge the gap directly, forcing learners to produce language. Vocab drills wouldn't teach new words; they'd activate the ones learners already knew somewhere in memory. Different gaps, different tools.
 
 ---
 
-## The Process
+## 3. Building the Thing
 
-### Starting from zero
+### The design system came second (and that was the problem)
 
-I joined Lingawa with a web platform in production but nothing for mobile. No mobile design tokens. No mobile component library. No user research on how learners would use the product on a phone. The engineering team was small and needed to start building immediately, which meant the design system had to ship in parallel with the product screens, not before them.
+The engineering team was small and needed to start building immediately. I couldn't spend three weeks designing tokens before anyone wrote code. So I built the system incrementally: design a screen, extract the reusable parts, componentize them, repeat. After three screens, I had buttons, inputs, and a color system. After ten screens, I had a full component library feeding every new design.
 
-I built the system incrementally: design a screen, extract the reusable parts, componentize them, repeat. After the first three screens, I had buttons, inputs, and a color system. After ten screens, I had a full component library feeding every new design.
+It worked. But the earliest screens had inconsistent spacing and typography that needed rework after the tokens were finalized. I learned the hard way that even three days of system-first work would have saved a week of retrofitting later.
 
-### Learning from learners
+### Seven modalities, one system
 
-We interviewed diaspora learners across Nigeria, the UK, and the US. The pattern that emerged: **most learners could understand more than they could speak.** Listening comprehension outpaced speaking ability by a wide margin. Traditional apps treated them as complete beginners, which felt patronizing.
+Most language apps compete on content volume: thousands of lessons, endless vocab lists, gamification loops designed to maximize session time. We bet on breadth of modality instead. Seven distinct ways to engage with the language:
 
-This insight shaped the exercise design. Dialogue practice and story-time reader leaned into comprehension strength. Sentence construction bridged the gap between understanding and producing. Vocab drills weren't about learning new words, they were about activating passive vocabulary.
+- **Lesson slides** for structured instruction
+- **Vocab drills** for spaced repetition on passive vocabulary
+- **Matching games** for rapid recall under time pressure
+- **Dialogue practice** for conversational fluency with speaker attribution
+- **Sentence construction** with two difficulty tiers (Normal and Advanced)
+- **Story-time reader** for immersive, long-form comprehension
+- **Practice hub** tying everything together with progress tracking
+
+Building seven visually distinct exercise types while maintaining product coherence was the central design challenge. A matching game needs large tappable cards and rapid feedback. A dialogue screen needs a chat-like interface with speaker bubbles. A story reader needs comfortable long-form typography and minimal chrome. Vocab drills need focused repetition with no visual noise.
+
+The design system made this possible. Shared tokens for color, spacing, and typography meant every modality felt like the same product, even when the layouts differed completely. Components like progress indicators, avatars, and navigation bars worked across every screen.
+
+### Kids mode
+
+Late in development, we built a parallel experience for younger learners. Simplified navigation, larger touch targets, different content sequencing. But under the hood, it reused 70% of the existing components. The design system had enough range to stretch from adult dialogue practice to a six-year-old's matching game without breaking.
+
+---
+
+## 4. The Mascot & The Rebrand
 
 ### The mascot
 
 Early on, I collaborated on creating a brand mascot, a character that appeared throughout the app as a guide, a coach, and sometimes comic relief. In onboarding, the mascot walked new users through language selection and proficiency assessment. During exercises, it celebrated streaks and softened error states. For returning users, it greeted them by name.
 
-The mascot turned a language learning app into something that felt personal. Users weren't practicing vocabulary into the void. They had a companion.
-
-### Seven modalities, one system
-
-Building seven distinct exercise types while maintaining visual consistency was the central design challenge. A matching game needs large tappable cards and rapid feedback. A dialogue screen needs a chat-like interface with speaker attribution. A story reader needs comfortable long-form typography. Vocab drills need focused repetition with minimal chrome.
-
-The design system made this possible. Shared tokens for color, spacing, and typography meant every modality felt like the same product, even when the layouts differed completely. Components like progress indicators, avatars, and navigation bars worked across every screen. When I designed the Kids mode, a parallel experience with simplified navigation and larger touch targets, I reused 70% of the existing components.
+This wasn't decoration. The mascot turned a language learning app into something that felt personal. Users weren't practicing vocabulary into the void. They had a companion. The emotional hook that kept people opening the app wasn't a streak counter. It was a character who noticed when they came back.
 
 ### The rebrand
 
 Midway through, the company rebranded. New name, new visual identity, new brand voice. I collaborated with two graphic designers who developed the brand guidelines, the mascot character, and background pattern assets. The marketing team defined the new brand voice and messaging.
 
-For a solo product designer, a rebrand typically means reworking every screen individually over weeks of pixel-pushing. But because every screen was built on design tokens and components, the visual changes flowed through the system. New colors, new typography scale, new logo. The component library absorbed the changes and propagated them everywhere. What still took a month of stakeholder reviews and iterations across the brand, marketing, and product teams would have taken three without the design system foundation.
+For a solo product designer, a rebrand typically means reworking every screen individually over weeks of pixel-pushing. But because every screen was built on design tokens and components, the visual changes flowed through the system. New colors, new typography scale, new logo. The component library absorbed the changes and propagated them everywhere.
+
+It still took a month of stakeholder reviews and iterations across the brand, marketing, and product teams. Without the design system, that number would have been closer to three.
 
 ---
 
-## The Outcomes
+## 5. Proof
 
 ### Quality at scale
 
@@ -90,22 +94,15 @@ The app launched on both Google Play Store and Apple App Store. One year post-la
 
 - **Play Store:** 1,000+ downloads, 5.0★ rating
 - **App Store:** 2,500+ downloads, 5.0★ rating
-- **Trustpilot:** 4.9★ rating
+- **Trustpilot:** 4.9★ rating with 200+ reviews
 
-These numbers are rare. A 5.0 on either store is exceptional. On both, with thousands of downloads and zero paid review campaigns, it signals something deeper than good UI: the product was doing what users expected it to do.
+A 5.0 on either store is exceptional. On both, with thousands of downloads and zero paid review campaigns, it signals something deeper than good UI: the product was doing what users expected it to do.
 
 ### Business impact
 
 The $1.1 million raised during my tenure wasn't raised on a pitch deck alone. Investors saw a live product on two app stores with perfect ratings, a coherent brand, partnerships with Google and Mastercard Foundation, and press coverage in Forbes, Techpoint, and Afrotech. The design work was the visible layer of that credibility.
 
-By launch, the platform had over 6,000 learners across the diaspora, a 4.9 TrustScore on Trustpilot with 200+ reviews, and a referral program driving organic growth.
-
-### Design system velocity
-
-- **40+ screens** designed across two major iterations (V1 and Iteration 2)
-- **7 exercise modalities** plus onboarding, social, progress, and Kids mode
-- **Rebrand** absorbed by token-level design system changes despite a month of cross-team stakeholder reviews
-- **Kids mode** launched reusing 70% of existing components
+By launch, the platform had over 6,000 learners across the diaspora and a referral program driving organic growth.
 
 ### What users said
 
@@ -120,13 +117,13 @@ By launch, the platform had over 6,000 learners across the diaspora, a 4.9 Trust
 
 ---
 
-## What I'd Do Differently
+## 6. What I Missed
 
-**Start the design system before the first screen.** Building the system incrementally worked, but it meant the earliest screens had inconsistent spacing and typography that needed rework after the tokens were finalized. Even three days of system-first work would have saved a week of retrofitting.
+**System first, screens second.** Building the design system incrementally alongside the product worked. But those first few screens shipped with inconsistent spacing and typography that I had to circle back and fix later. Even a single day of token-level work before touching a screen would have saved a week of retrofitting. When you're the only designer, there's no team to absorb the rework cost. You pay it yourself, in full, later.
 
-**User-test exercise modalities individually before building all seven.** We built broadly first and narrowed later. A leaner approach: prototype three modalities, test comprehension-vs-production balance, then build the remaining four. We might have discovered earlier that sentence construction advanced mode had low engagement and needed restructuring.
+**Test modalities leaner.** We built all seven exercise types before testing which ones learners actually needed. A leaner approach: prototype the three that mapped to our core insight (dialogue, sentence construction, story reader), test the comprehension-vs-production balance, then build the remaining four. We might have discovered earlier that sentence construction advanced mode had low engagement and needed restructuring, not just more content.
 
-**Fight for engineering pairing earlier.** As the solo designer, I was often weeks ahead of the development team. Screens sat in Figma waiting for implementation. A tighter design-engineering loop, even part-time, would have surfaced implementation constraints earlier and reduced rework on complex interactions like the matching game animations.
+**Pair with engineering from day one.** As the solo designer, I was often weeks ahead of the development team. Screens sat in Figma waiting for implementation. A tighter design-engineering loop, even part-time, would have surfaced implementation constraints earlier and reduced rework on complex interactions like the matching game animations and the dialogue chat interface.
 
 ---
 
