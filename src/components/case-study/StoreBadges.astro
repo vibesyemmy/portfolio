@@ -7,9 +7,12 @@ interface Props {
   items: { src: string; alt: string; caption: string }[];
 }
 const { items } = Astro.props;
+
+// Stable unique id so the script can find its DOM regardless of bundling
+const uid = `sb-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
-<div class="sb">
+<div class="sb" data-sb={uid}>
   <MediaGrid cols={3} width="content" items={items} />
 
   <dialog class="sb__dialog">
@@ -18,28 +21,29 @@ const { items } = Astro.props;
   </dialog>
 </div>
 
-<script>
+<script define:vars={{ uid }}>
   (function () {
-    const root = document.currentScript?.previousElementSibling;
+    const root = document.querySelector(`[data-sb="${uid}"]`);
     if (!root) return;
 
-    const dialog = root.querySelector('.sb__dialog') as HTMLDialogElement;
-    const img = root.querySelector('.sb__img') as HTMLImageElement;
-    const close = root.querySelector('.sb__close') as HTMLButtonElement;
+    const dialog = root.querySelector('.sb__dialog');
+    const img = root.querySelector('.sb__img');
+    const close = root.querySelector('.sb__close');
 
-    dialog.addEventListener('click', (e) => {
-      if (e.target === dialog) dialog.close();
-    });
-    close.addEventListener('click', () => dialog.close());
-
-    root.querySelectorAll('img').forEach((el) => {
-      (el as HTMLElement).style.cursor = 'pointer';
+    const gridImgs = root.querySelectorAll('.cs-grid img, img:not(.sb__img)');
+    gridImgs.forEach((el) => {
+      el.style.cursor = 'pointer';
       el.addEventListener('click', () => {
         img.src = el.src;
         img.alt = el.alt;
         dialog.showModal();
       });
     });
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    close.addEventListener('click', () => dialog.close());
   })();
 </script>
 
