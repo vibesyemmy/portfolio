@@ -92,72 +92,13 @@ It still took a month of stakeholder reviews and iterations across the brand, ma
 
 The app launched on both Google Play Store and Apple App Store. One year post-launch:
 
-<MediaGrid cols={3} width="content"
+<StoreBadges
   items={[
     { src: '/demo-img/lingawa-trustpilot.webp', alt: 'Lingawa on Trustpilot — 4.9★ rating, 200+ reviews', caption: 'Trustpilot' },
     { src: '/demo-img/lingawa-play-store.webp', alt: 'Lingawa on Google Play Store — 5.0★ rating, 1,000+ downloads', caption: 'Play Store' },
     { src: '/demo-img/lingawa-app-store.webp', alt: 'Lingawa on Apple App Store — 5.0★ rating, 2,500+ downloads', caption: 'App Store' },
   ]}
 />
-
-<script>
-  (function(){
-    const grid = document.currentScript.previousElementSibling;
-    if (!grid) return;
-
-    const dialog = document.createElement('dialog');
-    dialog.innerHTML = `
-      <button class="lb-close" aria-label="Close">&times;</button>
-      <img src="" alt="" class="lb-img" />
-    `;
-    document.body.appendChild(dialog);
-
-    const img = dialog.querySelector('.lb-img');
-    const close = dialog.querySelector('.lb-close');
-
-    dialog.addEventListener('click', (e) => {
-      if (e.target === dialog) dialog.close();
-    });
-    close.addEventListener('click', () => dialog.close());
-
-    grid.querySelectorAll('img').forEach(el => {
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', () => {
-        img.src = el.src;
-        img.alt = el.alt;
-        dialog.showModal();
-      });
-    });
-  })();
-</script>
-
-<style>
-  dialog[open] {
-    border: none;
-    background: rgba(0,0,0,.92);
-    max-width: 90vw;
-    max-height: 90vh;
-    padding: 0.5rem;
-    border-radius: var(--radius-card);
-    animation: lb-in .2s ease;
-    overflow: hidden;
-  }
-  dialog::backdrop {
-    background: rgba(0,0,0,.6);
-    animation: lb-fade .2s ease;
-  }
-  .lb-img { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; }
-  .lb-close {
-    position: absolute; top: 0.5rem; right: 0.75rem;
-    font-size: 2rem; line-height: 1; color: #fff;
-    background: none; border: none; cursor: pointer;
-  }
-  @keyframes lb-in { from { opacity:0; transform:scale(.96); } }
-  @keyframes lb-fade { from { opacity:0; } }
-  @media (prefers-reduced-motion: reduce) {
-    dialog[open], dialog::backdrop { animation: none; }
-  }
-</style>
 
 A 5.0 on either store is exceptional. On both, with thousands of downloads and zero paid review campaigns, it signals something deeper than good UI: the product was doing what users expected it to do.
 

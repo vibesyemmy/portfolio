@@ -1,0 +1,90 @@
+---
+// A 3-up grid of store badges with click-to-lightbox.
+// Wraps MediaGrid so the lightbox script + styles are scoped to this component.
+import MediaGrid from './MediaGrid.astro';
+
+interface Props {
+  items: { src: string; alt: string; caption: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="sb">
+  <MediaGrid cols={3} width="content" items={items} />
+
+  <dialog class="sb__dialog">
+    <button class="sb__close" aria-label="Close">&times;</button>
+    <img class="sb__img" src="" alt="" />
+  </dialog>
+</div>
+
+<script>
+  (function () {
+    const root = document.currentScript?.previousElementSibling;
+    if (!root) return;
+
+    const dialog = root.querySelector('.sb__dialog') as HTMLDialogElement;
+    const img = root.querySelector('.sb__img') as HTMLImageElement;
+    const close = root.querySelector('.sb__close') as HTMLButtonElement;
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    close.addEventListener('click', () => dialog.close());
+
+    root.querySelectorAll('img').forEach((el) => {
+      (el as HTMLElement).style.cursor = 'pointer';
+      el.addEventListener('click', () => {
+        img.src = el.src;
+        img.alt = el.alt;
+        dialog.showModal();
+      });
+    });
+  })();
+</script>
+
+<style>
+  .sb__dialog[open] {
+    border: none;
+    background: rgba(0, 0, 0, 0.92);
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 0.5rem;
+    border-radius: var(--radius-card);
+    animation: sb-in 0.2s ease;
+    overflow: hidden;
+  }
+  .sb__dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    animation: sb-fade 0.2s ease;
+  }
+  .sb__img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto;
+  }
+  .sb__close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 2rem;
+    line-height: 1;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  @keyframes sb-in {
+    from { opacity: 0; transform: scale(0.96); }
+  }
+  @keyframes sb-fade {
+    from { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sb__dialog[open],
+    .sb__dialog::backdrop {
+      animation: none;
+    }
+  }
+</style>

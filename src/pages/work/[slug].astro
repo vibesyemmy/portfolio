@@ -9,6 +9,7 @@ import Metrics from '../../components/case-study/Metrics.astro';
 import ColorPalette from '../../components/case-study/ColorPalette.astro';
 import TypeSpecimen from '../../components/case-study/TypeSpecimen.astro';
 import LogoGrid from '../../components/case-study/LogoGrid.astro';
+import StoreBadges from '../../components/case-study/StoreBadges.astro';
 
 export async function getStaticPaths() {
   const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
@@ -33,6 +34,7 @@ const components = {
   ColorPalette,
   TypeSpecimen,
   LogoGrid,
+  StoreBadges,
 };
 ---
 
