@@ -91,23 +91,29 @@
   display: inline-block;
   background: linear-gradient(
     120deg,
-    #d4a843 0%,
-    #f0d78c 23%,
-    #fff7d6 42%,
-    #d4a843 58%,
-    #a67c28 78%,
-    #d4a843 100%
+    #c9983a 0%,
+    #e8c97a 30%,
+    #faf0d7 50%,
+    #c9983a 65%,
+    #c9983a 100%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: star-shimmer 2s ease-in-out infinite;
+  animation: star-shimmer 4s ease-in-out infinite;
 }
 
 @keyframes star-shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-shimmer {
+    animation: none;
+    -webkit-text-fill-color: #c9983a;
+  }
 }
 
 .prose > :first-child {
