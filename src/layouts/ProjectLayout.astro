@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import Nav from '../components/Nav.astro';
 import ContactCTA from '../components/sections/ContactCTA.astro';
+import Lightbox from '../components/case-study/Lightbox.astro';
 import '../styles/case-study.css';
 
 interface Props {
@@ -85,6 +86,8 @@ const KIND_LABEL: Record<string, string> = {
 
     <ContactCTA />
   </main>
+
+  <Lightbox />
 </Layout>
 
 <script>

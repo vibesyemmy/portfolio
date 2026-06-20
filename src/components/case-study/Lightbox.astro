@@ -1,0 +1,175 @@
+---
+// One page-level lightbox for a case study. Auto-binds to every gallery and
+// image grid on the page — click an image to open it full-screen and page
+// through its group with the arrows or ← / → keys. Rendered once by ProjectLayout.
+---
+
+<dialog class="lb">
+  <button class="lb__nav lb__prev" type="button" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+  </button>
+  <img class="lb__img" alt="" />
+  <button class="lb__nav lb__next" type="button" aria-label="Next image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+  </button>
+  <button class="lb__close" type="button" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+  </button>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('.lb');
+  const lbImg = dialog?.querySelector<HTMLImageElement>('.lb__img');
+  const prevBtn = dialog?.querySelector<HTMLButtonElement>('.lb__prev');
+  const nextBtn = dialog?.querySelector<HTMLButtonElement>('.lb__next');
+  const closeBtn = dialog?.querySelector<HTMLButtonElement>('.lb__close');
+
+  if (dialog && lbImg && prevBtn && nextBtn && closeBtn) {
+    // Any gallery track or image grid is a zoomable group.
+    const GROUPS = '.cs-gallery__track, .cs-grid';
+    let group: HTMLImageElement[] = [];
+    let i = 0;
+
+    const render = () => {
+      const el = group[i];
+      if (!el) return;
+      lbImg.src = el.currentSrc || el.src;
+      lbImg.alt = el.alt;
+      const multi = group.length > 1;
+      prevBtn.hidden = nextBtn.hidden = !multi;
+    };
+    const show = (n: number) => {
+      i = (n + group.length) % group.length; // wrap around
+      render();
+    };
+
+    document.querySelectorAll<HTMLElement>(GROUPS).forEach((groupEl) => {
+      const imgs = [...groupEl.querySelectorAll<HTMLImageElement>('img')];
+      imgs.forEach((img, idx) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+          group = imgs;
+          i = idx;
+          render();
+          dialog.showModal();
+        });
+      });
+    });
+
+    prevBtn.addEventListener('click', () => show(i - 1));
+    nextBtn.addEventListener('click', () => show(i + 1));
+    closeBtn.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close(); // click the backdrop to close
+    });
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(i - 1);
+      else if (e.key === 'ArrowRight') show(i + 1);
+    });
+  }
+</script>
+
+<style>
+  /* full-viewport lightbox — image floats on the dim backdrop, no frame */
+  .lb[open] {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100vw;
+    max-height: 100dvh;
+    /* the global `* { margin: 0 }` reset kills the UA modal centering; flex re-centers */
+    margin: 0;
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: lb-in 0.2s ease;
+  }
+  .lb::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    animation: lb-fade 0.2s ease;
+  }
+  .lb__img {
+    max-width: min(92vw, 1200px);
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-card);
+  }
+
+  /* controls: dark translucent chips so they read on any image background */
+  .lb__close,
+  .lb__nav {
+    position: absolute;
+    display: inline-grid;
+    place-items: center;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(15, 15, 15, 0.55);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-radius: 50%;
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .lb__close:hover,
+  .lb__nav:hover {
+    background: rgba(15, 15, 15, 0.85);
+  }
+  .lb__close {
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .lb__close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .lb__nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+  }
+  .lb__nav:hover {
+    transform: translateY(-50%) scale(1.06);
+  }
+  .lb__nav svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .lb__prev {
+    left: 1.25rem;
+  }
+  .lb__next {
+    right: 1.25rem;
+  }
+  .lb__nav[hidden] {
+    display: none;
+  }
+
+  @keyframes lb-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes lb-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lb[open],
+    .lb::backdrop {
+      animation: none;
+    }
+  }
+</style>
