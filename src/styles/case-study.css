@@ -62,6 +62,17 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+/* a .pill in prose is a button, not a body link: keep its pill styling and stop
+   the content grid from stretching it to full width */
+.prose a.pill {
+  justify-self: start;
+  color: var(--dark-ink);
+  text-decoration: none;
+}
+.prose a.pill--accent,
+.prose a.pill--ghost {
+  color: var(--ink);
+}
 .prose :where(strong) {
   font-weight: 600;
 }

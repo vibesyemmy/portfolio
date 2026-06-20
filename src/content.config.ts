@@ -14,6 +14,9 @@ const projects = defineCollection({
       kind: z.enum(['case-study', 'showcase', 'branding']).default('case-study'),
       services: z.array(z.string()).optional(),
       liveUrl: z.string().optional(),
+      // CTA text for the live link (e.g. "Try it in Figma", "Get the app");
+      // falls back to "Visit live" when unset
+      liveLabel: z.string().optional(),
       // cover as a public path (e.g. /demo-img/x.png); optional, hero falls back
       // to a typographic header when absent
       cover: z.string().optional(),

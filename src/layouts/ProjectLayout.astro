@@ -47,7 +47,7 @@ const KIND_LABEL: Record<string, string> = {
 
         {d.liveUrl && (
           <a class="pill cs__live" href={d.liveUrl} target="_blank" rel="noopener noreferrer" data-magnetic>
-            Visit live ↗
+            {d.liveLabel ?? 'Visit live'} ↗
           </a>
         )}
       </header>

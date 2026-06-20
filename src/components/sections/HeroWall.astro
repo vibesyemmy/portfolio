@@ -56,19 +56,23 @@ interface Tile {
   title?: string;
 }
 
-// Spread the real projects across the demo cards (every `step`th card) so the
-// clickable tiles aren't clumped together.
-const step = Math.max(1, Math.floor(files.length / Math.max(projects.length, 1)));
-let assigned = 0;
-const cards: Tile[] = files.map((f, i) => {
-  const src = `/demo-img/${encodeURIComponent(f)}`;
-  if (i % step === 0 && assigned < projects.length) {
-    const p = projects[assigned++];
-    // real cards show their own cover; fall back to the placeholder if unset
-    return { src: p.data.cover ?? src, locked: false, href: `/work/${p.id}`, title: p.data.title };
-  }
-  return { src, locked: true };
-});
+// Available case studies lead the wall so they take the prominent top row of
+// every column; the remaining demo cards fill in below as "locked" placeholders
+// to keep the wall full. The bin-packer below fills each column top-down in this
+// order, so real-first means real-on-top.
+const realTiles: Tile[] = projects.map((p, i) => ({
+  // real cards show their own cover; fall back to a placeholder if unset
+  src: p.data.cover ?? `/demo-img/${encodeURIComponent(files[i % files.length])}`,
+  locked: false,
+  href: `/work/${p.id}`,
+  title: p.data.title,
+}));
+const lockedCount = Math.max(0, files.length - realTiles.length);
+const lockedTiles: Tile[] = files.slice(0, lockedCount).map((f) => ({
+  src: `/demo-img/${encodeURIComponent(f)}`,
+  locked: true,
+}));
+const cards: Tile[] = [...realTiles, ...lockedTiles];
 
 // Height-balanced bin-packing: each card goes to the currently shortest column.
 const columns: Tile[][] = Array.from({ length: COLUMNS }, () => []);
