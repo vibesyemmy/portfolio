@@ -11,125 +11,135 @@ order: 3
 cover: /lotti-hero.webp
 ---
 
-## 3,000+ tasks tracked · AI-powered · iOS + Desktop · $5K, 3 milestones, fully delivered
+## 3,000+ tasks tracked · AI-powered · iOS + Desktop · Lagos → Hamburg
 
 ---
 
-## The Promise
+Matthias called it his secondary brain. For years, he had been dumping everything into Lotti: tasks, notes, voice memos, screenshots. The AI would summarize, transcribe, connect. He could pull up what he was working on six months ago in seconds. Three thousand tasks logged. The product worked.
 
-Lotti is named after Lieselotte, Matthias's late grandmother. She kept meticulous paper records of her life and, even in her final years, could recall extraordinary detail from her own organized notes. When Matthias showed her an early prototype in 2018, she made him promise to turn it into something real.
+But only for him.
 
-Seven years later, Matthias had a technically complete product running in TestFlight, tracking thousands of his own tasks. But his psychiatrist friend kept asking the same question: "Why isn't this out yet?"
+His therapist friend saw something Matthias hadn't. He watched Matthias retrieve a detail from a year-old project in seconds and said: this could help people with memory-related conditions. People for whom "what did I do yesterday" isn't convenience, it's survival.
 
-The honest answer: it needed design. A technical founder had built a functioning AI productivity app, but three overlapping organizational systems confused even him. The flagship timeline screen didn't reflect how work actually happens. The AI configuration had 20+ raw checkboxes per category. There was no onboarding. The product worked, but nobody who wasn't the founder would survive the first five minutes.
+"Why isn't this out yet?" his therapist friend kept asking. The answer was uncomfortable: the product had depth but no surface. Three overlapping organizational systems that even Matthias stumbled over. A timeline that treated every interruption as failure. An AI configuration screen with 20+ raw checkboxes. No onboarding. No design system. No launch.
 
-I was brought in as a freelance senior designer from Lagos, Nigeria, working remotely with a first-time client in Hamburg, Germany. Cold referral. No existing relationship. Three months, three milestones, $5,000.
+I was brought in as a freelance senior designer, working remotely from Lagos with a first-time client in Hamburg. Cold referral. Three milestones. Feb to May 2026.
 
 ---
 
-## What Was Actually Broken
+## The audit
 
-I started with a comprehensive UI audit across every screen. The findings clustered into three problems:
+I ran a full UI audit across every screen before touching anything. Matthias walked me through the product over several calls, and a pattern emerged: every time he had to explain *how* to do something rather than *why* you'd want to, that was a design problem.
 
-**The information architecture was fighting itself.** Categories, Labels, and Tags all existed as overlapping organizational systems. The founder himself couldn't explain when to use which. Categories were required for task creation. Labels were optional status markers. Tags were freeform hashtags. Three taxonomies, one confused user.
+Three stood out.
 
-**The timeline told the wrong story.** My Daily, the flagship screen, showed planned time blocks as rigid containers. Real work rarely fits inside planned blocks. Tasks started early, ran late, got interrupted, resumed hours later. The interface treated every deviation as an error state, when it was actually the normal state.
+**Categories, Labels, and Tags were fighting for the same job.** Matthias paused mid-sentence trying to explain when to use which. Categories were required for task creation. Labels were optional status markers. Tags were freeform hashtags. Functionally distinct, but the interface presented them as peers with no hierarchy. If the person who built it couldn't explain it cleanly, a new user had no chance.
 
-**The AI was powerful but inaccessible.** Lotti had genuinely useful AI features: task summaries, conversational agent, automatic transcription, screenshot analysis. But the configuration screen was a wall of 20+ raw checkboxes with no presets, no progressive disclosure, and no explanation of what enabling each checkbox would actually do.
+**My Daily punished real work.** The flagship timeline showed planned time blocks as rigid containers. Tasks that started early, ran late, or resumed after interruption were treated as deviations. But Matthias's own data showed fragmented work was the norm, not the exception. The interface was telling a lie about how work happens.
+
+**The AI was powerful and hidden.** Task summaries, a conversational agent scoped to each task, automatic transcription from voice notes, screenshot analysis tied to task context. All working. But the configuration screen was a wall of checkboxes with no presets and no explanations. The secondary brain had a locked door.
 
 The product had depth. It just had no surface.
 
 ---
 
-## Making It Make Sense
+## Categories, Labels, Tags: three systems, three jobs
 
-### Categories, Labels, and Tags: three systems, three jobs
+Merging them was tempting. The source material even suggested it. But they served genuinely different purposes, and collapsing them would lose useful structure.
 
-The fix wasn't merging them. It was giving each a clear, non-overlapping job:
+The real problem was that nothing in the interface communicated the differences. So I gave each a clear, non-overlapping job and designed the interactions to match.
 
-- **Categories** (required): the primary organizing structure. "Lotti Works," "Personal," "Driving." Each carries its own AI settings, color, and icon. You pick one, always.
-- **Labels** (optional, multiple): workflow status markers scoped to a category. "Bug," "Urgent," "Waiting." Structured, finite, purposeful.
-- **Tags** (optional, multiple, freeform): emergent taxonomy. #topic, @person, #story-thread. Grows organically as the user works.
+- **Categories** (one, required): primary organizing structure. "Lotti Works," "Personal," "Driving." Carries AI settings, color, and icon. The backbone. You pick from a defined list.
+- **Labels** (multiple, optional, structured): workflow status markers scoped to a category. "Bug," "Urgent," "Waiting." Finite set, intentional. You toggle from a scoped set.
+- **Tags** (multiple, optional, freeform): emergent taxonomy. #topic, @person, #story-thread. Grows with the user. You type freely.
 
-Three systems became three distinct tools. The founder stopped confusing them. New users would never need to learn the difference because the difference was now obvious from the interaction design.
-
-### My Daily: time blocks as context, not constraints
-
-The flagship redesign. Instead of time blocks as rigid containers that tasks must fit inside, I designed them as background context:
-
-- Time blocks render as vertical colored bars showing planned focus periods
-- Task cards render as horizontal cards at their actual work time
-- Tasks inside their matching block show at full opacity. Tasks worked on outside their planned block fade to 50–60%, a deliberate visual cue that says "this wasn't the plan" without shaming, blocking, or erroring
-- Multi-session tasks (interrupted and resumed work) are visually linked with curved connecting lines. The first card shows full task info with a session count. Continuation cards show minimal info
-
-This was the core design philosophy: **honest tracking, not aspirational tracking.** Most productivity tools assume you'll work in unbroken focus sessions. Lotti assumes you'll get interrupted, and it visualizes that honestly rather than punishing it.
-
-### AI: from checkbox wall to progressive disclosure
-
-The AI configuration went from 20+ raw checkboxes to a tiered setup:
-
-- **Quick presets** at the top: Minimal, Balanced, Maximum. One tap.
-- **Custom** below, collapsed by default, with grouped toggles under clear headings
-- Each toggle explained in plain language: what it does, when you'd want it on
-
-The AI was no less powerful. It was just no longer terrifying.
+The interaction design did the teaching. Pick, toggle, type. Three different inputs for three different mental models. Matthias stopped pausing mid-sentence when he saw it. You don't need a tutorial when the interface already explains itself.
 
 ---
 
-## Three Ways to Show a Health Score
+## My Daily: the honest timeline
 
-One of the more interesting design problems was a single project health indicator. How do you communicate "is this task on track?" at a glance?
+This was the centerpiece. If Lotti was a secondary brain, My Daily was its memory of your day. It needed to tell the truth.
 
-I designed and comparatively tested three distinct directions:
+Before: time blocks as rigid containers. A task worked on outside its block was an error.
 
-1. **Action-focused** (final direction): a circular progress ring around the score, a status callout, and a single blocker action. One thing to fix, clearly named.
-2. **Metric dashboard**: large score plus a sparkline trend, a 2×2 status grid, and an action banner. More data, more cognitive load.
-3. **Status-first**: a large top banner leading with the blocker action, with the score demoted to secondary info. Good for urgency, weaker for at-a-glance status.
+After: time blocks render as background context, colored vertical bars showing planned focus periods. Task cards render at their actual work times. Tasks inside their matching block show full opacity. Tasks outside their planned block fade to 50-60%. Not an error. Just information.
 
-I delivered these as an interactive side-by-side HTML comparison so Matthias could evaluate all three with live data before committing. He picked the action-focused direction. The comparison artifact meant the decision took one call instead of three rounds of Figma revisions.
+The moment Matthias understood this was the moment the project shifted from audit to redesign. He had been living with an interface that subtly shamed him every day for being interrupted. The fade states said "this wasn't the plan" without any of the judgment.
 
----
+Multi-session tasks got particular attention. Real work doesn't happen in unbroken focus. You start, get pulled away, return, get interrupted again. Lotti tracks each session individually and links them with curved connecting lines. The first card shows full task info and a session count. Continuation cards show just enough to orient you. The secondary brain remembers not just what you did, but that you came back to it three times.
 
-## The Cross-Continental Piece
-
-This project happened between Lagos and Hamburg. Cold referral from a mutual contact. First-time client. Remote throughout.
-
-What made it work:
-
-- **Structured milestones with clear deliverables** reduced the risk of a first engagement. Three milestones, each with defined outputs, each with payment attached.
-- **The Yoruba language support** wasn't a feature request, it was a natural outcome of the team composition. A German founder and a Nigerian designer building together produced a product that ships in Yoruba, a genuine differentiator in the productivity space.
-- **Two cultural lenses on data privacy** shaped the AI design: GDPR-conscious European expectations alongside mobile-first, connectivity-conscious thinking from the Nigerian market.
-
-The product is better because the team wasn't homogeneous.
+This was the core design bet: honest tracking, not aspirational tracking. Most tools punish you for having a fragmented day. Lotti just shows you what happened.
 
 ---
 
-## What Shipped
+## AI without the checkbox wall
 
-By end of engagement:
-- Comprehensive UI audit and design recommendations
-- Redesigned My Daily timeline with interruption-aware tracking
+The AI was genuinely good. Per-task summaries with structured output: TLDR, Goal, Achieved, Remaining, Learnings. A conversational agent that could reorder your remaining steps on request. Transcription from voice notes. Screenshot analysis.
+
+But the configuration screen was killing it. Twenty-plus raw checkboxes. No grouping. No explanation of what enabling each one would actually do.
+
+I restructured it into progressive disclosure:
+
+- **Three quick presets** at the top: Minimal, Balanced, Maximum. One tap.
+- **Custom configuration** collapsed below, toggles grouped under clear functional headings
+- **Plain-language explanations** for each toggle: what it does and when you'd want it
+
+Same power. Same individual controls. But now a new user could go from zero to configured in one tap instead of 20 decisions. The secondary brain's door was unlocked.
+
+---
+
+## Three takes on a health score
+
+Mid-engagement, a design question surfaced: how do you communicate "is this task on track?" as a single glanceable indicator?
+
+I designed three complete directions:
+
+1. **Action-focused** — circular progress ring, status callout, one named blocker action. "Here's the thing to fix."
+2. **Metric dashboard** — large score plus sparkline trend, 2×2 status grid. More data, more cognitive load.
+3. **Status-first** — top banner leading with the blocker, score demoted. Good for urgency, weaker for scanning.
+
+Instead of presenting static mockups, I built an interactive HTML comparison with live data so Matthias could swipe between all three. The decision took one call instead of three rounds of Figma revisions. He chose the action-focused direction.
+
+This was the kind of problem his therapist friend had been thinking about. For someone with memory-related challenges, a health score isn't a productivity metric. It's a signal: "here's what needs attention, and here's the one thing to do about it." The action-focused direction served both power users and the accessibility use case without compromise.
+
+---
+
+## Lagos → Hamburg
+
+This project ran entirely remote between two people who had never worked together, referred by a mutual contact. There's a design lesson in that, but there's a bigger one.
+
+Lotti ships in Yoruba. That wasn't a feature request. It was a natural outcome of a German founder and a Nigerian designer building together. When your team reflects multiple markets, the product reflects multiple markets without anyone writing "internationalization" on a ticket.
+
+The AI design was also shaped by two privacy cultures. GDPR-conscious European expectations sat alongside mobile-first, connectivity-conscious thinking from the Nigerian market. The result is an AI that's transparent about what it accesses, with user-supplied API keys for cost control and data ownership.
+
+Homogeneous teams build for people like themselves. This product is better because the team wasn't. And the Yoruba language support, specifically, means the secondary brain works in the language of the people who built part of it.
+
+---
+
+## What shipped
+
+- Comprehensive UI audit with findings clustered by impact
+- Redesigned My Daily timeline: interruption-aware tracking with linked multi-session cards
 - Task Detail screen with collapsible AI summaries and session-level time tracking
-- Lotti Agent conversational AI interface, scoped per-task
+- Lotti Agent conversational AI interface, scoped per task
 - Time Block Planning flow refactored for clarity
-- Health Score Card (3 directions, interactive comparison)
-- Complete notification system copy and priority framework
-- Multiple empty-state scenarios including a voice-first entry point
+- Health Score Card: three directions explored, interactive comparison delivered
+- Complete notification copy system: six categories, tone guidelines, priority framework
+- Multiple empty-state scenarios including a voice-first "Tell me your plans" entry point
 - Design system starter spec: color, type, spacing, component inventory
 - Full information architecture documentation
 
-Three invoices. All paid. Client moving toward public launch.
+Three milestones. All delivered. Matthias is preparing for public launch. His therapist friend stopped asking why it wasn't out yet.
 
 ---
 
-## What I'd Do Differently
+## What I'd rethink
 
-**Push back harder on the scope-to-budget ratio.** The original internal pricing exercise landed between $6,000 and $10,000. I negotiated down to $5,000 for the first engagement to build the relationship. The work delivered was closer to the higher end. First-client discounting is common, but this one was steep for the depth of output.
+**Sample size of one.** Matthias had 3,000+ tasks of personal usage data, invaluable for understanding the product's behavior. But he was also the only user. He had learned to work around interface issues that would block a new user cold. Even three external beta testers during the audit phase would have surfaced patterns the founder's muscle memory had absorbed.
 
-**Fight for earlier access to real user data.** Matthias had 3,000+ tasks of his own usage data, which was invaluable for understanding the product's actual behavior. But it was also a sample size of one. Even three external beta testers during the audit phase would have surfaced issues the founder had learned to work around.
-
-**Prototype the Health Score earlier.** The three-direction comparison was effective, but I built it late in the engagement. If I'd prototyped it during Phase 1, the decision would have been baked into the Phase 2 timeline redesign rather than retrofitted.
+**Prototype the hard UI earlier.** The Health Score comparison was effective but came late. If I'd prototyped it during Phase 1, the decision would have been baked into the Phase 2 timeline work rather than retrofitted. When you know a UI problem has multiple valid answers, don't wait to test them.
 
 ---
 
-Lotti taught me something I already suspected: a technically complete product is not a launch-ready product. The gap between "it works" and "people can use it" is design. Not decoration. The structural kind that makes three overlapping taxonomies feel like one clear system, and turns a wall of checkboxes into a single tap.
+Matthias built a secondary brain that only he could use. The design work wasn't about making it prettier. It was about making it work for everyone else: the person who gets interrupted, the person who can't remember which taxonomy does what, and maybe someday, the person who genuinely needs help remembering what they did yesterday. That's the difference between a technically complete product and a launch-ready one. Not polish. Access.
