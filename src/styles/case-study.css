@@ -29,6 +29,25 @@
   width: min(100% - 3rem, var(--container));
   justify-self: center; /* center within the full track; survives the component's margin shorthand */
 }
+/* a tall portrait asset (e.g. an App Store listing mock) capped to phone width
+   and centred in the reading column rather than blown up to full width */
+.prose > figure.cs-portrait {
+  justify-self: center;
+  width: min(100%, 22rem);
+  margin: clamp(2rem, 5vw, 4rem) 0;
+}
+.prose > figure.cs-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+}
+.prose > figure.cs-portrait figcaption {
+  margin-top: 0.75rem;
+  color: var(--ink-2);
+  font-size: var(--text-small);
+  text-align: center;
+}
 
 /* typography (low specificity via :where so component styles win) */
 .prose :where(p) {

@@ -11,7 +11,7 @@ tags: [Branding, Logo Design, Music]
 order: 7
 ---
 
-![Gangan brand identity — talking-drum mark, color palette, and applications](/gangan-brand-hero.webp)
+![Gangan brand identity — talking-drum mark, color palette, and applications](/gangan-logo.webp)
 
 ---
 
@@ -35,15 +35,15 @@ The identity also needed to signal its origin. Gangan is operated out of Lagos, 
 
 ---
 
-## Solution: Logo Design
+## Logo Design
 
-![Gangan logo — full lockup with talking drum symbol and wordmark](/gangan-logo-full.png)
+![Gangan logo origin — the wordmark and drum mark beside the gángan it's derived from](/logo-rigin.webp)
 
 The Gangan logo centers on the silhouette of a gángan — the Yoruba talking drum. The form is recognizable to anyone familiar with West African percussion: the hourglass shape, the tension cords along the sides, the stretched skin at both ends. The silhouette is reduced to its essential geometry. Clean curves. No unnecessary detail. A drum that reads as a drum at any scale.
 
 The wordmark sits alongside the symbol in a clean, modern typeface. The relationship is balanced — neither the symbol nor the text dominates. They work as a single lockup or independently.
 
-![Gangan logo — horizontal lockup](/gangan-logo-horizontal.png)
+![Gangan logo — horizontal lockup on light and dark, with the standalone symbol](/logo-lock-up.webp)
 
 The logo ships in three configurations:
 
@@ -51,25 +51,25 @@ The logo ships in three configurations:
 - **Horizontal lockup** — symbol and wordmark side by side, for navigation bars and tight spaces
 - **Standalone symbol** — the drum silhouette extracted for app icons, favicons, and social avatars
 
-![Gangan symbol — standalone talking drum mark](/gangan-logo-symbol.png)
+![Gangan symbol — the standalone drum mark tested from 80px down to 16px](/logo-symbol.webp)
 
 Each configuration was tested at app-icon scale (64×64px), website-header scale, and social-template scale. The drum silhouette remains recognizable at 16×16px. The full lockup holds its character down to 80px wide.
 
 ---
 
-## Solution: Color Palette
+## Color Palette
 
-![Gangan brand color palette](/gangan-brand-colors.png)
+![Gangan brand color palette](/color-palette.png)
 
-The palette is anchored in deep indigo — nearly black, but with a blue undertone that reads as intentional rather than default. This dark foundation does two things: it differentiates Gangan from the bright, saturated palettes of streaming incumbents, and it puts album art and artist photography center stage. The music provides the color.
+The palette is deliberately monochrome — black and white, with a short ramp of near-blacks and off-whites in between. There's no signature brand hue, and that's the point. Gangan is a canvas for music, so the color comes from the work itself: album art and artist photography carry the vibrancy while the interface stays out of the way. A neutral, high-contrast system lets the imagery be the loudest thing on screen.
 
-Accent colors are used sparingly. Vibrant orange for primary actions and brand moments. A cooler teal for secondary interactions and data visualization. The contrast ratio between the indigo surface and white text exceeds WCAG AAA (7:1 minimum).
+The only systematic color lives in the status palette — green for success, amber for warnings, red for errors — each paired with a soft tint for backgrounds and surfaces. These aren't brand accents; they're functional signals, used only where the interface needs to communicate state. Everything else is grayscale.
 
-The palette is designed for dark-mode-first interfaces. Light-mode variants invert the hierarchy: warm off-white surfaces with the indigo used for text and UI chrome.
+Black on white (and white on black) clears WCAG AAA with room to spare. The system is built light- and dark-mode-first from the same tokens: invert the monochrome ramp and the identity still holds, because it never leaned on a single color to carry it.
 
 ---
 
-## Solution: Typography
+## Typography
 
 The wordmark uses a clean, modern sans-serif — geometric in structure, with even stroke weights and open apertures. It complements the drum symbol without competing. The typeface is chosen for readability across the product UI, not just the logo lockup.
 
@@ -77,27 +77,34 @@ For the product itself, the system uses a single sans-serif type family across a
 
 ---
 
-## Solution: Applications
+## Applications
 
 ### App store assets
 
-![Gangan app store screenshots](/gangan-appstore.webp)
+<figure class="cs-portrait">
+  <img src="/gangan-appstore.webp" alt="Gangan App Store listing — drum-mark app icon, 4.9 rating, Editors' Choice, and 'the music economy independent artists deserve' screenshot previews" loading="lazy" />
+</figure>
 
 App store screenshots were designed to communicate the product's core value in a single scroll: artists get paid directly, fans get early access, no algorithm in between. Each screenshot pairs a feature (tiers, earnings, library, player) with a one-line value proposition. The dark background makes the UI screens pop against the App Store and Play Store's white browsing contexts.
 
 ### Social templates
 
-![Gangan social media template — day one launch](/gangan-social-1.webp)
+<MediaGrid
+  cols={3}
+  items={[
+    { src: "/gangan-social-1.webp", alt: "Gangan social template — 'This is for you' over a black-and-white portrait of an artist at the mic, with the artist and fan value propositions" },
+    { src: "/gangan-social-2.webp", alt: "Gangan social template — 'How Gangan works for artists: four steps, no gatekeepers' beside a portrait of a violinist" },
+    { src: "/gangan-social-3.webp", alt: "Gangan social template — '~80% of every subscription goes to the artist' beside a street portrait of a musician with a boombox" }
+  ]}
+/>
 
-Launch-day social templates extend the brand language beyond the product. The drum symbol anchors every template. Typography follows the same principles as the logo lockup. The dark indigo background with orange accent creates instant brand recognition in a feed dominated by bright, noisy content.
+Launch templates extend the identity beyond the product. Each is built from the same monochrome system — oversized type, the drum symbol, black-and-white as the default state. The only color comes from the artist photography itself, so the imagery stays the loudest thing in a noisy feed while the brand frame holds steady around it.
 
-![Gangan social media template — early access](/gangan-social-2.webp)
-
-The social system was designed to be modular — any team member can swap the headline, body text, and background asset without breaking brand consistency. The template does the heavy lifting.
+The system is modular: swap the headline, the body line, and the background image, and the layout still holds. One person can produce a full launch run in an afternoon without breaking brand consistency — the template does the heavy lifting.
 
 ### Website
 
-The marketing site (gangan.app) uses the full lockup as its primary brand signal. The dark indigo background fills the viewport. Scrolling sections alternate between brand messaging and product screenshots. The identity system — logo, colors, typography, spacing — propagates from Figma to Webflow with zero translation loss.
+The marketing site (gangan.app) uses the full lockup as its primary brand signal. A high-contrast monochrome canvas fills the viewport — the same black-and-white system as the rest of the identity. Scrolling sections alternate between brand messaging and product screenshots, where album art and UI supply the only color. The identity system — logo, colors, typography, spacing — propagates from Figma to Webflow with zero translation loss.
 
 ---
 
