@@ -97,6 +97,10 @@ const MOBILE_VISIBLE = 6;
 <section class="hero-wall" aria-label="Intro">
   <div class="hero-wall__content">
     <div class="container hero-wall__inner">
+      <div class="hero-wall__avatar" data-reveal data-magnetic>
+        <span class="hero-wall__avatar-ring" aria-hidden="true"></span>
+        <img src="/avatar.png" alt="Opeyemi Ajagbe" width="88" height="88" />
+      </div>
       <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
       <h1 class="hero-wall__title" data-split>
         I design and build the things other designers use.
@@ -258,6 +262,54 @@ const MOBILE_VISIBLE = 6;
     justify-items: center;
     text-align: center;
     gap: 1.5rem;
+  }
+
+  .hero-wall__avatar {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: clamp(76px, 9vw, 100px);
+    aspect-ratio: 1;
+    /* sit a touch closer to the eyebrow than the default grid gap */
+    margin-bottom: -0.5rem;
+  }
+
+  /* thin conic-gradient ring that slowly spins; masked to a band so only the
+     outer edge shows, the photo sits inside with a small gap */
+  .hero-wall__avatar-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #ffd24d, #fb9826, #0099ff, #ffd24d);
+    animation: avatar-ring-spin 8s linear infinite;
+    will-change: transform;
+  }
+
+  .hero-wall__avatar img {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    /* a bg-coloured border forms the gap; the photo and the disc behind are both
+       real border-radius circles, so their edges anti-alias cleanly — no masked
+       jaggies. Only the conic colours sweep; the ring's edges stay put. */
+    border: 3px solid var(--bg);
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 14px rgb(0 0 0 / 10%);
+  }
+
+  @keyframes avatar-ring-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-wall__avatar-ring {
+      animation: none;
+    }
   }
 
   .hero-wall__title {
