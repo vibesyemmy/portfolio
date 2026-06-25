@@ -11,6 +11,7 @@ const CONF = {
   PIN_RADIUS: 7,
   PIN_SPACING: 18,
   RESET_DELAY: 1500, // ms after settle before respawn
+  SPLASH_OFFSET_Y: 72, // px the splash floats above home
 };
 
 type State = 'idle' | 'arming' | 'firing' | 'settle';
@@ -25,6 +26,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
   let vel: Vec = { x: 0, y: 0 };
   let armed = false; // crossed the drag threshold this gesture
   let raf = 0;
+  let resetTimer = 0; // pending respawn timer (0 = none)
   let overlay: HTMLDivElement | null = null;
   let band: SVGLineElement | null = null;
   let splashEl: HTMLDivElement | null = null;
@@ -83,6 +85,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
 
   const teardown = () => {
     cancelAnimationFrame(raf);
+    clearTimeout(resetTimer);
     overlay?.remove();
     overlay = null;
     band = null;
@@ -111,6 +114,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
   const abort = () => {
     if (state === 'idle') return;
     cancelAnimationFrame(raf);
+    clearTimeout(resetTimer);
     floatHomeThenTeardown();
   };
 
@@ -133,7 +137,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
     const down = pinDown.filter(Boolean).length;
     splashEl.textContent = down === pinEls.length ? 'STRIKE!' : `${down}/${pinEls.length}`;
     splashEl.style.left = `${homeCenter.x}px`;
-    splashEl.style.top = `${homeCenter.y - 72}px`;
+    splashEl.style.top = `${homeCenter.y - CONF.SPLASH_OFFSET_Y}px`;
     gsap.fromTo(
       splashEl,
       { scale: 0.6, opacity: 0, y: 10 },
@@ -153,7 +157,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
     if (Math.hypot(vel.x, vel.y) < CONF.SETTLE_SPEED) {
       state = 'settle';
       showSplash();
-      window.setTimeout(floatHomeThenTeardown, CONF.RESET_DELAY);
+      resetTimer = window.setTimeout(floatHomeThenTeardown, CONF.RESET_DELAY);
       return;
     }
     raf = requestAnimationFrame(tick);
@@ -210,5 +214,5 @@ export function initHeroBowling(avatar: HTMLElement): void {
 
   avatar.addEventListener('pointercancel', abort);
   window.addEventListener('scroll', abort, { passive: true });
-  window.addEventListener('resize', abort);
+  window.addEventListener('resize', abort, { passive: true });
 }
