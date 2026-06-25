@@ -1,9 +1,10 @@
 ---
-// A 2- or 3-up grid of images.
+// A 2- or 3-up grid of images or autoplaying videos.
 interface Item {
   src: string;
   alt?: string;
   caption?: string;
+  poster?: string; // poster frame for video items
 }
 interface Props {
   items?: Item[];
@@ -11,13 +12,26 @@ interface Props {
   width?: 'content' | 'wide' | 'full';
 }
 const { items = [], cols = 2, width = 'wide' } = Astro.props;
+const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
 ---
 
 <div class="cs-grid" data-width={width} style={`--cols:${cols}`}>
   {
     items.map((it) => (
       <figure>
-        <img src={it.src} alt={it.alt || ''} loading="lazy" />
+        {isVideo(it.src) ? (
+          <video
+            src={it.src}
+            poster={it.poster}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          />
+        ) : (
+          <img src={it.src} alt={it.alt || ''} loading="lazy" />
+        )}
         {it.caption && <figcaption>{it.caption}</figcaption>}
       </figure>
     ))
@@ -34,7 +48,7 @@ const { items = [], cols = 2, width = 'wide' } = Astro.props;
   .cs-grid figure {
     margin: 0;
   }
-  .cs-grid img {
+  .cs-grid :where(img, video) {
     display: block;
     width: 100%;
     height: 100%;

@@ -29,7 +29,7 @@ Guests arrive tired. They're in an unfamiliar room. They're holding a remote the
 
 I designed the interface around one rule: a guest standing at the doorway should understand what's possible without reading a word. Large tiles. High contrast. No menus behind menus.
 
-<MediaFull src="/demo-img/hotel-entertainment-hub.png" caption="Home: every service the hotel offers in one glance, from entertainment to room service." />
+<MediaFull src="/hotel-home.mp4" poster="/hotel-home-poster.webp" width="container" caption="Home: every service the hotel offers in one glance, from entertainment to room service." />
 
 Every interaction had to work one-handed, because the other hand is holding a drink, a phone, or a child. Navigation had to be forgiving, because a tired thumb on a remote overshoots. I built the flow so "back" always goes somewhere useful, never to a dead end.
 
@@ -53,14 +53,24 @@ The platform consolidated what hotels typically scatter across six different sys
 
 ## Designed for the moment
 
-Two screens that capture the core experience:
+Two flows that capture the core experience:
 
 <MediaGrid
   cols={2}
   items={[
-    { src: '/demo-img/H1SFrNwR9pVTY0PFJRUpd9Repg.webp', caption: 'Booking flow: three taps from discovery to confirmation.' },
-    { src: '/demo-img/Rv4CmM0nPavsO7Ow5oGZAJmeyI.png', caption: 'In-room services: room service, housekeeping, and amenities in one place.' },
+    { src: '/booking-spa.mp4', poster: '/booking-spa-poster.webp', caption: 'Booking flow: three taps from discovery to confirmation.' },
+    { src: '/booking-room-service.mp4', poster: '/booking-room-service-poster.webp', caption: 'In-room services: room service, housekeeping, and amenities in one place.' },
   ]}
 />
 
 The platform shipped and was deployed at Empire Hotel. No metrics I can share publicly, but the design principle held: when the interface disappears, guests stay in the experience, not in the menu.
+
+---
+
+## Try the prototype
+
+<ProtoEmbed
+  src={"https://cloud.protopie.io/p/efd2a0e232?ui=false&scaleToFit=true&enableHotspotHints=true&cursorType=touch&mockup=true&bgColor=%23F5F5F5&playSpeed=1"}
+  title="Hotel Entertainment Hub — interactive ProtoPie prototype"
+  caption="The working prototype — tap through the discovery, booking, and in-room service flows."
+/>
