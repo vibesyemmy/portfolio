@@ -128,9 +128,13 @@ h3 {
   color: var(--dark-ink);
 }
 
-/* split-type line wrappers must clip for the reveal */
+/* split-type line wrappers must clip for the reveal. Pad the bottom so the tight
+   1.05 line-height doesn't crop descenders (g, y, p); the negative margin keeps
+   the original line spacing. */
 .line {
   overflow: hidden;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
 }
 
 :focus-visible {

@@ -72,7 +72,7 @@ if (!reduced) {
       });
       gsap.set(el, { autoAlpha: 1 });
       gsap.from(el.querySelectorAll('.line-inner'), {
-        yPercent: 110,
+        yPercent: 125,
         duration: 0.8,
         stagger: 0.08,
         ease: 'power3.out',
