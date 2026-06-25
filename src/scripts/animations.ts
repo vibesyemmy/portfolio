@@ -45,11 +45,13 @@ if (!reduced) {
     let cx = 0;
     let cy = 0;
     el.addEventListener('mouseenter', () => {
+      if (el.dataset.magneticPaused) return; // bowling game owns the transform
       const r = el.getBoundingClientRect();
       cx = r.left + r.width / 2;
       cy = r.top + r.height / 2;
     });
     el.addEventListener('mousemove', (e) => {
+      if (el.dataset.magneticPaused) return;
       xTo((e.clientX - cx) * 0.3);
       yTo((e.clientY - cy) * 0.3);
     });

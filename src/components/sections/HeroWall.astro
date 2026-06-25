@@ -546,3 +546,9 @@ const MOBILE_VISIBLE = 6;
     }
   }
 </style>
+
+<script>
+  import { initHeroBowling } from '../../scripts/bowling';
+  const avatar = document.querySelector<HTMLElement>('.hero-wall__avatar');
+  if (avatar) initHeroBowling(avatar);
+</script>
