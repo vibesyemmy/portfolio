@@ -3,8 +3,8 @@ import { clampToRadius, launchVelocity, hitTest, pinTriangle, type Vec } from '.
 
 const CONF = {
   DRAG_THRESHOLD: 12, // px before a press becomes a throw
-  MAX_STRETCH: 120, // px clamp on drag distance from home
-  LAUNCH_K: 0.35, // release speed = stretch * K (px/frame)
+  MAX_STRETCH: 280, // px clamp on drag distance from home (room to roam over the headline)
+  LAUNCH_K: 0.11, // release speed = stretch * K (px/frame); ~1.4x stretch of travel
   FRICTION: 0.92, // velocity decay per frame
   SETTLE_SPEED: 0.4, // below this the ball settles
   BALL_RADIUS: 30, // collision radius of the avatar
@@ -20,6 +20,10 @@ export function initHeroBowling(avatar: HTMLElement): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (avatar.dataset.bowlingReady) return; // bind once per element, even if re-inited
   avatar.dataset.bowlingReady = '1';
+
+  // the headline wrapper gets a `hb-playing` class during a throw so CSS can
+  // soften the text and free up drag room around the avatar
+  const inner = avatar.closest<HTMLElement>('.hero-wall__inner');
 
   let state: State = 'idle';
   let homeCenter: Vec = { x: 0, y: 0 }; // viewport coords of avatar's rest centre
@@ -96,6 +100,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
     pinPos = [];
     pinDown = [];
     avatar.removeAttribute('data-magnetic-paused');
+    inner?.classList.remove('hb-playing');
     state = 'idle';
     armed = false;
   };
@@ -185,6 +190,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
       if (Math.hypot(dx, dy) < CONF.DRAG_THRESHOLD) return;
       armed = true;
       avatar.setAttribute('data-magnetic-paused', '1');
+      inner?.classList.add('hb-playing');
       gsap.killTweensOf(avatar);
       const curX = Number(gsap.getProperty(avatar, 'x')) || 0;
       const curY = Number(gsap.getProperty(avatar, 'y')) || 0;

@@ -264,6 +264,18 @@ const MOBILE_VISIBLE = 6;
     gap: 1.5rem;
   }
 
+  /* during a bowling throw the headline softens so the avatar has room to roam
+     (the avatar itself stays sharp) */
+  .hero-wall__inner :where(.eyebrow, .hero-wall__title, .hero-wall__sub, .hero-wall__actions) {
+    transition: filter 0.35s ease;
+  }
+  /* dim via the filter's opacity() — GSAP's reveal sets an inline `opacity` that
+     would otherwise win, but it never touches `filter` */
+  .hero-wall__inner.hb-playing :where(.eyebrow, .hero-wall__title, .hero-wall__sub, .hero-wall__actions) {
+    filter: blur(5px) opacity(0.5);
+    pointer-events: none;
+  }
+
   .hero-wall__avatar {
     position: relative;
     display: inline-grid;
