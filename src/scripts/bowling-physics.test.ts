@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { clampToRadius, launchVelocity, hitTest } from './bowling-physics';
+import { clampToRadius, launchVelocity, hitTest, pinTriangle } from './bowling-physics';
 
 describe('clampToRadius', () => {
   it('leaves a short vector unchanged', () => {
@@ -28,5 +28,19 @@ describe('hitTest', () => {
   });
   it('is false when circles are apart', () => {
     expect(hitTest({ x: 0, y: 0 }, 10, { x: 30, y: 0 }, 5)).toBe(false); // dist 30 > 15
+  });
+});
+
+describe('pinTriangle', () => {
+  it('returns six pins', () => {
+    expect(pinTriangle({ x: 0, y: 0 }, 18)).toHaveLength(6);
+  });
+  it('is horizontally symmetric about the centre', () => {
+    const sumX = pinTriangle({ x: 0, y: 0 }, 18).reduce((s, p) => s + p.x, 0);
+    expect(sumX).toBeCloseTo(0);
+  });
+  it('stacks three distinct rows by y', () => {
+    const ys = [...new Set(pinTriangle({ x: 0, y: 0 }, 18).map((p) => p.y))];
+    expect(ys).toHaveLength(3);
   });
 });

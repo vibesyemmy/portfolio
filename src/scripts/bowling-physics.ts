@@ -19,3 +19,17 @@ export function launchVelocity(home: Vec, release: Vec, k: number): Vec {
 export function hitTest(ball: Vec, ballR: number, pin: Vec, pinR: number): boolean {
   return Math.hypot(ball.x - pin.x, ball.y - pin.y) <= ballR + pinR;
 }
+
+/** Six pin centres in a 3-2-1 triangle (apex up), centred on `center`. */
+export function pinTriangle(center: Vec, spacing: number): Vec[] {
+  const rows = [1, 2, 3]; // pins per row, top -> bottom
+  const out: Vec[] = [];
+  rows.forEach((count, r) => {
+    const y = center.y + (r - 1) * spacing; // middle row at center.y
+    const rowWidth = (count - 1) * spacing;
+    for (let i = 0; i < count; i++) {
+      out.push({ x: center.x - rowWidth / 2 + i * spacing, y });
+    }
+  });
+  return out;
+}
