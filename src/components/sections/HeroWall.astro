@@ -99,7 +99,7 @@ const MOBILE_VISIBLE = 6;
     <div class="container hero-wall__inner">
       <div class="hero-wall__avatar" data-reveal data-magnetic>
         <span class="hero-wall__avatar-ring" aria-hidden="true"></span>
-        <img src="/avatar.png" alt="Opeyemi Ajagbe" width="88" height="88" />
+        <img src="/avatar.png" alt="Opeyemi Ajagbe" width="88" height="88" draggable="false" />
       </div>
       <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
       <h1 class="hero-wall__title" data-split>
@@ -272,6 +272,16 @@ const MOBILE_VISIBLE = 6;
     aspect-ratio: 1;
     /* sit a touch closer to the eyebrow than the default grid gap */
     margin-bottom: -0.5rem;
+    /* the avatar doubles as a drag handle (bowling easter egg): the wrapper owns
+       the pointer gesture, so suppress native image drag, touch-scroll, and
+       text selection that would otherwise swallow the drag */
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .hero-wall__avatar:active {
+    cursor: grabbing;
   }
 
   /* thin conic-gradient ring that slowly spins; masked to a band so only the
@@ -283,11 +293,13 @@ const MOBILE_VISIBLE = 6;
     background: conic-gradient(from 0deg, #ffd24d, #fb9826, #0099ff, #ffd24d);
     animation: avatar-ring-spin 8s linear infinite;
     will-change: transform;
+    pointer-events: none; /* let the wrapper receive the drag */
   }
 
   .hero-wall__avatar img {
     position: relative;
     z-index: 1;
+    pointer-events: none; /* let the wrapper receive the drag; no native image drag */
     box-sizing: border-box;
     width: calc(100% - 6px);
     height: calc(100% - 6px);
