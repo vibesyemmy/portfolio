@@ -150,7 +150,7 @@ html {
 .hb-overlay {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 50; /* above the page, below the nav (100) */
   pointer-events: none;
 }
 .hb-band-svg {
