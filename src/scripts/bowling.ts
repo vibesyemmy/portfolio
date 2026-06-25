@@ -36,7 +36,6 @@ export function initHeroBowling(avatar: HTMLElement): void {
   let raf = 0;
   let resetTimer = 0; // pending respawn timer (0 = none)
   let overlay: HTMLDivElement | null = null;
-  let band: SVGLineElement | null = null;
   let splashEl: HTMLDivElement | null = null;
   let pinPos: Vec[] = [];
   let pinDown: boolean[] = [];
@@ -67,13 +66,6 @@ export function initHeroBowling(avatar: HTMLElement): void {
     overlay.className = 'hb-overlay';
     overlay.setAttribute('aria-hidden', 'true');
 
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('class', 'hb-band-svg');
-    band = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    band.setAttribute('class', 'hb-band');
-    svg.appendChild(band);
-    overlay.appendChild(svg);
-
     pinPos = pinTriangle({ x: 0, y: 0 }, CONF.PIN_SPACING);
     pinDown = pinPos.map(() => false);
 
@@ -89,21 +81,11 @@ export function initHeroBowling(avatar: HTMLElement): void {
     pinField?.startRender();
   };
 
-  const updateBand = (visible: boolean) => {
-    if (!band) return;
-    band.style.opacity = visible ? '1' : '0';
-    band.setAttribute('x1', `${homeCenter.x}`);
-    band.setAttribute('y1', `${homeCenter.y}`);
-    band.setAttribute('x2', `${homeCenter.x + ballPos.x}`);
-    band.setAttribute('y2', `${homeCenter.y + ballPos.y}`);
-  };
-
   const teardown = () => {
     cancelAnimationFrame(raf);
     clearTimeout(resetTimer);
     overlay?.remove();
     overlay = null;
-    band = null;
     splashEl = null;
     pinField?.reset();
     pinField?.stopRender();
@@ -158,7 +140,6 @@ export function initHeroBowling(avatar: HTMLElement): void {
   const tick = () => {
     setBall(ballPos.x + vel.x, ballPos.y + vel.y);
     vel = { x: vel.x * CONF.FRICTION, y: vel.y * CONF.FRICTION };
-    updateBand(false);
     pinPos.forEach((_, i) => {
       if (pinDown[i]) return;
       if (hitTest(ballPos, CONF.BALL_RADIUS, pinPos[i], CONF.PIN_RADIUS)) scatterPin(i);
@@ -203,7 +184,6 @@ export function initHeroBowling(avatar: HTMLElement): void {
     }
     const s = clampToRadius({ x: dx, y: dy }, CONF.MAX_STRETCH);
     setBall(s.x, s.y);
-    updateBand(true);
   });
 
   avatar.addEventListener('pointerup', (e) => {
@@ -218,7 +198,6 @@ export function initHeroBowling(avatar: HTMLElement): void {
       return;
     }
     state = 'firing';
-    updateBand(false);
     vel = launchVelocity({ x: 0, y: 0 }, ballPos, CONF.LAUNCH_K);
     raf = requestAnimationFrame(tick);
   });

@@ -153,19 +153,6 @@ html {
   z-index: 50; /* above the page, below the nav (100) */
   pointer-events: none;
 }
-.hb-band-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-.hb-band {
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-dasharray: 4 4;
-  opacity: 0;
-}
 /* shared WebGL canvas the 3D pins render into (see scripts/bowling-pins-3d.ts) */
 .hb-canvas {
   position: fixed;
@@ -173,7 +160,7 @@ html {
   left: 0;
   width: 100vw;
   height: 100dvh;
-  z-index: 49; /* pins under the band/splash overlay (50), above the page */
+  z-index: 49; /* pins under the splash overlay (50), above the page */
   pointer-events: none;
 }
 .hb-splash {
