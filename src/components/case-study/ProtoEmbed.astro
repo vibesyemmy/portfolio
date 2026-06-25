@@ -29,6 +29,25 @@ const {
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
+<script>
+  // Embedded players (ProtoPie etc.) only receive their keyboard shortcuts —
+  // R to restart, Esc to go back — while the iframe itself holds focus. In an
+  // embed the parent page keeps focus, so keystrokes never reach the prototype.
+  // Hand focus to the frame as soon as the pointer is over it: this gives the
+  // same R/Esc behaviour as the standalone player, with no click required.
+  for (const frame of document.querySelectorAll<HTMLIFrameElement>('.cs-proto iframe')) {
+    const focusFrame = () => {
+      try {
+        frame.contentWindow?.focus();
+      } catch {
+        /* cross-origin focus() is allowed; ignore the rare throw */
+      }
+    };
+    frame.addEventListener('pointerenter', focusFrame);
+    frame.addEventListener('pointerdown', focusFrame);
+  }
+</script>
+
 <style>
   .cs-proto {
     margin: clamp(2rem, 5vw, 4rem) 0;
