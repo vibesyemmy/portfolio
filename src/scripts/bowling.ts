@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { clampToRadius, launchVelocity, hitTest, pinTriangle, type Vec } from './bowling-physics';
+import { createPinField, type PinField } from './bowling-pins-3d';
 
 const CONF = {
   DRAG_THRESHOLD: 12, // px before a press becomes a throw
@@ -10,6 +11,7 @@ const CONF = {
   BALL_RADIUS: 30, // collision radius of the avatar
   PIN_RADIUS: 7,
   PIN_SPACING: 18,
+  PIN_HEIGHT: 46, // px tall the 3D pins render
   RESET_DELAY: 1500, // ms after settle before respawn
   SPLASH_OFFSET_Y: 72, // px the splash floats above home
 };
@@ -36,13 +38,28 @@ export function initHeroBowling(avatar: HTMLElement): void {
   let overlay: HTMLDivElement | null = null;
   let band: SVGLineElement | null = null;
   let splashEl: HTMLDivElement | null = null;
-  let pinEls: HTMLDivElement[] = [];
   let pinPos: Vec[] = [];
   let pinDown: boolean[] = [];
+  let pinField: PinField | null = null;
+  let pinFieldLoading = false;
 
   const setBall = (x: number, y: number) => {
     ballPos = { x, y };
     gsap.set(avatar, { x, y });
+  };
+
+  // Lazy-load three.js + the GLB on first press, so they never weigh down the
+  // initial page; cached for every later throw. The game still runs if it fails.
+  const ensurePinField = () => {
+    if (pinField || pinFieldLoading) return;
+    pinFieldLoading = true;
+    createPinField('/bowling-pin.glb', CONF.PIN_HEIGHT)
+      .then((pf) => {
+        pinField = pf;
+      })
+      .catch(() => {
+        /* three.js or the GLB failed to load — fall back to a pin-less throw */
+      });
   };
 
   const buildOverlay = () => {
@@ -59,25 +76,17 @@ export function initHeroBowling(avatar: HTMLElement): void {
 
     pinPos = pinTriangle({ x: 0, y: 0 }, CONF.PIN_SPACING);
     pinDown = pinPos.map(() => false);
-    pinEls = pinPos.map((p) => {
-      const el = document.createElement('div');
-      el.className = 'hb-pin';
-      el.style.left = `${homeCenter.x + p.x}px`;
-      el.style.top = `${homeCenter.y + p.y}px`;
-      overlay!.appendChild(el);
-      return el;
-    });
 
     splashEl = document.createElement('div');
     splashEl.className = 'hb-splash';
     overlay.appendChild(splashEl);
 
     document.body.appendChild(overlay);
-    gsap.fromTo(
-      pinEls,
-      { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.3, stagger: 0.03, ease: 'back.out(2)' }
-    );
+
+    // the pins live in the shared 3D canvas, not the DOM overlay
+    pinField?.place(homeCenter, pinPos);
+    pinField?.spawn();
+    pinField?.startRender();
   };
 
   const updateBand = (visible: boolean) => {
@@ -96,7 +105,8 @@ export function initHeroBowling(avatar: HTMLElement): void {
     overlay = null;
     band = null;
     splashEl = null;
-    pinEls = [];
+    pinField?.reset();
+    pinField?.stopRender();
     pinPos = [];
     pinDown = [];
     avatar.removeAttribute('data-magnetic-paused');
@@ -127,22 +137,14 @@ export function initHeroBowling(avatar: HTMLElement): void {
 
   const scatterPin = (i: number) => {
     pinDown[i] = true;
-    const ang = Math.atan2(pinPos[i].y - ballPos.y, pinPos[i].x - ballPos.x);
-    const dist = 50 + Math.random() * 45;
-    gsap.to(pinEls[i], {
-      x: Math.cos(ang) * dist,
-      y: Math.sin(ang) * dist,
-      rotation: (Math.random() - 0.5) * 540,
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.out',
-    });
+    // hand the impact direction (screen-space) to the 3D field, which tumbles it
+    pinField?.scatter(i, { x: pinPos[i].x - ballPos.x, y: pinPos[i].y - ballPos.y });
   };
 
   const showSplash = () => {
     if (!splashEl) return;
     const down = pinDown.filter(Boolean).length;
-    splashEl.textContent = down === pinEls.length ? 'STRIKE!' : `${down}/${pinEls.length}`;
+    splashEl.textContent = down === pinPos.length ? 'STRIKE!' : `${down}/${pinPos.length}`;
     splashEl.style.left = `${homeCenter.x}px`;
     splashEl.style.top = `${homeCenter.y - CONF.SPLASH_OFFSET_Y}px`;
     gsap.fromTo(
@@ -157,7 +159,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
     setBall(ballPos.x + vel.x, ballPos.y + vel.y);
     vel = { x: vel.x * CONF.FRICTION, y: vel.y * CONF.FRICTION };
     updateBand(false);
-    pinEls.forEach((_, i) => {
+    pinPos.forEach((_, i) => {
       if (pinDown[i]) return;
       if (hitTest(ballPos, CONF.BALL_RADIUS, pinPos[i], CONF.PIN_RADIUS)) scatterPin(i);
     });
@@ -172,6 +174,7 @@ export function initHeroBowling(avatar: HTMLElement): void {
 
   avatar.addEventListener('pointerdown', (e) => {
     if (state !== 'idle') return;
+    ensurePinField();
     pointerStart = { x: e.clientX, y: e.clientY };
     state = 'arming';
     armed = false;

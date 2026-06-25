@@ -166,15 +166,15 @@ html {
   stroke-dasharray: 4 4;
   opacity: 0;
 }
-.hb-pin {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  margin: -7px 0 0 -7px; /* centre on the left/top coordinate */
-  border-radius: 4px;
-  background: var(--ink);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
-  will-change: transform;
+/* shared WebGL canvas the 3D pins render into (see scripts/bowling-pins-3d.ts) */
+.hb-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 49; /* pins under the band/splash overlay (50), above the page */
+  pointer-events: none;
 }
 .hb-splash {
   position: absolute;
