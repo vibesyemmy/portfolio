@@ -18,6 +18,8 @@ type State = 'idle' | 'arming' | 'firing' | 'settle';
 
 export function initHeroBowling(avatar: HTMLElement): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (avatar.dataset.bowlingReady) return; // bind once per element, even if re-inited
+  avatar.dataset.bowlingReady = '1';
 
   let state: State = 'idle';
   let homeCenter: Vec = { x: 0, y: 0 }; // viewport coords of avatar's rest centre
