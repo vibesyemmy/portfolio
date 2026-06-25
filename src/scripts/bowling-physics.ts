@@ -14,3 +14,8 @@ export function clampToRadius(v: Vec, max: number): Vec {
 export function launchVelocity(home: Vec, release: Vec, k: number): Vec {
   return { x: (home.x - release.x) * k, y: (home.y - release.y) * k };
 }
+
+/** Circle/circle overlap test between the ball and a pin. */
+export function hitTest(ball: Vec, ballR: number, pin: Vec, pinR: number): boolean {
+  return Math.hypot(ball.x - pin.x, ball.y - pin.y) <= ballR + pinR;
+}

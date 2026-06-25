@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { clampToRadius, launchVelocity } from './bowling-physics';
+import { clampToRadius, launchVelocity, hitTest } from './bowling-physics';
 
 describe('clampToRadius', () => {
   it('leaves a short vector unchanged', () => {
@@ -19,5 +19,14 @@ describe('clampToRadius', () => {
 describe('launchVelocity', () => {
   it('points from release back toward home, scaled by k', () => {
     expect(launchVelocity({ x: 0, y: 0 }, { x: 100, y: -50 }, 0.5)).toEqual({ x: -50, y: 25 });
+  });
+});
+
+describe('hitTest', () => {
+  it('is true when circles overlap', () => {
+    expect(hitTest({ x: 0, y: 0 }, 10, { x: 12, y: 0 }, 5)).toBe(true); // dist 12 <= 15
+  });
+  it('is false when circles are apart', () => {
+    expect(hitTest({ x: 0, y: 0 }, 10, { x: 30, y: 0 }, 5)).toBe(false); // dist 30 > 15
   });
 });
