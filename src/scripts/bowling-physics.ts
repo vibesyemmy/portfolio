@@ -5,7 +5,7 @@ export type Vec = { x: number; y: number };
 /** Clamp a vector's magnitude to `max` (direction preserved). */
 export function clampToRadius(v: Vec, max: number): Vec {
   const mag = Math.hypot(v.x, v.y);
-  if (mag <= max || mag === 0) return { x: v.x, y: v.y };
+  if (mag === 0 || mag <= max) return { x: v.x, y: v.y };
   const s = max / mag;
   return { x: v.x * s, y: v.y * s };
 }
@@ -20,7 +20,7 @@ export function hitTest(ball: Vec, ballR: number, pin: Vec, pinR: number): boole
   return Math.hypot(ball.x - pin.x, ball.y - pin.y) <= ballR + pinR;
 }
 
-/** Six pin centres in a 3-2-1 triangle (apex up), centred on `center`. */
+/** Six pin centres in a 1-2-3 triangle (single pin at top), centred on `center`. */
 export function pinTriangle(center: Vec, spacing: number): Vec[] {
   const rows = [1, 2, 3]; // pins per row, top -> bottom
   const out: Vec[] = [];
