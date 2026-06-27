@@ -1,5 +1,5 @@
 ---
-// Large pull quote. Quote text goes in the default slot.
+// Large pull quote with decorative treatment. Quote text goes in the default slot.
 interface Props {
   cite?: string;
   width?: 'content' | 'wide';
@@ -8,15 +8,30 @@ const { cite, width = 'content' } = Astro.props;
 ---
 
 <blockquote class="cs-quote" data-width={width}>
+  <span class="cs-quote__mark" aria-hidden="true">"</span>
   <p><slot /></p>
   {cite && <cite>{cite}</cite>}
 </blockquote>
 
 <style>
   .cs-quote {
+    position: relative;
     margin: clamp(2.5rem, 6vw, 4.5rem) 0;
     border: 0;
-    padding: 0;
+    padding: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+  }
+  .cs-quote__mark {
+    position: absolute;
+    top: -0.25em;
+    left: -0.04em;
+    font-size: clamp(5rem, 10vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent-text);
+    opacity: 0.12;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
   }
   .cs-quote p {
     margin: 0;
