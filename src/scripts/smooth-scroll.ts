@@ -10,6 +10,9 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
+  // Expose for scroll-to-top FAB and other consumers
+  (window as any).__lenis = lenis;
+
   const NAV_OFFSET = -96; // px — stop short of the target so the fixed nav clears it
   const onHome = () => location.pathname === '/';
 

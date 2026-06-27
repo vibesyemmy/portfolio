@@ -3,6 +3,7 @@ import '@fontsource-variable/inter';
 import '@fontsource/fragment-mono';
 import '../styles/tokens.css';
 import '../styles/global.css';
+import ScrollTop from '../components/ScrollTop.astro';
 
 interface Props {
   title?: string;
@@ -30,6 +31,7 @@ const {
   </head>
   <body>
     <slot />
+    <ScrollTop />
     <script>
       import '../scripts/smooth-scroll';
       import '../scripts/animations';

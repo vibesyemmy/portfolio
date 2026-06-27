@@ -1,0 +1,132 @@
+<button
+  class="fab"
+  type="button"
+  aria-label="Scroll to top"
+  data-scroll-top-fab
+>
+  <svg
+    class="fab__icon"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M18 15l-6-6-6 6" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-scroll-top-fab]');
+  if (!btn) throw new Error('Scroll-to-top FAB not found');
+
+  const THRESHOLD = 400; // px scrolled before FAB appears
+
+  const onScroll = () => {
+    const scrolled = window.scrollY || document.documentElement.scrollTop;
+    btn.classList.toggle('fab--visible', scrolled > THRESHOLD);
+  };
+
+  const onResize = () => {
+    // show immediately if already past threshold after resize
+    onScroll();
+  };
+
+  const onClick = () => {
+    const lenis = (window as any).__lenis;
+    if (lenis) {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  };
+
+  btn.addEventListener('click', onClick);
+
+  // Throttle scroll listener to avoid layout thrashing
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        onScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', onResize, { passive: true });
+
+  // Initial check in case page loads mid-scroll (e.g. browser back)
+  onScroll();
+</script>
+
+<style>
+  .fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 90; /* below nav (100), above content */
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 75%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ink-2);
+    opacity: 0;
+    transform: translateY(0.5rem);
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .fab:hover {
+    color: var(--ink);
+  }
+
+  .fab:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
+  }
+
+  .fab--visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .fab__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fab {
+      transition: opacity 0.01ms;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .fab {
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+</style>
