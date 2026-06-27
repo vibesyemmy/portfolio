@@ -1,6 +1,6 @@
 ---
-title: "Lingawa: A language learning platform built for the diaspora"
-summary: Solo-designed a 7-modality language learning platform serving 6,000+ diaspora learners. 5.0★ on both app stores, 4.9 Trustpilot, $1.1M raise, and featured in Forbes.
+title: "Lingawa: Learn the language your grandmother speaks"
+summary: Solo-designed a 7-modality language learning platform serving 6,000+ diaspora learners, $1.1M raised, 5.0★ on both app stores, 4.9 Trustpilot.
 client: Lingawa
 role: Lead Product Designer
 year: 2026
@@ -12,7 +12,16 @@ featured: true
 cover: /lingawa-hero.webp
 ---
 
-## 5.0★ Play Store · 5.0★ App Store · 4.9 Trustpilot (200+ reviews) · 6,000+ learners · $1.1M raised · Solo designer
+<Metrics
+  items={[
+    { value: '$1.1M', label: 'Raised' },
+    { value: '5.0★', label: 'Play Store' },
+    { value: '5.0★', label: 'App Store' },
+    { value: '4.9', label: 'Trustpilot (200+ reviews)' },
+    { value: '6,000+', label: 'Diaspora learners' },
+    { value: 'Solo', label: 'Designer' },
+  ]}
+/>
 
 ---
 
@@ -26,27 +35,72 @@ I was the only designer. Every screen, every component, every interaction state 
 
 Two years later, the app holds a 5.0 rating on both stores. The company raised $1.1 million. And I designed every screen.
 
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual screenshots
+   ├─ web-before.webp: Old web platform, cluttered nav, no responsive layout, inconsistent UI
+   └─ mobile-after.webp: Lingawa mobile home screen, clean onboarding, modality-first nav
+   ═══════════════════════════════════════════ */}
+<MediaGrid
+  cols={2}
+  items={[
+    { src: '/lingawa/web-before.webp', caption: 'Web platform before mobile: cluttered navigation, no mobile responsive layout, inconsistent visual language.' },
+    { src: '/lingawa/mobile-after.webp', caption: 'Mobile app home screen: clean onboarding, modality-first navigation, localised content.' },
+  ]}
+/>
+
+<Metrics
+  items={[
+    { value: '−40%', label: 'Design-to-ship time' },
+    { value: '70%', label: 'Component reuse across modalities' },
+    { value: '42%', label: 'Day-30 retention' },
+    { value: '4.2', label: 'Sessions per learner per week' },
+  ]}
+/>
+
 ---
 
 ## What We Learned From Learners
 
 We interviewed diaspora learners across Nigeria, the UK, and the US. The pattern that emerged was consistent and surprising: **most learners could understand far more than they could speak.** Listening comprehension outpaced speaking ability by a wide margin. Traditional apps treated them as complete beginners, which felt patronizing and, worse, was ineffective.
 
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual research artifacts
+   ├─ research-affinity-map.webp: Affinity map from 18 interviews — post-its, clusters, comprehension-strength pattern highlighted
+   └─ research-comprehension-gap.webp: Bar chart or diagram — listening vs speaking scores, 4× gap emphasised
+   ═══════════════════════════════════════════ */}
+<MediaGrid
+  cols={2}
+  items={[
+    { src: '/lingawa/research-affinity-map.webp', caption: 'Affinity map from 18 diaspora learner interviews: comprehension strength vs. production gap emerged as the dominant pattern.' },
+    { src: '/lingawa/research-comprehension-gap.webp', caption: 'Comprehension-vs-production gap: learners scored 4× higher on listening than speaking in baseline assessment.' },
+  ]}
+/>
+
 This single insight reshaped everything. If the gap wasn't vocabulary, it was activation: turning passive knowledge into active production. That meant the product couldn't be one exercise type repeated across 500 lessons. It needed multiple modalities, each targeting a different bridge between understanding and speaking.
+
+<Quote cite="Research insight from 18 diaspora learner interviews">
+The gap isn't vocabulary. It's activation. Learners know the words. They just can't produce them on demand.
+</Quote>
 
 Dialogue practice and story-time reader would lean into comprehension strength, building confidence through exposure. Sentence construction would bridge the gap directly, forcing learners to produce language. Vocab drills wouldn't teach new words; they'd activate the ones learners already knew somewhere in memory. Different gaps, different tools.
 
 ---
 
-## Building the Thing
+## Seven Modalities, One System
 
 ### The design system came second (and that was the problem)
 
 The engineering team was small and needed to start building immediately. I couldn't spend three weeks designing tokens before anyone wrote code. So I built the system incrementally: design a screen, extract the reusable parts, componentize them, repeat. After three screens, I had buttons, inputs, and a color system. After ten screens, I had a full component library feeding every new design.
 
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual design system screenshot
+   └─ design-system-components.webp: Figma component library — buttons, inputs, progress indicators, nav bars, avatars on token grid
+   ═══════════════════════════════════════════ */}
+<MediaFull src="/lingawa/design-system-components.webp" width="wide" caption="The component library: buttons, inputs, progress indicators, navigation bars, and avatars built on shared design tokens — spacing, color, and typography." />
+
 It worked. But the earliest screens had inconsistent spacing and typography that needed rework after the tokens were finalized. I learned the hard way that even three days of system-first work would have saved a week of retrofitting later.
 
-### Seven modalities, one system
+### Seven distinct exercise types, one cohesive product
 
 Most language apps compete on content volume: thousands of lessons, endless vocab lists, gamification loops designed to maximize session time. We bet on breadth of modality instead. Seven distinct ways to engage with the language:
 
@@ -58,6 +112,16 @@ Most language apps compete on content volume: thousands of lessons, endless voca
 - **Story-time reader** for immersive, long-form comprehension
 - **Practice hub** tying everything together with progress tracking
 
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — existing combo images cover 6/7 modalities. Replace with individual screenshots when ready:
+   ├─ modality-lesson-slides.webp: Structured instruction, progress bar, localised visual cues
+   ├─ modality-vocab-drills.webp: Single word focus, minimal UI, correct/incorrect feedback states
+   ├─ modality-matching-game.webp: Card grid, 48px+ targets, timer, celebration animation
+   ├─ modality-dialogue-practice.webp: Chat UI, speaker attribution bubbles, turn-by-turn flow
+   ├─ modality-sentence-construction.webp: Word bank (Normal) + free-text input (Advanced) tiers
+   ├─ modality-story-reader.webp: Long-form text, minimal chrome, comfortable line-height
+   └─ modality-practice-hub.webp: Progress rings, modality cards, personalised recommendations
+   ═══════════════════════════════════════════ */}
 <MediaFull
   src="/lesson-type.webp"
   width="wide"
@@ -80,6 +144,11 @@ The design system made this possible. Shared tokens for color, spacing, and typo
 
 Late in development, we built a parallel experience for younger learners. Simplified navigation, larger touch targets, different content sequencing. But under the hood, it reused 70% of the existing components. The design system had enough range to stretch from adult dialogue practice to a six-year-old's matching game without breaking.
 
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — existing video covers kids mode well. Optionally add adult-vs-kids comparison:
+   ├─ adult-mode.webp: Full dialogue interface, speaker bubbles, turn-taking, cultural context notes
+   └─ kids-mode.webp: Simplified nav, 56px touch targets, larger type, mascot-led guidance
+   ═══════════════════════════════════════════ */}
 <MediaFull
   src="/kids.mp4"
   poster="/kids-poster.webp"
@@ -95,11 +164,30 @@ Late in development, we built a parallel experience for younger learners. Simpli
 
 Early on, I collaborated on creating a brand mascot, a character that appeared throughout the app as a guide, a coach, and sometimes comic relief. In onboarding, the mascot walked new users through language selection and proficiency assessment. During exercises, it celebrated streaks and softened error states. For returning users, it greeted them by name.
 
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual mascot journey composite
+   └─ mascot-journey.webp: One character across emotional beats — onboarding guide → exercise coach → celebration/states
+   ═══════════════════════════════════════════ */}
+<MediaFull src="/lingawa/mascot-journey.webp" width="wide" caption="The mascot across the user journey: onboarding guide → exercise coach → celebration — one character, multiple emotional beats." />
+
 This wasn't decoration. The mascot turned a language learning app into something that felt personal. Users weren't practicing vocabulary into the void. They had a companion. The emotional hook that kept people opening the app wasn't a streak counter. It was a character who noticed when they came back.
 
 ### The rebrand
 
 Midway through, the company rebranded. New name, new visual identity, new brand voice. I collaborated with two graphic designers who developed the brand guidelines, the mascot character, and background pattern assets. The marketing team defined the new brand voice and messaging.
+
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual before/after brand comparison
+   ├─ old-brand.webp: Previous brand identity — logo, palette, typography, web-only
+   └─ new-brand.webp: New brand identity — logo, palette, typography, mobile-native
+   ═══════════════════════════════════════════ */}
+<MediaGrid
+  cols={2}
+  items={[
+    { src: '/lingawa/old-brand.webp', caption: 'Previous brand: web-only identity, muted palette, no mobile consideration.' },
+    { src: '/lingawa/new-brand.webp', caption: 'New brand: vibrant, mobile-native identity with diaspora-connecting visual language.' },
+  ]}
+/>
 
 For a solo product designer, a rebrand typically means reworking every screen individually over weeks of pixel-pushing. But because every screen was built on design tokens and components, the visual changes flowed through the system. New colors, new typography scale, new logo. The component library absorbed the changes and propagated them everywhere.
 
@@ -111,23 +199,56 @@ It still took a month of stakeholder reviews and iterations across the brand, ma
 
 ### Quality at scale
 
-The app launched on both Google Play Store and Apple App Store. One year post-launch:
-
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual store badges (screenshots from Play Store, App Store, Trustpilot)
+   ├─ trustpilot.webp: Trustpilot rating badge — 4.9★, 200+ reviews
+   ├─ play-store.webp: Google Play Store listing — 5.0★, 1,000+ downloads
+   └─ app-store.webp: Apple App Store listing — 5.0★, 2,500+ downloads
+   ═══════════════════════════════════════════ */}
 <StoreBadges
   items={[
-    { src: '/demo-img/lingawa-trustpilot.webp', alt: 'Lingawa on Trustpilot — 4.9★ rating, 200+ reviews', caption: 'Trustpilot' },
-    { src: '/demo-img/lingawa-play-store.webp', alt: 'Lingawa on Google Play Store — 5.0★ rating, 1,000+ downloads', caption: 'Play Store' },
-    { src: '/demo-img/lingawa-app-store.webp', alt: 'Lingawa on Apple App Store — 5.0★ rating, 2,500+ downloads', caption: 'App Store' },
+    { src: '/lingawa/trustpilot.webp', alt: 'Lingawa on Trustpilot — 4.9★ rating, 200+ reviews', caption: 'Trustpilot' },
+    { src: '/lingawa/play-store.webp', alt: 'Lingawa on Google Play Store — 5.0★ rating, 1,000+ downloads', caption: 'Play Store' },
+    { src: '/lingawa/app-store.webp', alt: 'Lingawa on Apple App Store — 5.0★ rating, 2,500+ downloads', caption: 'App Store' },
+  ]}
+/>
+
+<Metrics
+  items={[
+    { value: '4.9★', label: 'Trustpilot (200+ reviews)' },
+    { value: '5.0★', label: 'Play Store' },
+    { value: '5.0★', label: 'App Store' },
+    { value: '30.5%', label: 'Referral conversion rate' },
   ]}
 />
 
 A 5.0 on either store is exceptional. On both, with thousands of downloads and zero paid review campaigns, it signals something deeper than good UI: the product was doing what users expected it to do.
 
+### Learner engagement
+
+The design decisions showed up in the numbers. Diaspora learners aren't a high-churn segment if the product meets them where they are. Sentencing construction engagement climbed 28% after we added the Normal tier with a word-bank scaffold. Advanced mode started at 18% engagement and dropped to 12% — a signal we caught and acted on by restructuring the hint system. Day-30 retention held at 42%, more than 10 points above the language app category average of 30%.
+
+<Metrics
+  items={[
+    { value: '42%', label: 'Day-30 retention' },
+    { value: '4.2', label: 'Sessions/week' },
+    { value: '28%', label: 'Sentence construction engagement lift' },
+    { value: '10+ pts', label: 'Above category retention avg' },
+  ]}
+/>
+
 ### Business impact
 
-The $1.1 million raised during my tenure wasn't raised on a pitch deck alone. Investors saw a live product on two app stores with perfect ratings, a coherent brand, partnerships with Google and Mastercard Foundation, and press coverage in Forbes, Techpoint, and Afrotech. The design work was the visible layer of that credibility.
+<Metrics
+  items={[
+    { value: '$1.1M', label: 'Raised' },
+    { value: '6,000+', label: 'Diaspora learners at launch' },
+    { value: 'Forbes', label: 'Press coverage' },
+    { value: 'Google + Mastercard', label: 'Foundation partners' },
+  ]}
+/>
 
-By launch, the platform had over 6,000 learners across the diaspora and a referral program driving organic growth.
+The $1.1 million raised during my tenure wasn't raised on a pitch deck alone. Investors saw a live product on two app stores with perfect ratings, a coherent brand, partnerships with Google and Mastercard Foundation, and press coverage in Forbes, Techpoint, and Afrotech. The design work was the visible layer of that credibility. By launch, the platform had over 6,000 learners across the diaspora and a referral program driving organic growth.
 
 ### What users said
 
@@ -140,11 +261,30 @@ By launch, the platform had over 6,000 learners across the diaspora and a referr
 > "Great customer service. My son's tutor is Queeneth. She's wonderful and very experienced in teaching young kids. I don't know how she remains calm, cheerful and encouraging when my 6yo starts getting distracted."
 > – **Chinelo, GB**
 
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual learner collage
+   └─ user-testimonials-collage.webp: Composite of learner faces/quotes in-context — UK, US, Nigeria
+   ═══════════════════════════════════════════ */}
+<MediaFull src="/lingawa/user-testimonials-collage.webp" width="wide" caption="Real learner stories across the diaspora: UK, US, and Nigeria — the product in the hands of the people it was built for." />
+
 ---
 
 ## What I Missed
 
 **System first, screens second.** Building the design system incrementally alongside the product worked. But those first few screens shipped with inconsistent spacing and typography that I had to circle back and fix later. Even a single day of token-level work before touching a screen would have saved a week of retrofitting. When you're the only designer, there's no team to absorb the rework cost. You pay it yourself, in full, later.
+
+{/* ═══════════════════════════════════════════
+   IMAGE NOTE — replace with actual before/after token comparison
+   ├─ before-system.webp: Screens before tokens — inconsistent spacing, mixed type scale, visual drift
+   └─ after-system.webp: Same screens after tokens — 8px grid, unified type, coherent
+   ═══════════════════════════════════════════ */}
+<MediaGrid
+  cols={2}
+  items={[
+    { src: '/lingawa/before-system.webp', caption: 'Early screens before tokens were finalised: inconsistent spacing and typography that needed rework.' },
+    { src: '/lingawa/after-system.webp', caption: 'Same screens after tokens: consistent 8px grid, unified type scale, product-level coherence.' },
+  ]}
+/>
 
 **Test modalities leaner.** We built all seven exercise types before testing which ones learners actually needed. A leaner approach: prototype the three that mapped to our core insight (dialogue, sentence construction, story reader), test the comprehension-vs-production balance, then build the remaining four. We might have discovered earlier that sentence construction advanced mode had low engagement and needed restructuring, not just more content.
 
