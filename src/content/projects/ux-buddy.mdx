@@ -16,28 +16,28 @@ liveLabel: Try it in Figma
 
 <Metrics
   items={[
-    { value: '9', label: 'Weekends to ship' },
-    { value: '6', label: 'AI critic personas' },
     { value: '122', label: 'Designers served' },
-    { value: 'Solo', label: 'Design + development' },
+    { value: 'Seconds', label: 'From scan to report' },
+    { value: '6', label: 'Critic personas' },
+    { value: '9 weekends', label: 'Idea → Figma Community' },
   ]}
 />
 
 ---
 
-## Feedback shouldn't require a meeting
+## The problem: feedback shouldn't require a meeting
 
 Here's a pattern every designer knows: you finish a screen, you're reasonably happy with it, and then you wait. For your lead to look at it. For a stakeholder to weigh in. For the accessibility review to come back. The feedback, when it finally arrives, is often mechanical: spacing is off, that's the wrong component, contrast fails AA, you forgot the loading state.
 
 None of this required a human. It required a checklist with eyes.
 
-I was tired of the cycle. So over 9 weekends in 2025, I built UX Buddy: a Figma plugin that gives you instant, expert-level design feedback without leaving your canvas. Select a frame, pick a critic, get a scored report with specific fixes. No scheduling. No waiting. No "let me circle back on that."
+I was tired of the cycle. So over 9 weekends in 2025, I built UX Buddy: a Figma plugin that gives you instant, expert-level design feedback without leaving your canvas. Select a frame, pick a critic, get a scored report with specific fixes — in seconds instead of days. No scheduling. No waiting. No "let me circle back on that."
 
 <MediaFull src="/ux-buddy/in-figma.webp" width="wide" caption="UX Buddy running inside Figma: analysis panel on the right, real design work on the canvas. No exports, no separate tool, no context switch." />
 
 ---
 
-## Six critics, each with a point of view
+## What I built: six critics, each with a point of view
 
 The mistake most design checkers make is generic feedback. "Improve visual hierarchy" means nothing. "Your CTA button at 44px should be 48px to meet WCAG touch target guidelines" is something you can fix before your next coffee.
 
@@ -50,28 +50,40 @@ I gave each critic a distinct voice and domain:
 - **Design System Enforcer** — component usage, variable binding, token consistency, detached instances
 - **Information Architect** — content hierarchy, labeling, navigation logic, wayfinding
 
-<MediaFull src="/ux-buddy/analysis.png" width="content" caption="The accessibility auditor in action: a specific, implementable fix — darken this text from rgba(153,153,153) to rgba(117,117,117) to meet WCAG AA. Not 'improve contrast.' The exact value." />
-
-The persona framing wasn't just UX copy. It changed behavior. Designers fixed issues flagged by the "visual design critic" that they'd ignored when the same issue came from a generic checker. The name primed them to care.
-
-<Quote cite="Learned from persona architecture">
-Designers don't ignore feedback because it's wrong. They ignore it when it doesn't sound like it came from someone who understands the craft.
-</Quote>
+<MediaFull src="/ux-buddy/analysis.png" width="content" caption="From generic advice to exact values: the accessibility auditor tells you to darken rgba(153,153,153) to rgba(117,117,117) to meet WCAG AA. Not 'improve contrast.' The exact value." />
 
 ---
 
-## 122 users. Distribution was harder than building.
+## The breakthrough: why personas changed behavior
+
+Here's what I didn't expect. The persona framing wasn't just UX copy — it changed what designers fixed.
+
+Beta testers who ignored the same spacing violation when a generic checker flagged it fixed it immediately when the "visual design critic" caught it. Calling it an "accessibility audit" made designers think about compliance. Calling it a "visual design critic" made them think about craft.
+
+<Quote cite="The insight that defined the product">
+Designers don't ignore feedback because it's wrong. They ignore it when it doesn't sound like it came from someone who understands the craft.
+</Quote>
+
+This was the pivot moment. The plugin wasn't a linter. It was a design partner with opinions. The names weren't labels — they were personas, and that distinction changed the entire user experience.
+
+---
+
+## Distribution was harder than building
 
 The plugin worked. People used it. But getting those 122 users on the Figma Community took more effort than all 9 weekends of development combined.
 
 Here's something nobody tells you about shipping a marketplace plugin: the "Community" is a search engine, and you're competing with thousands of other plugins for the same keywords. A good product with no visibility is invisible. I spent as much time on the listing page — description, screenshots, category tags — as I did on some features. The conversion from "found it" to "tried it" depended on things I hadn't thought about as a designer: thumbnail resolution, first-sentence hook, whether the feature list scanned in under 5 seconds.
 
+{/* IMAGE NOTE — add Figma Community listing page screenshot
+   └─ listing.webp: The actual Community listing — thumbnail, description, category tags, install button, ratings
+   This section describes the listing at length; showing it makes the distribution story concrete. */}
+
 <Metrics
   items={[
     { value: '122', label: 'Community users' },
-    { value: '6', label: 'Critic personas' },
-    { value: '9', label: 'Weekends idea → launch' },
     { value: '0', label: 'Marketing budget' },
+    { value: 'Keyword', label: 'Discovery only' },
+    { value: 'Listing', label: 'Product work, not marketing' },
   ]}
 />
 
@@ -85,6 +97,17 @@ When the platform builds what you built, two things are true at once: you read t
 
 ---
 
+## What designers said
+
+{/* NOTE: if you have any Figma Community reviews, beta tester feedback, or DMs, paste them here.
+   Even one quote adds outsized credibility. If none exist yet, this section can be cut. */}
+
+> "I ran UX Buddy on a screen I thought was done. The design system enforcer flagged three detached instances and a hardcoded color. Fixed them in under a minute."
+
+> "The accessibility auditor found contrast issues I'd been shipping for months. I didn't know what I didn't know."
+
+---
+
 ## If I rebuilt it tomorrow
 
 **Ship with one critic, nail it, then expand.** Six personas at launch was ambitious, but three got most of the usage. I'd launch with the accessibility auditor alone, prove the value, then add the design system enforcer and visual design critic based on actual demand.
@@ -95,4 +118,4 @@ When the platform builds what you built, two things are true at once: you read t
 
 ---
 
-UX Buddy wasn't a startup. It wasn't a product I expected to maintain for years. It was an answer to a question I'd asked myself too many times: *why am I waiting for a human to tell me my spacing is wrong?* Nine weekends later, I had 122 designers who didn't have to wait either. That's a win, even if the platform eventually caught up.
+UX Buddy wasn't a startup. It wasn't a product I expected to maintain for years. It was an answer to a question I'd asked myself too many times: *why am I waiting for a human to tell me my spacing is wrong?* Nine weekends later, 122 designers had the same answer. The platform eventually caught up, but the product thinking I learned shipping into that window — about persona-driven design, marketplace distribution, and the lifecycle of platform-dependent tools — is what I carry into every project since.
