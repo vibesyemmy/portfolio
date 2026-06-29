@@ -1,0 +1,300 @@
+═══════════════════════════════════════════
+LOTTI CASE STUDY — COPY REFERENCE
+Structure: Pilo 14-module format
+───────────────────────────────────────
+
+MODULE 1 — ABOUT PROJECT
+───────────────────────────────────────
+Layout: Left = tagline/value prop (black bg, green accent), Right = lifestyle/context photo
+
+Left copy:
+  ABOUT PROJECT (small label)
+  Lotti is an AI productivity tool (green)
+  that tracks real, interrupted work — not idealized focus sessions. (white/gray)
+  We designed (white)
+  every screen, every interaction, every second of the experience (white/gray)
+  to feel honest. Not aspirational. (green)
+
+  Button: LOTTI APP
+
+Right copy (over photo):
+  lotti (logo)
+  A SECONDARY BRAIN THAT REMEMBERS NOT JUST WHAT YOU DID, BUT THAT YOU CAME BACK TO IT THREE TIMES.
+
+
+MODULE 2 — APP SHOWCASE
+───────────────────────────────────────
+Layout: Phone in hand showing main screen, pull quote bottom
+
+Phone screen: My Daily timeline — planned time blocks as colored background bars, actual task cards at real work times, cards fade to 50-60% outside planned blocks
+
+Quote at bottom:
+  We created a tool that reflects how work actually happens.
+  EVERY PIXEL EARNED ITS PLACE. NO SHAME. NO JUDGMENT. JUST REALITY.
+
+Small label: MY DAILY SCREEN
+
+
+MODULE 3 — KEY SCREENS
+───────────────────────────────────────
+Layout: Two screens side by side, audience framing bottom
+
+Left screen: My Daily — honest timeline with multi-session linked cards
+  Label: MY DAILY
+
+Right screen: AI Configuration — three presets (Minimal, Balanced, Maximum), custom toggles collapsed below
+  Label: AI CONFIGURATION
+
+Bottom text:
+  DESIGNED FOR: THE PERSON WHO GETS INTERRUPTED, THE PERSON WHO NEEDS THEIR AI TO BE POWERFUL BUT NOT INTIMIDATING, AND MAYBE SOMEDAY, THE PERSON WHO GENUINELY NEEDS HELP REMEMBERING WHAT THEY DID YESTERDAY.
+
+
+MODULE 4 — DESIGN PROCESS
+───────────────────────────────────────
+Layout: Dark bg, central statement, 3 phase boxes (alternating colors)
+
+Center text:
+  From a founder's personal tool to a launch-ready product — how we structured three milestones of audit, redesign, and refinement to build an experience that works for everyone, not just the person who built it.
+
+  "we structured three milestones of audit, redesign, and refinement" (green)
+
+  Button: DESIGN PROCESS
+
+Phase boxes:
+
+  1. Milestone 1: Audit (Feb 2026)
+     UI audit across all screens, information architecture mapping, 3 core UX problems identified
+
+  2. Milestone 2: IA & UI Redesign (Mar 2026)
+     Categories/Labels/Tags restructured, My Daily honest timeline, AI presets, task detail screens
+
+  3. Milestone 3: Polish + Ship (Apr–May 2026)
+     Health Score 3-way exploration, notification copy system, design system starter, empty states, launch prep
+
+
+MODULE 5 — USER RESEARCH
+───────────────────────────────────────
+Layout: Left = stats + methods, Right = 3 tagged insight boxes
+
+Title: What does the data actually say? (white)
+Subtitle: We researched the founder's 3,000+ tasks and his real usage patterns to understand what made the product powerful — and what made it unusable for anyone else. (gray)
+
+Stats (green numbers):
+  3,000+    tasks logged by the founder before any design work
+  3         overlapping organizational systems fighting for the same job
+  20+       raw AI checkboxes on one screen, no presets, no explanations
+
+  METHODS USED (button)
+  Founder interviews · Usage data analysis · UI audit · Competitive review
+
+Right: KEY INSIGHTS (button)
+
+  01  "The product had depth but no surface."
+      Three taxonomies — Categories, Labels, Tags — that even the founder stumbled over mid-sentence. When the person who built it can't explain it cleanly, a new user has no chance.
+      Tag: IA finding
+
+  02  "The timeline punished real work."
+      Planned time blocks treated any deviation as failure. But the founder's own data showed fragmented, interrupted work was the norm — not the exception. The interface was telling a lie about how work happens.
+      Tag: UX finding
+
+  03  "The AI was powerful and hidden."
+      Task summaries, conversational agent, voice transcription, screenshot analysis — all working. But the configuration screen was a wall of 20+ checkboxes with no presets and no explanations. The secondary brain had a locked door.
+      Tag: Pain point
+
+Bottom green bar:
+  The insight that drove everything: the product had depth. It just had no surface.
+
+
+MODULE 6 — PROBLEM DEFINITION
+───────────────────────────────────────
+Layout: White bg, stats top, problem statement in green box, HMW bottom
+
+PROBLEM DEFINITION (oval label)
+
+One insight drove everything. (bold heading)
+
+Stats:
+  Zero    first-time users could navigate the product without the founder explaining it
+  3       overlapping systems doing the same job — Categories, Labels, Tags
+
+Green box:
+  PROBLEM STATEMENT
+  A technically complete AI productivity tool that only one person can use — because the interface was built for the person who built it.
+
+Issue list:
+  01  No onboarding = no new users. The product required live explanation to use.
+  02  Three overlapping taxonomies created confusion, not organization.
+  03  No mainstream AI productivity tool treats interrupted work as valid.
+
+HOW MIGHT WE (oval label)
+
+How might we design an AI productivity tool that's powerful enough for the founder but intuitive enough for someone who's never seen it? (bold)
+
+Green oval:
+  We designed Lotti as the answer.
+
+
+MODULE 7 — COMPETITIVE / DIFFERENTIATOR ANALYSIS
+───────────────────────────────────────
+Layout: Dark bg, market comparison table + 3 differentiators
+
+COMPETITIVE LANDSCAPE (label)
+
+What exists. What was missing.
+We audited existing productivity tools to find the UX gap nobody had filled.
+
+MARKET COMPARISON (label)
+Table:
+  Tool              | Honest tracking | Per-task AI | Interruption-aware | Design-first
+  Todoist           | —               | —           | —                  | —
+  Notion            | —               | —           | —                  | —
+  Things 3          | —               | —           | —                  | ✓
+  Motion/Reclaim    | —               | —           | —                  | —
+  Lotti             | ✓               | ✓           | ✓                  | ✓
+
+MY DESIGN CONCLUSION (label)
+  The gap we found: a productivity tool that doesn't shame you for having a fragmented day.
+
+WHAT I BUILT DIFFERENTLY (label)
+
+  1. Honest tracking
+     First productivity tool designed around interrupted work from the ground up. Tasks tracked at actual times, not planned blocks.
+
+  2. Per-task AI
+     Conversational agent scoped to each task. Summaries, transcription, screenshot analysis — all contextual, not generic.
+
+  3. Design-first accessibility
+     Built for power users AND people with memory-related challenges. Action-focused health scoring, not vanity metrics.
+
+
+MODULE 8 — MANIFESTO
+───────────────────────────────────────
+Layout: Black bg, centered white all-caps text
+
+WE BUILT AN EXPERIENCE AROUND THAT REALITY.
+EVERY SCREEN, EVERY INTERACTION, EVERY
+SECOND OF THE FLOW WAS DESIGNED TO FEEL
+HONEST — BECAUSE WHEN YOUR DAY GETS
+INTERRUPTED, YOUR TOOL SHOULD TELL THE
+TRUTH ABOUT IT.
+
+
+MODULE 9 — FEATURE SPOTLIGHT: CATEGORIES, LABELS, TAGS
+───────────────────────────────────────
+Layout: Label left, explanatory text right
+
+CATEGORIES / LABELS / TAGS (oval label)
+
+THREE SYSTEMS. THREE JOBS. THE USER
+UNDERSTANDS THE DIFFERENCE WITHOUT
+A TUTORIAL BECAUSE THE INTERACTION
+TEACHES IT — PICK, TOGGLE, TYPE.
+
+  Categories (one, required): Primary organizing structure. "Lotti Works," "Personal." Carries AI settings, color, icon. You pick from a defined list.
+
+  Labels (multiple, optional, structured): Workflow status markers scoped to a category. "Bug," "Urgent," "Waiting." You toggle from a scoped set.
+
+  Tags (multiple, optional, freeform): Emergent taxonomy. #topic, @person. Grows with the user. You type freely.
+
+Three different inputs for three different mental models. The founder stopped pausing mid-sentence when he saw it.
+
+
+MODULE 10 — TWO-SCREEN PAIR: MY DAILY + AI PRESETS
+───────────────────────────────────────
+Layout: Two phone screens, transparency message bottom
+
+Left screen (green bg): My Daily detail view
+  Label: MY DAILY — HONEST TIMELINE
+  Screenshot: Multi-session task cards with curved connecting lines, planned blocks as background bars, fade states for out-of-block work
+
+Right screen (black bg): AI Configuration
+  Label: AI CONFIGURATION
+  Screenshot: Three presets at top (Minimal, Balanced, Maximum), custom toggles collapsed below with plain-language explanations
+
+Bottom text:
+  We designed full transparency into every part of the experience — from the timeline that shows what actually happened, to the AI that explains what it can do before you turn it on.
+
+
+MODULE 11 — HEALTH SCORE + DIFFERENTIATION
+───────────────────────────────────────
+Layout: Center screen (task detail with health score), widget breakdown, differentiation text
+
+Screen: Task Detail with action-focused Health Score — progress ring, status callout, one named blocker action
+
+Left widget: HEALTH SCORE CARD
+  "Is this task on track?" — single glanceable indicator
+  Three directions explored: Action-focused, Metric dashboard, Status-first
+  Interactive HTML comparison built for live evaluation
+
+Right widget: THREE DIRECTIONS
+  Action-focused: "Here's the one thing to fix."
+  Metric dashboard: More data, more cognitive load.
+  Status-first: Good for urgency, weaker for scanning.
+
+Footer:
+  HEALTH SCORE IN ONE GLANCE: STATUS, PROGRESS, AND THE ONE THING TO FIX. THREE DIRECTIONS EXPLORED, ONE INTERACTIVE PROTOTYPE, ONE DECISION — IN ONE CALL INSTEAD OF THREE ROUNDS OF FIGMA REVISIONS.
+
+
+MODULE 12 — LAGOS → HAMBURG + WHAT SHIPPED
+───────────────────────────────────────
+Layout: Left = cultural context, Right = deliverables list
+
+LAGOS → HAMBURG (label)
+
+A German founder and a Nigerian designer, referred by a mutual contact. Three milestones. Entirely remote.
+
+Lotti ships in Yoruba. That wasn't a feature request — it was a natural outcome of a cross-cultural team building together. When your team reflects multiple markets, the product reflects multiple markets without anyone writing "internationalization" on a ticket.
+
+The AI design was shaped by two privacy cultures: GDPR-conscious European expectations alongside mobile-first, connectivity-conscious thinking from the Nigerian market. User-supplied API keys for cost control and data ownership.
+
+SHIPPED (label)
+  • Comprehensive UI audit with findings clustered by impact
+  • Redesigned My Daily: interruption-aware timeline with multi-session cards
+  • Task Detail with collapsible AI summaries and session-level time tracking
+  • Lotti Agent conversational AI interface, scoped per task
+  • Time Block Planning flow refactored for clarity
+  • Health Score Card: three directions, interactive comparison
+  • Complete notification copy system: six categories, tone guidelines
+  • Multiple empty-state scenarios including voice-first entry point
+  • Design system starter spec: color, type, spacing, components
+  • Full information architecture documentation
+
+
+MODULE 13 — WHAT I'D RETHINK
+───────────────────────────────────────
+Layout: Clean, reflective. Dark bg, white text.
+
+WHAT I'D RETHINK (label)
+
+  Sample size of one.
+  Matthias had 3,000+ tasks of personal usage data — invaluable for understanding the product's behavior. But he was also the only user. He had learned to work around interface issues that would block a new user cold. Even three external beta testers during the audit phase would have surfaced patterns the founder's muscle memory had absorbed.
+
+  Prototype the hard UI earlier.
+  The Health Score comparison was effective but came late. If I'd prototyped it during Milestone 1, the decision would have been baked into the Milestone 2 timeline work rather than retrofitted. When you know a UI problem has multiple valid answers, don't wait to test them.
+
+Bottom pull quote:
+  "Matthias built a secondary brain that only he could use. The design work wasn't about making it prettier. It was about making it work for everyone else."
+
+
+MODULE 14 — TESTIMONIAL + CLOSING
+───────────────────────────────────────
+Layout: White bg, left = closing statement, right = client quote in green box
+
+Left:
+  lotti (logo)
+
+  We delivered a complete product — from audit to launch-ready.
+
+  A DESIGN SYSTEM THAT SCALES, AN APP THAT TRACKS HONESTLY, AND AN AI THAT'S ACTUALLY USABLE. THE TASK WAS TO MAKE A FOUNDER'S PERSONAL TOOL WORK FOR EVERYONE ELSE. WE THINK WE GOT THERE.
+
+  AND SO DOES THE CLIENT.
+
+Right (green box):
+  Matthias Nehlson
+  Founder, Lotti
+
+  "I built something that only I could use. Opeyemi turned it into something that anyone can pick up and understand. The AI presets alone — going from 20 checkboxes to one tap — that's the difference between a personal tool and a real product. Three milestones. All delivered. My therapist friend stopped asking why it wasn't out yet."
+
+
+═══════════════════════════════════════════
+END
