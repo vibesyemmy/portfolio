@@ -182,3 +182,36 @@
   font-style: italic;
   color: var(--ink-3);
 }
+
+/* ── Three-up image comparison (audit screenshots, design directions) ── */
+.cs-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.cs-trio figure {
+  margin: 0;
+}
+
+.cs-trio img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+}
+
+.cs-trio figcaption {
+  margin-top: 0.5rem;
+  font-size: var(--text-small);
+  color: var(--ink-2);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .cs-trio {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
