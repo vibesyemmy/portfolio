@@ -1,5 +1,5 @@
 ---
-title: "Priced Out"
+title: "Built for Everyone, Priced for the West"
 description: "For decades, global platforms have locked Nigeria out — through outright bans, missing payment options, and pricing that ignores purchasing power. The latest example comes from AI. But the pattern is older than most Silicon Valley startups."
 pubDate: 2026-06-30
 cover: /ai-pricing-hero.png
