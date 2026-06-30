@@ -184,30 +184,30 @@
 }
 
 /* ── Three-up image comparison (audit screenshots, design directions) ── */
-.cs-trio {
+.cs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin: clamp(2rem, 5vw, 4rem) 0;
 }
 
-.cs-trio figure {
+.cs-grid figure {
   margin: 0;
 }
 
-.cs-trio a {
+.cs-grid a {
   display: block;
   cursor: zoom-in;
 }
 
-.cs-trio img {
+.cs-grid img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--radius-card);
 }
 
-.cs-trio figcaption {
+.cs-grid figcaption {
   margin-top: 0.5rem;
   font-size: var(--text-small);
   color: var(--ink-2);
@@ -215,7 +215,7 @@
 }
 
 @media (max-width: 640px) {
-  .cs-trio {
+  .cs-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
