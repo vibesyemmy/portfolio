@@ -23,7 +23,7 @@ For someone with memory-related conditions, "what did I do yesterday" isn't conv
 
 I joined as the freelance senior designer — Lagos to Hamburg, cold referral, three milestones. Feb to May 2026.
 
-<MediaFull src="/lotti/cover.webp" width="wide" caption="Lotti cover: an AI productivity tool designed for real, interrupted work — not idealized focus sessions." />
+{/* IMAGE NOTE: Hero image — a wide device mockup showing Lotti's My Daily timeline on both mobile and desktop side by side. The timeline displays actual tasks with their real-world times, colored time blocks in the background, and faded cards showing interrupted work. Caption: "Lotti's honest timeline: planned time blocks render as background context, actual task cards appear at real work times." */}
 
 ---
 
@@ -33,7 +33,7 @@ I ran a full UI audit across every screen before touching anything. Matthias wal
 
 Three stood out.
 
-{/* IMAGE NOTE: Add audit artifact — annotated screenshot of the original interface showing the three problem areas (organization system confusion, rigid timeline, checkbox wall). One wide image with callout labels. */}
+{/* IMAGE NOTE: Annotated screenshot of the original Lotti interface before redesign. Three callout labels highlighting: (1) the overlapping Categories/Labels/Tags system with no visual hierarchy, (2) the rigid My Daily timeline punishing fragmented work, (3) the AI configuration screen with 20+ raw checkboxes. Caption: "Audit findings: three critical UX problems identified across the original interface." */}
 
 **Categories, Labels, and Tags were fighting for the same job.** Matthias paused mid-sentence trying to explain when to use which. Categories were required for task creation. Labels were optional status markers. Tags were freeform hashtags. Functionally distinct, but the interface presented them as peers with no hierarchy. If the person who built it couldn't explain it cleanly, a new user had no chance.
 
@@ -43,7 +43,7 @@ Three stood out.
 
 The product had depth. It just had no surface.
 
-<MediaFull src="/lotti/mobile-dark.webp" width="wide" caption="The full mobile screen inventory before the redesign: dense layouts, no onboarding flow, overlapping information architectures." />
+{/* IMAGE NOTE: Grid of original Lotti mobile screens before redesign — 6-8 screens arranged in a clean grid showing: dense task list, confusing taxonomy picker, rigid timeline view, checkbox-wall AI config, missing onboarding flow, and cluttered task detail. Caption: "The full mobile screen inventory before the redesign: dense layouts, no onboarding flow, overlapping information architectures." */}
 
 ---
 
@@ -53,7 +53,7 @@ Merging them was tempting. The source material even suggested it. But they serve
 
 The real problem was that nothing in the interface communicated the differences. So I gave each a clear, non-overlapping job and designed the interactions to match.
 
-{/* IMAGE NOTE: Add before/after comparison — left: original interface with three indistinguishable taxonomies. Right: redesigned version with pick/toggle/type interaction distinction. */}
+{/* IMAGE NOTE: Side-by-side comparison — LEFT: original interface with three indistinguishable taxonomies (Categories, Labels, Tags presented as identical dropdowns). RIGHT: redesigned version with distinct interaction patterns: a picker for Categories (one, required), toggle chips for Labels (structured), and a freeform type-ahead for Tags (emergent). Caption: "Before and after: three organizational systems, three distinct interaction patterns — pick, toggle, type." */}
 
 - **Categories** (one, required): primary organizing structure. "Lotti Works," "Personal," "Driving." Carries AI settings, color, and icon. The backbone. You pick from a defined list.
 - **Labels** (multiple, optional, structured): workflow status markers scoped to a category. "Bug," "Urgent," "Waiting." Finite set, intentional. You toggle from a scoped set.
@@ -77,7 +77,7 @@ Multi-session tasks got particular attention. Real work doesn't happen in unbrok
 
 This was the core design bet: honest tracking, not aspirational tracking. Most tools punish you for having a fragmented day. Lotti just shows you what happened.
 
-<MediaFull src="/lotti/my-daily.webp" width="wide" caption="The honest timeline: planned time blocks render as background context (colored bars), actual task cards appear at real work times. Cards fade to 50–60% opacity when they fall outside their planned block — not an error, just reality." />
+{/* IMAGE NOTE: Full-width screenshot of the redesigned My Daily timeline. Colored vertical bars in the background represent planned time blocks. Task cards appear at their actual work times — some aligned with blocks (full opacity), others outside blocks (50-60% faded). Multi-session tasks show curved connecting lines between sessions, with the first card showing full task info + session count and continuation cards showing just enough to orient. Caption: "The honest timeline: planned time blocks render as background context (colored bars), actual task cards appear at real work times. Cards fade to 50-60% opacity when they fall outside their planned block — not an error, just reality." */}
 
 ---
 
@@ -95,7 +95,7 @@ I restructured it into progressive disclosure:
 
 Same power. Same individual controls. But now a new user could go from zero to configured in one tap instead of 20 decisions.
 
-<MediaFull src="/lotti/desktop1.webp" width="wide" caption="Desktop screens: the AI configuration panel (top), task detail with collapsible summaries, and time block planning — before the preset system replaced the checkbox wall." />
+{/* IMAGE NOTE: Desktop screens showing the redesigned AI configuration. TOP: the three-preset selector (Minimal / Balanced / Maximum) with the Maximum option highlighted. BELOW: custom configuration toggles collapsed under grouped functional headings with plain-language explanations for each toggle. Side-by-side inset showing the same configuration screen before (20+ raw checkboxes with no grouping) and after (progressive disclosure with presets). Caption: "Desktop screens: the AI configuration panel before and after — 20+ checkboxes became 3 presets with progressive disclosure." */}
 
 ---
 
@@ -113,7 +113,7 @@ Instead of presenting static mockups, I built an interactive HTML comparison wit
 
 This was the kind of problem his therapist friend had been thinking about. For someone with memory-related challenges, a health score isn't a productivity metric. It's a signal: "here's what needs attention, and here's the one thing to do about it." The action-focused direction served both power users and the accessibility use case without compromise.
 
-<MediaFull src="/lotti/health-score.webp" width="wide" caption="The Planning vs Reality view from desktop Insights — closest Figma frame to the Health Score comparison, which was built as an interactive HTML prototype with live data (not static mockups)." />
+{/* IMAGE NOTE: Three health score card designs presented side-by-side in device mockups: (1) Action-focused — circular progress ring, status callout, one named blocker action ("Here's the thing to fix"). (2) Metric dashboard — large score plus sparkline trend, 2x2 status grid with more data. (3) Status-first — top banner leading with the blocker, score demoted. The action-focused variant should be visually highlighted (subtle glow or accent border) as the selected direction. Caption: "Three Health Score directions explored: action-focused, metric dashboard, and status-first. The action-focused direction was chosen — it served power users and the accessibility use case without compromise." */}
 
 ---
 
@@ -132,7 +132,7 @@ This was the kind of problem his therapist friend had been thinking about. For s
 
 3 milestones. 4 months. All delivered. Matthias is preparing for public launch. The product went from technically complete to launch-ready — 20+ configuration decisions became 3 presets, 3 overlapping systems became 3 distinct interaction patterns, and a timeline that punished real work now just shows what happened.
 
-<MediaFull src="/lotti/mobile-dark2.webp" width="wide" caption="The full shipped mobile flow: onboarding, dashboard, task management, settings — designed across 3 milestones from Lagos to Hamburg." />
+{/* IMAGE NOTE: Horizontal scroll or grid of the full shipped mobile flow — 5-7 screens showing the complete user journey in logical order: (1) onboarding — voice-first "Tell me your plans" empty state, (2) dashboard with honest timeline, (3) task detail with collapsible AI summaries and session tracking, (4) category/label/tag interaction showing pick/toggle/type distinction, (5) Lotti Agent conversational AI interface scoped to a task, (6) settings and AI configuration with presets. Screens arranged left-to-right with subtle connecting arrows or numbered steps indicating flow. Caption: "The full shipped mobile flow: onboarding to daily use — designed across 3 milestones from Lagos to Hamburg." */}
 
 ---
 
