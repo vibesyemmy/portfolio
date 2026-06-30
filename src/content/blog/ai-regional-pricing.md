@@ -56,6 +56,8 @@ The infrastructure of the internet was built on the assumption that users are in
 
 And the AI industry, the one that promises more loudly than anyone else that it will "democratize access" and "empower everyone," has somehow made the problem worse. Every major AI lab charges by the token, a unit that costs exactly the same to serve whether the request comes from Lagos or London. But the access? That's priced in dollars, billed to cards issued in countries with functioning banking systems, and wrapped in enterprise plans designed for companies with procurement departments.
 
+This compounds the further back you are in your career. A junior designer in Lagos doesn't just need to learn the craft. They need Figma, which costs $20 a month for a professional account, and soon, extra credits for AI features. They need a code editor, an AI coding assistant, probably a prototyping tool or two. These aren't luxuries. In 2026, they're table stakes. But every subscription assumes a currency where $20 is lunch money, not 5% of a starting salary. A generation of Western designers built careers on tools that were free or cheap at the point of entry. The next generation of Nigerian designers is being priced out before they write their first line of code.
+
 The exclusion isn't a side effect. It's baked into the architecture.
 
 ---
