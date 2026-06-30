@@ -1,14 +1,20 @@
 ---
-title: "The $400,000 Question"
-description: "How AI's regional pricing excludes the people it claims to serve. Anthropic doubled prices in Nigeria overnight, charging a market with lower earning power nearly three times the dollar conversion. This isn't currency adjustment. It's a decision."
+title: "Priced Out"
+description: "For decades, global platforms have locked Nigeria out — through outright bans, missing payment options, and pricing that ignores purchasing power. The latest example comes from AI. But the pattern is older than most Silicon Valley startups."
 pubDate: 2026-06-30
 cover: /ai-pricing-hero.png
 draft: false
 ---
 
-Yesterday, I woke up to a notification that didn't make sense.
+For over 20 years, PayPal locked Nigeria out. Not restricted, not limited. Locked out. Over 200 million people couldn't receive payments through the world's most popular online payment system. The official reason was fraud prevention, as if a country of 200 million people could be reduced to its worst actors. No graduated access. No regional safeguards. Just a door that never opened.
 
-Claude Max, Anthropic's premium plan, had doubled in price overnight. The 5x plan went from ₦100,000 to ₦200,000. The 20x plan jumped from ₦200,000 to ₦400,000. Even the entry-level Pro plan doubled, from ₦15,000 to ₦30,000.
+Stripe took years to support Nigerian payouts. GitHub Copilot charges the same $10 whether you're in San Francisco or Surulere. SaaS tools ask for US-issued cards. AWS free tiers come with billing address restrictions. Cloud credits, startup grants, accelerator applications. All of them assume a US zip code.
+
+The pattern is consistent: global platforms build for the world, then price for the West. The exclusion is rarely announced. It just is. You try to sign up and the dropdown doesn't have your country. You try to pay and your card is declined, not because there's no money on it, but because it was issued by a Nigerian bank.
+
+So when Anthropic doubled its Nigerian pricing overnight last week, it wasn't a new problem. It was the same problem wearing an AI company's logo.
+
+Claude Max, Anthropic's premium plan, doubled in price. The 5x plan went from ₦100,000 to ₦200,000. The 20x plan jumped from ₦200,000 to ₦400,000. Even the entry-level Pro plan doubled, from ₦15,000 to ₦30,000.
 
 No announcement. No explanation. Just new numbers.
 
