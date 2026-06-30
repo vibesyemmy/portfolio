@@ -195,6 +195,11 @@
   margin: 0;
 }
 
+.cs-trio a {
+  display: block;
+  cursor: zoom-in;
+}
+
 .cs-trio img {
   display: block;
   width: 100%;
