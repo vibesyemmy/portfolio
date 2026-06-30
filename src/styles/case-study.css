@@ -149,3 +149,36 @@
 .prose > :first-child {
   margin-top: 0;
 }
+
+/* ── Image placeholders (before real assets are ready) ── */
+.cs-image-placeholder {
+  margin: clamp(2rem, 5vw, 4rem) 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 2px dashed var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface-1);
+  text-align: center;
+}
+
+.cs-image-placeholder__label {
+  margin: 0 0 0.75rem;
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+}
+
+.cs-image-placeholder__desc {
+  margin: 0 auto;
+  max-width: 42rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.cs-image-placeholder__caption {
+  margin: 0.75rem 0 0;
+  font-size: var(--text-small);
+  font-style: italic;
+  color: var(--ink-3);
+}
