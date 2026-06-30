@@ -1,6 +1,6 @@
 ---
 title: "Lotti: AI-powered productivity that's honest, not aspirational"
-summary: Designed the UI/UX for an AI productivity app that tracks real, interrupted work — not idealized focus sessions. iOS + Desktop. 3,000+ tasks tracked by the founder before launch.
+summary: Redesigned an AI productivity app from technically complete to launch-ready. 3 milestones in 4 months — Lagos to Hamburg. 20+ configuration decisions collapsed to 3 presets. 3 overlapping organizational systems clarified into distinct interaction patterns.
 client: Matthias Nehlson, Nehlsen EDV Beratung GmbH
 role: Senior UI/UX Designer
 year: 2026
@@ -11,35 +11,35 @@ order: 3
 cover: /lotti-hero.webp
 ---
 
-## 3,000+ tasks tracked · AI-powered · iOS + Desktop · Lagos → Hamburg
+## AI that remembers your day — even when it gets interrupted · iOS + Desktop · 3 milestones shipped
 
 ---
 
 3,000 tasks. One user. An AI that could recall anything — but nobody else could turn it on.
 
-Matthias had been logging everything into Lotti for years: tasks, notes, voice memos, screenshots. The AI summarized, transcribed, connected. He could pull up what he was working on six months ago in seconds. The product was technically complete. It just had no surface.
+The product was technically complete. Matthias had logged 3,000+ tasks across years of use: voice memos transcribed, screenshots analyzed, every session linked to context. The AI remembered what he was working on six months ago in seconds. But the interface had three overlapping organizational systems, a timeline that treated every interruption as failure, and an AI configuration screen with 20+ raw checkboxes. No onboarding. No design system. No launch.
+
+For someone with memory-related conditions, "what did I do yesterday" isn't convenience — it's survival. That's why Matthias's therapist friend kept asking why the product wasn't out yet. The answer: a technically complete product that was unusable for anyone who wasn't the founder.
+
+I joined as the freelance senior designer — Lagos to Hamburg, cold referral, three milestones. Feb to May 2026.
 
 <MediaFull src="/lotti/cover.webp" width="wide" caption="Lotti cover: an AI productivity tool designed for real, interrupted work — not idealized focus sessions." />
 
-His therapist friend saw something Matthias hadn't. He watched Matthias retrieve a detail from a year-old project in seconds and said: this could help people with memory-related conditions. People for whom "what did I do yesterday" isn't convenience, it's survival.
-
-"Why isn't this out yet?" his therapist friend kept asking. The answer was uncomfortable: the product had depth but no surface. Three overlapping organizational systems that even Matthias stumbled over. A timeline that treated every interruption as failure. An AI configuration screen with 20+ raw checkboxes. No onboarding. No design system. No launch.
-
-I was brought in as a freelance senior designer, working remotely from Lagos with a first-time client in Hamburg. Cold referral. Three milestones. Feb to May 2026.
-
 ---
 
-## The audit
+## What was broken
 
 I ran a full UI audit across every screen before touching anything. Matthias walked me through the product over several calls, and a pattern emerged: every time he had to explain *how* to do something rather than *why* you'd want to, that was a design problem.
 
 Three stood out.
 
+{/* IMAGE NOTE: Add audit artifact — annotated screenshot of the original interface showing the three problem areas (organization system confusion, rigid timeline, checkbox wall). One wide image with callout labels. */}
+
 **Categories, Labels, and Tags were fighting for the same job.** Matthias paused mid-sentence trying to explain when to use which. Categories were required for task creation. Labels were optional status markers. Tags were freeform hashtags. Functionally distinct, but the interface presented them as peers with no hierarchy. If the person who built it couldn't explain it cleanly, a new user had no chance.
 
 **My Daily punished real work.** The flagship timeline showed planned time blocks as rigid containers. Tasks that started early, ran late, or resumed after interruption were treated as deviations. But Matthias's own data showed fragmented work was the norm, not the exception. The interface was telling a lie about how work happens.
 
-**The AI was powerful and hidden.** Task summaries, a conversational agent scoped to each task, automatic transcription from voice notes, screenshot analysis tied to task context. All working. But the configuration screen was a wall of checkboxes with no presets and no explanations. The secondary brain had a locked door.
+**The AI was powerful and hidden.** Task summaries, a conversational agent scoped to each task, automatic transcription from voice notes, screenshot analysis tied to task context. All working. But the configuration screen was a wall of checkboxes with no presets and no explanations.
 
 The product had depth. It just had no surface.
 
@@ -53,6 +53,8 @@ Merging them was tempting. The source material even suggested it. But they serve
 
 The real problem was that nothing in the interface communicated the differences. So I gave each a clear, non-overlapping job and designed the interactions to match.
 
+{/* IMAGE NOTE: Add before/after comparison — left: original interface with three indistinguishable taxonomies. Right: redesigned version with pick/toggle/type interaction distinction. */}
+
 - **Categories** (one, required): primary organizing structure. "Lotti Works," "Personal," "Driving." Carries AI settings, color, and icon. The backbone. You pick from a defined list.
 - **Labels** (multiple, optional, structured): workflow status markers scoped to a category. "Bug," "Urgent," "Waiting." Finite set, intentional. You toggle from a scoped set.
 - **Tags** (multiple, optional, freeform): emergent taxonomy. #topic, @person, #story-thread. Grows with the user. You type freely.
@@ -63,19 +65,19 @@ The interaction design did the teaching. Pick, toggle, type. Three different inp
 
 ## My Daily: the honest timeline
 
-This was the centerpiece. If Lotti was a secondary brain, My Daily was its memory of your day. It needed to tell the truth.
+This was the centerpiece. If Lotti remembered your day, My Daily was its visual memory. It needed to tell the truth.
 
 Before: time blocks as rigid containers. A task worked on outside its block was an error.
 
-After: time blocks render as background context, colored vertical bars showing planned focus periods. Task cards render at their actual work times. Tasks inside their matching block show full opacity. Tasks outside their planned block fade to 50-60%. Not an error. Just information.
+After: time blocks render as background context, colored vertical bars showing planned focus periods. Task cards render at their actual work times. Tasks inside their matching block show full opacity. Tasks outside their planned block fade to 50–60%. Not an error. Just information.
 
 The moment Matthias understood this was the moment the project shifted from audit to redesign. He had been living with an interface that subtly shamed him every day for being interrupted. The fade states said "this wasn't the plan" without any of the judgment.
 
-Multi-session tasks got particular attention. Real work doesn't happen in unbroken focus. You start, get pulled away, return, get interrupted again. Lotti tracks each session individually and links them with curved connecting lines. The first card shows full task info and a session count. Continuation cards show just enough to orient you. The secondary brain remembers not just what you did, but that you came back to it three times.
+Multi-session tasks got particular attention. Real work doesn't happen in unbroken focus. You start, get pulled away, return, get interrupted again. Lotti tracks each session individually and links them with curved connecting lines. The first card shows full task info and a session count. Continuation cards show just enough to orient you.
 
 This was the core design bet: honest tracking, not aspirational tracking. Most tools punish you for having a fragmented day. Lotti just shows you what happened.
 
-<MediaFull src="/lotti/my-daily.webp" width="wide" caption="The honest timeline: planned time blocks render as background context (colored bars), actual task cards appear at real work times. Cards fade to 50-60% opacity when they fall outside their planned block — not an error, just reality." />
+<MediaFull src="/lotti/my-daily.webp" width="wide" caption="The honest timeline: planned time blocks render as background context (colored bars), actual task cards appear at real work times. Cards fade to 50–60% opacity when they fall outside their planned block — not an error, just reality." />
 
 ---
 
@@ -91,7 +93,7 @@ I restructured it into progressive disclosure:
 - **Custom configuration** collapsed below, toggles grouped under clear functional headings
 - **Plain-language explanations** for each toggle: what it does and when you'd want it
 
-Same power. Same individual controls. But now a new user could go from zero to configured in one tap instead of 20 decisions. The secondary brain's door was unlocked.
+Same power. Same individual controls. But now a new user could go from zero to configured in one tap instead of 20 decisions.
 
 <MediaFull src="/lotti/desktop1.webp" width="wide" caption="Desktop screens: the AI configuration panel (top), task detail with collapsible summaries, and time block planning — before the preset system replaced the checkbox wall." />
 
@@ -115,32 +117,20 @@ This was the kind of problem his therapist friend had been thinking about. For s
 
 ---
 
-## Lagos → Hamburg
-
-This project ran entirely remote between two people who had never worked together, referred by a mutual contact. There's a design lesson in that, but there's a bigger one.
-
-Lotti ships in Yoruba. That wasn't a feature request. It was a natural outcome of a German founder and a Nigerian designer building together. When your team reflects multiple markets, the product reflects multiple markets without anyone writing "internationalization" on a ticket.
-
-The AI design was also shaped by two privacy cultures. GDPR-conscious European expectations sat alongside mobile-first, connectivity-conscious thinking from the Nigerian market. The result is an AI that's transparent about what it accesses, with user-supplied API keys for cost control and data ownership.
-
-Homogeneous teams build for people like themselves. This product is better because the team wasn't. And the Yoruba language support, specifically, means the secondary brain works in the language of the people who built part of it.
-
----
-
 ## What shipped
 
-- Comprehensive UI audit with findings clustered by impact
-- Redesigned My Daily timeline: interruption-aware tracking with linked multi-session cards
+- Comprehensive UI audit: 3 critical findings clustered by impact across all screens
+- My Daily timeline redesigned: interruption-aware tracking with linked multi-session cards
 - Task Detail screen with collapsible AI summaries and session-level time tracking
 - Lotti Agent conversational AI interface, scoped per task
 - Time Block Planning flow refactored for clarity
-- Health Score Card: three directions explored, interactive comparison delivered
-- Complete notification copy system: six categories, tone guidelines, priority framework
+- Health Score Card: 3 directions explored, interactive comparison delivered in 1 call
+- Complete notification copy system: 6 categories, tone guidelines, priority framework
 - Multiple empty-state scenarios including a voice-first "Tell me your plans" entry point
 - Design system starter spec: color, type, spacing, component inventory
 - Full information architecture documentation
 
-Three milestones. All delivered. Matthias is preparing for public launch. His therapist friend stopped asking why it wasn't out yet.
+3 milestones. 4 months. All delivered. Matthias is preparing for public launch. The product went from technically complete to launch-ready — 20+ configuration decisions became 3 presets, 3 overlapping systems became 3 distinct interaction patterns, and a timeline that punished real work now just shows what happened.
 
 <MediaFull src="/lotti/mobile-dark2.webp" width="wide" caption="The full shipped mobile flow: onboarding, dashboard, task management, settings — designed across 3 milestones from Lagos to Hamburg." />
 
@@ -148,10 +138,10 @@ Three milestones. All delivered. Matthias is preparing for public launch. His th
 
 ## What I'd rethink
 
-**Sample size of one.** Matthias had 3,000+ tasks of personal usage data, invaluable for understanding the product's behavior. But he was also the only user. He had learned to work around interface issues that would block a new user cold. Even three external beta testers during the audit phase would have surfaced patterns the founder's muscle memory had absorbed.
+**Sample size of one.** Matthias had 3,000+ tasks of personal usage data, invaluable for understanding the product's behavior. But he was also the only user. He had learned to work around interface issues that would block a new user cold. Even three external beta testers during the audit phase would have surfaced patterns the founder's muscle memory had absorbed. Now on every project, I recruit 3–5 external testers during the audit phase — not for statistical significance, but to catch the things the builder can't see.
 
-**Prototype the hard UI earlier.** The Health Score comparison was effective but came late. If I'd prototyped it during Phase 1, the decision would have been baked into the Phase 2 timeline work rather than retrofitted. When you know a UI problem has multiple valid answers, don't wait to test them.
+**Prototype the hard UI earlier.** The Health Score comparison was effective but came late. If I'd prototyped it during Phase 1, the decision would have been baked into the Phase 2 timeline work rather than retrofitted. When you know a UI problem has multiple valid answers, don't wait to test them. Now I prototype comparison interfaces the moment a divergent design question surfaces — the interactive HTML approach that worked here has become my default for multi-option decisions.
 
 ---
 
-Matthias built a secondary brain that only he could use. The design work wasn't about making it prettier. It was about making it work for everyone else: the person who gets interrupted, the person who can't remember which taxonomy does what, and maybe someday, the person who genuinely needs help remembering what they did yesterday. That's the difference between a technically complete product and a launch-ready one. Not polish. Access.
+The product was technically complete before I started. The design made it usable — not just for the person who built it, but for everyone he hoped to reach: the person who gets interrupted, the person who can't remember which taxonomy does what, and maybe someday, the person who genuinely needs help remembering what they did yesterday. That's the difference between a technically complete product and a launch-ready one. Not polish. Access.
