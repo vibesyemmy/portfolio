@@ -20,6 +20,17 @@ Every case study page must pass: **"What did Opeyemi do, and why should I care?"
 - Vague taglines: "A design project for a fintech company" → fail
 - No outcome in first fold: forcing managers to scroll for impact → fail
 - Jargon without context: "Atomic design methodology" without saying what it achieved → fail
+- Reported speech from client: "Matthias called it his secondary brain" → fail (you're repeating what someone told you, not making your own case)
+- Hedging language: "pretty much," "sort of," "basically," "he had been dumping everything into" → fail (diminishes the product and your authority)
+- Passive posture: the strongest line buried mid-paragraph, designer reporting events rather than stating claims → fail
+
+### Opener voice test (reviewer must apply):
+Read the first 3 sentences aloud. If they could have been spoken by the client in a kickoff meeting, they fail. The opener must sound like a designer making a case, not like meeting notes. Declarative > anecdotal. "Lotti was technically complete. It just had no surface." passes. "Matthias called it his secondary brain." fails.
+
+### Good opener patterns:
+- Product-first tension: "3,000 tasks. One user. An AI that could recall anything — but nobody else could turn it on."
+- Designer-owned claim: "Most productivity tools punish you for having a fragmented day. Lotti doesn't."
+- Immediate consequence: "The product was technically complete. It was also unusable for anyone who wasn't the founder."
 
 ---
 
@@ -162,6 +173,20 @@ For each case study, include at least 3 of:
 - Some passages run long without a visual break
 - Metrics occasionally buried mid-paragraph — pull them out
 - Persona backstories can be 2 sentences instead of 2 paragraphs
+
+### Voice anti-patterns (reviewer must flag):
+These make the writing sound like meeting notes, not a case study. Flag every occurrence:
+
+- **Reported speech as opener:** "X called it his Y" — you're quoting a client, not making a case. Replace with a declarative claim you own.
+- **Diminishing language:** "dumping everything into," "just," "basically," "pretty much" — these undersell the product and your role. The founder didn't "dump" 3,000 tasks. He logged them systematically.
+- **Anecdotal framing:** "For years, he had been..." — this is storytelling you'd do over coffee, not case study prose. The information is fine; the framing is weak.
+- **Passive designer posture:** any sentence where the designer is reporting what happened to them rather than what they did. "I was brought in" is weaker than "I joined." "The client asked me to" is weaker than "I restructured."
+- **Conversational ≠ unedited:** "that thing where," "you know how," "and then" — these work in DMs, not in a portfolio hiring managers scan in 90 seconds.
+
+### Good voice (keep/amplify):
+- First sentence owns the claim: "The product was technically complete. It was also unusable."
+- Specific moments, not general vibes: "Matthias paused mid-sentence" beats "the UX was confusing"
+- Hard truths stated plainly: "Sample size of one" — not "There were some limitations in the research phase"
 
 ---
 
