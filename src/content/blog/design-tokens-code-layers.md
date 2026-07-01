@@ -3,7 +3,7 @@ title: "The Token Was Always Code"
 description: "Figma Code Layers don't kill design tokens. They prove why tokens matter more than ever."
 pubDate: 2026-07-01
 cover: /design-tokens-code-layers-hero.png
-draft: true
+draft: false
 ---
 
 I'm building a design system in Figma right now. Not designing screens — building the system that builds screens. Ninety-three variables. Ten text styles. Eleven components. Every color bound to a semantic token. Every spacing value mapped to a 4px grid. The pipeline is deliberate: Figma variable → design token → CSS custom property → shadcn/ui component. Months of work, all organized around the idea that the token is the source of truth and the code is the output.
