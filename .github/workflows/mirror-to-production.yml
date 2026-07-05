@@ -12,9 +12,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Verify PAT
+        run: |
+          if [ -z "${{ secrets.PRODUCTION_REPO_PAT }}" ]; then
+            echo "ERROR: PRODUCTION_REPO_PAT secret is empty or not set"
+            exit 1
+          fi
+          echo "PAT length: ${#PAT} chars"
+        env:
+          PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
+
       - name: Push to production
         env:
           PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote add production https://github.com/vibesyemmy/portfolio.git
-          git -c credential.helper='!f() { echo "username=x-access-token"; echo "password=$PAT"; }; f' push production main
+          git push https://x-access-token:${PAT}@github.com/vibesyemmy/portfolio.git main
