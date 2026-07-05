@@ -13,6 +13,8 @@ jobs:
           fetch-depth: 0
 
       - name: Push to production
+        env:
+          PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
         run: |
-          git remote add production https://x-access-token:${{ secrets.PRODUCTION_REPO_PAT }}@github.com/vibesyemmy/portfolio.git
-          git push production main
+          git remote add production https://github.com/vibesyemmy/portfolio.git
+          git -c credential.helper='!f() { echo "username=x-access-token"; echo "password=$PAT"; }; f' push production main
