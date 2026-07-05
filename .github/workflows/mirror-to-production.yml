@@ -1,0 +1,20 @@
+name: Mirror to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to production
+        run: |
+          git remote add production https://x-access-token:${{ secrets.PRODUCTION_REPO_PAT }}@github.com/vibesyemmy/portfolio.git
+          git push production main
