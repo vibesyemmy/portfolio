@@ -13,14 +13,26 @@ jobs:
           fetch-depth: 0
 
       - name: Verify PAT
+        env:
+          PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
         run: |
-          if [ -z "${{ secrets.PRODUCTION_REPO_PAT }}" ]; then
+          if [ -z "$PAT" ]; then
             echo "ERROR: PRODUCTION_REPO_PAT secret is empty or not set"
             exit 1
           fi
           echo "PAT length: ${#PAT} chars"
-        env:
-          PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
+          echo "PAT prefix: ${PAT:0:10}..."
+          # Test PAT against GitHub API
+          HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer $PAT" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/vibesyemmy/portfolio")
+          echo "GitHub API response for portfolio repo: HTTP $HTTP_CODE"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "ERROR: PAT cannot access vibesyemmy/portfolio"
+            exit 1
+          fi
+          echo "PAT can access production repo"
 
       - name: Push to production
         env:
