@@ -21,6 +21,7 @@ export async function getStaticPaths() {
     props: { project, prev: projects[i - 1], next: projects[i + 1] },
   }));
 }
+export const prerender = true;
 
 const { project, prev, next } = Astro.props;
 const { Content } = await render(project);
