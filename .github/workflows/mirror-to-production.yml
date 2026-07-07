@@ -12,24 +12,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Debug
+      - name: Get staging HEAD SHA
+        id: sha
+        run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Sync via GitHub API
         env:
           PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
+          SHA: ${{ steps.sha.outputs.sha }}
         run: |
-          echo "Secret populated: ${{ secrets.PRODUCTION_REPO_PAT != '' }}"
-          echo "Env var length: ${#PAT}"
-          if [ -z "$PAT" ]; then
-            echo "ERROR: PAT env var is EMPTY despite secret being set"
+          # Update production's main ref to match staging's HEAD
+          RESPONSE=$(curl -s -w '\n%{http_code}' -X PATCH \
+            -H "Authorization: Bearer *** \
+            -H "Accept: application/vnd.github+json" \
+            -H "Content-Type: application/json" \
+            -d "{\"sha\":\"${SHA}\",\"force\":true}" \
+            "https://api.github.com/repos/vibesyemmy/portfolio/git/refs/heads/main")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | head -n -1)
+
+          echo "HTTP: $HTTP_CODE"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "ERROR: $BODY"
             exit 1
           fi
-
-      - name: Mirror push
-        env:
-          PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          printf 'https://x-access-token:%s@github.com\n' "$PAT" > ~/.git-credentials
-          git config --global credential.helper store
-          git remote add production https://github.com/vibesyemmy/portfolio.git
-          git push --force production HEAD:main
+          echo "Production synced to $SHA"
