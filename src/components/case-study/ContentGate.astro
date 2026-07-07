@@ -14,7 +14,7 @@ const { projectId, passwordHash } = Astro.props;
   <div class="cs-gate__box">
     <h2 class="cs-gate__title">Protected Case Study</h2>
     <p class="cs-gate__desc">This project is still in progress. Enter the password to preview.</p>
-    <form class="cs-gate__form" onsubmit="return unlockCs(event)" autocomplete="off">
+    <form class="cs-gate__form" id="cs-gate-form" autocomplete="off">
       <input
         class="cs-gate__input"
         type="password"
@@ -44,31 +44,46 @@ const { projectId, passwordHash } = Astro.props;
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
+  function showContent() {
+    var g = document.getElementById('cs-gate');
+    var c = document.getElementById('cs-content');
+    if (g) g.style.display = 'none';
+    if (c) c.style.display = '';
+  }
+
   async function unlockCs(e) {
     e.preventDefault();
-    const input = document.getElementById('cs-gate-input');
-    const error = document.getElementById('cs-gate-error');
-    const pw = input.value.trim();
+    var input = document.getElementById('cs-gate-input');
+    var error = document.getElementById('cs-gate-error');
+    if (!input || !error) return;
+    var pw = input.value.trim();
     if (!pw) return;
 
-    const h = await sha256(pw);
+    try {
+      var h = await sha256(pw);
+    } catch (err) {
+      error.textContent = 'Something went wrong. Try again.';
+      return;
+    }
+
     if (h === HASH) {
-      const d = new Date();
+      var d = new Date();
       d.setTime(d.getTime() + 60 * 60 * 24 * 60 * 1000);
-      document.cookie = `cs_lock_${PROJECT}=${h}; expires=${d.toUTCString()}; path=/; SameSite=Lax`;
-      document.getElementById('cs-gate').style.display = 'none';
-      document.getElementById('cs-content').style.display = '';
+      document.cookie = 'cs_lock_' + PROJECT + '=' + h + '; expires=' + d.toUTCString() + '; path=/; SameSite=Lax';
+      showContent();
     } else {
       error.textContent = 'Incorrect password';
       input.value = '';
     }
   }
 
-  (function check() {
-    const match = document.cookie.match(new RegExp(`(^| )cs_lock_${PROJECT}=([^;]+)`));
+  document.getElementById('cs-gate-form').addEventListener('submit', unlockCs);
+
+  // Check cookie on load
+  (function() {
+    var match = document.cookie.match(new RegExp('(^| )cs_lock_' + PROJECT + '=([^;]+)'));
     if (match && match[2] === HASH) {
-      document.getElementById('cs-gate').style.display = 'none';
-      document.getElementById('cs-content').style.display = '';
+      showContent();
     }
   })();
 </script>
@@ -80,7 +95,7 @@ const { projectId, passwordHash } = Astro.props;
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: var(--bg, #0a0a0a);
+    background: #0a0a0a;
   }
   .cs-gate__box {
     text-align: center;
@@ -92,9 +107,10 @@ const { projectId, passwordHash } = Astro.props;
     font-weight: 600;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
+    color: #ffffff;
   }
   .cs-gate__desc {
-    color: var(--ink-2, #999);
+    color: #999999;
     font-size: 0.875rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
@@ -108,21 +124,24 @@ const { projectId, passwordHash } = Astro.props;
     flex: 1;
     max-width: 260px;
     padding: 0.75rem 1rem;
-    background: var(--surface-1, #111);
-    border: 1px solid var(--border, #222);
+    background: #ffffff;
+    border: 1px solid #cccccc;
     border-radius: 12px;
-    color: var(--ink, #fff);
+    color: #0a0a0a;
     font-size: 0.875rem;
     font-family: inherit;
     outline: none;
     transition: border-color 150ms;
   }
   .cs-gate__input:focus {
-    border-color: var(--accent, #fb9826);
+    border-color: #fb9826;
+  }
+  .cs-gate__input::placeholder {
+    color: #999999;
   }
   .cs-gate__btn {
     padding: 0.75rem 1.5rem;
-    background: var(--accent, #fb9826);
+    background: #fb9826;
     color: #0a0a0a;
     border: none;
     border-radius: 12px;
@@ -133,7 +152,7 @@ const { projectId, passwordHash } = Astro.props;
     transition: background 150ms;
   }
   .cs-gate__btn:hover {
-    filter: brightness(0.9);
+    background: #e0881f;
   }
   .cs-gate__error {
     color: #ff4444;
