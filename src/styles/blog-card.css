@@ -13,6 +13,7 @@
 }
 
 a.bcard {
+  height: 100%;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -98,4 +99,8 @@ a.bcard:hover {
   color: var(--ink-2);
   font-size: 0.95rem;
   line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
