@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",
+    "@astrojs/vercel": "^10.0.8",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/fragment-mono": "^5.2.8",
     "@lordicon/element": "^2.2.0",
