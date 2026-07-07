@@ -29,4 +29,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote add production https://github.com/vibesyemmy/portfolio.git
-          git push --force https://x-access-token:${PAT}@github.com/vibesyemmy/portfolio.git main
+          git -c credential.helper='!f() { echo "username=x-access-token"; echo "password=$PAT"; }; f' push --force production main
