@@ -12,17 +12,39 @@ import LogoGrid from '../../components/case-study/LogoGrid.astro';
 import StoreBadges from '../../components/case-study/StoreBadges.astro';
 import ProtoEmbed from '../../components/case-study/ProtoEmbed.astro';
 
-const { slug } = Astro.params;
+const IS_STAGING = import.meta.env.PUBLIC_STAGING === 'true';
 
-const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
-  (a, b) => a.data.order - b.data.order
-);
-const idx = projects.findIndex((p) => p.id === slug);
-if (idx === -1) return Astro.redirect('/404');
+// Static mode: export getStaticPaths for pre-rendering
+export async function getStaticPaths() {
+  if (process.env.PUBLIC_STAGING === 'true') return [];
+  const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: { project, prev: projects[i - 1], next: projects[i + 1] },
+  }));
+}
+export const prerender = process.env.PUBLIC_STAGING !== 'true';
 
-const project = projects[idx];
-const prev = projects[idx - 1] ?? undefined;
-const next = projects[idx + 1] ?? undefined;
+// SSR mode: resolve via Astro.params; static mode: resolve via Astro.props
+let project, prev, next;
+if (IS_STAGING) {
+  const { slug } = Astro.params;
+  const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+    (a, b) => a.data.order - b.data.order
+  );
+  const idx = projects.findIndex((p) => p.id === slug);
+  if (idx === -1) return Astro.redirect('/404');
+  project = projects[idx];
+  prev = projects[idx - 1] ?? undefined;
+  next = projects[idx + 1] ?? undefined;
+} else {
+  project = Astro.props.project;
+  prev = Astro.props.prev;
+  next = Astro.props.next;
+}
+
 const { Content } = await render(project);
 
 // the block kit, available in MDX bodies without per-file imports

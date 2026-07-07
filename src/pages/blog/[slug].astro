@@ -5,11 +5,26 @@ import Nav from '../../components/Nav.astro';
 import ContactCTA from '../../components/sections/ContactCTA.astro';
 import '../../styles/case-study.css'; // reuse the .prose article typography
 
-const { slug } = Astro.params;
+const IS_STAGING = import.meta.env.PUBLIC_STAGING === 'true';
 
-const posts = await getCollection('blog', ({ data }) => !data.draft);
-const post = posts.find((p) => p.id === slug);
-if (!post) return Astro.redirect('/404');
+// Static mode: export getStaticPaths for pre-rendering
+export async function getStaticPaths() {
+  if (process.env.PUBLIC_STAGING === 'true') return [];
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+export const prerender = process.env.PUBLIC_STAGING !== 'true';
+
+// SSR mode: resolve via Astro.params; static mode: resolve via Astro.props
+let post;
+if (IS_STAGING) {
+  const { slug } = Astro.params;
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  post = posts.find((p) => p.id === slug);
+  if (!post) return Astro.redirect('/404');
+} else {
+  post = Astro.props.post;
+}
 
 const { Content } = await render(post);
 const d = post.data;
