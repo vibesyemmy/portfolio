@@ -1,5 +1,4 @@
 ---
-import fs from 'node:fs';
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import ContactCTA from '../components/sections/ContactCTA.astro';
@@ -111,7 +110,12 @@ const education = {
 };
 
 // Optional résumé download. Drop public/resume.pdf and the button appears.
-const RESUME = fs.existsSync('public/resume.pdf') ? '/resume.pdf' : null;
+// Uses import.meta.glob so it resolves at build time and works in SSR.
+const resumeModules = import.meta.glob(
+  '/public/resume.pdf',
+  { eager: true, query: '?url' }
+);
+const RESUME = Object.keys(resumeModules).length > 0 ? '/resume.pdf' : null;
 ---
 
 <Layout

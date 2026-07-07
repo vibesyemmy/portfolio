@@ -1,5 +1,4 @@
 ---
-import fs from 'node:fs';
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
@@ -17,7 +16,11 @@ const gradients = [
   'linear-gradient(135deg, #dcbcff, #ad79ff)',
 ];
 const AUTHOR = 'Opeyemi';
-const avatarFile = fs.readdirSync('public').find((f) => /^avatar\.(png|jpe?g|webp|avif)$/i.test(f));
+const avatarModules = import.meta.glob(
+  '/public/avatar.{png,jpg,jpeg,webp,avif}',
+  { eager: true, query: '?url' }
+);
+const avatarFile = Object.keys(avatarModules)[0]?.replace('/public/', '');
 const AVATAR = avatarFile ? `/${avatarFile}` : null;
 ---
 

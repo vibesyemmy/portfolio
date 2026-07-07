@@ -1,18 +1,14 @@
 ---
-import fs from 'node:fs';
-
 // Real logos: drop SVG/PNG files into public/logos/ and they replace the
 // placeholders automatically. Until then, generic placeholder wordmarks render.
-const LOGO_DIR = 'public/logos';
-let logoFiles: string[] = [];
-try {
-  logoFiles = fs
-    .readdirSync(LOGO_DIR)
-    .filter((f: string) => /\.(svg|png|jpe?g|webp|avif)$/i.test(f))
-    .sort();
-} catch {
-  // public/logos/ doesn't exist yet — fall back to placeholders
-}
+// Uses import.meta.glob so it resolves at build time and works in SSR.
+const logoModules = import.meta.glob(
+  '/public/logos/*.{svg,png,jpg,jpeg,webp,avif}',
+  { eager: true, query: '?url' }
+);
+const logoFiles: string[] = Object.keys(logoModules)
+  .map((k) => k.replace(/^\/public\/logos\//, ''))
+  .sort();
 const logos = logoFiles.map((f) => `/logos/${encodeURIComponent(f)}`);
 
 // Placeholder wordmarks (fictional — swap for the real companies you worked with).

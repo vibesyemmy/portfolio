@@ -6,7 +6,18 @@ import { getCollection } from 'astro:content';
 // columns can be balanced by height. Handles PNG + JPEG; other formats fall back.
 function imageRatio(publicPath: string): number {
   try {
-    const buf = fs.readFileSync(`public${decodeURIComponent(publicPath)}`);
+    // In SSR (Vercel serverless), resolve paths relative to the deployment root.
+    // At build time the project root is the CWD; at runtime Vercel sets
+    // LAMBDA_TASK_ROOT to the function directory, and static assets sit under
+    // ../../static/ relative to it. Try the build-time path first, then the
+    // runtime path, so the function works in both environments.
+    const { LAMBDA_TASK_ROOT } = process.env;
+    const root = LAMBDA_TASK_ROOT
+      ? `${LAMBDA_TASK_ROOT}/../../static`
+      : 'public';
+    const buf = fs.readFileSync(
+      `${root}${decodeURIComponent(publicPath)}`
+    );
     if (buf.length >= 24 && buf.toString('ascii', 12, 16) === 'IHDR') {
       const w = buf.readUInt32BE(16);
       const h = buf.readUInt32BE(20);
@@ -41,10 +52,15 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
   (a, b) => a.data.order - b.data.order
 );
 
-// Demo placeholder imagery — replace with real, optimised covers before launch.
-const files: string[] = fs
-  .readdirSync('public/demo-img')
-  .filter((f: string) => /\.(png|jpe?g|webp|avif)$/i.test(f))
+// Demo placeholder imagery — use import.meta.glob so it resolves at build time
+// and works in both SSG and SSR (fs.readdirSync fails in Vercel serverless).
+const demoImgModules = import.meta.glob<{ default: string }>(
+  '/public/demo-img/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true, query: '?url', import: 'default' }
+);
+const files: string[] = Object.keys(demoImgModules)
+  .map((k) => k.replace(/^\/public\/demo-img\//, ''))
+  .filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))
   .sort();
 
 const COLUMNS = 4;

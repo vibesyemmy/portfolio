@@ -1,5 +1,4 @@
 ---
-import fs from 'node:fs';
 import { getCollection } from 'astro:content';
 import BlogCard from '../BlogCard.astro';
 import '../../styles/blog-card.css';
@@ -24,9 +23,12 @@ const AUTHOR = 'Opeyemi';
 
 // Author avatar for the card badge: drop public/avatar.{png,jpg,webp,avif} and
 // it's picked up automatically. Falls back to the gradient chip when absent.
-const avatarFile = fs
-  .readdirSync('public')
-  .find((f) => /^avatar\.(png|jpe?g|webp|avif)$/i.test(f));
+// Uses import.meta.glob so it resolves at build time and works in SSR.
+const avatarModules = import.meta.glob(
+  '/public/avatar.{png,jpg,jpeg,webp,avif}',
+  { eager: true, query: '?url' }
+);
+const avatarFile = Object.keys(avatarModules)[0]?.replace('/public/', '');
 const AVATAR = avatarFile ? `/${avatarFile}` : null;
 ---
 

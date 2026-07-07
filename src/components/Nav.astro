@@ -1,10 +1,14 @@
 ---
-import fs from 'node:fs';
-
 // Animated nav icons (Lordicon). Drop a Lordicon JSON export at
 // public/icons/work.json / public/icons/blog.json and it's picked up
 // automatically; until then the link renders as plain text (no broken state).
-const hasIcon = (name: string) => fs.existsSync(`public/icons/${name}.json`);
+// Uses import.meta.glob so it resolves at build time and works in SSR.
+const iconModules = import.meta.glob(
+  '/public/icons/*.json',
+  { eager: true, query: '?url' }
+);
+const hasIcon = (name: string) =>
+  Object.keys(iconModules).some((k) => k.includes(`/icons/${name}.json`));
 const workIcon = hasIcon('work');
 const blogIcon = hasIcon('blog');
 const aboutIcon = hasIcon('avatar'); // the About item uses the avatar Lordicon
