@@ -1,0 +1,143 @@
+---
+// Client-side gate for protecting individual case studies.
+// Works in static + SSR. Slots content behind a password check.
+// Password hash prevents raw password from appearing in page source.
+interface Props {
+  projectId: string;
+  passwordHash: string; // SHA-256 hex digest
+}
+
+const { projectId, passwordHash } = Astro.props;
+---
+
+<div class="cs-gate" id="cs-gate" aria-hidden="true">
+  <div class="cs-gate__box">
+    <h2 class="cs-gate__title">Protected Case Study</h2>
+    <p class="cs-gate__desc">This project is still in progress. Enter the password to preview.</p>
+    <form class="cs-gate__form" onsubmit="return unlockCs(event)" autocomplete="off">
+      <input
+        class="cs-gate__input"
+        type="password"
+        name="pw"
+        placeholder="Password"
+        id="cs-gate-input"
+        autocomplete="off"
+      />
+      <button class="cs-gate__btn" type="submit">Unlock</button>
+    </form>
+    <p class="cs-gate__error" id="cs-gate-error" aria-live="polite"></p>
+  </div>
+</div>
+
+<div id="cs-content" style="display:none">
+  <slot />
+</div>
+
+<script define:vars={{ projectId, passwordHash }}>
+  const PROJECT = projectId;
+  const HASH = passwordHash;
+
+  async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function unlockCs(e) {
+    e.preventDefault();
+    const input = document.getElementById('cs-gate-input');
+    const error = document.getElementById('cs-gate-error');
+    const pw = input.value.trim();
+    if (!pw) return;
+
+    const h = await sha256(pw);
+    if (h === HASH) {
+      const d = new Date();
+      d.setTime(d.getTime() + 60 * 60 * 24 * 60 * 1000);
+      document.cookie = `cs_lock_${PROJECT}=${h}; expires=${d.toUTCString()}; path=/; SameSite=Lax`;
+      document.getElementById('cs-gate').style.display = 'none';
+      document.getElementById('cs-content').style.display = '';
+    } else {
+      error.textContent = 'Incorrect password';
+      input.value = '';
+    }
+  }
+
+  (function check() {
+    const match = document.cookie.match(new RegExp(`(^| )cs_lock_${PROJECT}=([^;]+)`));
+    if (match && match[2] === HASH) {
+      document.getElementById('cs-gate').style.display = 'none';
+      document.getElementById('cs-content').style.display = '';
+    }
+  })();
+</script>
+
+<style>
+  .cs-gate {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--bg, #0a0a0a);
+  }
+  .cs-gate__box {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  .cs-gate__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .cs-gate__desc {
+    color: var(--ink-2, #999);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  .cs-gate__form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .cs-gate__input {
+    flex: 1;
+    max-width: 260px;
+    padding: 0.75rem 1rem;
+    background: var(--surface-1, #111);
+    border: 1px solid var(--border, #222);
+    border-radius: 12px;
+    color: var(--ink, #fff);
+    font-size: 0.875rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 150ms;
+  }
+  .cs-gate__input:focus {
+    border-color: var(--accent, #fb9826);
+  }
+  .cs-gate__btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--accent, #fb9826);
+    color: #0a0a0a;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 150ms;
+  }
+  .cs-gate__btn:hover {
+    filter: brightness(0.9);
+  }
+  .cs-gate__error {
+    color: #ff4444;
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+  }
+</style>

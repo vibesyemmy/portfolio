@@ -11,6 +11,7 @@ import TypeSpecimen from '../../components/case-study/TypeSpecimen.astro';
 import LogoGrid from '../../components/case-study/LogoGrid.astro';
 import StoreBadges from '../../components/case-study/StoreBadges.astro';
 import ProtoEmbed from '../../components/case-study/ProtoEmbed.astro';
+import ContentGate from '../../components/case-study/ContentGate.astro';
 
 const IS_STAGING = import.meta.env.PUBLIC_STAGING === 'true';
 
@@ -62,6 +63,19 @@ const components = {
 };
 ---
 
-<ProjectLayout project={project} prev={prev} next={next}>
-  <Content components={components} />
-</ProjectLayout>
+{
+  project.id === 'lotti' ? (
+    <ContentGate
+      projectId="lotti"
+      passwordHash="39648aa4b934a5bebda952e1794ba09faa528144d5b37497b62ae797f29341f7"
+    >
+      <ProjectLayout project={project} prev={prev} next={next}>
+        <Content components={components} />
+      </ProjectLayout>
+    </ContentGate>
+  ) : (
+    <ProjectLayout project={project} prev={prev} next={next}>
+      <Content components={components} />
+    </ProjectLayout>
+  )
+}
