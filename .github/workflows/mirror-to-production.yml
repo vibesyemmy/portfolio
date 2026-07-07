@@ -12,13 +12,24 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Debug
+        env:
+          PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
+        run: |
+          echo "Secret populated: ${{ secrets.PRODUCTION_REPO_PAT != '' }}"
+          echo "Env var length: ${#PAT}"
+          if [ -z "$PAT" ]; then
+            echo "ERROR: PAT env var is EMPTY despite secret being set"
+            exit 1
+          fi
+
       - name: Mirror push
         env:
           PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
         run: |
-          echo "PAT length: ${#PAT}"
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Use git push directly with credential in remote URL
-          git push --force "https://x-access-token:${PAT}@github.com/vibesyemmy/portfolio.git" HEAD:main
+          printf 'https://x-access-token:%s@github.com\n' "$PAT" > ~/.git-credentials
+          git config --global credential.helper store
+          git remote add production https://github.com/vibesyemmy/portfolio.git
+          git push --force production HEAD:main
