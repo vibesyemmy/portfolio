@@ -17,28 +17,37 @@ jobs:
           PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
         run: |
           if [ -z "$PAT" ]; then
-            echo "ERROR: PRODUCTION_REPO_PAT secret is empty or not set"
+            echo "ERROR: PRODUCTION_REPO_PAT is empty"
             exit 1
           fi
           echo "PAT length: ${#PAT} chars"
-          echo "PAT prefix: ${PAT:0:10}..."
-          # Test PAT against GitHub API
-          HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' \
+
+          # Test REST API (read)
+          HTTP=$(curl -s -o /dev/null -w '%{http_code}' \
             -H "Authorization: Bearer $PAT" \
-            -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/vibesyemmy/portfolio")
-          echo "GitHub API response for portfolio repo: HTTP $HTTP_CODE"
-          if [ "$HTTP_CODE" != "200" ]; then
-            echo "ERROR: PAT cannot access vibesyemmy/portfolio"
+          echo "REST API: HTTP $HTTP"
+
+          # Test git ls-remote (git-level auth)
+          GIT_OUT=$(git ls-remote "https://x-access-token:${PAT}@github.com/vibesyemmy/portfolio.git" HEAD 2>&1)
+          GIT_EXIT=$?
+          echo "git ls-remote exit: $GIT_EXIT"
+          echo "git ls-remote output: $GIT_OUT"
+
+          if [ $GIT_EXIT -ne 0 ]; then
+            echo "ERROR: PAT rejected by git — check token permissions"
             exit 1
           fi
-          echo "PAT can access production repo"
 
-      - name: Push to production
+      - name: Mirror
         env:
           PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote add production "https://x-access-token:${PAT}@github.com/vibesyemmy/portfolio.git"
-          git push --force production main
+
+          # Clone production, pull from staging checkout, push back
+          git clone --bare "https://x-access-token:${PAT}@github.com/vibesyemmy/portfolio.git" /tmp/production.git
+          cd /tmp/production.git
+          git fetch "$GITHUB_WORKSPACE" main:main --force
+          git push origin main --force
