@@ -1,6 +1,7 @@
 import { defineMiddleware } from 'astro:middleware';
 
-const PASSWORD = import.meta.env.SITE_PASSWORD || process.env.SITE_PASSWORD;
+// Password only active when PUBLIC_STAGING=true (staging only — never production)
+const PASSWORD = import.meta.env.PUBLIC_STAGING === 'true' ? 'lotti-e3b9a1ee' : undefined;
 
 const gateHtml = `<!doctype html>
 <html lang="en">
