@@ -5,13 +5,12 @@ import Nav from '../../components/Nav.astro';
 import ContactCTA from '../../components/sections/ContactCTA.astro';
 import '../../styles/case-study.css'; // reuse the .prose article typography
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
-}
-export const prerender = true;
+const { slug } = Astro.params;
 
-const { post } = Astro.props;
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const post = posts.find((p) => p.id === slug);
+if (!post) return Astro.redirect('/404');
+
 const { Content } = await render(post);
 const d = post.data;
 const date = d.pubDate.toLocaleDateString('en-US', {
