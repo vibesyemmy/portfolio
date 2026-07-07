@@ -1,6 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 
-const PASSWORD = import.meta.env.SITE_PASSWORD;
+const PASSWORD = import.meta.env.SITE_PASSWORD || process.env.SITE_PASSWORD;
 
 const gateHtml = `<!doctype html>
 <html lang="en">
