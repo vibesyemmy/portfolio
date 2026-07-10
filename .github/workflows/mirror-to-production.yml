@@ -23,7 +23,7 @@ jobs:
         run: |
           # Update production's main ref to match staging's HEAD
           RESPONSE=$(curl -s -w '\n%{http_code}' -X PATCH \
-            -H "Authorization: Bearer *** \
+            -H "Authorization: Bearer ${PAT}" \
             -H "Accept: application/vnd.github+json" \
             -H "Content-Type: application/json" \
             -d "{\"sha\":\"${SHA}\",\"force\":true}" \
