@@ -22,7 +22,8 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal],
-  html.js [data-split] {
+  html.js [data-split],
+  html.js [data-flip] {
     visibility: hidden;
   }
 }

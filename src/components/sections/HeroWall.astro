@@ -118,8 +118,13 @@ const MOBILE_VISIBLE = 6;
         <img src="/avatar.png" alt="Opeyemi Ajagbe" width="88" height="88" draggable="false" />
       </div>
       <p class="eyebrow" data-reveal>Senior Product Designer — 9+ Years</p>
-      <h1 class="hero-wall__title" data-split>
-        I design and build the things other designers use.
+      <h1 class="hero-wall__title">
+        <span class="hero-wall__title-static" data-reveal>I design and build</span>
+        <span
+          class="hero-wall__flip"
+          data-flip
+          data-flip-words='["the things other designers use.","design systems teams rely on.","products that actually ship.","tools for the people who build."]'
+        >the things other designers use.</span>
       </h1>
       <p class="hero-wall__sub" data-reveal>
         Systems thinking, code literacy, and the belief that the right component ships faster than the clever one.
@@ -357,6 +362,28 @@ const MOBILE_VISIBLE = 6;
     max-width: 18ch;
   }
 
+  /* Prefix on its own line; block so its data-reveal transform applies (a
+     transform on an inline element is ignored). */
+  .hero-wall__title-static {
+    display: block;
+  }
+
+  /* The rotating trailing phrase. Its own line under the prefix. Width is fixed
+     by the h1's max-width:18ch, so wrapping happens within a stable column and
+     the centered line never jitters horizontally as phrases change; JS reserves
+     min-height for the tallest phrase so nothing below shifts. */
+  .hero-wall__flip {
+    display: block;
+  }
+  .hero-wall__flip .flip-word {
+    display: inline-block;
+    white-space: nowrap; /* keep each word intact; wrap only between words */
+  }
+  .hero-wall__flip .flip-letter {
+    display: inline-block; /* required for per-letter y / blur transforms */
+    will-change: transform, opacity, filter;
+  }
+
   .hero-wall__sub {
     color: var(--ink-2);
     max-width: 42ch;
@@ -589,6 +616,8 @@ const MOBILE_VISIBLE = 6;
 
 <script>
   import { initHeroBowling } from '../../scripts/bowling';
+  import { initHeroFlip } from '../../scripts/hero-flip';
   const avatar = document.querySelector<HTMLElement>('.hero-wall__avatar');
   if (avatar) initHeroBowling(avatar);
+  initHeroFlip();
 </script>
