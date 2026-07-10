@@ -61,14 +61,16 @@ const components = {
   StoreBadges,
   ProtoEmbed,
 };
+
+// Case studies still in progress sit behind a client-side password gate
+// (ContentGate). One shared hash: the same password unlocks every gated study.
+const GATED_PROJECTS = new Set(['lotti', 'gangan']);
+const GATE_HASH = 'e0050ea98e743cfc0780afeb7deed1ee8c3428ef875ec84b790be0e8fdd7d4e3';
 ---
 
 {
-  project.id === 'lotti' ? (
-    <ContentGate
-      projectId="lotti"
-      passwordHash="e0050ea98e743cfc0780afeb7deed1ee8c3428ef875ec84b790be0e8fdd7d4e3"
-    >
+  GATED_PROJECTS.has(project.id) ? (
+    <ContentGate projectId={project.id} passwordHash={GATE_HASH}>
       <ProjectLayout project={project} prev={prev} next={next}>
         <Content components={components} />
       </ProjectLayout>
