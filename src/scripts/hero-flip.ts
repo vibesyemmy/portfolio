@@ -128,7 +128,7 @@ export function initHeroFlip(root: ParentNode = document): void {
   } catch {
     phrases = [];
   }
-  if (reduced || phrases.length < 2) return;
+  if (reduced || !Array.isArray(phrases) || phrases.length < 2) return;
 
   slot.dataset.flipReady = 'true';
 
@@ -137,14 +137,13 @@ export function initHeroFlip(root: ParentNode = document): void {
     gsap.set(slot, { autoAlpha: 1 }); // clears the CSS visibility:hidden pre-hide
 
     let i = 0;
-    let timer = 0;
 
     const cycle = (): void => {
       // reset the slot transform/filter the exit left behind, then build + enter
       gsap.set(slot, { opacity: 1, y: 0, scale: 1, filter: 'none' });
       const letters = buildLetterSpans(slot, phrases[i]);
       enter(letters).eventCallback('onComplete', () => {
-        timer = window.setTimeout(() => {
+        window.setTimeout(() => {
           exit(slot).eventCallback('onComplete', () => {
             i = (i + 1) % phrases.length;
             cycle();
@@ -153,7 +152,6 @@ export function initHeroFlip(root: ParentNode = document): void {
       });
     };
 
-    timer = window.setTimeout(cycle, START_DELAY_MS);
-    void timer;
+    window.setTimeout(cycle, START_DELAY_MS);
   });
 }
