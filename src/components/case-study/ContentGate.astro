@@ -10,7 +10,12 @@ interface Props {
 const { projectId, passwordHash } = Astro.props;
 ---
 
-<div class="cs-gate" id="cs-gate" aria-hidden="true">
+<div
+  class="cs-gate"
+  id="cs-gate"
+  aria-hidden="true"
+  style="background:#0a0a0a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem"
+>
   <div class="cs-gate__box">
     <h2 class="cs-gate__title">Protected Case Study</h2>
     <p class="cs-gate__desc">This project is still in progress. Enter the password to preview.</p>
@@ -88,7 +93,12 @@ const { projectId, passwordHash } = Astro.props;
   })();
 </script>
 
-<style>
+<style is:inline>
+  /* Inlined (is:inline) so the gate is styled at first byte — no external CSS
+     chunk to wait on. Prevents the flash of unstyled gate the extracted,
+     JS-injected scoped stylesheet caused (esp. in dev). Classnames are unique
+     to this component, so dropping Astro's scoping is safe. Mirrors the SSR
+     middleware gate, which inlines its styles the same way. */
   .cs-gate {
     min-height: 100vh;
     display: flex;
