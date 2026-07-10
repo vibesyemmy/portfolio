@@ -12,29 +12,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get staging HEAD SHA
-        id: sha
-        run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-
-      - name: Sync via GitHub API
+      - name: Push to production
         env:
           PAT: ${{ secrets.PRODUCTION_REPO_PAT }}
-          SHA: ${{ steps.sha.outputs.sha }}
         run: |
-          # Update production's main ref to match staging's HEAD
-          RESPONSE=$(curl -s -w '\n%{http_code}' -X PATCH \
-            -H "Authorization: Bearer ${PAT}" \
-            -H "Accept: application/vnd.github+json" \
-            -H "Content-Type: application/json" \
-            -d "{\"sha\":\"${SHA}\",\"force\":true}" \
-            "https://api.github.com/repos/vibesyemmy/portfolio/git/refs/heads/main")
-
-          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
-          BODY=$(echo "$RESPONSE" | head -n -1)
-
-          echo "HTTP: $HTTP_CODE"
-          if [ "$HTTP_CODE" != "200" ]; then
-            echo "ERROR: $BODY"
-            exit 1
-          fi
-          echo "Production synced to $SHA"
+          # A real git push transfers the commit objects; the refs REST API
+          # cannot (it 422s with "Object does not exist" for any commit not
+          # already in the target repo). --force keeps mirror semantics:
+          # staging is the source of truth.
+          git push --force "https://x-access-token:${PAT}@github.com/vibesyemmy/portfolio.git" HEAD:main
+          echo "Production synced to $(git rev-parse HEAD)"
