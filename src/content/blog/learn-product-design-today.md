@@ -6,9 +6,9 @@ cover: /learn-design-today-hero.png
 draft: false
 ---
 
-I became a product designer the way most people did five years ago. Learn Figma. Redesign a few popular apps. Build three case studies with fake metrics. Apply to a hundred jobs. Get rejected from ninety of them. Eventually land somewhere and learn the real craft on the job.
+I became a product designer over twelve years ago. I've watched the entry path evolve through every era: Photoshop comps, Sketch, the Figma revolution, bootcamp factories, and now AI agents eating the junior workflow from the bottom up.
 
-I'm not going to tell you to do any of that.
+If I were starting today, I wouldn't follow any of those paths. Including mine.
 
 The path I took is now the wrong path. Not because the fundamentals changed. Because the entry-level job that path prepared you for doesn't exist anymore. Or it exists, but it's shrinking fast, and the person who can do it without thinking is called an AI agent, not a junior designer.
 
