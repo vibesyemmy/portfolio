@@ -1,16 +1,16 @@
 ---
 title: "If I Started Learning Product Design Today"
-description: "The path I took is now the wrong path. Here's exactly what I'd do instead — and what today's tools change about the journey."
+description: "The path I took is now the wrong path. Here's exactly what I'd do instead, and what today's tools change about the journey."
 pubDate: 2026-07-12
 cover: /learn-design-today-hero.png
 draft: false
 ---
 
-I became a product designer over twelve years ago. I've watched the entry path evolve through every era: Photoshop comps, Sketch, the Figma revolution, bootcamp factories, and now a wave of tools — AI agents, no-code builders, code-on-canvas — that can design, build, and ship faster than any junior hire.
+I became a product designer over twelve years ago. I've watched the entry path evolve through every era: Photoshop comps, Sketch, the Figma revolution, bootcamp factories, and now a wave of tools: AI agents, no-code builders, code-on-canvas. Tools that can design, build, and ship faster than any junior hire.
 
 If I were starting today, I wouldn't follow any of those paths. Including mine.
 
-The path I took is now the wrong path. Not because the fundamentals changed. Because the entry-level job that path prepared you for doesn't exist anymore. Or it exists, but it's shrinking fast, and the person who can do it without thinking is being replaced by a tool — an AI agent, a code generator, a no-code builder — that costs a fraction of a salary and works around the clock.
+The path I took is now the wrong path. Not because the fundamentals changed. Because the entry-level job that path prepared you for doesn't exist anymore. Or it exists, but it's shrinking fast, and the person who can do it without thinking is being replaced by a tool: an AI agent, a code generator, a no-code builder. It costs a fraction of a salary and works around the clock.
 
 If I were starting from zero today, I'd do almost everything differently. Here's the path I'd take.
 
@@ -58,7 +58,7 @@ If I started today, I wouldn't open Figma for the first three months. I'd do thi
 
 Now find someone who uses the product differently than you do. Ask them about their experience. Not a survey. A conversation. Your goal is not to confirm what you already think. Your goal is to hear something that surprises you. If nothing surprises you, you didn't ask the right questions.
 
-**Month three: learn to decide.** Design is a series of decisions. Most of them are tradeoffs. Speed versus clarity. Simplicity versus flexibility. One user's need versus another's. Pick a real problem — something in your own life, something small. Design three different solutions. Not three different visual treatments. Three genuinely different approaches to solving the problem. Then force yourself to choose one and articulate why, with specific reasons, not taste. "This one is better because the user can complete the task in two steps instead of four" is a reason. "This one feels cleaner" is not.
+**Month three: learn to decide.** Design is a series of decisions. Most of them are tradeoffs. Speed versus clarity. Simplicity versus flexibility. One user's need versus another's. Pick a real problem. Something in your own life, something small. Design three different solutions. Not three different visual treatments. Three genuinely different approaches to solving the problem. Then force yourself to choose one and articulate why, with specific reasons, not taste. "This one is better because the user can complete the task in two steps instead of four" is a reason. "This one feels cleaner" is not.
 
 **Month four: now open Figma.** Learn the tool because you need it to express decisions you've already learned to make. Not the other way around. Don't learn every feature. Learn the ones that help you communicate: auto layout, components, variants, variables. Learn to build a simple design system because it forces you to think about consistency and scale. The Figma agent will fill in the gaps you don't know. What it can't fill in is your judgment about what belongs in the system in the first place.
 
@@ -74,7 +74,7 @@ Notice what's not on this list: bootcamps, certifications, "100 days of UI" chal
 
 Today's tools make this path harder and easier at the same time.
 
-Easier because you can move faster than any generation before you. You can go from idea to working product in an afternoon. You can ship a Telegram bot, a landing page, a functional prototype without writing code or hiring anyone. The mechanical ceiling that used to slow beginners down — "I can't code," "I don't have an engineer," "I can't afford to build this" — is gone. You can focus on thinking sooner because the building part is no longer the bottleneck.
+Easier because you can move faster than any generation before you. You can go from idea to working product in an afternoon. You can ship a Telegram bot, a landing page, a functional prototype without writing code or hiring anyone. The mechanical ceiling that used to slow beginners down: "I can't code," "I don't have an engineer," "I can't afford to build this." That ceiling is gone. You can focus on thinking sooner because the building part is no longer the bottleneck.
 
 Harder because the temptation to skip the thinking is stronger than ever. Why spend month one training your eye when a tool can tell you what's "good"? Why spend month three making hard decisions when an AI can generate options and rank them? Why learn to ship when a no-code builder can ship for you?
 

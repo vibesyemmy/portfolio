@@ -78,7 +78,7 @@ The cost isn't just conversion. Designers who don't practice predictive empathy 
 
 Here's where I struggle with this framework, and I should be honest about that.
 
-There is a point where designing for emotional response becomes designing for emotional manipulation. Dark patterns use emotional prediction too. Scarcity timers. Social proof counters. "Only 2 rooms left" when the hotel has fifty vacancies. These are not design failures. They are predictive empathy weaponized. They know exactly what you'll feel in the first five seconds — urgency, fear of missing out, social pressure — and they optimize for conversion, not for you.
+There is a point where designing for emotional response becomes designing for emotional manipulation. Dark patterns use emotional prediction too. Scarcity timers. Social proof counters. "Only 2 rooms left" when the hotel has fifty vacancies. These are not design failures. They are predictive empathy weaponized. They know exactly what you'll feel in the first five seconds: urgency, fear of missing out, social pressure. And they optimize for conversion, not for you.
 
 I don't have a clean line between empathy and manipulation. Nobody does. But I know the difference shows up in the question you ask yourself. "What will make them act" is a different question from "what will make them feel safe enough to make their own decision." One closes doors. The other opens them.
 
