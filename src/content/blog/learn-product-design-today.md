@@ -1,7 +1,7 @@
 ---
 title: "If I Started Learning Product Design Today"
 description: "The path I took is now the wrong path. Here's exactly what I'd do instead — and what AI changes about the journey."
-pubDate: 2026-07-10
+pubDate: 2026-07-12
 cover: /learn-design-today-hero.png
 draft: false
 ---
