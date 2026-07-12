@@ -1,16 +1,16 @@
 ---
 title: "If I Started Learning Product Design Today"
-description: "The path I took is now the wrong path. Here's exactly what I'd do instead — and what AI changes about the journey."
+description: "The path I took is now the wrong path. Here's exactly what I'd do instead — and what today's tools change about the journey."
 pubDate: 2026-07-12
 cover: /learn-design-today-hero.png
 draft: false
 ---
 
-I became a product designer over twelve years ago. I've watched the entry path evolve through every era: Photoshop comps, Sketch, the Figma revolution, bootcamp factories, and now AI agents eating the junior workflow from the bottom up.
+I became a product designer over twelve years ago. I've watched the entry path evolve through every era: Photoshop comps, Sketch, the Figma revolution, bootcamp factories, and now a wave of tools — AI agents, no-code builders, code-on-canvas — that can design, build, and ship faster than any junior hire.
 
 If I were starting today, I wouldn't follow any of those paths. Including mine.
 
-The path I took is now the wrong path. Not because the fundamentals changed. Because the entry-level job that path prepared you for doesn't exist anymore. Or it exists, but it's shrinking fast, and the person who can do it without thinking is called an AI agent, not a junior designer.
+The path I took is now the wrong path. Not because the fundamentals changed. Because the entry-level job that path prepared you for doesn't exist anymore. Or it exists, but it's shrinking fast, and the person who can do it without thinking is being replaced by a tool — an AI agent, a code generator, a no-code builder — that costs a fraction of a salary and works around the clock.
 
 If I were starting from zero today, I'd do almost everything differently. Here's the path I'd take.
 
@@ -30,19 +30,21 @@ Let me be direct about what no longer matters for someone entering the field.
 
 ---
 
-## What AI actually changed
+## What technology actually changed
 
-The conversation about AI and design is loud and mostly wrong. People are either panicking ("AI will replace designers") or dismissing ("AI can't do real design"). Neither position is useful.
+The conversation about AI and design is loud and mostly wrong. People are either panicking or dismissing. But the real story isn't about AI alone. It's about the entire stack collapsing.
 
-Here's what actually happened. AI automated the mechanical parts of design: generating variants, writing copy, preparing specs, checking accessibility, producing assets at scale. These are things junior designers used to do. They were never the valuable part of the job, but they were the entry ticket. You got hired to do the mechanical work, and over time you proved you could do the thinking work.
+Five years ago, going from an idea to a shipped product required a team. Designer, engineer, maybe a front-end specialist. The distance between a Figma frame and working code was measured in sprints. Today, that distance is measured in clicks. Code Layers turns a design frame into interactive code on the canvas. No-code builders like Framer and Webflow let you ship a full site without writing a line. AI assistants generate variants, write copy, check accessibility, and produce assets in seconds. Telegram and WhatsApp bots let you ship functional products inside apps people already have open.
 
-That entry ticket is being revoked. Not because companies don't need junior designers. Because the mechanical work doesn't need a human anymore. A senior designer with an AI agent can produce more variants, write more copy, check more accessibility issues, and generate more specs than a senior designer with two juniors could five years ago.
+The combination is what matters. Not any single tool. The fact that a designer today can research, design, build, and ship a working product without leaving their chair, without waiting for an engineering team, without a budget beyond their laptop. That's the leap.
+
+This rewrites the entry-level contract. You used to get hired to do the mechanical parts: prepare files, write specs, document states, annotate interactions. Those tasks are being absorbed into the tooling, one by one. Not by AI alone. By the entire pipeline compressing. A senior designer with today's stack can produce more output than a senior designer with two juniors and an engineer could five years ago.
 
 This sounds terrifying if you're trying to enter the field. It should. But it also clarifies something important: the part of design that was never mechanical, the part that was always the actual job, is more valuable than ever.
 
 Deciding what to build. Understanding why people behave the way they do. Knowing which problems are worth solving. Recognizing when a solution is good enough versus when it needs more work. Having an opinion and being able to defend it with evidence, not just preference.
 
-AI can generate a hundred button variants. It cannot tell you which one is right for this user, in this context, at this moment. That's the job. That was always the job. We just buried it under enough mechanical work that we forgot.
+A tool can generate a hundred button variants. It cannot tell you which one is right for this user, in this context, at this moment. That's the job. That was always the job. We just buried it under enough mechanical work that we forgot.
 
 ---
 
@@ -70,15 +72,15 @@ Notice what's not on this list: bootcamps, certifications, "100 days of UI" chal
 
 ## The uncomfortable part
 
-AI makes this path harder and easier at the same time.
+Today's tools make this path harder and easier at the same time.
 
-Easier because you can move faster. You can generate variants, write copy, check accessibility, and produce assets in minutes instead of hours. The mechanical ceiling that used to slow beginners down is gone. You can focus on thinking sooner.
+Easier because you can move faster than any generation before you. You can go from idea to working product in an afternoon. You can ship a Telegram bot, a landing page, a functional prototype without writing code or hiring anyone. The mechanical ceiling that used to slow beginners down — "I can't code," "I don't have an engineer," "I can't afford to build this" — is gone. You can focus on thinking sooner because the building part is no longer the bottleneck.
 
-Harder because the temptation to skip the thinking is stronger than ever. Why spend month one training your eye when the AI can tell you what's "good"? Why spend month three making hard decisions when the AI can generate options and rank them? Why learn to ship when the AI can write the code?
+Harder because the temptation to skip the thinking is stronger than ever. Why spend month one training your eye when a tool can tell you what's "good"? Why spend month three making hard decisions when an AI can generate options and rank them? Why learn to ship when a no-code builder can ship for you?
 
-Here's why: because if you skip the thinking, you will hit a ceiling. Fast. You'll be able to produce work that looks polished but doesn't solve anything. You'll have taste you can't defend. You'll make decisions you can't explain. And when the AI gets better, which it will, the only thing that distinguishes your output from anyone else's will be the thinking you never learned to do.
+Here's why: because if you skip the thinking, you will hit a ceiling. Fast. You'll be able to produce work that looks polished but doesn't solve anything. You'll have taste you can't defend. You'll make decisions you can't explain. And when the tools get better, which they will, the only thing that distinguishes your output from anyone else's will be the thinking you never learned to do.
 
-The designers who thrive in the next five years won't be the ones who learned the most tools. They'll be the ones who can look at a problem, understand the people it affects, make a clear decision about what to build, and articulate why. AI can help with all of that. It cannot replace any of it.
+The designers who thrive in the next five years won't be the ones who learned the most tools. They'll be the ones who can look at a problem, understand the people it affects, make a clear decision about what to build, and articulate why. The tools can help with all of that. They cannot replace any of it.
 
 ---
 
