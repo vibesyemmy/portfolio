@@ -1,7 +1,7 @@
 ---
 title: "The Designer's Secret Weapon"
 description: "Most designers spend their careers learning to create smooth flow. The next level is knowing exactly when to break it."
-pubDate: 2026-07-12
+pubDate: 2026-07-14
 cover: /flow-disruption-hero.png
 draft: false
 ---

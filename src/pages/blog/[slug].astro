@@ -34,6 +34,14 @@ const date = d.pubDate.toLocaleDateString('en-US', {
   day: 'numeric',
 });
 
+// Compute previous and next posts for navigation
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const currentIdx = allPosts.findIndex((p) => p.id === post.id);
+const prevPost = currentIdx > 0 ? allPosts[currentIdx - 1] : undefined;
+const nextPost = currentIdx < allPosts.length - 1 ? allPosts[currentIdx + 1] : undefined;
+
 const AUTHOR = 'Opeyemi';
 const avatarModules = import.meta.glob(
   '/public/avatar.{png,jpg,jpeg,webp,avif}',
@@ -69,6 +77,27 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
       <div class="prose">
         <Content />
       </div>
+
+      {(prevPost || nextPost) && (
+        <nav class="post__pager" aria-label="More stories">
+          {prevPost ? (
+            <a class="post__pager-link post__pager-link--prev" href={`/blog/${prevPost.id}`}>
+              <span class="post__pager-label">← Previous</span>
+              <span class="post__pager-title">{prevPost.data.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {nextPost ? (
+            <a class="post__pager-link post__pager-link--next" href={`/blog/${nextPost.id}`}>
+              <span class="post__pager-label">Next →</span>
+              <span class="post__pager-title">{nextPost.data.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )}
     </article>
 
     <ContactCTA />
@@ -144,5 +173,47 @@ const AVATAR = avatarFile ? `/${avatarFile}` : null;
 
   .prose {
     margin-top: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .post__pager {
+    width: min(100% - 3rem, 46rem);
+    margin: clamp(3rem, 8vw, 6rem) auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .post__pager-link {
+    display: grid;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .post__pager-link--next {
+    text-align: right;
+  }
+  .post__pager-label {
+    font-size: var(--text-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+  }
+  .post__pager-title {
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: color 0.2s;
+  }
+  .post__pager-link:hover .post__pager-title {
+    color: var(--accent-text);
+  }
+  @media (max-width: 520px) {
+    .post__pager {
+      flex-direction: column;
+    }
+    .post__pager-link--next {
+      text-align: left;
+    }
   }
 </style>
