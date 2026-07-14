@@ -16,6 +16,8 @@ Conversions went up 11%. Not because I made anything easier. Because I made one 
 
 That's flow disruption. And in UI/UX design, it's one of the most underused tools you have.
 
+![Before and after: the same 4-step checkout flow, identical except one step is intentionally disrupted. The break point increased conversions by 11%.](/flow-checkout-comparison.png)
+
 ---
 
 ## What flow disruption actually is
@@ -31,6 +33,8 @@ That moment is expensive. You can't use it everywhere. But when you use it in th
 ## The three places it works
 
 After years of watching users interact with interfaces, I've found flow disruption works in exactly three situations. Outside of these, it's just friction wearing a designer's justification.
+
+![Three types of intentional disruption: Protect (high-cost decisions), Interrupt (autopilot moments), and Teach (learning moments).](/flow-three-situations.png)
 
 **One: when the cost of getting it wrong is high.** Delete confirmations. Payment confirmations. Anything irreversible. The modal that blocks the entire screen isn't bad UX when the alternative is a user accidentally deleting three months of work. Flow disruption here is protective. You're not slowing them down. You're saving them from themselves.
 
@@ -57,6 +61,8 @@ The newsletter modal that appears three seconds into reading. The cookie banner 
 The difference is intent. Protective disruption says: I want you to pause because this decision matters. Extractive disruption says: I want you to pause because I want something from you. Users can feel the difference. They might not articulate it, but they feel it. One builds trust. The other burns it.
 
 The test is simple. Would you still add this disruption if it decreased your conversion metric but increased the user's understanding? If the answer is no, you're not designing a flow break. You're designing a dark pattern.
+
+![Protective disruption (delete confirmation) vs extractive disruption (newsletter popup). One serves the user, the other serves the designer.](/flow-protective-vs-extractive.png)
 
 ---
 
