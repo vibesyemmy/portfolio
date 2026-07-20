@@ -1,7 +1,7 @@
 ---
 title: "Your Job Title Is About to Break"
 description: "Product Designer and Frontend Developer are converging into a single role that doesn't have a name yet. The title distinction is lagging behind the work."
-pubDate: 2026-07-14
+pubDate: 2026-07-16
 cover: /job-title-break-hero.png
 draft: false
 ---
