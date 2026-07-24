@@ -1,7 +1,7 @@
 ---
 title: "How to Protect Your Creativity in the AI Era"
 description: "The tools are getting better at making things. That doesn't mean they should decide what gets made."
-pubDate: 2026-07-16
+pubDate: 2026-07-24
 cover: /protect-creativity-hero.png
 draft: false
 ---
